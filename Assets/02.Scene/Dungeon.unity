@@ -677,6 +677,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player
   inputVec: {x: 0, y: 0}
   speed: 5
+  rollSpeed: 12
+  rollDuration: 0.2
+  rollCooldown: 0.6
+  spriteRoot: {fileID: 1933784950}
+  rotateDuringRoll: 1
+  rollSpinDegrees: 360
 --- !u!1 &2119478003
 GameObject:
   m_ObjectHideFlags: 0
