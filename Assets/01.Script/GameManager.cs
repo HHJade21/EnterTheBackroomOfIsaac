@@ -46,8 +46,8 @@ public class GameManager : MonoBehaviour // 전역 게임 상태를 관리하는
 
     [Header("Audio")] // 오디오 관련 설정 헤더
     public AudioClip titleBGM; // 타이틀에서 재생할 BGM 클립
-    public AudioClip battleBGM; // 전투용 BGM (확장용)
-    public AudioClip restBGM; // 휴식/로비 BGM (확장용)
+    public AudioClip LobbyBGM; // 전투용 BGM (확장용)
+    public AudioClip DungeonBGM; // 휴식/로비 BGM (확장용)
 
     private AudioSource bgmSource; // BGM 재생용 오디오 소스
 
@@ -110,6 +110,7 @@ public class GameManager : MonoBehaviour // 전역 게임 상태를 관리하는
     {
         SetState(GameState.Title); // 상태를 Title로 설정
         LoadSceneByName(titleSceneName); // 타이틀 씬 로드 호출
+        StopBGM(); // 기존 BGM 정지
         PlayTitleBGM(); // 타이틀 BGM 재생
     }
 
@@ -118,6 +119,7 @@ public class GameManager : MonoBehaviour // 전역 게임 상태를 관리하는
         SetState(GameState.Lobby); // 상태를 Lobby로 설정
         LoadSceneByName(lobbySceneName); // 로비 씬 로드 호출
         StopBGM(); // 기존 BGM 정지
+        PlayLobbyBGM(); // 로비 BGM 재생
     }
 
     public void LoadDungeon() // 던전 씬 로드
@@ -125,6 +127,7 @@ public class GameManager : MonoBehaviour // 전역 게임 상태를 관리하는
         SetState(GameState.Dungeon); // 상태를 Dungeon으로 설정
         LoadSceneByName(dungeonSceneName); // 던전 씬 로드 호출
         StopBGM(); // 타이틀 BGM 정지
+        PlayDungeonBGM(); // 던전 BGM 재생
     }
 
     private void LoadSceneByName(string sceneName) // 공통 씬 로드 함수
@@ -173,7 +176,25 @@ public class GameManager : MonoBehaviour // 전역 게임 상태를 관리하는
         bgmSource.volume = 1f; // 볼륨 설정 (필요 시 인스펙터 노출 가능)
         bgmSource.Play(); // 재생 시작
     }
+    private void PlayLobbyBGM() // 로비 BGM 재생
+    {
+        if (bgmSource == null) return; // 오디오 소스 없으면 중단
+        if (LobbyBGM == null) return; // 클립이 없으면 중단
+        if (bgmSource.clip == LobbyBGM && bgmSource.isPlaying) return; // 이미 재생 중이면 무시
+        bgmSource.clip = LobbyBGM; // 오디오 소스에 전투 클립 할당
+        bgmSource.volume = 1f; // 볼륨 설정 (필요 시 인스펙터 노출 가능)
+        bgmSource.Play(); // 재생 시작
+    }
 
+    private void PlayDungeonBGM() // 던전 BGM 재생
+    {
+        if (bgmSource == null) return; // 오디오 소스 없으면 중단
+        if (DungeonBGM == null) return; // 클립이 없으면 중단
+        if (bgmSource.clip == DungeonBGM && bgmSource.isPlaying) return; // 이미 재생 중이면 무시
+        bgmSource.clip = DungeonBGM; // 오디오 소스에 던전 클립 할당
+        bgmSource.volume = 1f; // 볼륨 설정 (필요 시 인스펙터 노출 가능)
+        bgmSource.Play(); // 재생 시작
+    }
     private void StopBGM() // 현재 BGM 정지
     {
         if (bgmSource == null) return; // 소스 없으면 중단
@@ -188,7 +209,17 @@ public class GameManager : MonoBehaviour // 전역 게임 상태를 관리하는
         {
             PlayTitleBGM(); // 타이틀 BGM 재생
         }
-        else // 그 외 씬이면
+        else if(scene.name == lobbySceneName)// 그 외 씬이면
+        {
+            StopBGM(); // BGM 정지
+            PlayLobbyBGM(); // 로비 BGM 재생
+        }
+        else if(scene.name == dungeonSceneName)// 그 외 씬이면
+        {
+            StopBGM(); // BGM 정지
+            PlayDungeonBGM(); // 던전 BGM 재생
+        }
+        else// 그 외 씬이면
         {
             StopBGM(); // BGM 정지
         }
