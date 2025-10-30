@@ -19,6 +19,7 @@ public class WeaponController : MonoBehaviour
 
     public void Fire(Vector2 dir, Transform startPoint)
     {
+        dir = dir.normalized;
         GameObject bullet = Instantiate(bulletPrefab, startPoint.position, Quaternion.identity);
         bullet.transform.up = dir;
         bullet.GetComponent<Rigidbody2D>().linearVelocity = dir * bulletSpeed;
