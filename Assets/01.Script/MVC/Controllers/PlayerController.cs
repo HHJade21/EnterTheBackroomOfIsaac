@@ -64,7 +64,13 @@ public class PlayerController : MonoBehaviour
 
         // 입력이 없을 때는 마지막 이동 방향으로 구르기, 없으면 우측 기본
         rollDirection = (inputVec.sqrMagnitude > 0.0001f ? inputVec : (lastMoveDirection.sqrMagnitude > 0 ? lastMoveDirection : Vector2.right)).normalized;
-        StartCoroutine(RollRoutine());
+        bool isClockwise;
+        if(inputVec.x == 0){
+            isClockwise = inputVec.y < 0;
+        }else{
+            isClockwise = inputVec.x > 0;
+        }
+        StartCoroutine(RollRoutine(isClockwise));
     }
 
     void FixedUpdate()
@@ -92,7 +98,7 @@ public class PlayerController : MonoBehaviour
     // [Interaction] Detect interactables and invoke their Interact()
     // [Damage] Calculate final damage taken using defense stat
 
-    System.Collections.IEnumerator RollRoutine()
+    System.Collections.IEnumerator RollRoutine(bool isClockwise = true)
     {
         isRolling = true;
         isInvincible = true;
@@ -107,7 +113,7 @@ public class PlayerController : MonoBehaviour
             {
                 float spinPerSecond = rollSpinDegrees / rollDuration; // 초당 회전 각도
                 float delta = spinPerSecond * Time.deltaTime;
-                spriteRoot.Rotate(0f, 0f, -delta, Space.Self); // 시계 방향 회전(-Z)
+                spriteRoot.Rotate(0f, 0f, delta * (isClockwise ? -1 : 1), Space.Self); // 시계 방향 회전(-Z)
             }
             yield return null; // FixedUpdate에서 이동 처리
         }
