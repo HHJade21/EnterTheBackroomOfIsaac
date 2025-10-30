@@ -9,6 +9,11 @@ using UnityEngine;
 public class TitleController : MonoBehaviour
 {
     // [UI Hooks] Methods for button events
+    public void OnClickStartGame()
+    {
+        GameManager.Instance.StartRun();
+        GameManager.Instance.LoadDungeon();
+    }
 }
 
 
