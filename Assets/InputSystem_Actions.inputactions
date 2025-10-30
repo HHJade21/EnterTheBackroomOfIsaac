@@ -16,8 +16,6 @@
                     "initialStateCheck": true
                 },
                 {
-<<<<<<< HEAD
-=======
                     "name": "Look",
                     "type": "Value",
                     "id": "6b444451-8a00-4d00-a97e-f47457f736a8",
@@ -90,7 +88,6 @@
                     "initialStateCheck": false
                 },
                 {
->>>>>>> 21fd2dc579a66257584e4a87076c379cac018930
                     "name": "Roll",
                     "type": "Button",
                     "id": "3fecfbd6-28fb-4e16-9bb1-2982dd4be074",
