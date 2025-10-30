@@ -91,9 +91,6 @@ public class PlayerController : MonoBehaviour
     
     // [Interaction] Detect interactables and invoke their Interact()
     // [Damage] Calculate final damage taken using defense stat
-<<<<<<< HEAD
-}
-=======
 
     System.Collections.IEnumerator RollRoutine()
     {
@@ -124,4 +121,3 @@ public class PlayerController : MonoBehaviour
         }
     }
 }
->>>>>>> 21fd2dc579a66257584e4a87076c379cac018930

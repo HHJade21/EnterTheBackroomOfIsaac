@@ -724,8 +724,6 @@ MonoBehaviour:
   weaponController: {fileID: 658530958}
   inputVec: {x: 0, y: 0}
   speed: 5
-<<<<<<< HEAD
-=======
   rollSpeed: 12
   rollDuration: 0.2
   rollCooldown: 0.6
@@ -822,7 +820,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
->>>>>>> 21fd2dc579a66257584e4a87076c379cac018930
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
