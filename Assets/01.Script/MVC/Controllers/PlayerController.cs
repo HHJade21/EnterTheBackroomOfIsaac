@@ -17,7 +17,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     // [References] Link to PlayerView, PlayerStats, current IWeapon
-
+    public WeaponController weaponController;
     public Vector2 inputVec;
     public float speed = 5f;
 
@@ -41,6 +41,11 @@ public class PlayerController : MonoBehaviour
         rigid.MovePosition(rigid.position + nextVec);
     }
 
+
+    void OnFire(InputValue value){
+        Vector2 dir = ((Vector2)Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - (Vector2)transform.position).normalized;
+        weaponController.Fire(dir, transform);
+    }
     
     // [Combat] Handle fire, reload, skill cooldowns, projectile size modifier
     // [Roll] Implement roll state, duration, cooldown, i-frames
