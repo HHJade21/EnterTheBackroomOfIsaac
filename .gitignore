@@ -83,3 +83,5 @@ UserSettings/Layouts/default-6000.dwlt
 #이거 뭔데 자꾸 merging 뜨지?
 Assembly-CSharp.csproj
 
+/[Aa]ssets/_[Rr]ecovery/
+
