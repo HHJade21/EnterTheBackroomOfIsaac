@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     public WeaponController weaponController;
     public Vector2 inputVec;
     public float speed = 5f;
+    public SpriteRenderer spriteRenderer;
 
     [Header("Weapon Settings")]
     public int currentWeaponIndex = 0;//현재 무기 번호 - 해당 번호의 스크립터블 오브젝트를 불러와 무기 프리팹에 덮어씌움.
@@ -38,11 +39,16 @@ public class PlayerController : MonoBehaviour
     public bool rotateDuringRoll = true; // 구르는 동안 회전 여부
     public float rollSpinDegrees = 360f; // 구르기 1회전 각도
 
+    [Header("Trail Settings")]
+    public float trailSpawnInterval = 0.05f; // trail 생성 주기 (초)
+
     private bool isRolling;
     private bool isInvincible;          // 구르는 동안 무적
     private float lastRollTime;
     private Vector2 rollDirection;
     private Vector2 lastMoveDirection;  // 입력이 0일 때도 방향 유지
+    private bool isSande = false;
+    private Coroutine trailSpawnCoroutine; // trail 생성 코루틴 참조
 
     // 발사 및 재장전 관련 변수
     private float lastFireTime;         // 마지막 발사 시간
@@ -54,26 +60,28 @@ public class PlayerController : MonoBehaviour
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    // Update is called once per frame
-    void OnMove(InputValue value)
+    // Unity Events 방식 전용 메서드 (Invoke Unity Events 모드에서 사용)
+    public void OnMoveContext(InputAction.CallbackContext context)
     {
-        inputVec = value.Get<Vector2>();
-        if (inputVec.sqrMagnitude > 0.0001f)
+        if (context.performed || context.canceled)
         {
-            lastMoveDirection = inputVec.normalized;
+            inputVec = context.ReadValue<Vector2>();
+            if (inputVec.sqrMagnitude > 0.0001f)
+            {
+                lastMoveDirection = inputVec.normalized;
+            }
         }
     }
 
-    // Input System에서 "Roll" 액션에 매핑 (PlayerInput Send Messages 모드)
-    void OnRoll(InputValue value)
+    public void OnRollContext(InputAction.CallbackContext context)
     {
-        if (!value.isPressed) return;
+        if (!context.performed) return;
         if (isRolling) return;
         if (Time.time < lastRollTime + rollCooldown) return;
 
-        // 입력이 없을 때는 마지막 이동 방향으로 구르기, 없으면 우측 기본
         rollDirection = (inputVec.sqrMagnitude > 0.0001f ? inputVec : (lastMoveDirection.sqrMagnitude > 0 ? lastMoveDirection : Vector2.right)).normalized;
         bool isClockwise;
         if(inputVec.x == 0){
@@ -82,6 +90,48 @@ public class PlayerController : MonoBehaviour
             isClockwise = inputVec.x > 0;
         }
         StartCoroutine(RollRoutine(isClockwise));
+    }
+
+    public void OnFireContext(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            Vector2 dir = ((Vector2)Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - (Vector2)transform.position).normalized;
+            weaponController.Fire(dir, transform);
+        }
+    }
+
+    public void OnSandeContext(InputAction.CallbackContext context)
+    {
+        switch (context.phase)
+        {
+        case InputActionPhase.Performed:
+            isSande = true;
+            Time.timeScale = 0.5f;
+            // 일정 주기마다 trail 생성하는 코루틴 시작 (중복 방지)
+            if (trailSpawnCoroutine == null)
+            {
+                trailSpawnCoroutine = StartCoroutine(TrailSpawnRoutine());
+            }
+            break;
+
+        case InputActionPhase.Canceled:
+            isSande = false;
+            Time.timeScale = 1f;
+            break;
+
+        }
+    }
+    
+    // 일정 주기마다 trail을 생성하는 코루틴
+    System.Collections.IEnumerator TrailSpawnRoutine()
+    {
+        while (isSande)
+        {
+            CreateTrail();
+            yield return new WaitForSeconds(trailSpawnInterval * Time.timeScale);
+        }
+        trailSpawnCoroutine = null; // 종료 시 참조 초기화
     }
 
     void FixedUpdate()
@@ -94,10 +144,28 @@ public class PlayerController : MonoBehaviour
         }
 
         Vector2 nextVec = inputVec.normalized * speed * Time.fixedDeltaTime;
+        if(isSande && Time.timeScale > 0){
+            nextVec /= Time.timeScale;
+            nextVec *= 1.5f;
+        }
         rigid.MovePosition(rigid.position + nextVec);
     }
-
-
+    
+    void CreateTrail()
+    {
+        GameObject trail = new GameObject("Trail"); // 잔상 오브젝트 생성
+        SpriteRenderer trailSprite = trail.AddComponent<SpriteRenderer>(); // SpriteRenderer 추가
+        trailSprite.sprite = spriteRenderer.sprite; // 현재 스프라이트 복사
+        trailSprite.color = new Color(1f, 0.5f, 0.5f, 1f); // 색상 설정
+        trail.transform.position = transform.position;
+        trail.transform.rotation = transform.rotation;
+        trail.transform.localScale = transform.localScale;
+        trailSprite.flipX = spriteRenderer.flipX;
+        
+        // trail을 원본보다 뒤에 렌더링 (sortingOrder를 낮춤)
+        trailSprite.sortingOrder = spriteRenderer.sortingOrder - 1;
+        StartCoroutine(TrailControlRoutine(trailSprite, trail));
+    }
     void OnFire(InputValue value)
     {
         // 버튼을 눌렀을 때만 발사 (버튼을 떼면 중단)
@@ -133,6 +201,7 @@ public class PlayerController : MonoBehaviour
         
         // 재장전 시작
         StartCoroutine(ReloadRoutine());
+        StartCoroutine(TrailControlRoutine(trailSprite, trail));
     }
     
     // [Combat] Handle fire, reload, skill cooldowns, projectile size modifier
@@ -140,6 +209,45 @@ public class PlayerController : MonoBehaviour
     
     // [Interaction] Detect interactables and invoke their Interact()
     // [Damage] Calculate final damage taken using defense stat
+
+    System.Collections.IEnumerator TrailControlRoutine(SpriteRenderer trailSprite, GameObject trail){
+        float startTime = Time.time; // trail 생성 시점 기록
+        
+        // 생성 시점의 색상 오프셋을 저장 (각 trail마다 다른 색상에서 시작)
+        float colorOffset = (startTime * 0.1f) % 1f;
+        
+        while(isSande){
+            // 생성 시점의 오프셋 + 현재 시간으로 색상 순환 (각 trail은 다른 색상에서 시작하지만 모두 순환)
+            float hue = (colorOffset + (Time.time * 0.1f)) % 1f;
+            Color rainbowColor = HSVToRGB(hue, 1f, 1f);
+            
+            trailSprite.color = new Color(rainbowColor.r, rainbowColor.g, rainbowColor.b, 0.2f);
+            yield return null;
+        }
+        Destroy(trail);
+    }
+    
+    // HSV to RGB 변환 헬퍼 함수
+    Color HSVToRGB(float h, float s, float v)
+    {
+        h = Mathf.Clamp01(h);
+        s = Mathf.Clamp01(s);
+        v = Mathf.Clamp01(v);
+        
+        float c = v * s;
+        float x = c * (1f - Mathf.Abs(((h * 6f) % 2f) - 1f));
+        float m = v - c;
+        
+        float r = 0f, g = 0f, b = 0f;
+        
+        if (h < 1f / 6f)        { r = c; g = x; b = 0f; }
+        else if (h < 2f / 6f)   { r = x; g = c; b = 0f; }
+        else if (h < 3f / 6f)   { r = 0f; g = c; b = x; }
+        else if (h < 4f / 6f)   { r = 0f; g = x; b = c; }
+        else if (h < 5f / 6f)   { r = x; g = 0f; b = c; }
+        else                    { r = c; g = 0f; b = x; }
+        return new Color(r + m, g + m, b + m, 1f);
+    }
 
     System.Collections.IEnumerator RollRoutine(bool isClockwise = true)
     {
