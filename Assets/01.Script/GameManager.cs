@@ -192,7 +192,7 @@ public class GameManager : MonoBehaviour // 전역 게임 상태를 관리하는
         if (DungeonBGM == null) return; // 클립이 없으면 중단
         if (bgmSource.clip == DungeonBGM && bgmSource.isPlaying) return; // 이미 재생 중이면 무시
         bgmSource.clip = DungeonBGM; // 오디오 소스에 던전 클립 할당
-        bgmSource.volume = 1f; // 볼륨 설정 (필요 시 인스펙터 노출 가능)
+        bgmSource.volume = 0.6f; // 볼륨 설정 (60%)
         bgmSource.Play(); // 재생 시작
     }
     private void StopBGM() // 현재 BGM 정지
