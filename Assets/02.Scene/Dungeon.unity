@@ -808,6 +808,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 9caa3d8a-6b2f-4e8e-8bad-6ede561bd9be
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1933784952}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnReloadContext
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: c7496823-32e1-4d1e-880c-ea7332d1d91e
+    m_ActionName: 'Player/Reload[/Mouse/rightButton]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: 
@@ -828,12 +844,19 @@ MonoBehaviour:
   weaponController: {fileID: 658530958}
   inputVec: {x: 0, y: 0}
   speed: 5
+  spriteRenderer: {fileID: 0}
+  currentWeaponIndex: 0
+  maxBulletCount: 10
+  currentBulletCount: 10
+  attackCooldown: 0.2
+  reloadTime: 0.6
   rollSpeed: 12
   rollDuration: 0.2
   rollCooldown: 0.6
   spriteRoot: {fileID: 1933784950}
   rotateDuringRoll: 1
   rollSpinDegrees: 360
+  trailSpawnInterval: 0.05
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
