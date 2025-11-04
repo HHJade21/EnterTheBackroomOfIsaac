@@ -201,7 +201,6 @@ public class PlayerController : MonoBehaviour
         
         // 재장전 시작
         StartCoroutine(ReloadRoutine());
-        StartCoroutine(TrailControlRoutine(trailSprite, trail));
     }
     
     // [Combat] Handle fire, reload, skill cooldowns, projectile size modifier
