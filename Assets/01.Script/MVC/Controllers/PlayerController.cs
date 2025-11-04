@@ -46,6 +46,10 @@ public class PlayerController : MonoBehaviour
     [Header("Trail Settings")]
     public float trailSpawnInterval = 0.05f; // trail 생성 주기 (초)
 
+    [Header("Combat Settings")]
+    [Tooltip("피격 판정용 Trigger Collider (별도로 설정)")]
+    public Collider2D hitboxCollider; // 피격 판정용 Collider (Trigger)
+    
     private bool isRolling;
     private bool isInvincible;          // 구르는 동안 무적
     private float lastRollTime;
@@ -286,5 +290,29 @@ public class PlayerController : MonoBehaviour
         currentBulletCount = maxBulletCount;
         
         isReloading = false; // 재장전 상태 종료
+    }
+
+    // 피격 판정 처리 (Trigger Collider용)
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        // 무적 상태(구르기 중)이면 피격 무시
+        if (isInvincible) return;
+
+        // 적이나 적의 총알과 충돌했는지 확인
+        // 예: Enemy 태그나 EnemyProjectile 태그를 가진 오브젝트
+        if (other.CompareTag("Enemy") || other.CompareTag("EnemyProjectile"))
+        {
+            // TODO: IDamageable 인터페이스를 통해 데미지 처리
+            // 예: IDamageable damageable = GetComponent<IDamageable>();
+            //     if (damageable != null) damageable.TakeDamage(...);
+            
+            Debug.Log($"플레이어 피격: {other.name}");
+            
+            // 적의 총알인 경우 파괴
+            if (other.CompareTag("EnemyProjectile"))
+            {
+                Destroy(other.gameObject);
+            }
+        }
     }
 }

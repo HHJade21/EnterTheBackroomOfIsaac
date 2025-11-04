@@ -35,6 +35,16 @@ public class StageManager : MonoBehaviour
     [Tooltip("타일들을 담을 부모 트랜스폼 (비우면 자동생성)")]
     public Transform tilesRoot;
 
+    [Header("Wall Settings")]
+    [Tooltip("Ground 주변에 배치할 벽 프리팹")]
+    public GameObject wallPrefab;
+
+    [Tooltip("벽 생성을 활성화할지 여부")]
+    public bool generateWalls = true;
+
+    [Tooltip("벽들을 담을 부모 트랜스폼 (비우면 자동생성)")]
+    public Transform wallsRoot;
+
     void Start()
     {
         if (autoTileSizeFromPrefab)
@@ -47,6 +57,11 @@ public class StageManager : MonoBehaviour
             FitCameraAndGridToResolution();
         }
         GenerateFloorTiles();
+        
+        if (generateWalls)
+        {
+            GenerateWalls();
+        }
     }
 
     public void GenerateFloorTiles()
@@ -139,5 +154,58 @@ public class StageManager : MonoBehaviour
 
         width = Mathf.Max(1, tilesX);
         height = Mathf.Max(1, tilesY);
+    }
+
+    public void GenerateWalls()
+    {
+        if (wallPrefab == null)
+        {
+            Debug.LogWarning("StageManager: wallPrefab이 비어있습니다. 벽 생성을 건너뜁니다.");
+            return;
+        }
+
+        EnsureWallsRoot();
+        ClearChildren(wallsRoot);
+
+        // 아래쪽 벽 (왼쪽 모서리 포함)
+        for (int x = -1; x <= width; x++)
+        {
+            Vector3 pos = new Vector3(origin.x + x * tileSize, origin.y - tileSize, 0f);
+            GameObject wall = Instantiate(wallPrefab, pos, Quaternion.identity, wallsRoot);
+            wall.name = $"Wall_Bottom_{x}";
+        }
+
+        // 위쪽 벽 (왼쪽 모서리 포함)
+        for (int x = -1; x <= width; x++)
+        {
+            Vector3 pos = new Vector3(origin.x + x * tileSize, origin.y + height * tileSize, 0f);
+            GameObject wall = Instantiate(wallPrefab, pos, Quaternion.identity, wallsRoot);
+            wall.name = $"Wall_Top_{x}";
+        }
+
+        // 왼쪽 벽 (아래쪽과 위쪽 모서리 제외, 이미 배치됨)
+        for (int y = 0; y < height; y++)
+        {
+            Vector3 pos = new Vector3(origin.x - tileSize, origin.y + y * tileSize, 0f);
+            GameObject wall = Instantiate(wallPrefab, pos, Quaternion.identity, wallsRoot);
+            wall.name = $"Wall_Left_{y}";
+        }
+
+        // 오른쪽 벽 (아래쪽과 위쪽 모서리 제외, 이미 배치됨)
+        for (int y = 0; y < height; y++)
+        {
+            Vector3 pos = new Vector3(origin.x + width * tileSize, origin.y + y * tileSize, 0f);
+            GameObject wall = Instantiate(wallPrefab, pos, Quaternion.identity, wallsRoot);
+            wall.name = $"Wall_Right_{y}";
+        }
+    }
+
+    private void EnsureWallsRoot()
+    {
+        if (wallsRoot != null) return;
+        GameObject root = new GameObject("WallsRoot");
+        root.transform.SetParent(transform);
+        root.transform.localPosition = Vector3.zero;
+        wallsRoot = root.transform;
     }
 }
