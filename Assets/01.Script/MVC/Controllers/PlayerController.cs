@@ -57,6 +57,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 lastMoveDirection;  // 입력이 0일 때도 방향 유지
     private bool isSande = false;
     private Coroutine trailSpawnCoroutine; // trail 생성 코루틴 참조
+    private Vector2 lastTrailPosition; // 마지막 Trail 생성 위치
 
     // 발사 및 재장전 관련 변수
     private float lastFireTime;         // 마지막 발사 시간
@@ -131,6 +132,7 @@ public class PlayerController : MonoBehaviour
         case InputActionPhase.Performed:
             isSande = true;
             Time.timeScale = 0.5f;
+            lastTrailPosition = transform.position; // 초기 위치 저장
             // 일정 주기마다 trail 생성하는 코루틴 시작 (중복 방지)
             if (trailSpawnCoroutine == null)
             {
@@ -151,7 +153,13 @@ public class PlayerController : MonoBehaviour
     {
         while (isSande)
         {
-            CreateTrail();
+            Vector2 currentPosition = transform.position;
+            // 위치가 다르면 Trail 생성
+            if (currentPosition != lastTrailPosition)
+            {
+                CreateTrail();
+                lastTrailPosition = currentPosition;
+            }
             yield return new WaitForSeconds(trailSpawnInterval * Time.timeScale);
         }
         trailSpawnCoroutine = null; // 종료 시 참조 초기화
