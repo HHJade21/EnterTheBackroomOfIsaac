@@ -28,11 +28,15 @@ public class PlayerController : MonoBehaviour
     public int currentBulletCount = 10;
     public float attackCooldown = 0.2f;
     public float reloadTime = 0.6f;
+    //얘네 나중에 weaponData로 옮겨야 함
+    public AudioClip fireSound;
+    public AudioClip reloadSound;
 
     [Header("Roll Settings")]
     public float rollSpeed = 12f;       // 구르기 속도 (이동 속도보다 빠르게)
     public float rollDuration = 0.2f;   // 구르기 지속 시간 (초)
     public float rollCooldown = 0.6f;   // 구르기 쿨다운 (초)
+    public AudioClip rollSound; 
 
     [Header("Roll Visuals")]
     public Transform spriteRoot;         // 회전시킬 스프라이트 루트(보통 자식 트랜스폼)
@@ -90,6 +94,7 @@ public class PlayerController : MonoBehaviour
             isClockwise = inputVec.x > 0;
         }
         StartCoroutine(RollRoutine(isClockwise));
+        AudioSource.PlayClipAtPoint(rollSound, transform.position);
     }
 
     public void OnFireContext(InputAction.CallbackContext context)
@@ -112,6 +117,7 @@ public class PlayerController : MonoBehaviour
         // 발사 시간 기록 및 탄약 감소
         lastFireTime = Time.time;
         currentBulletCount--;
+        AudioSource.PlayClipAtPoint(fireSound, transform.position);
     }
 
     public void OnSandeContext(InputAction.CallbackContext context)
@@ -191,6 +197,7 @@ public class PlayerController : MonoBehaviour
         
         // 재장전 시작
         StartCoroutine(ReloadRoutine());
+        AudioSource.PlayClipAtPoint(reloadSound, transform.position);
     }
     
     // [Combat] Handle fire, reload, skill cooldowns, projectile size modifier
