@@ -125,6 +125,21 @@ public class PlayerController : MonoBehaviour
         AudioSource.PlayClipAtPoint(fireSound, transform.position);
     }
 
+    public void OnRunContext(InputAction.CallbackContext context)
+    {
+        switch (context.phase)
+        {
+        case InputActionPhase.Performed:
+            speed = 7.5f;
+            break;
+
+        case InputActionPhase.Canceled:
+            speed = 5f;
+            break;
+
+        }
+    }
+
     public void OnSandeContext(InputAction.CallbackContext context)
     {
         switch (context.phase)
