@@ -94,11 +94,24 @@ public class PlayerController : MonoBehaviour
 
     public void OnFireContext(InputAction.CallbackContext context)
     {
-        if (context.performed)
-        {
-            Vector2 dir = ((Vector2)Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - (Vector2)transform.position).normalized;
-            weaponController.Fire(dir, transform);
-        }
+        if (!context.performed) return;
+        
+        // 재장전 중이면 발사 불가
+        if (isReloading) return;
+        
+        // 탄약이 없으면 발사 불가
+        if (currentBulletCount <= 0) return;
+        
+        // 발사 쿨다운 체크
+        if (Time.time < lastFireTime + attackCooldown) return;
+        
+        // 발사 실행
+        Vector2 dir = ((Vector2)Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - (Vector2)transform.position).normalized;
+        weaponController.Fire(dir, transform);
+        
+        // 발사 시간 기록 및 탄약 감소
+        lastFireTime = Time.time;
+        currentBulletCount--;
     }
 
     public void OnSandeContext(InputAction.CallbackContext context)
@@ -166,34 +179,11 @@ public class PlayerController : MonoBehaviour
         trailSprite.sortingOrder = spriteRenderer.sortingOrder - 1;
         StartCoroutine(TrailControlRoutine(trailSprite, trail));
     }
-    void OnFire(InputValue value)
+    // Input System에서 "Reload" 액션에 매핑 (Invoke Unity Events 모드)
+    public void OnReloadContext(InputAction.CallbackContext context)
     {
-        // 버튼을 눌렀을 때만 발사 (버튼을 떼면 중단)
-        if (!value.isPressed) return;
-        
-        // 재장전 중이면 발사 불가
-        if (isReloading) return;
-        
-        // 탄약이 없으면 발사 불가
-        if (currentBulletCount <= 0) return;
-        
-        // 발사 쿨다운 체크
-        if (Time.time < lastFireTime + attackCooldown) return;
-        
-        // 발사 실행
-        Vector2 dir = ((Vector2)Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - (Vector2)transform.position).normalized;
-        weaponController.Fire(dir, transform);
-        
-        // 발사 시간 기록 및 탄약 감소
-        lastFireTime = Time.time;
-        currentBulletCount--;
-    }
-    
-    // Input System에서 "Reload" 액션에 매핑 (PlayerInput Send Messages 모드)
-    void OnReload(InputValue value)
-    {
-        // 버튼을 눌렀을 때만 재장전 시작
-        if (!value.isPressed) return;
+        // 버튼을 눌렀을 때만 재장전 시작?
+        if (!context.performed) return;
         
         // 이미 재장전 중이거나 탄약이 최대면 무시
         if (isReloading) return;
