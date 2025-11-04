@@ -21,6 +21,13 @@ public class PlayerController : MonoBehaviour
     public Vector2 inputVec;
     public float speed = 5f;
 
+    [Header("Weapon Settings")]
+    public int currentWeaponIndex = 0;//현재 무기 번호 - 해당 번호의 스크립터블 오브젝트를 불러와 무기 프리팹에 덮어씌움.
+    public int maxBulletCount = 10;//이하 데이터들은 나중에 리스트로 재구성할 것.
+    public int currentBulletCount = 10;
+    public float attackCooldown = 0.2f;
+    public float reloadTime = 0.6f;
+
     [Header("Roll Settings")]
     public float rollSpeed = 12f;       // 구르기 속도 (이동 속도보다 빠르게)
     public float rollDuration = 0.2f;   // 구르기 지속 시간 (초)
@@ -36,6 +43,10 @@ public class PlayerController : MonoBehaviour
     private float lastRollTime;
     private Vector2 rollDirection;
     private Vector2 lastMoveDirection;  // 입력이 0일 때도 방향 유지
+
+    // 발사 및 재장전 관련 변수
+    private float lastFireTime;         // 마지막 발사 시간
+    private bool isReloading;            // 재장전 중 여부
 
     Rigidbody2D rigid;
 
@@ -87,9 +98,41 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    void OnFire(InputValue value){
+    void OnFire(InputValue value)
+    {
+        // 버튼을 눌렀을 때만 발사 (버튼을 떼면 중단)
+        if (!value.isPressed) return;
+        
+        // 재장전 중이면 발사 불가
+        if (isReloading) return;
+        
+        // 탄약이 없으면 발사 불가
+        if (currentBulletCount <= 0) return;
+        
+        // 발사 쿨다운 체크
+        if (Time.time < lastFireTime + attackCooldown) return;
+        
+        // 발사 실행
         Vector2 dir = ((Vector2)Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - (Vector2)transform.position).normalized;
         weaponController.Fire(dir, transform);
+        
+        // 발사 시간 기록 및 탄약 감소
+        lastFireTime = Time.time;
+        currentBulletCount--;
+    }
+    
+    // Input System에서 "Reload" 액션에 매핑 (PlayerInput Send Messages 모드)
+    void OnReload(InputValue value)
+    {
+        // 버튼을 눌렀을 때만 재장전 시작
+        if (!value.isPressed) return;
+        
+        // 이미 재장전 중이거나 탄약이 최대면 무시
+        if (isReloading) return;
+        if (currentBulletCount >= maxBulletCount) return;
+        
+        // 재장전 시작
+        StartCoroutine(ReloadRoutine());
     }
     
     // [Combat] Handle fire, reload, skill cooldowns, projectile size modifier
@@ -125,5 +168,19 @@ public class PlayerController : MonoBehaviour
         {
             spriteRoot.localRotation = originalRotation; // 원래 회전 복원
         }
+    }
+    
+    // 재장전 코루틴
+    System.Collections.IEnumerator ReloadRoutine()
+    {
+        isReloading = true; // 재장전 상태 시작
+        
+        // reloadTime만큼 대기
+        yield return new WaitForSeconds(reloadTime);
+        
+        // 탄약을 최대치로 복구
+        currentBulletCount = maxBulletCount;
+        
+        isReloading = false; // 재장전 상태 종료
     }
 }
