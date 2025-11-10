@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class RoomController : MonoBehaviour
 {
@@ -24,6 +25,12 @@ public class RoomController : MonoBehaviour
                 }
             }
         }
+        StartCoroutine(_tmpWaitAndClear());
+    }
+
+    private IEnumerator _tmpWaitAndClear(){
+        yield return new WaitForSeconds(3f);
+        isCleared = true;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

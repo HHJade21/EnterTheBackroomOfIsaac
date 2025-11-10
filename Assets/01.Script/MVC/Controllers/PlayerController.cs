@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     // Unity Events 방식 전용 메서드 (Invoke Unity Events 모드에서 사용)
@@ -81,6 +81,9 @@ public class PlayerController : MonoBehaviour
             if (inputVec.sqrMagnitude > 0.0001f)
             {
                 lastMoveDirection = inputVec.normalized;
+                if(inputVec.x != 0){
+                    spriteRenderer.flipX = inputVec.x > 0;
+                }
             }
         }
     }
@@ -92,13 +95,8 @@ public class PlayerController : MonoBehaviour
         if (Time.time < lastRollTime + rollCooldown) return;
 
         rollDirection = (inputVec.sqrMagnitude > 0.0001f ? inputVec : (lastMoveDirection.sqrMagnitude > 0 ? lastMoveDirection : Vector2.right)).normalized;
-        bool isClockwise;
-        if(inputVec.x == 0){
-            isClockwise = inputVec.y < 0;
-        }else{
-            isClockwise = inputVec.x > 0;
-        }
-        StartCoroutine(RollRoutine(isClockwise));
+        
+        StartCoroutine(RollRoutine(spriteRenderer.flipX));
         AudioSource.PlayClipAtPoint(rollSound, transform.position);
     }
 
