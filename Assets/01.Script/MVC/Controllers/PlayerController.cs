@@ -58,6 +58,7 @@ public class PlayerController : MonoBehaviour
     private bool isSande = false;
     private Coroutine trailSpawnCoroutine; // trail 생성 코루틴 참조
     private Vector2 lastTrailPosition; // 마지막 Trail 생성 위치
+    private Animator animator;
 
     // 발사 및 재장전 관련 변수
     private float lastFireTime;         // 마지막 발사 시간
@@ -70,6 +71,7 @@ public class PlayerController : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>(); // 회전할 때 히트박스도 움직이면 벽에 걸리니까 스프라이트를 자식으로 보내서 그림만 회전하게 만듬
+        animator = GetComponentInChildren<Animator>();
     }
 
     // Unity Events 방식 전용 메서드 (Invoke Unity Events 모드에서 사용)
@@ -193,6 +195,7 @@ public class PlayerController : MonoBehaviour
             nextVec *= 1.5f;
         }
         rigid.MovePosition(rigid.position + nextVec);
+        animator.SetFloat("Speed", nextVec.magnitude);
     }
     
     void CreateTrail()
