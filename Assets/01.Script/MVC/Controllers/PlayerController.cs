@@ -32,6 +32,15 @@ public class PlayerController : MonoBehaviour
     public AudioClip fireSound;
     public AudioClip reloadSound;
 
+    [Header("Weapon Icon")]
+    public SpriteRenderer weaponIconRenderer;   // 현재 무기 아이콘을 표시할 Renderer
+    [Tooltip("플레이어로부터 아이콘까지의 거리")]
+    public float weaponIconDistance = 0.7f;     // 플레이어로부터의 거리
+    [Tooltip("아이콘이 목표 위치를 따라가는 속도")]
+    public float weaponIconFollowSpeed = 10f;   // 추적 보간 속도
+    [Tooltip("스프라이트가 오른쪽을 바라보고 있을 때 필요한 회전 오프셋 (도 단위)")]
+    public float weaponIconRotationOffset = 0f; // 스프라이트 기본 방향 보정
+
     [Header("Roll Settings")]
     public float rollSpeed = 12f;       // 구르기 속도 (이동 속도보다 빠르게)
     public float rollDuration = 0.2f;   // 구르기 지속 시간 (초)
@@ -74,6 +83,13 @@ public class PlayerController : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
     }
 
+    private void Start()
+    {
+        SyncWeaponStatsFromData(forceResetAmmo: true);
+        UpdateWeaponIconSprite();
+        UpdateWeaponIconTransform(true);
+    }
+
     // Unity Events 방식 전용 메서드 (Invoke Unity Events 모드에서 사용)
     public void OnMoveContext(InputAction.CallbackContext context)
     {
@@ -105,6 +121,7 @@ public class PlayerController : MonoBehaviour
     public void OnFireContext(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
+        if (weaponController == null || weaponController.CurrentWeapon == null) return;
         
         // 재장전 중이면 발사 불가
         if (isReloading) return;
@@ -117,12 +134,27 @@ public class PlayerController : MonoBehaviour
         
         // 발사 실행
         Vector2 dir = ((Vector2)Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - (Vector2)transform.position).normalized;
-        weaponController.Fire(dir, transform);
+        Transform fireOrigin = weaponIconRenderer != null ? weaponIconRenderer.transform : transform;
+        weaponController.Fire(dir, fireOrigin);
         
         // 발사 시간 기록 및 탄약 감소
         lastFireTime = Time.time;
         currentBulletCount--;
-        AudioSource.PlayClipAtPoint(fireSound, transform.position);
+        if (fireSound != null)
+        {
+            AudioSource.PlayClipAtPoint(fireSound, transform.position);
+        }
+    }
+
+    public void EquipWeapon(WeaponData data)
+    {
+        if (weaponController == null) return;
+        if (weaponController.AddWeapon(data, true))
+        {
+            SyncWeaponStatsFromData(forceResetAmmo: true);
+            UpdateWeaponIconSprite();
+            UpdateWeaponIconTransform(true);
+        }
     }
 
     public void OnRunContext(InputAction.CallbackContext context)
@@ -180,6 +212,12 @@ public class PlayerController : MonoBehaviour
         trailSpawnCoroutine = null; // 종료 시 참조 초기화
     }
 
+    private void Update()
+    {
+        HandleWeaponSwapInput();
+        UpdateWeaponIconTransform();
+    }
+
     void FixedUpdate()
     {
         if (isRolling)
@@ -225,7 +263,10 @@ public class PlayerController : MonoBehaviour
         
         // 재장전 시작
         StartCoroutine(ReloadRoutine());
-        AudioSource.PlayClipAtPoint(reloadSound, transform.position);
+        if (reloadSound != null)
+        {
+            AudioSource.PlayClipAtPoint(reloadSound, transform.position);
+        }
     }
     
     // [Combat] Handle fire, reload, skill cooldowns, projectile size modifier
@@ -314,6 +355,120 @@ public class PlayerController : MonoBehaviour
         currentBulletCount = maxBulletCount;
         
         isReloading = false; // 재장전 상태 종료
+    }
+
+    private void SyncWeaponStatsFromData(bool forceResetAmmo = false)
+    {
+        if (weaponController == null) return;
+        var data = weaponController.CurrentWeapon;
+        if (data == null) return;
+
+        maxBulletCount = Mathf.Max(0, data.magazineSize);
+        attackCooldown = data.fireCooldown;
+        reloadTime = data.reloadTime;
+
+        if (forceResetAmmo)
+        {
+            currentBulletCount = maxBulletCount;
+        }
+        else
+        {
+            currentBulletCount = Mathf.Clamp(currentBulletCount, 0, maxBulletCount);
+            if (currentBulletCount == 0)
+            {
+                currentBulletCount = maxBulletCount;
+            }
+        }
+    }
+
+    private void HandleWeaponSwapInput()
+    {
+        if (weaponController == null) return;
+
+        var keyboard = Keyboard.current;
+        if (keyboard == null) return;
+
+        if (keyboard.digit1Key.wasPressedThisFrame || keyboard.numpad1Key.wasPressedThisFrame)
+        {
+            TryEquipWeaponSlot(0);
+        }
+        else if (keyboard.digit2Key.wasPressedThisFrame || keyboard.numpad2Key.wasPressedThisFrame)
+        {
+            TryEquipWeaponSlot(1);
+        }
+        else if (keyboard.digit3Key.wasPressedThisFrame || keyboard.numpad3Key.wasPressedThisFrame)
+        {
+            TryEquipWeaponSlot(2);
+        }
+    }
+
+    private void TryEquipWeaponSlot(int slotIndex)
+    {
+        if (weaponController == null) return;
+        if (weaponController.EquipWeaponByIndex(slotIndex))
+        {
+            SyncWeaponStatsFromData(forceResetAmmo: true);
+            UpdateWeaponIconSprite();
+            UpdateWeaponIconTransform(true);
+        }
+    }
+
+    private void UpdateWeaponIconSprite()
+    {
+        if (weaponIconRenderer == null) return;
+
+        if (weaponController == null)
+        {
+            weaponIconRenderer.sprite = null;
+            weaponIconRenderer.enabled = false;
+            return;
+        }
+
+        var data = weaponController.CurrentWeapon;
+        weaponIconRenderer.sprite = data != null ? data.icon : null;
+        weaponIconRenderer.enabled = weaponIconRenderer.sprite != null;
+    }
+
+    private void UpdateWeaponIconTransform(bool snapImmediate = false)
+    {
+        if (weaponIconRenderer == null || !weaponIconRenderer.enabled) return;
+
+        Vector3 playerPos = transform.position;
+        Vector3 direction = Vector3.right;
+
+        if (Camera.main != null && Mouse.current != null)
+        {
+            Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+            mouseWorld.z = playerPos.z;
+            direction = (mouseWorld - playerPos);
+        }
+
+        if (direction.sqrMagnitude < 0.0001f)
+        {
+            direction = Vector3.right;
+        }
+        else
+        {
+            direction.Normalize();
+        }
+
+        Vector3 targetPos = playerPos + direction * weaponIconDistance;
+        Transform iconTransform = weaponIconRenderer.transform;
+
+        if (snapImmediate)
+        {
+            iconTransform.position = targetPos;
+        }
+        else
+        {
+            iconTransform.position = Vector3.Lerp(iconTransform.position, targetPos, weaponIconFollowSpeed * Time.deltaTime);
+        }
+
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        iconTransform.rotation = Quaternion.Euler(0f, 0f, angle + weaponIconRotationOffset);
+
+        // 왼쪽에 있을 경우 상하 반전
+        weaponIconRenderer.flipY = direction.x < 0f;
     }
 
     // 피격 판정 처리 (Trigger Collider용)

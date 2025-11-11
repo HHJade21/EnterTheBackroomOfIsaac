@@ -1,29 +1,114 @@
+using System.Collections.Generic;
 using UnityEngine;
 
-// Mediates between PlayerController and IWeapon implementation
+// Mediates between PlayerController and weapon ScriptableObject data
 // Responsibilities:
-// - Hold reference to equipped IWeapon
-// - Translate player input into TryFire/Reload calls respecting attack speed
-// - Apply player attack power to final damage output
-// - Notify UI about ammo/gauge changes
-// SOLID:
-// - DIP: depend on IWeapon abstraction
+// - Manage up to three WeaponData references the player can carry
+// - Spawn projectiles using prefab/settings defined in the currently equipped WeaponData
+// - Provide helper accessors for UI/logic to query weapon stats
 
 public class WeaponController : MonoBehaviour
 {
-    // [Equip] Methods to equip/unequip weapons
-    // [Fire] Rate limit using attack speed from PlayerStats
-    // [Reload] Trigger reload or recharge depending on weapon type
-    public GameObject bulletPrefab;
-    public float bulletSpeed = 10f;
+    private const int MaxWeapons = 3;
+
+    [Header("Data")]
+    [SerializeField] private List<WeaponData> ownedWeapons = new List<WeaponData>(MaxWeapons);
+    [SerializeField] private WeaponData currentWeapon;
+
+    public WeaponData CurrentWeapon => currentWeapon;
+    public IReadOnlyList<WeaponData> OwnedWeapons => ownedWeapons;
+    public int CurrentWeaponIndex => ownedWeapons.IndexOf(currentWeapon);
+
+    private void Awake()
+    {
+        if (currentWeapon != null && !ownedWeapons.Contains(currentWeapon))
+        {
+            if (ownedWeapons.Count < MaxWeapons)
+            {
+                ownedWeapons.Add(currentWeapon);
+            }
+        }
+
+        if (currentWeapon == null && ownedWeapons.Count > 0)
+        {
+            currentWeapon = ownedWeapons[0];
+        }
+
+        if (ownedWeapons.Count > MaxWeapons)
+        {
+            ownedWeapons.RemoveRange(MaxWeapons, ownedWeapons.Count - MaxWeapons);
+        }
+    }
+
+    public bool AddWeapon(WeaponData data, bool makeCurrent = true)
+    {
+        if (data == null) return false;
+
+        if (!ownedWeapons.Contains(data))
+        {
+            if (ownedWeapons.Count >= MaxWeapons)
+            {
+                Debug.LogWarning($"Weapon inventory full ({MaxWeapons}). Cannot add {data.name}.");
+                return false;
+            }
+            ownedWeapons.Add(data);
+        }
+
+        if (makeCurrent)
+        {
+            SetCurrentWeapon(data);
+        }
+
+        return true;
+    }
+
+    public bool EquipWeapon(WeaponData data)
+    {
+        if (data == null) return false;
+        if (!ownedWeapons.Contains(data)) return false;
+
+        SetCurrentWeapon(data);
+        return true;
+    }
+
+    public bool EquipWeaponByIndex(int index)
+    {
+        if (index < 0 || index >= ownedWeapons.Count) return false;
+
+        var data = ownedWeapons[index];
+        if (data == currentWeapon) return false;
+
+        SetCurrentWeapon(data);
+        return true;
+    }
+
+    private void SetCurrentWeapon(WeaponData data)
+    {
+        currentWeapon = data;
+    }
 
     public void Fire(Vector2 dir, Transform startPoint)
     {
-        dir = dir.normalized;
-        GameObject bullet = Instantiate(bulletPrefab, startPoint.position, Quaternion.identity);
-        bullet.transform.up = dir;
-        bullet.GetComponent<Rigidbody2D>().linearVelocity = dir * bulletSpeed;
-        Destroy(bullet, 1f);
-    }
-}
+        if (currentWeapon == null) return;
+        if (currentWeapon.projectilePrefab == null) return;
 
+        dir = dir.normalized;
+        GameObject projectile = Instantiate(currentWeapon.projectilePrefab, startPoint.position, startPoint.rotation);
+        projectile.transform.up = dir;
+
+        var rb = projectile.GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            rb.linearVelocity = dir * currentWeapon.projectileSpeed;
+        }
+
+        Destroy(projectile, currentWeapon.projectileLifetime);
+    }
+
+    public float GetFireCooldown() => currentWeapon != null ? currentWeapon.fireCooldown : 0.2f;
+    public float GetReloadTime() => currentWeapon != null ? currentWeapon.reloadTime : 0.6f;
+    public int GetMagazineSize() => currentWeapon != null ? currentWeapon.magazineSize : 0;
+    public float GetBaseDamage() => currentWeapon != null ? currentWeapon.baseDamage : 0f;
+    public Sprite GetIcon() => currentWeapon != null ? currentWeapon.icon : null;
+    public string GetWeaponName() => currentWeapon != null ? currentWeapon.weaponName : "Weapon";
+}
