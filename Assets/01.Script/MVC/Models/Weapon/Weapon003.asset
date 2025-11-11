@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
   weaponName: Weapon
   icon: {fileID: 1772703093, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}
+  element: 2
   projectilePrefab: {fileID: 2599106515927395768, guid: d8c84b7851c176a4490f34abf7e0870e, type: 3}
   projectileSpeed: 14
   projectileLifetime: 1.5

@@ -12,6 +12,7 @@ public class WeaponController : MonoBehaviour
     private const int MaxWeapons = 3;
 
     [Header("Data")]
+    [SerializeField] private List<WeaponData> allWeapons = new List<WeaponData>();
     [SerializeField] private List<WeaponData> ownedWeapons = new List<WeaponData>(MaxWeapons);
     [SerializeField] private WeaponData currentWeapon;
 

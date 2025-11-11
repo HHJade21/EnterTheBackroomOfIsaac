@@ -5,9 +5,18 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "WeaponData", menuName = "EnterTheBackroomOfIsaac/Data/Weapon")]
 public class WeaponData : ScriptableObject
 {
+    public enum WeaponElement
+    {
+        Cyan,
+        Magenta,
+        Yellow,
+        Key
+    }
+
     [Header("Meta")]
     public string weaponName = "Weapon";   // UI 및 디버깅 표시 이름
     public Sprite icon;                    // UI 아이콘
+    public WeaponElement element = WeaponElement.Cyan; // 무기 속성
 
     [Header("Projectile")]
     public GameObject projectilePrefab;    // 발사할 투사체 프리팹

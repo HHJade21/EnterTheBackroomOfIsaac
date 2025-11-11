@@ -494,6 +494,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a9ae61b67744d344b5cdce52894d398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponController
+  allWeapons:
+  - {fileID: 11400000, guid: 0598e7f2e1e6c3b4781e192b5e16c51c, type: 2}
+  - {fileID: 11400000, guid: 791351129113e23499783dcd51d6c2b9, type: 2}
+  - {fileID: 11400000, guid: ae202ac134ec3454089c77899843da7d, type: 2}
   ownedWeapons:
   - {fileID: 11400000, guid: 0598e7f2e1e6c3b4781e192b5e16c51c, type: 2}
   - {fileID: 11400000, guid: 791351129113e23499783dcd51d6c2b9, type: 2}
