@@ -59,6 +59,10 @@ public class PlayerController : MonoBehaviour
     [Tooltip("피격 판정용 Trigger Collider (별도로 설정)")]
     public Collider2D hitboxCollider; // 피격 판정용 Collider (Trigger)
     
+    [Header("Collision Settings")]
+    [Tooltip("벽 충돌용 콜라이더 (Feet 오브젝트의 콜라이더)")]
+    public Collider2D wallCollider; // 벽 충돌용 콜라이더 (Feet에 있는 콜라이더)
+    
     private bool isRolling;
     private bool isInvincible;          // 구르는 동안 무적
     private float lastRollTime;
@@ -81,6 +85,16 @@ public class PlayerController : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>(); // 회전할 때 히트박스도 움직이면 벽에 걸리니까 스프라이트를 자식으로 보내서 그림만 회전하게 만듬
         animator = GetComponentInChildren<Animator>();
+        
+        // Feet 오브젝트의 콜라이더 자동 찾기 (수동 설정 안 했을 경우)
+        if (wallCollider == null)
+        {
+            Transform feetTransform = transform.Find("Feet");
+            if (feetTransform != null)
+            {
+                wallCollider = feetTransform.GetComponent<Collider2D>();
+            }
+        }
     }
 
     private void Start()
@@ -174,12 +188,23 @@ public class PlayerController : MonoBehaviour
 
     public void OnSandeContext(InputAction.CallbackContext context)
     {
+        // 빌드 상태에서는 Sande 기능 비활성화
+        if (!Application.isEditor)
+        {
+            return;
+        }
+        
         switch (context.phase)
         {
         case InputActionPhase.Performed:
             isSande = true;
             Time.timeScale = 0.5f;
             lastTrailPosition = transform.position; // 초기 위치 저장
+            // 벽 충돌 콜라이더 비활성화
+            if (wallCollider != null)
+            {
+                wallCollider.enabled = false;
+            }
             // 일정 주기마다 trail 생성하는 코루틴 시작 (중복 방지)
             if (trailSpawnCoroutine == null)
             {
@@ -190,6 +215,11 @@ public class PlayerController : MonoBehaviour
         case InputActionPhase.Canceled:
             isSande = false;
             Time.timeScale = 1f;
+            // 벽 충돌 콜라이더 다시 활성화
+            if (wallCollider != null)
+            {
+                wallCollider.enabled = true;
+            }
             break;
 
         }
