@@ -471,7 +471,7 @@ public class PlayerController : MonoBehaviour
         weaponIconRenderer.flipY = direction.x < 0f;
     }
 
-    // 피격 판정 처리 (Trigger Collider용)
+    // 피격 판정 처리 (Trigger Collider용 - hitboxCollider)
     void OnTriggerEnter2D(Collider2D other)
     {
         // 무적 상태(구르기 중)이면 피격 무시
