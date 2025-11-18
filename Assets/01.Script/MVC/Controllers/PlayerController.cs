@@ -72,6 +72,8 @@ public class PlayerController : MonoBehaviour
     private Coroutine trailSpawnCoroutine; // trail 생성 코루틴 참조
     private Vector2 lastTrailPosition; // 마지막 Trail 생성 위치
     private Animator animator;
+    private float knockbackForce = 0f;
+    private Vector2 knockbackDirection;
 
     // 발사 및 재장전 관련 변수
     private float lastFireTime;         // 마지막 발사 시간
@@ -104,6 +106,29 @@ public class PlayerController : MonoBehaviour
         UpdateWeaponIconTransform(true);
     }
 
+    public void Ayaya(){
+        animator.SetTrigger("Aya");
+        Knockback(10f, spriteRenderer.flipX ? Vector2.left : Vector2.right);
+        
+    }
+
+    private void Knockback(float force, Vector2 direction){
+        animator.SetTrigger("Aya");
+        StartCoroutine(HitRoutine());
+        knockbackForce = force;
+        knockbackDirection = direction;
+    }
+
+    System.Collections.IEnumerator HitRoutine(){
+        float n = 0.5f;
+        while(n < 1f){
+            spriteRenderer.color = new Color(1f, n, n, 1f);
+            n += 0.1f;
+            yield return new WaitForSeconds(0.05f);
+        }
+        spriteRenderer.color = Color.white;
+    }
+
     // Unity Events 방식 전용 메서드 (Invoke Unity Events 모드에서 사용)
     public void OnMoveContext(InputAction.CallbackContext context)
     {
@@ -113,9 +138,6 @@ public class PlayerController : MonoBehaviour
             if (inputVec.sqrMagnitude > 0.0001f)
             {
                 lastMoveDirection = inputVec.normalized;
-                if(inputVec.x != 0){
-                    spriteRenderer.flipX = inputVec.x > 0;
-                }
             }
         }
     }
@@ -256,6 +278,15 @@ public class PlayerController : MonoBehaviour
             rigid.MovePosition(rigid.position + rollVec);
             return;
         }
+        if(knockbackForce > 0f){
+            Vector2 knockbackVec = knockbackDirection * knockbackForce * Time.fixedDeltaTime;
+            rigid.MovePosition(rigid.position + knockbackVec);
+            knockbackForce -= Time.fixedDeltaTime * 20f;
+            if(knockbackForce <= 0f){
+                knockbackForce = 0f;
+            }
+            return;
+        }
 
         Vector2 nextVec = inputVec.normalized * speed * Time.fixedDeltaTime;
         if(isSande && Time.timeScale > 0){
@@ -263,6 +294,9 @@ public class PlayerController : MonoBehaviour
             nextVec *= 1.5f;
         }
         rigid.MovePosition(rigid.position + nextVec);
+        if(inputVec.x != 0){
+            spriteRenderer.flipX = inputVec.x > 0;
+        }
         animator.SetFloat("Speed", nextVec.magnitude);
     }
     
