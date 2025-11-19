@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 // Mediates between PlayerController and weapon ScriptableObject data
 // Responsibilities:
@@ -9,19 +10,26 @@ using UnityEngine;
 
 public class WeaponController : MonoBehaviour
 {
+    private const int allWeaponsCount = 3;
     private const int MaxWeapons = 3;
 
     [Header("Data")]
-    [SerializeField] private List<WeaponData> allWeapons = new List<WeaponData>();
+    [SerializeField] private List<WeaponData> allWeapons = new List<WeaponData>(allWeaponsCount);
     [SerializeField] private List<WeaponData> ownedWeapons = new List<WeaponData>(MaxWeapons);
     [SerializeField] private WeaponData currentWeapon;
+    [SerializeField] private List<bool> droppedWeapons = new List<bool>(allWeaponsCount);//이번 게임에서 한 번이라도 드랍된 무기들은 여기서 1로 바뀌고 다시는 등장하지 않음.
 
     public WeaponData CurrentWeapon => currentWeapon;
     public IReadOnlyList<WeaponData> OwnedWeapons => ownedWeapons;
     public int CurrentWeaponIndex => ownedWeapons.IndexOf(currentWeapon);
+    public GameObject weaponPrefab;
 
     private void Awake()
     {
+        //기본무기 드랍체크(중복으로 안 뜨게)
+        EnsureDroppedWeaponList();
+
+
         if (currentWeapon != null && !ownedWeapons.Contains(currentWeapon))
         {
             if (ownedWeapons.Count < MaxWeapons)
@@ -39,6 +47,33 @@ public class WeaponController : MonoBehaviour
         {
             ownedWeapons.RemoveRange(MaxWeapons, ownedWeapons.Count - MaxWeapons);
         }
+    }
+
+    //새 무기 생성 전에 랜덤으로 골라주는 메소드
+    public int RandomWeapon()
+    {
+        EnsureDroppedWeaponList();
+        int res = 0;
+        int guard = 0;
+        do
+        {
+            res = Random.Range(0, allWeapons.Count);
+            guard++;
+            if (guard > 100)
+                break;
+        } while (droppedWeapons[res]);
+        return res;
+    } 
+    
+    //새 무기 드랍 메소드
+    public void SpawnNewWeapon()
+    {
+        EnsureDroppedWeaponList();
+        int itemID = RandomWeapon();
+        GameObject newWeapon = Instantiate(weaponPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        newWeapon.GetComponent<SpriteRenderer>().sprite = allWeapons[itemID].icon;
+        newWeapon.GetComponent<newWeapon>().itemID = itemID;
+        droppedWeapons[itemID] = true;
     }
 
     public bool AddWeapon(WeaponData data, bool makeCurrent = true)
@@ -86,6 +121,27 @@ public class WeaponController : MonoBehaviour
     private void SetCurrentWeapon(WeaponData data)
     {
         currentWeapon = data;
+    }
+
+    private void EnsureDroppedWeaponList()
+    {
+        if (allWeapons == null) allWeapons = new List<WeaponData>();
+        if (droppedWeapons == null) droppedWeapons = new List<bool>();
+
+        while (droppedWeapons.Count < allWeapons.Count)
+        {
+            droppedWeapons.Add(false);
+        }
+
+        if (droppedWeapons.Count > allWeapons.Count)
+        {
+            droppedWeapons.RemoveRange(allWeapons.Count, droppedWeapons.Count - allWeapons.Count);
+        }
+
+        if (droppedWeapons.Count > 0)
+        {
+            droppedWeapons[0] = true;
+        }
     }
 
     public void Fire(Vector2 dir, Transform startPoint)
