@@ -59,6 +59,10 @@ public class PlayerController : MonoBehaviour
     [Tooltip("피격 판정용 Trigger Collider (별도로 설정)")]
     public Collider2D hitboxCollider; // 피격 판정용 Collider (Trigger)
     
+    [Header("Collision Settings")]
+    [Tooltip("벽 충돌용 콜라이더 (Feet 오브젝트의 콜라이더)")]
+    public Collider2D wallCollider; // 벽 충돌용 콜라이더 (Feet에 있는 콜라이더)
+    
     private bool isRolling;
     private bool isInvincible;          // 구르는 동안 무적
     private float lastRollTime;
@@ -68,6 +72,8 @@ public class PlayerController : MonoBehaviour
     private Coroutine trailSpawnCoroutine; // trail 생성 코루틴 참조
     private Vector2 lastTrailPosition; // 마지막 Trail 생성 위치
     private Animator animator;
+    private float knockbackForce = 0f;
+    private Vector2 knockbackDirection;
 
     // 발사 및 재장전 관련 변수
     private float lastFireTime;         // 마지막 발사 시간
@@ -81,6 +87,16 @@ public class PlayerController : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>(); // 회전할 때 히트박스도 움직이면 벽에 걸리니까 스프라이트를 자식으로 보내서 그림만 회전하게 만듬
         animator = GetComponentInChildren<Animator>();
+        
+        // Feet 오브젝트의 콜라이더 자동 찾기 (수동 설정 안 했을 경우)
+        if (wallCollider == null)
+        {
+            Transform feetTransform = transform.Find("Feet");
+            if (feetTransform != null)
+            {
+                wallCollider = feetTransform.GetComponent<Collider2D>();
+            }
+        }
     }
 
     private void Start()
@@ -88,6 +104,29 @@ public class PlayerController : MonoBehaviour
         SyncWeaponStatsFromData(forceResetAmmo: true);
         UpdateWeaponIconSprite();
         UpdateWeaponIconTransform(true);
+    }
+
+    public void Ayaya(){
+        animator.SetTrigger("Aya");
+        Knockback(10f, spriteRenderer.flipX ? Vector2.left : Vector2.right);
+        
+    }
+
+    private void Knockback(float force, Vector2 direction){
+        animator.SetTrigger("Aya");
+        StartCoroutine(HitRoutine());
+        knockbackForce = force;
+        knockbackDirection = direction;
+    }
+
+    System.Collections.IEnumerator HitRoutine(){
+        float n = 0.5f;
+        while(n < 1f){
+            spriteRenderer.color = new Color(1f, n, n, 1f);
+            n += 0.1f;
+            yield return new WaitForSeconds(0.05f);
+        }
+        spriteRenderer.color = Color.white;
     }
 
     // Unity Events 방식 전용 메서드 (Invoke Unity Events 모드에서 사용)
@@ -99,9 +138,6 @@ public class PlayerController : MonoBehaviour
             if (inputVec.sqrMagnitude > 0.0001f)
             {
                 lastMoveDirection = inputVec.normalized;
-                if(inputVec.x != 0){
-                    spriteRenderer.flipX = inputVec.x > 0;
-                }
             }
         }
     }
@@ -174,12 +210,23 @@ public class PlayerController : MonoBehaviour
 
     public void OnSandeContext(InputAction.CallbackContext context)
     {
+        // 빌드 상태에서는 Sande 기능 비활성화
+        if (!Application.isEditor)
+        {
+            return;
+        }
+        
         switch (context.phase)
         {
         case InputActionPhase.Performed:
             isSande = true;
             Time.timeScale = 0.5f;
             lastTrailPosition = transform.position; // 초기 위치 저장
+            // 벽 충돌 콜라이더 비활성화
+            if (wallCollider != null)
+            {
+                wallCollider.enabled = false;
+            }
             // 일정 주기마다 trail 생성하는 코루틴 시작 (중복 방지)
             if (trailSpawnCoroutine == null)
             {
@@ -190,6 +237,11 @@ public class PlayerController : MonoBehaviour
         case InputActionPhase.Canceled:
             isSande = false;
             Time.timeScale = 1f;
+            // 벽 충돌 콜라이더 다시 활성화
+            if (wallCollider != null)
+            {
+                wallCollider.enabled = true;
+            }
             break;
 
         }
@@ -226,6 +278,15 @@ public class PlayerController : MonoBehaviour
             rigid.MovePosition(rigid.position + rollVec);
             return;
         }
+        if(knockbackForce > 0f){
+            Vector2 knockbackVec = knockbackDirection * knockbackForce * Time.fixedDeltaTime;
+            rigid.MovePosition(rigid.position + knockbackVec);
+            knockbackForce -= Time.fixedDeltaTime * 20f;
+            if(knockbackForce <= 0f){
+                knockbackForce = 0f;
+            }
+            return;
+        }
 
         Vector2 nextVec = inputVec.normalized * speed * Time.fixedDeltaTime;
         if(isSande && Time.timeScale > 0){
@@ -233,6 +294,9 @@ public class PlayerController : MonoBehaviour
             nextVec *= 1.5f;
         }
         rigid.MovePosition(rigid.position + nextVec);
+        if(inputVec.x != 0){
+            spriteRenderer.flipX = inputVec.x > 0;
+        }
         animator.SetFloat("Speed", nextVec.magnitude);
     }
     
@@ -471,7 +535,7 @@ public class PlayerController : MonoBehaviour
         weaponIconRenderer.flipY = direction.x < 0f;
     }
 
-    // 피격 판정 처리 (Trigger Collider용)
+    // 피격 판정 처리 (Trigger Collider용 - hitboxCollider)
     void OnTriggerEnter2D(Collider2D other)
     {
         // 무적 상태(구르기 중)이면 피격 무시
