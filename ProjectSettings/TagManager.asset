@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - WallOcclusion
+  - DroppedItem
   layers:
   - Default
   - TransparentFX

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 // Orchestrates player behavior (Controller in MVC)
 // Responsibilities:
@@ -40,6 +41,11 @@ public class PlayerController : MonoBehaviour
     public float weaponIconFollowSpeed = 10f;   // 추적 보간 속도
     [Tooltip("스프라이트가 오른쪽을 바라보고 있을 때 필요한 회전 오프셋 (도 단위)")]
     public float weaponIconRotationOffset = 0f; // 스프라이트 기본 방향 보정
+
+    [Header("Interaction Settings")]
+    public GameObject targetItemPrefab;
+    public float targetItemDistance = 1.5f;
+    public GameObject InteractionText;
 
     [Header("Roll Settings")]
     public float rollSpeed = 12f;       // 구르기 속도 (이동 속도보다 빠르게)
@@ -268,6 +274,7 @@ public class PlayerController : MonoBehaviour
     {
         HandleWeaponSwapInput();
         UpdateWeaponIconTransform();
+        DetectNearbyWeapons();
     }
 
     void FixedUpdate()
@@ -533,6 +540,124 @@ public class PlayerController : MonoBehaviour
 
         // 왼쪽에 있을 경우 상하 반전
         weaponIconRenderer.flipY = direction.x < 0f;
+    }
+
+    // 주변 무기 감지 및 targetItemPrefab 할당
+    private void DetectNearbyWeapons()
+    {
+        // 모든 newWeapon 컴포넌트를 가진 GameObject 찾기
+        newWeapon[] weapons = FindObjectsOfType<newWeapon>();
+        
+        if (weapons == null || weapons.Length == 0)
+        {
+            // 주변에 무기가 없으면 targetItemPrefab 초기화
+            targetItemPrefab = null;
+            UpdateInteractionText();
+            return;
+        }
+        
+        Vector2 playerPos = transform.position;
+        GameObject closestWeapon = null;
+        float closestDistance = float.MaxValue;
+        
+        // 가장 가까운 무기 찾기
+        foreach (newWeapon weapon in weapons)
+        {
+            if (weapon == null || weapon.gameObject == null) continue;
+            
+            Vector2 weaponPos = weapon.transform.position;
+            float distance = Vector2.Distance(playerPos, weaponPos);
+            
+            // targetItemDistance 내에 있고, 가장 가까운 무기인지 확인
+            if (distance <= targetItemDistance && distance < closestDistance)
+            {
+                closestDistance = distance;
+                closestWeapon = weapon.gameObject;
+            }
+        }
+        
+        // 가장 가까운 무기를 targetItemPrefab에 할당
+        targetItemPrefab = closestWeapon;
+        UpdateInteractionText();
+    }
+    
+    // InteractionText 활성/비활성화 및 위치 업데이트
+    private void UpdateInteractionText()
+    {
+        if (InteractionText == null) return;
+        
+        if (targetItemPrefab != null)
+        {
+            // targetItemPrefab이 있으면 InteractionText 활성화 및 위치 설정
+            InteractionText.SetActive(true);
+            
+            // UI 요소의 위치를 설정하기 위해 RectTransform 사용
+            RectTransform rectTransform = InteractionText.GetComponent<RectTransform>();
+            if (rectTransform != null)
+            {
+                // 월드 좌표를 스크린 좌표로 변환
+                Vector3 worldPos = targetItemPrefab.transform.position;
+                Vector3 screenPos = Camera.main.WorldToScreenPoint(worldPos);
+                
+                // Canvas를 찾아서 좌표 변환
+                Canvas canvas = InteractionText.GetComponentInParent<Canvas>();
+                if (canvas != null)
+                {
+                    // 스크린 좌표를 Canvas의 로컬 좌표로 변환
+                    RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                        canvas.transform as RectTransform,
+                        screenPos,
+                        canvas.worldCamera,
+                        out Vector2 localPoint
+                    );
+                    
+                    // RectTransform의 anchoredPosition 설정
+                    rectTransform.anchoredPosition = localPoint;
+                }
+                else
+                {
+                    // Canvas를 찾을 수 없으면 스크린 좌표를 직접 사용
+                    rectTransform.position = screenPos;
+                }
+            }
+        }
+        else
+        {
+            // targetItemPrefab이 null이면 InteractionText 비활성화
+            InteractionText.SetActive(false);
+        }
+    }
+
+    /// <summary>
+    /// 상호작용 입력 처리 메소드: E키로 targetItem과 상호작용합니다.
+    /// - 무기인 경우: WeaponController의 인벤토리에 추가만 하고 자동 장착하지 않음, 프리팹 파괴
+    /// - 일반 아이템인 경우: 추후 구현 예정
+    /// </summary>
+    public void OnInteractContext(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        if (targetItemPrefab == null) return;
+        if (weaponController == null) return;
+        
+        // targetItem이 무기인지 확인 (newWeapon 컴포넌트가 있는지 확인)
+        newWeapon weaponComponent = targetItemPrefab.GetComponent<newWeapon>();
+        if (weaponComponent != null)
+        {
+            // 무기인 경우: itemID로 WeaponData 가져오기
+            WeaponData weaponData = weaponController.GetWeaponDataByID(weaponComponent.itemID);
+            if (weaponData != null)
+            {
+                // 무기 추가 시도 (자동 장착하지 않음)
+                bool success = weaponController.AddWeapon(weaponData, makeCurrent: false);
+                if (success)
+                {
+                    // 획득 성공 시 무기 프리팹 파괴
+                    Destroy(targetItemPrefab);
+                    targetItemPrefab = null;
+                }
+            }
+        }
+        // 일반 아이템인 경우는 추후 구현 예정
     }
 
     // 피격 판정 처리 (Trigger Collider용 - hitboxCollider)
