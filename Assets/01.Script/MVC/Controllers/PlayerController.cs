@@ -24,7 +24,6 @@ public class PlayerController : MonoBehaviour
     public SpriteRenderer spriteRenderer;
 
     [Header("Weapon Settings")]
-    public int currentWeaponIndex = 0;//현재 무기 번호 - 해당 번호의 스크립터블 오브젝트를 불러와 무기 프리팹에 덮어씌움.
     public int maxBulletCount = 10;//이하 데이터들은 나중에 리스트로 재구성할 것.
     public int currentBulletCount = 10;
     public float attackCooldown = 0.2f;
@@ -81,7 +80,9 @@ public class PlayerController : MonoBehaviour
     private float knockbackForce = 0f;
     private Vector2 knockbackDirection;
 
+
     // 발사 및 재장전 관련 변수
+    [Header("Fire Settings")]
     private float lastFireTime;         // 마지막 발사 시간
     private bool isReloading;            // 재장전 중 여부
 
@@ -272,7 +273,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        HandleWeaponSwapInput();
+        //HandleWeaponSwapInput();
         UpdateWeaponIconTransform();
         DetectNearbyWeapons();
     }
@@ -452,25 +453,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void HandleWeaponSwapInput()
+    public void OnSwapContext(InputAction.CallbackContext context)
     {
+        if (!context.performed) return;
         if (weaponController == null) return;
-
-        var keyboard = Keyboard.current;
-        if (keyboard == null) return;
-
-        if (keyboard.digit1Key.wasPressedThisFrame || keyboard.numpad1Key.wasPressedThisFrame)
-        {
-            TryEquipWeaponSlot(0);
-        }
-        else if (keyboard.digit2Key.wasPressedThisFrame || keyboard.numpad2Key.wasPressedThisFrame)
-        {
-            TryEquipWeaponSlot(1);
-        }
-        else if (keyboard.digit3Key.wasPressedThisFrame || keyboard.numpad3Key.wasPressedThisFrame)
-        {
-            TryEquipWeaponSlot(2);
-        }
+        if (weaponController.GetWeaponCount() <= 1) return;
+        
+        // WeaponController의 현재 무기 인덱스를 가져와서 다음 인덱스로 변경
+        int currentIndex = weaponController.CurrentWeaponIndex;
+        int nextIndex = (currentIndex + 1) % weaponController.GetWeaponCount();
+        
+        TryEquipWeaponSlot(nextIndex);
     }
 
     private void TryEquipWeaponSlot(int slotIndex)

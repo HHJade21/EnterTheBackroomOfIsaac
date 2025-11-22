@@ -11,7 +11,7 @@ using System.Linq;
 public class WeaponController : MonoBehaviour
 {
     private const int allWeaponsCount = 3;//구현된 모든 무기 종류의 개수를 여기 표시
-    private const int MaxWeapons = 3;//플레이어가 소지할 수 있는 최대 무기 개수
+    private const int MaxWeapons = 2;//플레이어가 소지할 수 있는 최대 무기 개수
 
     [Header("Data")]
     [SerializeField] private List<WeaponData> allWeapons = new List<WeaponData>(allWeaponsCount);
@@ -139,6 +139,11 @@ public class WeaponController : MonoBehaviour
 
         SetCurrentWeapon(data);
         return true;
+    }
+
+    public int GetWeaponCount()
+    {
+        return ownedWeapons.Count;
     }
 
     /// <summary>
