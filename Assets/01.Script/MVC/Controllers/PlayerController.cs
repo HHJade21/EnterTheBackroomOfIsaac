@@ -15,6 +15,19 @@ using UnityEngine.UI;
 // - SRP: Only orchestrates; no rendering, no direct input system details
 // - DIP: Depend on abstractions (IWeapon, IInteractable, IDamageable)
 
+public enum CMYKColor
+{
+    Key = 0,      // 검정
+    K = 0,
+    Black = 0,
+    Cyan = 1,     // 청록
+    C = 1,
+    Magenta = 2,  // 자홍
+    M = 2,
+    Yellow = 3,    // 노랑
+    Y = 3,
+}
+
 public class PlayerController : MonoBehaviour
 {
     // [References] Link to PlayerView, PlayerStats, current IWeapon
@@ -117,6 +130,15 @@ public class PlayerController : MonoBehaviour
         animator.SetTrigger("Aya");
         Knockback(10f, spriteRenderer.flipX ? Vector2.left : Vector2.right);
         
+    }
+
+    public void ChangeColor(CMYKColor color){
+        animator.SetInteger("CMYK", (int)color);
+        animator.SetTrigger("Change");
+    }
+
+    public void ChangeColor(int colorIndex){
+        ChangeColor((CMYKColor)colorIndex);
     }
 
     private void Knockback(float force, Vector2 direction){
