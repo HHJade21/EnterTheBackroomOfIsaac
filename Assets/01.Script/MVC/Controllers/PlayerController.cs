@@ -137,7 +137,7 @@ public class PlayerController : MonoBehaviour
         animator.SetTrigger("Change");
     }
 
-    public void ChangeColor(int colorIndex){
+    public void ChangeColor(int colorIndex){ //이거 있는 이유: 버튼에 함수 할당할때 enum은 안보임 이슈...
         ChangeColor((CMYKColor)colorIndex);
     }
 
