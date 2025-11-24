@@ -77,6 +77,7 @@ public class PlayerController : MonoBehaviour
     
     private bool isRolling;
     private bool isInvincible;          // 구르는 동안 무적
+    private bool isDead = false;
     private float lastRollTime;
     private Vector2 rollDirection;
     private Vector2 lastMoveDirection;  // 입력이 0일 때도 방향 유지
@@ -130,6 +131,7 @@ public class PlayerController : MonoBehaviour
 
     public void Death(){
         animator.SetTrigger("Death");
+        isDead = true;
     }
 
     public void ChangeColor(CMYKColor color){
@@ -294,6 +296,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (isDead) return;
         if (isRolling)
         {
             Vector2 rollVec = rollDirection * rollSpeed * Time.fixedDeltaTime;
