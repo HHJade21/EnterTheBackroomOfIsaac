@@ -7698,7 +7698,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2100926944}
   m_CullTransparentMesh: 1
---- !u!1001 &622799379263951334
+--- !u!1001 &2001108930389861188
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -7748,7 +7748,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6602394229092112616, guid: e2d9b983ae54e47468f4ced22b26f14d, type: 3}
       propertyPath: m_Name
-      value: room_Start
+      value: room_Start_0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7766,7 +7766,7 @@ SceneRoots:
   - {fileID: 128259230}
   - {fileID: 1284743901}
   - {fileID: 1816922543}
-  - {fileID: 622799379263951334}
+  - {fileID: 2001108930389861188}
   - {fileID: 983821111}
   - {fileID: 766457497}
   - {fileID: 2045611180}
