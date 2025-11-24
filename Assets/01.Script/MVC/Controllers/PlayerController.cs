@@ -128,6 +128,10 @@ public class PlayerController : MonoBehaviour
         
     }
 
+    public void Death(){
+        animator.SetTrigger("Death");
+    }
+
     public void ChangeColor(CMYKColor color){
         animator.SetInteger("CMYK", (int)color);
         animator.SetTrigger("Change");
