@@ -26,7 +26,16 @@ public class DungeonHUDController : MonoBehaviour
     // [Update] Methods to refresh UI based on events
     void Update()
     {
-        ammoText.text = player.GetComponent<PlayerController>().currentBulletCount + "/" + player.GetComponent<PlayerController>().maxBulletCount + "\nammo";
+        if (player != null)
+        {
+            PlayerController playerController = player.GetComponent<PlayerController>();
+            WeaponController weaponController = playerController != null ? playerController.weaponController : null;
+            
+            if (weaponController != null && ammoText != null)
+            {
+                ammoText.text = weaponController.CurrentBulletCount + "/" + weaponController.MaxBulletCount + "\nammo";
+            }
+        }
     }
 }
 

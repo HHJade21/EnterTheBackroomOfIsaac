@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
@@ -7,6 +8,8 @@ using System.Linq;
 // - Manage up to three WeaponData references the player can carry
 // - Spawn projectiles using prefab/settings defined in the currently equipped WeaponData
 // - Provide helper accessors for UI/logic to query weapon stats
+// - Manage weapon stats (ammo, cooldown, reload)
+// - Manage weapon icon display
 
 public class WeaponController : MonoBehaviour
 {
@@ -19,10 +22,35 @@ public class WeaponController : MonoBehaviour
     [SerializeField] private WeaponData currentWeapon;
     [SerializeField] private List<bool> droppedWeapons = new List<bool>(allWeaponsCount);//이번 게임에서 한 번이라도 드랍된 무기들은 여기서 1로 바뀌고 다시는 등장하지 않음.
 
+    [Header("Weapon Stats")]
+    public int maxBulletCount = 10;        // 최대 탄약 수
+    public int currentBulletCount = 10;    // 현재 탄약 수
+    public float attackCooldown = 0.2f;    // 발사 쿨다운
+    public float reloadTime = 0.6f;        // 재장전 시간
+    private float lastFireTime;            // 마지막 발사 시간
+    private bool isReloading;              // 재장전 중 여부
+
+    [Header("Weapon Icon")]
+    [Tooltip("무기 아이콘을 표시할 Renderer (자동으로 찾거나 생성됩니다)")]
+    public SpriteRenderer weaponIconRenderer;   // 현재 무기 아이콘을 표시할 Renderer
+    [Tooltip("플레이어로부터 아이콘까지의 거리")]
+    public float weaponIconDistance = 0.7f;     // 플레이어로부터의 거리
+    [Tooltip("아이콘이 목표 위치를 따라가는 속도")]
+    public float weaponIconFollowSpeed = 10f;   // 추적 보간 속도
+    [Tooltip("스프라이트가 오른쪽을 바라보고 있을 때 필요한 회전 오프셋 (도 단위)")]
+    public float weaponIconRotationOffset = 0f; // 스프라이트 기본 방향 보정
+
+    [Header("Audio")]
+    public AudioClip fireSound;
+    public AudioClip reloadSound;
+
     public WeaponData CurrentWeapon => currentWeapon;
     public IReadOnlyList<WeaponData> OwnedWeapons => ownedWeapons;
     public int CurrentWeaponIndex => ownedWeapons.IndexOf(currentWeapon);
     public GameObject weaponPrefab;
+    public bool IsReloading => isReloading;
+    public int CurrentBulletCount => currentBulletCount;
+    public int MaxBulletCount => maxBulletCount;
 
     /// <summary>
     /// 초기화 메소드: 게임 시작 시 무기 인벤토리와 드랍 리스트를 설정합니다.
@@ -36,6 +64,8 @@ public class WeaponController : MonoBehaviour
         //기본무기 드랍체크(중복으로 안 뜨게)
         EnsureDroppedWeaponList();
 
+        // 무기 아이콘 SpriteRenderer 자동 찾기 또는 생성
+        EnsureWeaponIconRenderer();
 
         if (currentWeapon != null && !ownedWeapons.Contains(currentWeapon))
         {
@@ -53,6 +83,16 @@ public class WeaponController : MonoBehaviour
         if (ownedWeapons.Count > MaxWeapons)
         {
             ownedWeapons.RemoveRange(MaxWeapons, ownedWeapons.Count - MaxWeapons);
+        }
+    }
+
+    private void Start()
+    {
+        // 초기 무기 스탯 동기화
+        if (currentWeapon != null)
+        {
+            SyncWeaponStats(forceResetAmmo: true);
+            UpdateWeaponIconSprite();
         }
     }
 
@@ -146,6 +186,11 @@ public class WeaponController : MonoBehaviour
         return ownedWeapons.Count;
     }
 
+    public WeaponData GetCurrentWeaponData()
+    {
+        return currentWeapon;
+    }
+
     /// <summary>
     /// 인덱스로 무기 장착 메소드: 인벤토리의 특정 인덱스에 있는 무기를 장착합니다.
     /// - 인덱스 범위 확인
@@ -171,6 +216,8 @@ public class WeaponController : MonoBehaviour
     private void SetCurrentWeapon(WeaponData data)
     {
         currentWeapon = data;
+        SyncWeaponStats(forceResetAmmo: true);
+        UpdateWeaponIconSprite();
     }
 
     /// <summary>
@@ -272,5 +319,247 @@ public class WeaponController : MonoBehaviour
     {
         if (itemID < 0 || itemID >= allWeapons.Count) return null;
         return allWeapons[itemID];
+    }
+
+    /// <summary>
+    /// 무기 스탯 동기화 메소드: 현재 무기의 데이터로부터 스탯을 동기화합니다.
+    /// </summary>
+    /// <param name="forceResetAmmo">탄약을 강제로 최대치로 리셋할지 여부</param>
+    public void SyncWeaponStats(bool forceResetAmmo = false)
+    {
+        if (currentWeapon == null) return;
+
+        maxBulletCount = Mathf.Max(0, currentWeapon.magazineSize);
+        attackCooldown = currentWeapon.fireCooldown;
+        reloadTime = currentWeapon.reloadTime;
+
+        if (forceResetAmmo)
+        {
+            currentBulletCount = maxBulletCount;
+        }
+        else
+        {
+            currentBulletCount = Mathf.Clamp(currentBulletCount, 0, maxBulletCount);
+            if (currentBulletCount == 0)
+            {
+                currentBulletCount = maxBulletCount;
+            }
+        }
+    }
+
+    /// <summary>
+    /// 발사 가능 여부 체크 메소드: 현재 발사 가능한지 확인합니다.
+    /// </summary>
+    /// <returns>발사 가능 여부</returns>
+    public bool CanFire()
+    {
+        if (currentWeapon == null) return false;
+        if (isReloading) return false;
+        if (currentBulletCount <= 0) return false;
+        if (Time.time < lastFireTime + attackCooldown) return false;
+        return true;
+    }
+
+    /// <summary>
+    /// 발사 처리 메소드: 발사를 처리하고 탄약을 감소시킵니다.
+    /// </summary>
+    /// <param name="dir">발사 방향</param>
+    /// <param name="startPoint">발사 시작 위치</param>
+    /// <param name="fireOrigin">발사 오리진 위치 (오디오용)</param>
+    /// <returns>발사 성공 여부</returns>
+    public bool OnFire(Vector2 dir, Transform startPoint, Vector3 fireOrigin)
+    {
+        if (!CanFire()) return false;
+
+        // 발사 실행
+        Fire(dir, startPoint);
+
+        // 발사 시간 기록 및 탄약 감소
+        lastFireTime = Time.time;
+        currentBulletCount--;
+
+        // 발사 사운드 재생
+        if (fireSound != null)
+        {
+            AudioSource.PlayClipAtPoint(fireSound, fireOrigin);
+        }
+
+        return true;
+    }
+
+    /// <summary>
+    /// 재장전 시작 메소드: 재장전을 시작합니다.
+    /// </summary>
+    /// <returns>재장전 시작 성공 여부</returns>
+    public bool Reload(Vector3 reloadOrigin)
+    {
+        // 이미 재장전 중이거나 탄약이 최대면 무시
+        if (isReloading) return false;
+        if (currentBulletCount >= maxBulletCount) return false;
+
+        // 재장전 시작
+        StartCoroutine(ReloadRoutine());
+
+        // 재장전 사운드 재생
+        if (reloadSound != null)
+        {
+            AudioSource.PlayClipAtPoint(reloadSound, reloadOrigin);
+        }
+
+        return true;
+    }
+
+    /// <summary>
+    /// 재장전 코루틴: 재장전 시간만큼 대기 후 탄약을 복구합니다.
+    /// </summary>
+    private IEnumerator ReloadRoutine()
+    {
+        isReloading = true; // 재장전 상태 시작
+
+        // reloadTime만큼 대기
+        yield return new WaitForSeconds(reloadTime);
+
+        // 탄약을 최대치로 복구
+        currentBulletCount = maxBulletCount;
+
+        isReloading = false; // 재장전 상태 종료
+    }
+
+    /// <summary>
+    /// 무기 교체 메소드: 다음 무기로 교체합니다.
+    /// </summary>
+    /// <returns>교체 성공 여부</returns>
+    public bool SwapWeapon()
+    {
+        if (ownedWeapons.Count <= 1) return false;
+
+        int currentIndex = CurrentWeaponIndex;
+        int nextIndex = (currentIndex + 1) % ownedWeapons.Count;
+
+        return TryEquipWeaponSlot(nextIndex);
+    }
+
+    /// <summary>
+    /// 슬롯으로 무기 장착 시도 메소드: 특정 슬롯의 무기를 장착합니다.
+    /// </summary>
+    /// <param name="slotIndex">장착할 슬롯 인덱스</param>
+    /// <returns>장착 성공 여부</returns>
+    public bool TryEquipWeaponSlot(int slotIndex)
+    {
+        if (EquipWeaponByIndex(slotIndex))
+        {
+            SyncWeaponStats(forceResetAmmo: true);
+            UpdateWeaponIconSprite();
+            return true;
+        }
+        return false;
+    }
+
+    /// <summary>
+    /// 무기 아이콘 SpriteRenderer 자동 찾기 또는 생성 메소드: weaponIconRenderer가 없으면 자동으로 찾거나 생성합니다.
+    /// </summary>
+    private void EnsureWeaponIconRenderer()
+    {
+        // 이미 할당되어 있으면 무시
+        if (weaponIconRenderer != null) return;
+
+        // 자식 오브젝트에서 "WeaponIcon" 이름으로 찾기
+        Transform weaponIconTransform = transform.Find("WeaponIcon");
+        if (weaponIconTransform != null)
+        {
+            weaponIconRenderer = weaponIconTransform.GetComponent<SpriteRenderer>();
+            if (weaponIconRenderer != null) return;
+        }
+
+        // 전체 하이어라키에서 "WeaponIcon" 이름으로 찾기 (같은 부모 기준)
+        SpriteRenderer[] renderers = GetComponentsInChildren<SpriteRenderer>();
+        foreach (var renderer in renderers)
+        {
+            if (renderer.gameObject.name == "WeaponIcon")
+            {
+                weaponIconRenderer = renderer;
+                return;
+            }
+        }
+
+        // 찾지 못했으면 새로 생성
+        GameObject weaponIconObj = new GameObject("WeaponIcon");
+        weaponIconObj.transform.SetParent(transform);
+        weaponIconObj.transform.localPosition = Vector3.zero;
+        weaponIconRenderer = weaponIconObj.AddComponent<SpriteRenderer>();
+        
+        // Sorting Layer 설정 (플레이어보다 앞에 표시되도록)
+        weaponIconRenderer.sortingOrder = 10;
+    }
+
+    /// <summary>
+    /// 무기 아이콘 스프라이트 업데이트 메소드: 현재 무기의 아이콘을 표시합니다.
+    /// </summary>
+    public void UpdateWeaponIconSprite()
+    {
+        // weaponIconRenderer가 없으면 자동으로 찾거나 생성
+        if (weaponIconRenderer == null)
+        {
+            EnsureWeaponIconRenderer();
+        }
+
+        if (weaponIconRenderer == null) return;
+
+        if (currentWeapon == null)
+        {
+            weaponIconRenderer.sprite = null;
+            weaponIconRenderer.enabled = false;
+            return;
+        }
+
+        // currentWeapon.icon을 weaponIconRenderer.sprite에 설정
+        weaponIconRenderer.sprite = currentWeapon.icon;
+        weaponIconRenderer.enabled = weaponIconRenderer.sprite != null;
+    }
+
+    /// <summary>
+    /// 무기 아이콘 위치 및 회전 업데이트 메소드: 플레이어 위치와 마우스 커서를 기준으로 아이콘을 배치합니다.
+    /// </summary>
+    /// <param name="playerPos">플레이어 위치</param>
+    /// <param name="snapImmediate">즉시 이동할지 여부</param>
+    public void UpdateWeaponIconTransform(Vector3 playerPos, bool snapImmediate = false)
+    {
+        if (weaponIconRenderer == null || !weaponIconRenderer.enabled) return;
+
+        Vector3 direction = Vector3.right;
+
+        if (Camera.main != null && UnityEngine.InputSystem.Mouse.current != null)
+        {
+            Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(UnityEngine.InputSystem.Mouse.current.position.ReadValue());
+            mouseWorld.z = playerPos.z;
+            direction = (mouseWorld - playerPos);
+        }
+
+        if (direction.sqrMagnitude < 0.0001f)
+        {
+            direction = Vector3.right;
+        }
+        else
+        {
+            direction.Normalize();
+        }
+
+        Vector3 targetPos = playerPos + direction * weaponIconDistance;
+        Transform iconTransform = weaponIconRenderer.transform;
+
+        if (snapImmediate)
+        {
+            iconTransform.position = targetPos;
+        }
+        else
+        {
+            iconTransform.position = Vector3.Lerp(iconTransform.position, targetPos, weaponIconFollowSpeed * Time.deltaTime);
+        }
+
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        iconTransform.rotation = Quaternion.Euler(0f, 0f, angle + weaponIconRotationOffset);
+
+        // 왼쪽에 있을 경우 상하 반전
+        weaponIconRenderer.flipY = direction.x < 0f;
     }
 }

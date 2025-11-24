@@ -7,10 +7,10 @@ public class WeaponData : ScriptableObject
 {
     public enum WeaponElement
     {
-        Cyan,
-        Magenta,
-        Yellow,
-        Key
+        Key = 0,      // 검정
+        Cyan = 1,     // 청록
+        Magenta = 2,  // 자홍
+        Yellow = 3,    // 노랑
     }
 
     [Header("Meta")]
