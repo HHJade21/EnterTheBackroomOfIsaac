@@ -4,39 +4,52 @@ using System.Collections;
 public class RoomController : MonoBehaviour
 {
     public bool isCleared = false;
-
-    [Header("Wall Settings")]
-    [Tooltip("벽 프리팹")]
-    public GameObject wallPrefab;
-    [Tooltip("벽들을 담을 부모 트랜스폼 (비우면 자동생성)")]
-    public Transform wallsRoot;
+    public bool isClosed = false;
+    
+    [Header("Door Settings")]
+    public GameObject[] doors; // Room의 자식 Door 오브젝트
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(!isCleared && other.CompareTag("Player"))
+        if(!isCleared && !isClosed && other.CompareTag("PlayerFeet"))
         {
-            for(int x=-1; x<=3; x++)
-            {
-                for(int y=-1; y<=3; y++)
-                {
-                    if((x>-1 && x<3) && (y>-1 && y<3)) continue;
-                    Vector3 pos = new Vector3(transform.position.x + x, transform.position.y + y, 0f);
-                    GameObject wall = Instantiate(wallPrefab, pos, Quaternion.identity, this.transform);
-                }
-            }
+            CloseRoom();
+            StartCoroutine(_tmpWaitAndClear());
         }
-        StartCoroutine(_tmpWaitAndClear());
     }
 
     private IEnumerator _tmpWaitAndClear(){
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(5f);
         isCleared = true;
+        OpenRoom();
+    }
+
+    private void CloseRoom(){
+        isClosed = true;
+        isCleared = false;
+        foreach(var door in doors)
+        {
+            if(door != null) door.SetActive(true);
+        }
+    }
+
+    private void OpenRoom(){
+        isClosed = false;
+        foreach(var door in doors)
+        {
+            if(door != null) door.SetActive(false);
+        }
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        // doors가 null이면 빈 배열 할당 (null 체크 방지)
+        if(doors == null)
+        {
+            doors = new GameObject[0];
+        }
+        OpenRoom();
     }
 
     // Update is called once per frame
