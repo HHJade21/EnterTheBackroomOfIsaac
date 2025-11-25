@@ -125,13 +125,18 @@ public class PlayerController : MonoBehaviour
 
     public void Ayaya(){
         animator.SetTrigger("Aya");
-        Knockback(10f, spriteRenderer.flipX ? Vector2.left : Vector2.right);
+        Knockback(7f, spriteRenderer.flipX ? Vector2.left : Vector2.right);
         
     }
 
     public void Death(){
         animator.SetTrigger("Death");
         isDead = true;
+    }
+
+    public void Revive(){
+        isDead = false;
+        animator.SetTrigger("Change");
     }
 
     public void ChangeColor(CMYKColor color){
