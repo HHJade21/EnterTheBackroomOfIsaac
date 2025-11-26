@@ -50,11 +50,11 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Weapon
-    uniqueID: 560096115
-    locked: 0
   - name: Wall(Top)
     uniqueID: 757300063
+    locked: 0
+  - name: Weapon
+    uniqueID: 560096115
     locked: 0
   m_RenderingLayers:
   - Default

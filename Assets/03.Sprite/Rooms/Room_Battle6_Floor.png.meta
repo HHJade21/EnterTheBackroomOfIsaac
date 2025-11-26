@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: 4587e19d207d8184192d3c5ea61270f9
+guid: 26b9785bf8e71d4408d988a446cfce50
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 193080511244908527
-    second: Room_Battle1_Wall 1_0
+      213: -3521487449958887295
+    second: Room_Battle6_Floor_0
+  - first:
+      213: -7066925081494719880
+    second: Room_Battle6_Floor_1
+  - first:
+      213: -4031789858694845259
+    second: Room_Battle6_Floor_2
+  - first:
+      213: -3334108990680723488
+    second: Room_Battle6_Floor_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +109,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Room_Battle1_Wall 1_0
+      name: Room_Battle6_Floor_0
       rect:
         serializedVersion: 2
-        x: 298
-        y: 210
-        width: 2503
-        height: 1792
+        x: 41
+        y: 1503
+        width: 8
+        height: 19
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +124,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fe7bdc5b3b5fda200800000000000000
-      internalID: 193080511244908527
+      spriteID: 180543862d9212fc0800000000000000
+      internalID: -3521487449958887295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Room_Battle6_Floor_1
+      rect:
+        serializedVersion: 2
+        x: 1511
+        y: 1496
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 872753f941d3ded90800000000000000
+      internalID: -7066925081494719880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Room_Battle6_Floor_2
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 584
+        width: 11
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5bca87f1c743c08c0800000000000000
+      internalID: -4031789858694845259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Room_Battle6_Floor_3
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 47
+        width: 1325
+        height: 1164
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ef0a00b98ddab1d0800000000000000
+      internalID: -3334108990680723488
       vertices: []
       indices: 
       edges: []
@@ -135,7 +210,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Room_Battle1_Wall 1_0: 193080511244908527
+      Room_Battle6_Floor_0: -3521487449958887295
+      Room_Battle6_Floor_1: -7066925081494719880
+      Room_Battle6_Floor_2: -4031789858694845259
+      Room_Battle6_Floor_3: -3334108990680723488
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

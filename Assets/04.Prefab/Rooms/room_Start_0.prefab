@@ -30,7 +30,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5374341858421913926}
+  m_Father: {fileID: 2995801500433993442}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1207252121893201513
 SpriteRenderer:
@@ -76,8 +76,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 757300063
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -7291986186783984294, guid: d2503ea9239ac5d43bc31ed2c24ab28b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -211,7 +211,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2472304242398196564}
-  - {fileID: 960163982466196084}
   m_Father: {fileID: 2995801500433993442}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3185678490251678909
@@ -521,6 +520,7 @@ Transform:
   m_Children:
   - {fileID: 3526101343412256252}
   - {fileID: 5374341858421913926}
+  - {fileID: 960163982466196084}
   - {fileID: 8367695228991728208}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

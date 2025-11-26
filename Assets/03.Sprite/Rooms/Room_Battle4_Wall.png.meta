@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 4587e19d207d8184192d3c5ea61270f9
+guid: 916b1b114a4a0aa4fb9312017cea583d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 193080511244908527
-    second: Room_Battle1_Wall 1_0
+      213: 1372143043449492469
+    second: Room_Battle4_Wall_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Room_Battle1_Wall 1_0
+      name: Room_Battle4_Wall_0
       rect:
         serializedVersion: 2
-        x: 298
-        y: 210
-        width: 2503
-        height: 1792
+        x: 45
+        y: 50
+        width: 1807
+        height: 1228
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fe7bdc5b3b5fda200800000000000000
-      internalID: 193080511244908527
+      spriteID: 5f394ddf3d4da0310800000000000000
+      internalID: 1372143043449492469
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Room_Battle1_Wall 1_0: 193080511244908527
+      Room_Battle4_Wall_0: 1372143043449492469
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
