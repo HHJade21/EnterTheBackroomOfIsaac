@@ -5,6 +5,8 @@ public class RoomController : MonoBehaviour
 {
     public bool isCleared = false;
     public bool isClosed = false;
+
+    public CMYKColor roomColor;
     
     [Header("Door Settings")]
     public GameObject[] doors; // Room의 자식 Door 오브젝트

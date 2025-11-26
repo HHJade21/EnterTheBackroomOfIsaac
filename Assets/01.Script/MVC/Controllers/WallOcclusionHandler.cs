@@ -1,7 +1,7 @@
 using UnityEngine;
 
 // 벽 가림 처리를 위한 별도 스크립트
-// feetCollider가 있는 GameObject에 붙여서 사용
+// Player 아래의 Feet에 붙여서 사용
 public class WallOcclusionHandler : MonoBehaviour
 {
     [Tooltip("플레이어의 SpriteRenderer (PlayerController에서 가져올 수도 있음)")]
