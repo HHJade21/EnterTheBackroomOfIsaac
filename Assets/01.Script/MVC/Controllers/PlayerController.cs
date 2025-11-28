@@ -430,6 +430,7 @@ public class PlayerController : MonoBehaviour
             Animator effectAnimator = warpEffect.GetComponent<Animator>();
             SpriteRenderer effectSpriteRenderer = warpEffect.GetComponent<SpriteRenderer>();
             effectSpriteRenderer.flipX = isFlip;
+            effectAnimator.SetInteger("CMYK", (int)animator.GetInteger("CMYK"));
             if (effectAnimator != null)
             {
                 // 한 프레임 기다려서 Animator가 초기화되도록 함
