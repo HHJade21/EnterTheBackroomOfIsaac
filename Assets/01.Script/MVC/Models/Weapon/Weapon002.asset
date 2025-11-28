@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9740a8621ebe7048b657bdf503efbe6, type: 3}
   m_Name: Weapon002
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
-  weaponName: Weapon
-  icon: {fileID: -144335857, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}
-  element: 2
+  weaponName: "\uB9C8\uC220\uBD09"
+  icon: {fileID: -838823811416321840, guid: b14022b46a07ddb4a945d13a6abf20a7, type: 3}
+  element: 0
   projectilePrefab: {fileID: 2599106515927395768, guid: f79761cdd1c5e0042b120fa109c7b2b2, type: 3}
   projectileSpeed: 14
   projectileLifetime: 1.5

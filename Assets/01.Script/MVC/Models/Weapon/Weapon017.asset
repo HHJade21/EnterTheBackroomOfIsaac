@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9740a8621ebe7048b657bdf503efbe6, type: 3}
-  m_Name: Weapon001
+  m_Name: Weapon017
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
-  weaponName: "\uB9AC\uBCFC\uBC84"
-  icon: {fileID: -353751291, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}
-  element: 0
+  weaponName: "\uB2E4\uD2B8"
+  icon: {fileID: 2365172474467020225, guid: 538c1475d87cf45438f97461e09565bb, type: 3}
+  element: 2
   projectilePrefab: {fileID: 2599106515927395768, guid: 92cd18ab095186246a4340542d3d12cd, type: 3}
   projectileSpeed: 14
   projectileLifetime: 1.5

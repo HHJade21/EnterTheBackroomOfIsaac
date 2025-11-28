@@ -13,8 +13,8 @@ using System.Linq;
 
 public class WeaponController : MonoBehaviour
 {
-    private const int allWeaponsCount = 3;//구현된 모든 무기 종류의 개수를 여기 표시
-    private const int MaxWeapons = 2;//플레이어가 소지할 수 있는 최대 무기 개수
+    private const int allWeaponsCount = 17;//구현된 모든 무기 종류의 개수를 여기 표시
+    private const int MaxWeapons = 17;//플레이어가 소지할 수 있는 최대 무기 개수
 
     [Header("Data")]
     [SerializeField] private List<WeaponData> allWeapons = new List<WeaponData>(allWeaponsCount);
@@ -37,8 +37,8 @@ public class WeaponController : MonoBehaviour
     public float weaponIconDistance = 0.7f;     // 플레이어로부터의 거리
     [Tooltip("아이콘이 목표 위치를 따라가는 속도")]
     public float weaponIconFollowSpeed = 10f;   // 추적 보간 속도
-    [Tooltip("스프라이트가 오른쪽을 바라보고 있을 때 필요한 회전 오프셋 (도 단위)")]
-    public float weaponIconRotationOffset = 0f; // 스프라이트 기본 방향 보정
+    [Tooltip("스프라이트가 왼쪽을 바라보고 있을 때 필요한 회전 오프셋 (도 단위, 기본 180도는 자동 적용됨)")]
+    public float weaponIconRotationOffset = 0f; // 스프라이트 기본 방향 보정 (추가 미세 조정용)
 
     [Header("Audio")]
     public AudioClip fireSound;
@@ -556,10 +556,12 @@ public class WeaponController : MonoBehaviour
             iconTransform.position = Vector3.Lerp(iconTransform.position, targetPos, weaponIconFollowSpeed * Time.deltaTime);
         }
 
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        // Atan2는 오른쪽(1,0)을 0도로 계산하지만, 스프라이트는 왼쪽을 기본 방향으로 함
+        // 따라서 180도를 더해서 올바른 방향으로 회전시킴
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 180f;
         iconTransform.rotation = Quaternion.Euler(0f, 0f, angle + weaponIconRotationOffset);
 
         // 왼쪽에 있을 경우 상하 반전
-        weaponIconRenderer.flipY = direction.x < 0f;
+        weaponIconRenderer.flipY = direction.x > 0f;
     }
 }

@@ -2321,6 +2321,19 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0598e7f2e1e6c3b4781e192b5e16c51c, type: 2}
   - {fileID: 11400000, guid: 791351129113e23499783dcd51d6c2b9, type: 2}
   - {fileID: 11400000, guid: ae202ac134ec3454089c77899843da7d, type: 2}
+  - {fileID: 11400000, guid: a85129622c3ad6340ad9548d538d908a, type: 2}
+  - {fileID: 11400000, guid: 4653ac1541d5e58459c7a4241b1088b7, type: 2}
+  - {fileID: 11400000, guid: 3cf18636cb6c8d846b4aef86fc1b33d1, type: 2}
+  - {fileID: 11400000, guid: 14098ba891478bf49a7a9ddbdaa0f604, type: 2}
+  - {fileID: 11400000, guid: ae6196a4349572e4cb37ebec72c5a500, type: 2}
+  - {fileID: 11400000, guid: 4a2beb5ecf1712b49ab72bf538e749ee, type: 2}
+  - {fileID: 11400000, guid: 61e79e3cb4c3ab244848cd7e1216ae66, type: 2}
+  - {fileID: 11400000, guid: 9fbfeff9bffae4645bf215d97a27e1da, type: 2}
+  - {fileID: 11400000, guid: f04a896ae73acbb4c80592c83216930a, type: 2}
+  - {fileID: 11400000, guid: cdfe87959c07bd04a8e9e2ac6bc81185, type: 2}
+  - {fileID: 11400000, guid: ff509c51089a2e141bb2c045b870e825, type: 2}
+  - {fileID: 11400000, guid: 850da27054d2b5b41933bab1c69fbad6, type: 2}
+  - {fileID: 11400000, guid: 1c6dcf605f1d9644ead28a1578deeae6, type: 2}
   ownedWeapons:
   - {fileID: 11400000, guid: 0598e7f2e1e6c3b4781e192b5e16c51c, type: 2}
   currentWeapon: {fileID: 0}
