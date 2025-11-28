@@ -7,6 +7,7 @@ TagManager:
   - WallOcclusion
   - DroppedItem
   - PlayerFeet
+  - Enemy
   layers:
   - Default
   - TransparentFX

@@ -1,5 +1,6 @@
 using UnityEngine;
-
+using System.Collections;
+using System.Collections.Generic;
 // Controls dungeon stage flow and room transitions
 // Responsibilities:
 // - Generate/track rooms (2 normal, 1 boss) and connections
@@ -11,8 +12,15 @@ using UnityEngine;
 
 public class DungeonController : MonoBehaviour
 {
+    [Header("Enemy Spawning")]
+    public GameObject enemyPrefab;
+
     // [Rooms] Data for current room, neighbors, and visited state
     // [Spawning] Trigger enemy waves and boss spawn
+    public void SpawnEnemy(Transform transform)
+    {
+        Instantiate(enemyPrefab, transform.position, Quaternion.identity);
+    }
     // [State] Track combat active/cleared flags
 }
 
