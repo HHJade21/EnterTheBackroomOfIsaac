@@ -6621,7 +6621,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1933784952}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: OnRollContext
+        m_MethodName: OnWarpContext
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6800,6 +6800,7 @@ MonoBehaviour:
   spriteRoot: {fileID: 1252838326}
   rotateDuringRoll: 1
   rollSpinDegrees: 360
+  warpEffectPrefab: {fileID: 6393368352309336423, guid: 16615935db2194045a68d07db0294b54, type: 3}
   trailSpawnInterval: 0.05
   hitboxCollider: {fileID: 1933784947}
   wallCollider: {fileID: 0}

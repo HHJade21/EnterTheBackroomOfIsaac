@@ -64,6 +64,9 @@ public class PlayerController : MonoBehaviour
     public bool rotateDuringRoll = true; // 구르는 동안 회전 여부
     public float rollSpinDegrees = 360f; // 구르기 1회전 각도
 
+    [Header("Warp Settings")]
+    public GameObject warpEffectPrefab;  // 워프 시작 위치에 생성할 애니메이션 프리팹
+
     [Header("Trail Settings")]
     public float trailSpawnInterval = 0.05f; // trail 생성 주기 (초)
 
@@ -176,6 +179,17 @@ public class PlayerController : MonoBehaviour
                 lastMoveDirection = inputVec.normalized;
             }
         }
+    }
+
+    public void OnWarpContext(InputAction.CallbackContext context) //Roll 대체 할 수도 있는거
+    {
+        if (!context.performed) return;
+        if (Time.time < lastRollTime + rollCooldown) return;
+
+        rollDirection = (inputVec.sqrMagnitude > 0.0001f ? inputVec : (lastMoveDirection.sqrMagnitude > 0 ? lastMoveDirection : Vector2.right)).normalized;
+        AudioSource.PlayClipAtPoint(rollSound, transform.position);
+        StartCoroutine(WarpEffectRoutine(spriteRenderer.flipX));
+        StartCoroutine(WarpRoutine());
     }
 
     public void OnRollContext(InputAction.CallbackContext context)
@@ -299,6 +313,8 @@ public class PlayerController : MonoBehaviour
         DetectNearbyWeapons();
     }
 
+    /************************************ FixedUpdate 잘보이라고 어그로끄는용 ************************************/
+    
     void FixedUpdate()
     {
         if (isDead) return;
@@ -398,6 +414,69 @@ public class PlayerController : MonoBehaviour
         else if (h < 5f / 6f)   { r = x; g = 0f; b = c; }
         else                    { r = c; g = 0f; b = x; }
         return new Color(r + m, g + m, b + m, 1f);
+    }
+
+    System.Collections.IEnumerator WarpEffectRoutine(bool isFlip)
+    {
+        // 워프 시작 위치 저장
+        Vector2 warpStartPosition = rigid.position;
+        
+        // 워프 시작 위치에 이펙트 생성
+        if (warpEffectPrefab != null)
+        {
+            GameObject warpEffect = Instantiate(warpEffectPrefab, warpStartPosition, Quaternion.identity);
+            
+            // 애니메이션 길이만큼 기다린 후 파괴
+            Animator effectAnimator = warpEffect.GetComponent<Animator>();
+            SpriteRenderer effectSpriteRenderer = warpEffect.GetComponent<SpriteRenderer>();
+            effectSpriteRenderer.flipX = isFlip;
+            if (effectAnimator != null)
+            {
+                // 한 프레임 기다려서 Animator가 초기화되도록 함
+                yield return null;
+                
+                // Animator의 현재 클립 길이 가져오기
+                AnimatorStateInfo stateInfo = effectAnimator.GetCurrentAnimatorStateInfo(0);
+                float animationLength = stateInfo.length;
+                
+                if (animationLength > 0f)
+                {
+                    yield return new WaitForSeconds(animationLength);
+                }
+                else
+                {
+                    // 길이를 가져올 수 없으면 기본 시간(1초) 후 파괴
+                    yield return new WaitForSeconds(1f);
+                }
+            }
+            else
+            {
+                // Animator가 없으면 기본 시간(1초) 후 파괴
+                yield return new WaitForSeconds(1f);
+            }
+            
+            Destroy(warpEffect);
+        }
+    }
+
+    System.Collections.IEnumerator WarpRoutine()
+    {
+        isRolling = true;
+        isInvincible = true;
+        lastRollTime = Time.time;
+
+        spriteRenderer.enabled = false;
+        
+        float endTime = Time.time + rollDuration;
+        while (Time.time < endTime)
+        {
+            yield return null;
+        }
+        isRolling = false;
+        isInvincible = false;
+        spriteRenderer.enabled = true;
+        animator.SetTrigger("Warp");
+        
     }
 
     System.Collections.IEnumerator RollRoutine(bool isClockwise = true)
