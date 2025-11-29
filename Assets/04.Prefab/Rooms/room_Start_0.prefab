@@ -77,7 +77,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 757300063
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: -7291986186783984294, guid: d2503ea9239ac5d43bc31ed2c24ab28b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -422,7 +422,7 @@ Transform:
   m_GameObject: {fileID: 4916017459038493388}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4, z: 0}
+  m_LocalPosition: {x: 6.1, y: -1.48, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -474,7 +474,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
@@ -499,7 +499,7 @@ GameObject:
   - component: {fileID: -8509706813697435696}
   - component: {fileID: 4668540863666486473}
   m_Layer: 0
-  m_Name: Room_Start_0
+  m_Name: room_Start_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -660,5 +660,9 @@ MonoBehaviour:
   isCleared: 0
   isClosed: 0
   roomColor: 0
+  roomDepth: 0
   doors:
   - {fileID: 4916017459038493388}
+  dungeonController: {fileID: 0}
+  player: {fileID: 0}
+  spawnPoints: []

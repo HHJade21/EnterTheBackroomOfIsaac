@@ -749,6 +749,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // 피격 판정 처리 (Trigger Collider용 - hitboxCollider)
+    /*  ************************************************* 이거 아직 안쓰는건데 로그 에러 거슬려서 꺼놓을게용
     void OnTriggerEnter2D(Collider2D other)
     {
         // 무적 상태(구르기 중)이면 피격 무시
@@ -771,4 +772,5 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+    */
 }
