@@ -15,10 +15,13 @@ MonoBehaviour:
   weaponName: "\uB9C8\uC220\uBD09"
   icon: {fileID: -838823811416321840, guid: b14022b46a07ddb4a945d13a6abf20a7, type: 3}
   element: 0
-  projectilePrefab: {fileID: 2599106515927395768, guid: f79761cdd1c5e0042b120fa109c7b2b2, type: 3}
+  weaponType: 1
+  projectilePrefab: {fileID: 2599106515927395768, guid: 92cd18ab095186246a4340542d3d12cd, type: 3}
   projectileSpeed: 14
   projectileLifetime: 1.5
   baseDamage: 5
   fireCooldown: 0.05
   magazineSize: 10
   reloadTime: 0.3
+  fireSound: {fileID: 0}
+  fireEffect: {fileID: 0}

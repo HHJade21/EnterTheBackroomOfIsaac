@@ -100,6 +100,27 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 플레이어 총알과의 충돌 감지 메소드: "Bullet_Player" 태그를 가진 오브젝트와 충돌 시 데미지를 받습니다.
+    /// </summary>
+    /// <param name="other">충돌한 오브젝트의 Collider2D</param>
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        // 플레이어 총알 태그 확인
+        if (other.CompareTag("Bullet_Player"))
+        {
+            // 데미지 1 적용
+            ApplyDamage(1);
+
+            // 총알 파괴
+            Destroy(other.gameObject);
+        }
+    }
+
+    /// <summary>
+    /// 데미지 적용 메소드: 체력을 감소시키고, 체력이 0 이하가 되면 사망 처리합니다.
+    /// </summary>
+    /// <param name="amount">받을 데미지량</param>
     public void ApplyDamage(int amount)
     {
         currentHp -= amount;
@@ -109,6 +130,9 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 사망 처리 메소드: 적 오브젝트를 파괴합니다.
+    /// </summary>
     private void Die()
     {
         // TODO: 사망 이펙트, 드랍, 이벤트 호출 등 구현

@@ -8,6 +8,7 @@ TagManager:
   - DroppedItem
   - PlayerFeet
   - Enemy
+  - Bullet_Player
   layers:
   - Default
   - TransparentFX
