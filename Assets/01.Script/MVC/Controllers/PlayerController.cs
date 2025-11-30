@@ -75,6 +75,12 @@ public class PlayerController : MonoBehaviour
     [Tooltip("피격 판정용 Trigger Collider (별도로 설정)")]
     public Collider2D hitboxCollider; // 피격 판정용 Collider (Trigger)
     
+    [Header("Weapon Speed Multipliers")]
+    [Tooltip("공격 속도 배율 (기본값: 1.0, 낮을수록 빠름)")]
+    public float attackSpeedMultiplier = 1f;
+    [Tooltip("재장전 속도 배율 (기본값: 1.0, 낮을수록 빠름)")]
+    public float reloadSpeedMultiplier = 1f;
+    
     [Header("Collision Settings")]
     [Tooltip("벽 충돌용 콜라이더 (Feet 오브젝트의 콜라이더)")]
     public Collider2D wallCollider; // 벽 충돌용 콜라이더 (Feet에 있는 콜라이더)

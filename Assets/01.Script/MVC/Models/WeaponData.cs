@@ -38,5 +38,9 @@ public class WeaponData : ScriptableObject
     public float reloadTime = 0.6f;        // 재장전 소요 시간
     public AudioClip fireSound;            // 공격 사운드 (모든 타입 공통)
     public Sprite fireEffect;              // 공격 이펙트 스프라이트 (근접 공격용)
+
+    [Header("Swap Skill")]
+    [Tooltip("무기 교체 시 발동하는 스킬 (null이면 스킬 없음)")]
+    public WeaponSwapSkillData swapSkillData;
 }
 

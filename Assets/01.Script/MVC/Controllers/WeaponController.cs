@@ -222,13 +222,43 @@ public class WeaponController : MonoBehaviour
 
     /// <summary>
     /// 현재 무기 설정 메소드: 내부적으로 현재 무기를 변경합니다.
+    /// - 무기 교체 시 교체 스킬을 실행합니다.
     /// </summary>
     /// <param name="data">설정할 무기 데이터</param>
     private void SetCurrentWeapon(WeaponData data)
     {
+        // 무기 교체 시 교체 스킬 실행
+        if (data != null && data.swapSkillData != null)
+        {
+            PlayerController playerController = GetPlayerController();
+            if (playerController != null)
+            {
+                data.swapSkillData.Execute(this, playerController);
+            }
+        }
+
         currentWeapon = data;
         SyncWeaponStats(forceResetAmmo: true);
         UpdateWeaponIconSprite();
+    }
+
+    /// <summary>
+    /// PlayerController 참조를 가져오는 헬퍼 메소드: 부모 오브젝트나 같은 GameObject에서 찾습니다.
+    /// </summary>
+    /// <returns>PlayerController 참조, 없으면 null</returns>
+    private PlayerController GetPlayerController()
+    {
+        // 같은 GameObject에서 찾기
+        PlayerController pc = GetComponent<PlayerController>();
+        if (pc != null) return pc;
+
+        // 부모 오브젝트에서 찾기
+        pc = GetComponentInParent<PlayerController>();
+        if (pc != null) return pc;
+
+        // 전체 씬에서 찾기 (fallback)
+        pc = FindObjectOfType<PlayerController>();
+        return pc;
     }
 
     /// <summary>
@@ -437,6 +467,7 @@ public class WeaponController : MonoBehaviour
 
     /// <summary>
     /// 무기 스탯 동기화 메소드: 현재 무기의 데이터로부터 스탯을 동기화합니다.
+    /// - attackCooldown과 reloadTime은 PlayerController의 배율을 적용하여 계산됩니다.
     /// </summary>
     /// <param name="forceResetAmmo">탄약을 강제로 최대치로 리셋할지 여부</param>
     public void SyncWeaponStats(bool forceResetAmmo = false)
@@ -444,8 +475,14 @@ public class WeaponController : MonoBehaviour
         if (currentWeapon == null) return;
 
         maxBulletCount = Mathf.Max(0, currentWeapon.magazineSize);
-        attackCooldown = currentWeapon.fireCooldown;
-        reloadTime = currentWeapon.reloadTime;
+        
+        // PlayerController의 배율을 적용하여 계산
+        PlayerController playerController = GetPlayerController();
+        float attackMultiplier = playerController != null ? playerController.attackSpeedMultiplier : 1f;
+        float reloadMultiplier = playerController != null ? playerController.reloadSpeedMultiplier : 1f;
+        
+        attackCooldown = currentWeapon.fireCooldown * attackMultiplier;
+        reloadTime = currentWeapon.reloadTime * reloadMultiplier;
 
         if (forceResetAmmo)
         {

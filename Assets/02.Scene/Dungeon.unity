@@ -2363,6 +2363,9 @@ MonoBehaviour:
   weaponIconRotationOffset: 0
   fireSound: {fileID: 0}
   reloadSound: {fileID: 0}
+  meleeAttackCollider: {fileID: 0}
+  meleeEffectRenderer: {fileID: 0}
+  meleeAttackDuration: 0.2
   weaponPrefab: {fileID: 3864521659842927715, guid: d28a22798cd721a43bb7b7fda3626b7f, type: 3}
 --- !u!4 &658530959
 Transform:
@@ -7112,6 +7115,8 @@ MonoBehaviour:
   - {fileID: 6393368352309336423, guid: 7d0f71e7705d23540815e3bcd3200d8d, type: 3}
   trailSpawnInterval: 0.05
   hitboxCollider: {fileID: 1933784947}
+  attackSpeedMultiplier: 1
+  reloadSpeedMultiplier: 1
   wallCollider: {fileID: 0}
 --- !u!4 &1952886857 stripped
 Transform:
