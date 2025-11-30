@@ -21,9 +21,18 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float currentHp;        // 실시간 체력
 
     private float lastAttackTime;
+    private Rigidbody2D rb;
 
     private void Awake()
     {
+        // Rigidbody2D가 있으면 kinematic으로 설정하여 물리 충돌 무시
+        rb = GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            rb.isKinematic = true; // 물리 충돌 무시, Transform으로 직접 이동 가능
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation; // 회전 방지
+        }
+
         if (enemyData != null)
         {
             currentHp = enemyData.maxHp;
