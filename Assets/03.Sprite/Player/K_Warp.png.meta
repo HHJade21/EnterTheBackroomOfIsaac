@@ -68,48 +68,6 @@ TextureImporter:
   - first:
       213: -7580821390717701208
     second: K_Warp_21
-  - first:
-      213: 4306805673530896964
-    second: K_Warp_22
-  - first:
-      213: -2276957349282423967
-    second: K_Warp_23
-  - first:
-      213: 6360686517697728839
-    second: K_Warp_24
-  - first:
-      213: 5973736293473236247
-    second: K_Warp_25
-  - first:
-      213: 6525531466047773835
-    second: K_Warp_26
-  - first:
-      213: -5362598008224176391
-    second: K_Warp_27
-  - first:
-      213: -7700500858878125546
-    second: K_Warp_28
-  - first:
-      213: -5224105431976996026
-    second: K_Warp_29
-  - first:
-      213: -3590481286833933014
-    second: K_Warp_30
-  - first:
-      213: 3842361226561117873
-    second: K_Warp_31
-  - first:
-      213: -4056140268623733487
-    second: K_Warp_32
-  - first:
-      213: -4209488063943721069
-    second: K_Warp_33
-  - first:
-      213: -5120994650090340269
-    second: K_Warp_34
-  - first:
-      213: 4561705478188306602
-    second: K_Warp_35
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -225,7 +183,7 @@ TextureImporter:
         y: 1536
         width: 512
         height: 512
-      alignment: 0
+      alignment: 9
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
@@ -247,7 +205,7 @@ TextureImporter:
         y: 1536
         width: 512
         height: 512
-      alignment: 0
+      alignment: 9
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
@@ -269,7 +227,7 @@ TextureImporter:
         y: 1536
         width: 512
         height: 512
-      alignment: 0
+      alignment: 9
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
@@ -291,7 +249,7 @@ TextureImporter:
         y: 1536
         width: 512
         height: 512
-      alignment: 0
+      alignment: 9
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
@@ -313,7 +271,7 @@ TextureImporter:
         y: 1024
         width: 512
         height: 512
-      alignment: 0
+      alignment: 9
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
@@ -335,7 +293,7 @@ TextureImporter:
         y: 1024
         width: 512
         height: 512
-      alignment: 0
+      alignment: 9
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
@@ -357,7 +315,7 @@ TextureImporter:
         y: 1024
         width: 512
         height: 512
-      alignment: 0
+      alignment: 9
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
@@ -379,7 +337,7 @@ TextureImporter:
         y: 1024
         width: 512
         height: 512
-      alignment: 0
+      alignment: 9
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
@@ -401,7 +359,7 @@ TextureImporter:
         y: 0
         width: 512
         height: 512
-      alignment: 0
+      alignment: 9
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
@@ -423,7 +381,7 @@ TextureImporter:
         y: 0
         width: 512
         height: 512
-      alignment: 0
+      alignment: 9
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
@@ -445,7 +403,7 @@ TextureImporter:
         y: 0
         width: 512
         height: 512
-      alignment: 0
+      alignment: 9
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
@@ -463,7 +421,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: fa1c3f645242a154e9806e06ef709f17
+    spriteID: 343b377378b7a974285b8a978aa67862
     internalID: 0
     vertices: []
     indices: 
@@ -473,7 +431,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":4.0,"y":4.0},"gridSpriteSize":{"x":512.0,"y":512.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":1,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":4.0,"y":4.0},"gridSpriteSize":{"x":512.0,"y":512.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":9,"pivotUnitMode":1,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       K_Warp_0: 5758342806802321799
       K_Warp_1: -3015410564565823942

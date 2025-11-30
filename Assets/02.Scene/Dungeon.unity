@@ -6563,9 +6563,14 @@ MonoBehaviour:
   startRoomPrefab: {fileID: 6602394229092112616, guid: e2d9b983ae54e47468f4ced22b26f14d, type: 3}
   normalRoomPrefabs:
   - {fileID: 2774152928177950668, guid: 11a5de9948bee2d4bb3f3ca999a5bc17, type: 3}
-  minRooms: 1
-  maxRooms: 10
+  - {fileID: 4185292659311260358, guid: 632a7f4df28f5df44b53f3f5b9e3ce15, type: 3}
+  - {fileID: 1731564292202486801, guid: 56fa82744d80e0341b2e8e473c688239, type: 3}
+  - {fileID: 6196334910795999584, guid: cf8a5ab80f3457043a44628c07946abe, type: 3}
+  minRooms: 5
+  maxRooms: 20
   rooms: []
+  roomCollisionMargin: 0
+  showCollisionBounds: 1
 --- !u!1 &1844762904
 GameObject:
   m_ObjectHideFlags: 0
