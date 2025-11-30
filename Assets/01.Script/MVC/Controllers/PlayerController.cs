@@ -65,7 +65,8 @@ public class PlayerController : MonoBehaviour
     public float rollSpinDegrees = 360f; // 구르기 1회전 각도
 
     [Header("Warp Settings")]
-    public GameObject warpEffectPrefab;  // 워프 시작 위치에 생성할 애니메이션 프리팹
+    [ArrayLabel("Key", "Cyan", "Magenta", "Yellow")]
+    public GameObject[] warpEffectPrefabs;  // 워프 시작 위치에 생성할 애니메이션 프리팹
 
     [Header("Trail Settings")]
     public float trailSpawnInterval = 0.05f; // trail 생성 주기 (초)
@@ -421,16 +422,16 @@ public class PlayerController : MonoBehaviour
         // 워프 시작 위치 저장
         Vector2 warpStartPosition = rigid.position;
         
+        int cmyk = animator.GetInteger("CMYK");
         // 워프 시작 위치에 이펙트 생성
-        if (warpEffectPrefab != null)
+        if (warpEffectPrefabs[cmyk] != null)
         {
-            GameObject warpEffect = Instantiate(warpEffectPrefab, warpStartPosition, Quaternion.identity);
+            GameObject warpEffect = Instantiate(warpEffectPrefabs[cmyk], warpStartPosition, Quaternion.identity);
             
             // 애니메이션 길이만큼 기다린 후 파괴
             Animator effectAnimator = warpEffect.GetComponent<Animator>();
             SpriteRenderer effectSpriteRenderer = warpEffect.GetComponent<SpriteRenderer>();
             effectSpriteRenderer.flipX = isFlip;
-            effectAnimator.SetInteger("CMYK", (int)animator.GetInteger("CMYK"));
             if (effectAnimator != null)
             {
                 // 한 프레임 기다려서 Animator가 초기화되도록 함

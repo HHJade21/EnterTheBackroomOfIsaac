@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6201414064593495803}
   - component: {fileID: -1516377216558589201}
   m_Layer: 0
-  m_Name: WarpEffect
+  m_Name: K_WarpEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -88,7 +88,7 @@ public class DungeonController : MonoBehaviour
             }
             
             int chance = Random.Range(0, 100); // 대충 확률로 방 생성
-            if(chance < 40){
+            if(chance >= 25){
                 continue;
             }
             

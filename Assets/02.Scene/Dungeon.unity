@@ -6566,8 +6566,8 @@ MonoBehaviour:
   - {fileID: 4185292659311260358, guid: 632a7f4df28f5df44b53f3f5b9e3ce15, type: 3}
   - {fileID: 1731564292202486801, guid: 56fa82744d80e0341b2e8e473c688239, type: 3}
   - {fileID: 6196334910795999584, guid: cf8a5ab80f3457043a44628c07946abe, type: 3}
-  minRooms: 5
-  maxRooms: 20
+  minRooms: 10
+  maxRooms: 30
   rooms: []
   roomCollisionMargin: 0
   showCollisionBounds: 1
@@ -7105,7 +7105,11 @@ MonoBehaviour:
   spriteRoot: {fileID: 1252838326}
   rotateDuringRoll: 1
   rollSpinDegrees: 360
-  warpEffectPrefab: {fileID: 6393368352309336423, guid: 16615935db2194045a68d07db0294b54, type: 3}
+  warpEffectPrefabs:
+  - {fileID: 6393368352309336423, guid: 16615935db2194045a68d07db0294b54, type: 3}
+  - {fileID: 6393368352309336423, guid: 6fcbcba1fa520b04da23db03dd1ad187, type: 3}
+  - {fileID: 6393368352309336423, guid: 6366caaa268392740b0e9903fdb8d23f, type: 3}
+  - {fileID: 6393368352309336423, guid: 7d0f71e7705d23540815e3bcd3200d8d, type: 3}
   trailSpawnInterval: 0.05
   hitboxCollider: {fileID: 1933784947}
   wallCollider: {fileID: 0}
