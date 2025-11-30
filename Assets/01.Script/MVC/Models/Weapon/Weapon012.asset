@@ -15,6 +15,7 @@ MonoBehaviour:
   weaponName: "\uB9D0\uD0C0\uAE30\uC2A4\uD2F1"
   icon: {fileID: -2546998238373698865, guid: 2e1fc36cfda467647af530915fa8f37d, type: 3}
   element: 1
+  weaponType: 0
   projectilePrefab: {fileID: 2599106515927395768, guid: 92cd18ab095186246a4340542d3d12cd, type: 3}
   projectileSpeed: 14
   projectileLifetime: 1.5
@@ -22,3 +23,5 @@ MonoBehaviour:
   fireCooldown: 0.2
   magazineSize: 10
   reloadTime: 0.8
+  fireSound: {fileID: 0}
+  fireEffect: {fileID: 0}

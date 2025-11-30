@@ -13,10 +13,18 @@ public class WeaponData : ScriptableObject
         Yellow = 3,    // 노랑
     }
 
+    public enum WeaponType
+    {
+        Melee = 0,    // 근접 공격
+        Fire = 1,     // 발사 공격 (투사체)
+        Laser = 2,   // 레이저 공격
+    }
+
     [Header("Meta")]
     public string weaponName = "Weapon";   // UI 및 디버깅 표시 이름
     public Sprite icon;                    // UI 아이콘
     public WeaponElement element = WeaponElement.Cyan; // 무기 속성
+    public WeaponType weaponType = WeaponType.Fire;   // 무기 타입
 
     [Header("Projectile")]
     public GameObject projectilePrefab;    // 발사할 투사체 프리팹
@@ -28,5 +36,7 @@ public class WeaponData : ScriptableObject
     public float fireCooldown = 0.2f;      // 발사 간 딜레이
     public int magazineSize = 10;          // 탄창 탄약 수
     public float reloadTime = 0.6f;        // 재장전 소요 시간
+    public AudioClip fireSound;            // 공격 사운드 (모든 타입 공통)
+    public Sprite fireEffect;              // 공격 이펙트 스프라이트 (근접 공격용)
 }
 

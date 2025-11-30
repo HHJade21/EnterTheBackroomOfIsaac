@@ -44,6 +44,14 @@ public class WeaponController : MonoBehaviour
     public AudioClip fireSound;
     public AudioClip reloadSound;
 
+    [Header("Melee Attack")]
+    [Tooltip("근접 공격용 Collider (일시적으로 활성화됨)")]
+    public Collider2D meleeAttackCollider;
+    [Tooltip("근접 공격 이펙트 스프라이트 렌더러 (일시적으로 활성화됨)")]
+    public SpriteRenderer meleeEffectRenderer;
+    [Tooltip("근접 공격 지속 시간 (초)")]
+    public float meleeAttackDuration = 0.2f;
+
     public WeaponData CurrentWeapon => currentWeapon;
     public IReadOnlyList<WeaponData> OwnedWeapons => ownedWeapons;
     public int CurrentWeaponIndex => ownedWeapons.IndexOf(currentWeapon);
@@ -88,6 +96,9 @@ public class WeaponController : MonoBehaviour
 
     private void Start()
     {
+        // 근접 공격용 컴포넌트 자동 찾기 또는 생성
+        EnsureMeleeAttackComponents();
+
         // 초기 무기 스탯 동기화
         if (currentWeapon != null)
         {
@@ -248,7 +259,89 @@ public class WeaponController : MonoBehaviour
     }
 
     /// <summary>
-    /// 발사 메소드: 현재 장착된 무기로 투사체를 발사합니다.
+    /// 무기 타입에 따른 공격 메소드: 현재 무기의 타입에 맞는 공격을 수행합니다.
+    /// </summary>
+    /// <param name="dir">공격 방향 (정규화됨)</param>
+    /// <param name="startPoint">공격 시작 위치와 회전</param>
+    public void Attack(Vector2 dir, Transform startPoint)
+    {
+        if (currentWeapon == null) return;
+
+        switch (currentWeapon.weaponType)
+        {
+            case WeaponData.WeaponType.Melee:
+                MeleeAttack(dir, startPoint);
+                break;
+            case WeaponData.WeaponType.Fire:
+                FireAttack(dir, startPoint);
+                break;
+            case WeaponData.WeaponType.Laser:
+                LaserAttack(dir, startPoint);
+                break;
+        }
+    }
+
+    /// <summary>
+    /// 근접 공격 메소드: 플레이어 주변, 마우스 방향에 collider와 이펙트를 일시적으로 활성화합니다.
+    /// </summary>
+    /// <param name="dir">공격 방향 (정규화됨)</param>
+    /// <param name="startPoint">공격 시작 위치와 회전</param>
+    private void MeleeAttack(Vector2 dir, Transform startPoint)
+    {
+        if (currentWeapon == null) return;
+
+        // Collider 활성화
+        if (meleeAttackCollider != null)
+        {
+            meleeAttackCollider.enabled = true;
+            // Collider 위치를 무기 아이콘 위치로 설정
+            meleeAttackCollider.transform.position = startPoint.position;
+            // Collider 회전을 공격 방향으로 설정
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            meleeAttackCollider.transform.rotation = Quaternion.Euler(0f, 0f, angle);
+        }
+
+        // 이펙트 스프라이트 활성화
+        if (meleeEffectRenderer != null && currentWeapon.fireEffect != null)
+        {
+            meleeEffectRenderer.enabled = true;
+            meleeEffectRenderer.sprite = currentWeapon.fireEffect;
+            meleeEffectRenderer.transform.position = startPoint.position;
+            // 이펙트 회전을 공격 방향으로 설정
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            meleeEffectRenderer.transform.rotation = Quaternion.Euler(0f, 0f, angle);
+        }
+
+        // 사운드 재생
+        if (currentWeapon.fireSound != null)
+        {
+            AudioSource.PlayClipAtPoint(currentWeapon.fireSound, startPoint.position);
+        }
+
+        // 일정 시간 후 비활성화
+        StartCoroutine(DisableMeleeAttackAfterDelay());
+    }
+
+    /// <summary>
+    /// 근접 공격 비활성화 코루틴: 일정 시간 후 collider와 이펙트를 비활성화합니다.
+    /// </summary>
+    private IEnumerator DisableMeleeAttackAfterDelay()
+    {
+        yield return new WaitForSeconds(meleeAttackDuration);
+
+        if (meleeAttackCollider != null)
+        {
+            meleeAttackCollider.enabled = false;
+        }
+
+        if (meleeEffectRenderer != null)
+        {
+            meleeEffectRenderer.enabled = false;
+        }
+    }
+
+    /// <summary>
+    /// 발사 공격 메소드: 현재 장착된 무기로 투사체를 발사합니다.
     /// - 현재 무기와 투사체 프리팹 확인
     /// - 지정된 위치와 방향으로 투사체 생성
     /// - 투사체에 속도 적용
@@ -256,7 +349,7 @@ public class WeaponController : MonoBehaviour
     /// </summary>
     /// <param name="dir">발사 방향 (정규화됨)</param>
     /// <param name="startPoint">발사 시작 위치와 회전</param>
-    public void Fire(Vector2 dir, Transform startPoint)
+    private void FireAttack(Vector2 dir, Transform startPoint)
     {
         if (currentWeapon == null) return;
         if (currentWeapon.projectilePrefab == null) return;
@@ -272,6 +365,27 @@ public class WeaponController : MonoBehaviour
         }
 
         Destroy(projectile, currentWeapon.projectileLifetime);
+    }
+
+    /// <summary>
+    /// 레이저 공격 메소드: 추후 구현 예정입니다.
+    /// </summary>
+    /// <param name="dir">공격 방향 (정규화됨)</param>
+    /// <param name="startPoint">공격 시작 위치와 회전</param>
+    private void LaserAttack(Vector2 dir, Transform startPoint)
+    {
+        // TODO: 레이저 공격 구현 예정
+    }
+
+    /// <summary>
+    /// 발사 메소드: 현재 장착된 무기로 투사체를 발사합니다. (하위 호환성을 위해 유지)
+    /// </summary>
+    /// <param name="dir">발사 방향 (정규화됨)</param>
+    /// <param name="startPoint">발사 시작 위치와 회전</param>
+    [System.Obsolete("Use Attack() method instead. This method is kept for backward compatibility.")]
+    public void Fire(Vector2 dir, Transform startPoint)
+    {
+        FireAttack(dir, startPoint);
     }
 
     /// <summary>
@@ -361,27 +475,33 @@ public class WeaponController : MonoBehaviour
     }
 
     /// <summary>
-    /// 발사 처리 메소드: 발사를 처리하고 탄약을 감소시킵니다.
+    /// 발사 처리 메소드: 무기 타입에 맞는 공격을 처리하고 탄약을 감소시킵니다.
     /// </summary>
-    /// <param name="dir">발사 방향</param>
-    /// <param name="startPoint">발사 시작 위치</param>
-    /// <param name="fireOrigin">발사 오리진 위치 (오디오용)</param>
-    /// <returns>발사 성공 여부</returns>
+    /// <param name="dir">공격 방향</param>
+    /// <param name="startPoint">공격 시작 위치</param>
+    /// <param name="fireOrigin">공격 오리진 위치 (오디오용)</param>
+    /// <returns>공격 성공 여부</returns>
     public bool OnFire(Vector2 dir, Transform startPoint, Vector3 fireOrigin)
     {
         if (!CanFire()) return false;
 
-        // 발사 실행
-        Fire(dir, startPoint);
+        // 무기 타입에 따른 공격 실행
+        Attack(dir, startPoint);
 
-        // 발사 시간 기록 및 탄약 감소
+        // 발사 시간 기록 및 탄약 감소 (발사 타입만 탄약 소모)
         lastFireTime = Time.time;
-        currentBulletCount--;
-
-        // 발사 사운드 재생
-        if (fireSound != null)
+        if (currentWeapon != null && currentWeapon.weaponType == WeaponData.WeaponType.Fire)
         {
-            AudioSource.PlayClipAtPoint(fireSound, fireOrigin);
+            currentBulletCount--;
+        }
+
+        // 발사 사운드 재생 (WeaponData의 fireSound가 있으면 우선 사용, 없으면 기본 fireSound 사용)
+        AudioClip soundToPlay = (currentWeapon != null && currentWeapon.fireSound != null) 
+            ? currentWeapon.fireSound 
+            : fireSound;
+        if (soundToPlay != null)
+        {
+            AudioSource.PlayClipAtPoint(soundToPlay, fireOrigin);
         }
 
         return true;
@@ -453,6 +573,56 @@ public class WeaponController : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    /// <summary>
+    /// 근접 공격용 컴포넌트 자동 찾기 또는 생성 메소드: meleeAttackCollider와 meleeEffectRenderer가 없으면 자동으로 찾거나 생성합니다.
+    /// </summary>
+    private void EnsureMeleeAttackComponents()
+    {
+        // Collider 찾기 또는 생성
+        if (meleeAttackCollider == null)
+        {
+            // 자식 오브젝트에서 "MeleeAttackCollider" 이름으로 찾기
+            Transform colliderTransform = transform.Find("MeleeAttackCollider");
+            if (colliderTransform != null)
+            {
+                meleeAttackCollider = colliderTransform.GetComponent<Collider2D>();
+            }
+
+            // 찾지 못했으면 새로 생성
+            if (meleeAttackCollider == null)
+            {
+                GameObject colliderObj = new GameObject("MeleeAttackCollider");
+                colliderObj.transform.SetParent(transform);
+                colliderObj.transform.localPosition = Vector3.zero;
+                meleeAttackCollider = colliderObj.AddComponent<CircleCollider2D>();
+                meleeAttackCollider.isTrigger = true;
+                meleeAttackCollider.enabled = false; // 기본적으로 비활성화
+            }
+        }
+
+        // Effect Renderer 찾기 또는 생성
+        if (meleeEffectRenderer == null)
+        {
+            // 자식 오브젝트에서 "MeleeEffectRenderer" 이름으로 찾기
+            Transform effectTransform = transform.Find("MeleeEffectRenderer");
+            if (effectTransform != null)
+            {
+                meleeEffectRenderer = effectTransform.GetComponent<SpriteRenderer>();
+            }
+
+            // 찾지 못했으면 새로 생성
+            if (meleeEffectRenderer == null)
+            {
+                GameObject effectObj = new GameObject("MeleeEffectRenderer");
+                effectObj.transform.SetParent(transform);
+                effectObj.transform.localPosition = Vector3.zero;
+                meleeEffectRenderer = effectObj.AddComponent<SpriteRenderer>();
+                meleeEffectRenderer.enabled = false; // 기본적으로 비활성화
+                meleeEffectRenderer.sortingOrder = 15; // 무기 아이콘보다 앞에 표시
+            }
+        }
     }
 
     /// <summary>
