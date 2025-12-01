@@ -1,0 +1,438 @@
+fileFormatVersion: 2
+guid: a35753f3006ab2e4e9dc836bf64ce995
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6195978106324582297
+    second: Y_Warp_0
+  - first:
+      213: -8313802332678046688
+    second: Y_Warp_1
+  - first:
+      213: 8152914659896017288
+    second: Y_Warp_2
+  - first:
+      213: 7345255693171230521
+    second: Y_Warp_3
+  - first:
+      213: 8759083033221509047
+    second: Y_Warp_4
+  - first:
+      213: -1174134928098570348
+    second: Y_Warp_5
+  - first:
+      213: 2477909435015812748
+    second: Y_Warp_6
+  - first:
+      213: 5992992347317388580
+    second: Y_Warp_7
+  - first:
+      213: -2437534087866422233
+    second: Y_Warp_8
+  - first:
+      213: -9068285978561232974
+    second: Y_Warp_9
+  - first:
+      213: 6334438718280583859
+    second: Y_Warp_10
+  - first:
+      213: -4200468943559751082
+    second: Y_Warp_11
+  - first:
+      213: -1720970043772721878
+    second: Y_Warp_12
+  - first:
+      213: -348971213006299695
+    second: Y_Warp_13
+  - first:
+      213: 907667114401316009
+    second: Y_Warp_14
+  - first:
+      213: -4877236833753120499
+    second: Y_Warp_15
+  - first:
+      213: -649308371813430213
+    second: Y_Warp_16
+  - first:
+      213: -2058003353068746904
+    second: Y_Warp_17
+  - first:
+      213: -202771107074366721
+    second: Y_Warp_18
+  - first:
+      213: -768941884225551974
+    second: Y_Warp_19
+  - first:
+      213: 750585269040662782
+    second: Y_Warp_20
+  - first:
+      213: -2728122909702265721
+    second: Y_Warp_21
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 341
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Y_Warp_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1710
+        width: 512
+        height: 570
+      alignment: 9
+      pivot: {x: 0.5, y: 0.44912282}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7600d607db6730aa0800000000000000
+      internalID: -6195978106324582297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Y_Warp_1
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1710
+        width: 512
+        height: 570
+      alignment: 9
+      pivot: {x: 0.5, y: 0.44912282}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02c39eba3d07f9c80800000000000000
+      internalID: -8313802332678046688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Y_Warp_2
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 1710
+        width: 512
+        height: 570
+      alignment: 9
+      pivot: {x: 0.5, y: 0.44912282}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8814d2befa8f42170800000000000000
+      internalID: 8152914659896017288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Y_Warp_3
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 1710
+        width: 512
+        height: 570
+      alignment: 9
+      pivot: {x: 0.5, y: 0.44912282}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93703e7d2279fe560800000000000000
+      internalID: 7345255693171230521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Y_Warp_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1140
+        width: 512
+        height: 570
+      alignment: 9
+      pivot: {x: 0.5, y: 0.44912282}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7bfa1517c938e8970800000000000000
+      internalID: 8759083033221509047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Y_Warp_5
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1140
+        width: 512
+        height: 570
+      alignment: 9
+      pivot: {x: 0.5, y: 0.44912282}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49f4e44f082a4bfe0800000000000000
+      internalID: -1174134928098570348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Y_Warp_6
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 1140
+        width: 512
+        height: 570
+      alignment: 9
+      pivot: {x: 0.5, y: 0.44912282}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c86d4bba08d436220800000000000000
+      internalID: 2477909435015812748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Y_Warp_7
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 1140
+        width: 512
+        height: 570
+      alignment: 9
+      pivot: {x: 0.5, y: 0.44912282}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 425cc73a9c26b2350800000000000000
+      internalID: 5992992347317388580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Y_Warp_8
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 512
+        height: 570
+      alignment: 9
+      pivot: {x: 0.5, y: 0.44912282}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72ce0d469a32c2ed0800000000000000
+      internalID: -2437534087866422233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Y_Warp_9
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 512
+        height: 570
+      alignment: 9
+      pivot: {x: 0.5, y: 0.44912282}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2bfb336c2f9f62280800000000000000
+      internalID: -9068285978561232974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Y_Warp_10
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 0
+        width: 512
+        height: 570
+      alignment: 9
+      pivot: {x: 0.5, y: 0.44912282}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ba4896f37278e750800000000000000
+      internalID: 6334438718280583859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: aaf6892a0c70a9c458aff7caf76e5d03
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":4.0,"y":4.0},"gridSpriteSize":{"x":512.0,"y":570.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.449122816324234},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":9,"pivotUnitMode":1,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      Y_Warp_0: -6195978106324582297
+      Y_Warp_1: -8313802332678046688
+      Y_Warp_10: 6334438718280583859
+      Y_Warp_2: 8152914659896017288
+      Y_Warp_3: 7345255693171230521
+      Y_Warp_4: 8759083033221509047
+      Y_Warp_5: -1174134928098570348
+      Y_Warp_6: 2477909435015812748
+      Y_Warp_7: 5992992347317388580
+      Y_Warp_8: -2437534087866422233
+      Y_Warp_9: -9068285978561232974
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

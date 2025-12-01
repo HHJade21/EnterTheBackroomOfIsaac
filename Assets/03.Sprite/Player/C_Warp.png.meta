@@ -1,0 +1,438 @@
+fileFormatVersion: 2
+guid: 8b34fbe50702a1743bc12687e60618b2
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6244072050413283626
+    second: C_Warp_0
+  - first:
+      213: -4215797505569563126
+    second: C_Warp_1
+  - first:
+      213: -8087939957470639456
+    second: C_Warp_2
+  - first:
+      213: -2482178436336407511
+    second: C_Warp_3
+  - first:
+      213: -8901016604619962519
+    second: C_Warp_4
+  - first:
+      213: -3026351530003297819
+    second: C_Warp_5
+  - first:
+      213: 777167720894695595
+    second: C_Warp_6
+  - first:
+      213: -1974676780461564864
+    second: C_Warp_7
+  - first:
+      213: -3135421905990386152
+    second: C_Warp_8
+  - first:
+      213: -2706627496406876656
+    second: C_Warp_9
+  - first:
+      213: 4361239646522207131
+    second: C_Warp_10
+  - first:
+      213: 2081319259108834549
+    second: C_Warp_11
+  - first:
+      213: -8658317205803577587
+    second: C_Warp_12
+  - first:
+      213: 1493438575623210562
+    second: C_Warp_13
+  - first:
+      213: 5087490975440578723
+    second: C_Warp_14
+  - first:
+      213: -3137104443617469936
+    second: C_Warp_15
+  - first:
+      213: 2605960038553585099
+    second: C_Warp_16
+  - first:
+      213: -2127933264716697278
+    second: C_Warp_17
+  - first:
+      213: -8672141456013721843
+    second: C_Warp_18
+  - first:
+      213: 2800054838737032173
+    second: C_Warp_19
+  - first:
+      213: -1831748487646720541
+    second: C_Warp_20
+  - first:
+      213: 2563048099523270964
+    second: C_Warp_21
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 341
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: C_Warp_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1710
+        width: 512
+        height: 570
+      alignment: 9
+      pivot: {x: 0.5, y: 0.44912282}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2924d4827667a650800000000000000
+      internalID: 6244072050413283626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: C_Warp_1
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1710
+        width: 512
+        height: 570
+      alignment: 9
+      pivot: {x: 0.5, y: 0.44912282}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0e5c83418a7e75c0800000000000000
+      internalID: -4215797505569563126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: C_Warp_2
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 1710
+        width: 512
+        height: 570
+      alignment: 9
+      pivot: {x: 0.5, y: 0.44912282}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0aa464ed57dd1cf80800000000000000
+      internalID: -8087939957470639456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: C_Warp_3
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 1710
+        width: 512
+        height: 570
+      alignment: 9
+      pivot: {x: 0.5, y: 0.44912282}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92ca8010dd78d8dd0800000000000000
+      internalID: -2482178436336407511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: C_Warp_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1140
+        width: 512
+        height: 570
+      alignment: 9
+      pivot: {x: 0.5, y: 0.44912282}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96706c5ce8c397480800000000000000
+      internalID: -8901016604619962519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: C_Warp_5
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1140
+        width: 512
+        height: 570
+      alignment: 9
+      pivot: {x: 0.5, y: 0.44912282}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e981b8515d3006d0800000000000000
+      internalID: -3026351530003297819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: C_Warp_6
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 1140
+        width: 512
+        height: 570
+      alignment: 9
+      pivot: {x: 0.5, y: 0.44912282}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba804deaced09ca00800000000000000
+      internalID: 777167720894695595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: C_Warp_7
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 1140
+        width: 512
+        height: 570
+      alignment: 9
+      pivot: {x: 0.5, y: 0.44912282}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04c50623ee98894e0800000000000000
+      internalID: -1974676780461564864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: C_Warp_8
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 512
+        height: 570
+      alignment: 9
+      pivot: {x: 0.5, y: 0.44912282}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81ef670836ebc74d0800000000000000
+      internalID: -3135421905990386152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: C_Warp_9
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 512
+        height: 570
+      alignment: 9
+      pivot: {x: 0.5, y: 0.44912282}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01efc51e1a0207ad0800000000000000
+      internalID: -2706627496406876656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: C_Warp_10
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 0
+        width: 512
+        height: 570
+      alignment: 9
+      pivot: {x: 0.5, y: 0.44912282}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9b6e470a5c368c30800000000000000
+      internalID: 4361239646522207131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 456da21ec920dc840add129a27f2aad8
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":4.0,"y":4.0},"gridSpriteSize":{"x":512.0,"y":570.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.449122816324234},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":9,"pivotUnitMode":1,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      C_Warp_0: 6244072050413283626
+      C_Warp_1: -4215797505569563126
+      C_Warp_10: 4361239646522207131
+      C_Warp_2: -8087939957470639456
+      C_Warp_3: -2482178436336407511
+      C_Warp_4: -8901016604619962519
+      C_Warp_5: -3026351530003297819
+      C_Warp_6: 777167720894695595
+      C_Warp_7: -1974676780461564864
+      C_Warp_8: -3135421905990386152
+      C_Warp_9: -2706627496406876656
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
