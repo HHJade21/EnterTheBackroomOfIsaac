@@ -945,11 +945,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC5B4\uB290\uB0A0 \uB208 \uB5A0\uBCF4\uB2C8 \uBC31\uB8F8\uAC19\uC740
-    \uC774\uC138\uACC4\uC5D0 \uB5A8\uC5B4\uC838\uC11C \uBCA0\uC774\uD37C \uC6E8\uC774\uBE0C\uD48D
-    UI\uB85C \uB9CC\uB4E4\uC5B4\uC9C4 \uB85C\uADF8\uB77C\uC774\uD06C \uC2DC\uC2A4\uD15C\uC744
-    \uC774\uC6A9\uD574   \uD0C4\uB9C9\uC288\uD305 \uB358\uC804\uC5D0\uC11C \uC0DD\uC874\uD574\uC57C\uB9CC
-    \uD558\uB294 \uB098\uB294 \uC5B4\uB5A1\uD558\uC9C0"
+  m_text: "\uC544\uC624 \uC774\uB984 \uC880 \u314B\u314B"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 789e34b2c64594d4b9b0ad0b4d9ee042, type: 2}
   m_sharedMaterial: {fileID: 3304469257396106184, guid: 789e34b2c64594d4b9b0ad0b4d9ee042, type: 2}
