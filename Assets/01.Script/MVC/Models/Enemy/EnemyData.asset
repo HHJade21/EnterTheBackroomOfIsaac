@@ -18,7 +18,7 @@ MonoBehaviour:
   contactDamage: 1
   attackCooldown: 1.5
   isRanged: 0
-  detectionRange: 6
+  detectionRange: 20
   attackRange: 2
   projectilePrefab: {fileID: 0}
   projectileSpeed: 7

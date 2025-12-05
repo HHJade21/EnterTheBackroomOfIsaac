@@ -17,7 +17,7 @@ public class EnemyData : ScriptableObject
     public bool isRanged = false;        // 원거리 공격 여부
 
     [Header("Detection")]
-    public float detectionRange = 6f;    // 플레이어 추적 시작 거리
+    public float detectionRange = 20f;    // 플레이어 추적 시작 거리
     public float attackRange = 2f;       // 공격 가능 거리 (근접/원거리 모두 사용)
 
     [Header("Ranged Attack")]
