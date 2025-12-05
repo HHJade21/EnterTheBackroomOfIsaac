@@ -106,11 +106,11 @@ public class EnemyController : MonoBehaviour
         {
             var projectile = Instantiate(enemyData.projectilePrefab, transform.position, Quaternion.identity);
 
-        var rb = projectile.GetComponent<Rigidbody2D>();
-        if (rb != null)
-        {
-            rb.linearVelocity = direction * enemyData.projectileSpeed;
-        }
+            var rb = projectile.GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                rb.linearVelocity = direction * enemyData.projectileSpeed;
+            }
 
             Destroy(projectile, enemyData.projectileLifetime);
         }
