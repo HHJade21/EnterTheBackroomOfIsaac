@@ -107,6 +107,8 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private float knockbackForce = 0f;
     private Vector2 knockbackDirection;
+    public int maxHP = 10;
+    public int currentHP = 10;
 
 
     // [주석 처리됨] 발사 및 재장전 관련 변수들은 WeaponController로 이동했습니다.
@@ -1019,29 +1021,58 @@ public class PlayerController : MonoBehaviour
     
     #endregion
 
-    // 피격 판정 처리 (Trigger Collider용 - hitboxCollider)
-    /*  ************************************************* 이거 아직 안쓰는건데 로그 에러 거슬려서 꺼놓을게용
+    #region Damage and Death System
+    
+    /// <summary>
+    /// 피격 판정 처리 메소드: Bullet_Enemy 태그를 가진 오브젝트와 충돌 시 데미지를 받습니다.
+    /// </summary>
+    /// <param name="other">충돌한 오브젝트의 Collider2D</param>
     void OnTriggerEnter2D(Collider2D other)
     {
         // 무적 상태(구르기 중)이면 피격 무시
         if (isInvincible) return;
+        
+        // 사망 상태면 피격 무시
+        if (isDead) return;
 
-        // 적이나 적의 총알과 충돌했는지 확인
-        // 예: Enemy 태그나 EnemyProjectile 태그를 가진 오브젝트
-        if (other.CompareTag("Enemy") || other.CompareTag("EnemyProjectile"))
+        // 적의 총알과 충돌했는지 확인
+        if (other.CompareTag("Bullet_Enemy"))
         {
-            // TODO: IDamageable 인터페이스를 통해 데미지 처리
-            // 예: IDamageable damageable = GetComponent<IDamageable>();
-            //     if (damageable != null) damageable.TakeDamage(...);
+            // 데미지 1 적용 (추후 데미지량을 투사체에서 가져오도록 확장 가능)
+            TakeDamage(1);
             
-            Debug.Log($"플레이어 피격: {other.name}");
-            
-            // 적의 총알인 경우 파괴
-            if (other.CompareTag("EnemyProjectile"))
-            {
-                Destroy(other.gameObject);
-            }
+            // 적의 총알 파괴
+            Destroy(other.gameObject);
         }
     }
-    */
+    
+    /// <summary>
+    /// 데미지 적용 메소드: 체력을 감소시키고, 체력이 0 이하가 되면 사망 처리합니다.
+    /// </summary>
+    /// <param name="amount">받을 데미지량</param>
+    public void TakeDamage(int amount)
+    {
+        currentHP -= amount;
+        currentHP = Mathf.Max(0, currentHP); // 음수 방지
+        
+        Debug.Log($"플레이어 피격: {amount} 데미지 받음. 현재 HP: {currentHP}/{maxHP}");
+        
+        // HP가 0 이하가 되면 사망
+        if (currentHP <= 0)
+        {
+            Die();
+        }
+    }
+    
+    /// <summary>
+    /// 사망 처리 메소드: 플레이어가 사망했을 때 호출됩니다.
+    /// </summary>
+    private void Die()
+    {
+        isDead = true;
+        Debug.Log("플레이어 사망");
+        // TODO: 사망 처리 로직 구현
+    }
+    
+    #endregion
 }
