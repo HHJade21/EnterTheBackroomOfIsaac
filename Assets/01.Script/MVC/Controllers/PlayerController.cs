@@ -75,11 +75,21 @@ public class PlayerController : MonoBehaviour
     [Tooltip("피격 판정용 Trigger Collider (별도로 설정)")]
     public Collider2D hitboxCollider; // 피격 판정용 Collider (Trigger)
     
-    [Header("Weapon Speed Multipliers")]
+    [Header("Status Multipliers")]
     [Tooltip("공격 속도 배율 (기본값: 1.0, 낮을수록 빠름)")]
     public float attackSpeedMultiplier = 1f;
+    public float attackRangeMultiplier = 1f;
+    public float attackDamageMultiplier = 1f;
     [Tooltip("재장전 속도 배율 (기본값: 1.0, 낮을수록 빠름)")]
     public float reloadSpeedMultiplier = 1f;
+    public float moveSpeedMultiplier = 1f;
+    public float rollSpeedMultiplier = 1f;
+    public float rollDurationMultiplier = 1f;
+    public float rollCooldownMultiplier = 1f;
+    public float swapCooldownMultiplier = 1f;
+    
+    // 기본 배율 값 저장 (리셋용)
+    private const float DEFAULT_MULTIPLIER = 1f;
     
     [Header("Collision Settings")]
     [Tooltip("벽 충돌용 콜라이더 (Feet 오브젝트의 콜라이더)")]
@@ -754,6 +764,260 @@ public class PlayerController : MonoBehaviour
         }
         // 일반 아이템인 경우는 추후 구현 예정
     }
+
+    #region Multiplier Control Methods (Buff/Debuff System)
+    
+    /// <summary>
+    /// 공격 속도 배율 설정 메소드: 버프/디버프 시스템에서 사용합니다.
+    /// </summary>
+    /// <param name="value">설정할 배율 값 (1.0이 기본값)</param>
+    public void SetAttackSpeedMultiplier(float value)
+    {
+        attackSpeedMultiplier = Mathf.Max(0f, value);
+    }
+    
+    /// <summary>
+    /// 공격 속도 배율 곱하기 메소드: 기존 배율에 곱하여 적용합니다. (중첩 버프용)
+    /// </summary>
+    /// <param name="multiplier">곱할 배율 값</param>
+    public void MultiplyAttackSpeedMultiplier(float multiplier)
+    {
+        attackSpeedMultiplier *= Mathf.Max(0f, multiplier);
+    }
+    
+    /// <summary>
+    /// 공격 속도 배율 리셋 메소드: 기본값(1.0)으로 복구합니다.
+    /// </summary>
+    public void ResetAttackSpeedMultiplier()
+    {
+        attackSpeedMultiplier = DEFAULT_MULTIPLIER;
+    }
+    
+    /// <summary>
+    /// 공격 범위 배율 설정 메소드: 버프/디버프 시스템에서 사용합니다.
+    /// </summary>
+    /// <param name="value">설정할 배율 값 (1.0이 기본값)</param>
+    public void SetAttackRangeMultiplier(float value)
+    {
+        attackRangeMultiplier = Mathf.Max(0f, value);
+    }
+    
+    /// <summary>
+    /// 공격 범위 배율 곱하기 메소드: 기존 배율에 곱하여 적용합니다. (중첩 버프용)
+    /// </summary>
+    /// <param name="multiplier">곱할 배율 값</param>
+    public void MultiplyAttackRangeMultiplier(float multiplier)
+    {
+        attackRangeMultiplier *= Mathf.Max(0f, multiplier);
+    }
+    
+    /// <summary>
+    /// 공격 범위 배율 리셋 메소드: 기본값(1.0)으로 복구합니다.
+    /// </summary>
+    public void ResetAttackRangeMultiplier()
+    {
+        attackRangeMultiplier = DEFAULT_MULTIPLIER;
+    }
+    
+    /// <summary>
+    /// 공격 데미지 배율 설정 메소드: 버프/디버프 시스템에서 사용합니다.
+    /// </summary>
+    /// <param name="value">설정할 배율 값 (1.0이 기본값)</param>
+    public void SetAttackDamageMultiplier(float value)
+    {
+        attackDamageMultiplier = Mathf.Max(0f, value);
+    }
+    
+    /// <summary>
+    /// 공격 데미지 배율 곱하기 메소드: 기존 배율에 곱하여 적용합니다. (중첩 버프용)
+    /// </summary>
+    /// <param name="multiplier">곱할 배율 값</param>
+    public void MultiplyAttackDamageMultiplier(float multiplier)
+    {
+        attackDamageMultiplier *= Mathf.Max(0f, multiplier);
+    }
+    
+    /// <summary>
+    /// 공격 데미지 배율 리셋 메소드: 기본값(1.0)으로 복구합니다.
+    /// </summary>
+    public void ResetAttackDamageMultiplier()
+    {
+        attackDamageMultiplier = DEFAULT_MULTIPLIER;
+    }
+    
+    /// <summary>
+    /// 재장전 속도 배율 설정 메소드: 버프/디버프 시스템에서 사용합니다.
+    /// </summary>
+    /// <param name="value">설정할 배율 값 (1.0이 기본값)</param>
+    public void SetReloadSpeedMultiplier(float value)
+    {
+        reloadSpeedMultiplier = Mathf.Max(0f, value);
+    }
+    
+    /// <summary>
+    /// 재장전 속도 배율 곱하기 메소드: 기존 배율에 곱하여 적용합니다. (중첩 버프용)
+    /// </summary>
+    /// <param name="multiplier">곱할 배율 값</param>
+    public void MultiplyReloadSpeedMultiplier(float multiplier)
+    {
+        reloadSpeedMultiplier *= Mathf.Max(0f, multiplier);
+    }
+    
+    /// <summary>
+    /// 재장전 속도 배율 리셋 메소드: 기본값(1.0)으로 복구합니다.
+    /// </summary>
+    public void ResetReloadSpeedMultiplier()
+    {
+        reloadSpeedMultiplier = DEFAULT_MULTIPLIER;
+    }
+    
+    /// <summary>
+    /// 이동 속도 배율 설정 메소드: 버프/디버프 시스템에서 사용합니다.
+    /// </summary>
+    /// <param name="value">설정할 배율 값 (1.0이 기본값)</param>
+    public void SetMoveSpeedMultiplier(float value)
+    {
+        moveSpeedMultiplier = Mathf.Max(0f, value);
+    }
+    
+    /// <summary>
+    /// 이동 속도 배율 곱하기 메소드: 기존 배율에 곱하여 적용합니다. (중첩 버프용)
+    /// </summary>
+    /// <param name="multiplier">곱할 배율 값</param>
+    public void MultiplyMoveSpeedMultiplier(float multiplier)
+    {
+        moveSpeedMultiplier *= Mathf.Max(0f, multiplier);
+    }
+    
+    /// <summary>
+    /// 이동 속도 배율 리셋 메소드: 기본값(1.0)으로 복구합니다.
+    /// </summary>
+    public void ResetMoveSpeedMultiplier()
+    {
+        moveSpeedMultiplier = DEFAULT_MULTIPLIER;
+    }
+    
+    /// <summary>
+    /// 구르기 속도 배율 설정 메소드: 버프/디버프 시스템에서 사용합니다.
+    /// </summary>
+    /// <param name="value">설정할 배율 값 (1.0이 기본값)</param>
+    public void SetRollSpeedMultiplier(float value)
+    {
+        rollSpeedMultiplier = Mathf.Max(0f, value);
+    }
+    
+    /// <summary>
+    /// 구르기 속도 배율 곱하기 메소드: 기존 배율에 곱하여 적용합니다. (중첩 버프용)
+    /// </summary>
+    /// <param name="multiplier">곱할 배율 값</param>
+    public void MultiplyRollSpeedMultiplier(float multiplier)
+    {
+        rollSpeedMultiplier *= Mathf.Max(0f, multiplier);
+    }
+    
+    /// <summary>
+    /// 구르기 속도 배율 리셋 메소드: 기본값(1.0)으로 복구합니다.
+    /// </summary>
+    public void ResetRollSpeedMultiplier()
+    {
+        rollSpeedMultiplier = DEFAULT_MULTIPLIER;
+    }
+    
+    /// <summary>
+    /// 구르기 지속 시간 배율 설정 메소드: 버프/디버프 시스템에서 사용합니다.
+    /// </summary>
+    /// <param name="value">설정할 배율 값 (1.0이 기본값)</param>
+    public void SetRollDurationMultiplier(float value)
+    {
+        rollDurationMultiplier = Mathf.Max(0f, value);
+    }
+    
+    /// <summary>
+    /// 구르기 지속 시간 배율 곱하기 메소드: 기존 배율에 곱하여 적용합니다. (중첩 버프용)
+    /// </summary>
+    /// <param name="multiplier">곱할 배율 값</param>
+    public void MultiplyRollDurationMultiplier(float multiplier)
+    {
+        rollDurationMultiplier *= Mathf.Max(0f, multiplier);
+    }
+    
+    /// <summary>
+    /// 구르기 지속 시간 배율 리셋 메소드: 기본값(1.0)으로 복구합니다.
+    /// </summary>
+    public void ResetRollDurationMultiplier()
+    {
+        rollDurationMultiplier = DEFAULT_MULTIPLIER;
+    }
+    
+    /// <summary>
+    /// 구르기 쿨다운 배율 설정 메소드: 버프/디버프 시스템에서 사용합니다.
+    /// </summary>
+    /// <param name="value">설정할 배율 값 (1.0이 기본값)</param>
+    public void SetRollCooldownMultiplier(float value)
+    {
+        rollCooldownMultiplier = Mathf.Max(0f, value);
+    }
+    
+    /// <summary>
+    /// 구르기 쿨다운 배율 곱하기 메소드: 기존 배율에 곱하여 적용합니다. (중첩 버프용)
+    /// </summary>
+    /// <param name="multiplier">곱할 배율 값</param>
+    public void MultiplyRollCooldownMultiplier(float multiplier)
+    {
+        rollCooldownMultiplier *= Mathf.Max(0f, multiplier);
+    }
+    
+    /// <summary>
+    /// 구르기 쿨다운 배율 리셋 메소드: 기본값(1.0)으로 복구합니다.
+    /// </summary>
+    public void ResetRollCooldownMultiplier()
+    {
+        rollCooldownMultiplier = DEFAULT_MULTIPLIER;
+    }
+    
+    /// <summary>
+    /// 무기 교체 쿨다운 배율 설정 메소드: 버프/디버프 시스템에서 사용합니다.
+    /// </summary>
+    /// <param name="value">설정할 배율 값 (1.0이 기본값)</param>
+    public void SetSwapCooldownMultiplier(float value)
+    {
+        swapCooldownMultiplier = Mathf.Max(0f, value);
+    }
+    
+    /// <summary>
+    /// 무기 교체 쿨다운 배율 곱하기 메소드: 기존 배율에 곱하여 적용합니다. (중첩 버프용)
+    /// </summary>
+    /// <param name="multiplier">곱할 배율 값</param>
+    public void MultiplySwapCooldownMultiplier(float multiplier)
+    {
+        swapCooldownMultiplier *= Mathf.Max(0f, multiplier);
+    }
+    
+    /// <summary>
+    /// 무기 교체 쿨다운 배율 리셋 메소드: 기본값(1.0)으로 복구합니다.
+    /// </summary>
+    public void ResetSwapCooldownMultiplier()
+    {
+        swapCooldownMultiplier = DEFAULT_MULTIPLIER;
+    }
+    
+    /// <summary>
+    /// 모든 배율을 기본값(1.0)으로 리셋하는 메소드: 버프/디버프가 모두 해제될 때 사용합니다.
+    /// </summary>
+    public void ResetAllMultipliers()
+    {
+        attackSpeedMultiplier = DEFAULT_MULTIPLIER;
+        attackRangeMultiplier = DEFAULT_MULTIPLIER;
+        attackDamageMultiplier = DEFAULT_MULTIPLIER;
+        reloadSpeedMultiplier = DEFAULT_MULTIPLIER;
+        moveSpeedMultiplier = DEFAULT_MULTIPLIER;
+        rollSpeedMultiplier = DEFAULT_MULTIPLIER;
+        rollDurationMultiplier = DEFAULT_MULTIPLIER;
+        rollCooldownMultiplier = DEFAULT_MULTIPLIER;
+        swapCooldownMultiplier = DEFAULT_MULTIPLIER;
+    }
+    
+    #endregion
 
     // 피격 판정 처리 (Trigger Collider용 - hitboxCollider)
     /*  ************************************************* 이거 아직 안쓰는건데 로그 에러 거슬려서 꺼놓을게용
