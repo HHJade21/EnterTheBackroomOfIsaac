@@ -74,7 +74,7 @@ public class EnemyController : MonoBehaviour
         }
 
         // 플레이어와 충돌 중이 아닐 때만 이동
-        if (!isCollidingWithPlayer)
+        if (!isCollidingWithPlayer && sqrDistance > enemyData.attackRange * enemyData.attackRange)
         {
             // 이동: MovePosition을 사용하여 벽 충돌 감지
             Vector2 direction = toTarget.normalized;
