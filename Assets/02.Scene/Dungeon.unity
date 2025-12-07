@@ -6569,8 +6569,8 @@ MonoBehaviour:
   - {fileID: 4185292659311260358, guid: 632a7f4df28f5df44b53f3f5b9e3ce15, type: 3}
   - {fileID: 1731564292202486801, guid: 56fa82744d80e0341b2e8e473c688239, type: 3}
   - {fileID: 6196334910795999584, guid: cf8a5ab80f3457043a44628c07946abe, type: 3}
-  minRooms: 10
-  maxRooms: 30
+  minRooms: 5
+  maxRooms: 5
   rooms: []
   roomCollisionMargin: 0
   showCollisionBounds: 1
@@ -7116,8 +7116,17 @@ MonoBehaviour:
   trailSpawnInterval: 0.05
   hitboxCollider: {fileID: 1933784947}
   attackSpeedMultiplier: 1
+  attackRangeMultiplier: 1
+  attackDamageMultiplier: 1
   reloadSpeedMultiplier: 1
+  moveSpeedMultiplier: 1
+  rollSpeedMultiplier: 1
+  rollDurationMultiplier: 1
+  rollCooldownMultiplier: 1
+  swapCooldownMultiplier: 1
   wallCollider: {fileID: 0}
+  maxHP: 10
+  currentHP: 10
 --- !u!4 &1952886857 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1759257910296838893, guid: 632a7f4df28f5df44b53f3f5b9e3ce15, type: 3}
