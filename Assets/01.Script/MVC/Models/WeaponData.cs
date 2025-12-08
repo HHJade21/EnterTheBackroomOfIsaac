@@ -29,6 +29,7 @@ public class WeaponData : ScriptableObject
     public Sprite icon;                    // UI 아이콘
     public WeaponElement element = WeaponElement.Cyan; // 무기 속성
     public WeaponType weaponType = WeaponType.Fire;   // 무기 타입
+    public bool autoFire = false; // 자동 발사 여부
 
     [Header("Projectile")]
     public GameObject projectilePrefab;    // 발사할 투사체 프리팹

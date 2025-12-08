@@ -105,6 +105,7 @@ public class PlayerController : MonoBehaviour
     private bool isSande = false;
     private Coroutine trailSpawnCoroutine; // trail 생성 코루틴 참조
     private Vector2 lastTrailPosition; // 마지막 Trail 생성 위치
+    private Coroutine autoFireCoroutine; // 자동 발사 코루틴 참조
     private Animator animator;
     private float knockbackForce = 0f;
     private Vector2 knockbackDirection;
@@ -253,11 +254,63 @@ public class PlayerController : MonoBehaviour
             return;
         }
         
+        // autoFire가 true인 경우 자동 발사 처리
+        if (weaponController.CurrentWeapon.autoFire)
+        {
+            if (context.started)
+            {
+                // 마우스를 누르기 시작: 자동 발사 코루틴 시작
+                if (autoFireCoroutine == null)
+                {
+                    autoFireCoroutine = StartCoroutine(AutoFireRoutine());
+                }
+            }
+            else if (context.canceled)
+            {
+                // 마우스를 떼는 순간: 자동 발사 코루틴 중지
+                if (autoFireCoroutine != null)
+                {
+                    StopCoroutine(autoFireCoroutine);
+                    autoFireCoroutine = null;
+                }
+            }
+            return;
+        }
+        
         // 일반 공격은 performed일 때만 처리
         if (!context.performed) return;
         
         // WeaponController에서 발사 처리
         weaponController.OnFire(dir, fireOrigin, transform.position);
+    }
+    
+    /// <summary>
+    /// 자동 발사 코루틴: 마우스를 누르고 있는 동안 fireCooldown 간격으로 자동 발사합니다.
+    /// </summary>
+    private System.Collections.IEnumerator AutoFireRoutine()
+    {
+        while (true)
+        {
+            if (weaponController == null || weaponController.CurrentWeapon == null)
+            {
+                autoFireCoroutine = null;
+                yield break;
+            }
+            
+            // 발사 방향 계산
+            Vector2 dir = ((Vector2)Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - (Vector2)transform.position).normalized;
+            
+            // 발사 오리진 위치
+            Transform fireOrigin = weaponController.weaponIconRenderer != null 
+                ? weaponController.weaponIconRenderer.transform 
+                : transform;
+            
+            // WeaponController에서 발사 처리
+            weaponController.OnFire(dir, fireOrigin, transform.position);
+            
+            // fireCooldown만큼 대기 (WeaponController의 attackCooldown은 이미 attackSpeedMultiplier가 적용됨)
+            yield return new WaitForSeconds(weaponController.attackCooldown);
+        }
     }
 
     public void EquipWeapon(WeaponData data)

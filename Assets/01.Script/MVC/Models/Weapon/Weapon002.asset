@@ -20,7 +20,7 @@ MonoBehaviour:
   element: 1
   weaponType: 1
   projectilePrefab: {fileID: 2599106515927395768, guid: 3e281716df25b7a45b14b436671aa96b, type: 3}
-  projectileSpeed: 14
+  projectileSpeed: 3
   projectileLifetime: 1.5
   baseDamage: 5
   fireCooldown: 0.05
