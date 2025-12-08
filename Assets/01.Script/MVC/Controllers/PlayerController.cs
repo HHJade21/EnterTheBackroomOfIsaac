@@ -96,6 +96,7 @@ public class PlayerController : MonoBehaviour
     public Collider2D wallCollider; // 벽 충돌용 콜라이더 (Feet에 있는 콜라이더)
     
     private bool isRolling;
+    public bool isDashing = false;      // 돌진 중 여부 (WeaponController에서 설정)
     private bool isInvincible;          // 구르는 동안 무적
     private bool isDead = false;
     private float lastRollTime;
@@ -225,8 +226,8 @@ public class PlayerController : MonoBehaviour
 
     public void OnFireContext(InputAction.CallbackContext context)
     {
-        if (!context.performed) return;
         if (weaponController == null) return;
+        if (weaponController.CurrentWeapon == null) return;
         
         // 발사 방향 계산
         Vector2 dir = ((Vector2)Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - (Vector2)transform.position).normalized;
@@ -235,6 +236,25 @@ public class PlayerController : MonoBehaviour
         Transform fireOrigin = weaponController.weaponIconRenderer != null 
             ? weaponController.weaponIconRenderer.transform 
             : transform;
+        
+        // ChargeDash 무기 타입인 경우 특별 처리
+        if (weaponController.CurrentWeapon.weaponType == WeaponData.WeaponType.ChargeDash)
+        {
+            if (context.started)
+            {
+                // 마우스를 누르기 시작: 충전 시작
+                weaponController.StartChargeDash(dir, fireOrigin);
+            }
+            else if (context.canceled)
+            {
+                // 마우스를 떼는 순간: 돌진 실행
+                weaponController.ChargeDashAttack(dir, fireOrigin);
+            }
+            return;
+        }
+        
+        // 일반 공격은 performed일 때만 처리
+        if (!context.performed) return;
         
         // WeaponController에서 발사 처리
         weaponController.OnFire(dir, fireOrigin, transform.position);
@@ -328,6 +348,15 @@ public class PlayerController : MonoBehaviour
         if (weaponController != null)
         {
             weaponController.UpdateWeaponIconTransform(transform.position);
+            
+            // ChargeDash 무기 타입이고 마우스를 누르고 있으면 충전 업데이트
+            if (weaponController.CurrentWeapon != null && 
+                weaponController.CurrentWeapon.weaponType == WeaponData.WeaponType.ChargeDash &&
+                Mouse.current != null && Mouse.current.leftButton.isPressed)
+            {
+                Vector2 dir = ((Vector2)Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - (Vector2)transform.position).normalized;
+                weaponController.UpdateChargeDash(dir);
+            }
         }
         DetectNearbyWeapons();
     }
@@ -341,6 +370,11 @@ public class PlayerController : MonoBehaviour
         {
             Vector2 rollVec = rollDirection * rollSpeed * Time.fixedDeltaTime;
             rigid.MovePosition(rigid.position + rollVec);
+            return;
+        }
+        if (isDashing)
+        {
+            // 돌진 중에는 일반 이동 건너뛰기 (WeaponController의 ChargeDashRoutine에서 이동 처리)
             return;
         }
         if(knockbackForce > 0f){

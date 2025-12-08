@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9740a8621ebe7048b657bdf503efbe6, type: 3}
   m_Name: Weapon007
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
-  weaponName: "\uBD09\uC218\uC138\uBBF8"
-  icon: {fileID: 38071655888178860, guid: 1cb15cfe2c5f8d644bb933fbc25f55cf, type: 3}
-  element: 1
-  weaponType: 0
+  itemID: 7
+  weaponName: "\uC694\uC220\uBD09"
+  description: "\uB79C\uB364\uD55C \uD22C\uC0AC\uCCB4\uB97C \uC18C\uD658\uD574 \uBC1C\uC0AC\uD569\uB2C8\uB2E4."
+  icon: {fileID: -9015736442291220469, guid: 19a56d78510405849a8e7c458c5ff130, type: 3}
+  element: 3
+  weaponType: 1
   projectilePrefab: {fileID: 2599106515927395768, guid: 92cd18ab095186246a4340542d3d12cd, type: 3}
   projectileSpeed: 14
   projectileLifetime: 1.5
@@ -24,4 +26,6 @@ MonoBehaviour:
   magazineSize: 10
   reloadTime: 0.8
   fireSound: {fileID: 0}
+  reloadSound: {fileID: 0}
   fireEffect: {fileID: 0}
+  swapSkillData: {fileID: 0}

@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9740a8621ebe7048b657bdf503efbe6, type: 3}
   m_Name: Weapon003
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
-  weaponName: "\uBE60\uB8E8"
-  icon: {fileID: 4248943987254507384, guid: b35743dde89420243ba9bc8702164d10, type: 3}
-  element: 0
-  weaponType: 0
+  itemID: 3
+  weaponName: "\uACE0\uC555\uD638\uC2A4"
+  description: "\uAC15\uB825\uD55C \uBB3C\uC904\uAE30\uB97C \uBC1C\uC0AC\uD569\uB2C8\uB2E4."
+  icon: {fileID: -6442664214286108073, guid: 329906814a6abe64ca13de3387fa1e10, type: 3}
+  element: 1
+  weaponType: 1
   projectilePrefab: {fileID: 2599106515927395768, guid: d8c84b7851c176a4490f34abf7e0870e, type: 3}
   projectileSpeed: 14
   projectileLifetime: 1.5
@@ -23,5 +25,7 @@ MonoBehaviour:
   fireCooldown: 0.5
   magazineSize: 10
   reloadTime: 1.2
-  fireSound: {fileID: 8300000, guid: 19f0cdafd5e07c342b6dee072c80a7a0, type: 3}
-  fireEffect: {fileID: -4059824784355127163, guid: 8ad621b9488af0c4aaacb2a4d47f3dbf, type: 3}
+  fireSound: {fileID: 8300000, guid: 75adfe9a619833445a701305b983e548, type: 3}
+  reloadSound: {fileID: 0}
+  fireEffect: {fileID: 0}
+  swapSkillData: {fileID: 0}

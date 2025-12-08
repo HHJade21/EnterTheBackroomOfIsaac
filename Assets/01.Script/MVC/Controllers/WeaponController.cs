@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-
+using UnityEngine.UI;
+using TMPro;
 // Mediates between PlayerController and weapon ScriptableObject data
 // Responsibilities:
 // - Manage up to three WeaponData references the player can carry
@@ -14,13 +15,14 @@ using System.Linq;
 public class WeaponController : MonoBehaviour
 {
     private const int allWeaponsCount = 17;//구현된 모든 무기 종류의 개수를 여기 표시
-    private const int MaxWeapons = 17;//플레이어가 소지할 수 있는 최대 무기 개수
+    private const int MaxWeapons = 2;//플레이어가 소지할 수 있는 최대 무기 개수
 
     [Header("Data")]
     [SerializeField] private List<WeaponData> allWeapons = new List<WeaponData>(allWeaponsCount);
     [SerializeField] private List<WeaponData> ownedWeapons = new List<WeaponData>(MaxWeapons);
     [SerializeField] private WeaponData currentWeapon;
     [SerializeField] private List<bool> droppedWeapons = new List<bool>(allWeaponsCount);//이번 게임에서 한 번이라도 드랍된 무기들은 여기서 1로 바뀌고 다시는 등장하지 않음.
+    [SerializeField] private WeaponData temporaryWeapon;
 
     [Header("Weapon Stats")]
     public int maxBulletCount = 10;        // 최대 탄약 수
@@ -52,6 +54,21 @@ public class WeaponController : MonoBehaviour
     [Tooltip("근접 공격 지속 시간 (초)")]
     public float meleeAttackDuration = 0.2f;
 
+    [Header("Charge Dash Attack")]
+    [Tooltip("최대 충전 시간 (초)")]
+    public float maxChargeTime = 2f;
+    [Tooltip("돌진 거리")]
+    public float dashDistance = 5f;
+    [Tooltip("돌진 속도")]
+    public float dashSpeed = 20f;
+    
+    public float currentChargeTime = 0f;
+    private bool isCharging = false;
+    private bool isDashing = false;
+    private Vector2 dashDirection;
+    private GameObject dashFireEffect;
+    private Coroutine chargeDashCoroutine;
+
     public WeaponData CurrentWeapon => currentWeapon;
     public IReadOnlyList<WeaponData> OwnedWeapons => ownedWeapons;
     public int CurrentWeaponIndex => ownedWeapons.IndexOf(currentWeapon);
@@ -60,6 +77,9 @@ public class WeaponController : MonoBehaviour
     public int CurrentBulletCount => currentBulletCount;
     public int MaxBulletCount => maxBulletCount;
 
+    public WeaponSlotUIController weaponSlotUIController;
+
+    public PlayerController playerController;
     /// <summary>
     /// 초기화 메소드: 게임 시작 시 무기 인벤토리와 드랍 리스트를 설정합니다.
     /// - 드랍된 무기 리스트 초기화
@@ -136,14 +156,22 @@ public class WeaponController : MonoBehaviour
     /// - 선택된 무기의 아이콘과 ID 설정
     /// - 해당 무기를 드랍된 목록에 추가 (중복 방지)
     /// </summary>
-    public void SpawnNewWeapon()
-    {
+    /// 
+    public int SelectNewWeapon(){
         EnsureDroppedWeaponList();
         int itemID = RandomWeapon();
+        return itemID;
+    }
+    public void SpawnNewWeapon(int itemID)
+    {
         GameObject newWeapon = Instantiate(weaponPrefab, new Vector3(0, 0, 0), Quaternion.identity);
         newWeapon.GetComponent<SpriteRenderer>().sprite = allWeapons[itemID].icon;
         newWeapon.GetComponent<newWeapon>().itemID = itemID;
         droppedWeapons[itemID] = true;
+    }
+    public void DevTool_DropNewWeapon(){
+        int newID = SelectNewWeapon();
+        SpawnNewWeapon(newID);
     }
 
     /// <summary>
@@ -163,10 +191,12 @@ public class WeaponController : MonoBehaviour
         {
             if (ownedWeapons.Count >= MaxWeapons)
             {
-                Debug.LogWarning($"Weapon inventory full ({MaxWeapons}). Cannot add {data.name}.");
-                return false;
+                //Debug.LogWarning($"Weapon inventory full ({MaxWeapons}). Cannot add {data.name}.");
+                //return false;
+                temporaryWeapon = data;
+                OpenweaponSlotUIController(ownedWeapons[0], ownedWeapons[1], data);
             }
-            ownedWeapons.Add(data);
+            else ownedWeapons.Add(data);
         }
 
         if (makeCurrent)
@@ -175,6 +205,29 @@ public class WeaponController : MonoBehaviour
         }
 
         return true;
+    }
+
+    public void OpenweaponSlotUIController(WeaponData slot1Weapon, WeaponData slot2Weapon, WeaponData newWeapon){
+        weaponSlotUIController.OpenNewWeaponPanel(slot1Weapon, slot2Weapon, newWeapon);
+    }
+    public void CloseweaponSlotUIController(){
+        weaponSlotUIController.CloseNewWeaponPanel();
+    }
+    public void ChangeSlot1Weapon(){
+        int newID = ownedWeapons[0].itemID;
+        SpawnNewWeapon(newID);
+        ownedWeapons[0] = temporaryWeapon;
+        temporaryWeapon = null;
+        CloseweaponSlotUIController();
+        TryEquipWeaponSlot(0);
+    }
+    public void ChangeSlot2Weapon(){
+        int newID = ownedWeapons[1].itemID;
+        SpawnNewWeapon(newID);
+        ownedWeapons[1] = temporaryWeapon;
+        temporaryWeapon = null;
+        CloseweaponSlotUIController();
+        TryEquipWeaponSlot(1);
     }
 
     /// <summary>
@@ -308,6 +361,12 @@ public class WeaponController : MonoBehaviour
             case WeaponData.WeaponType.Laser:
                 LaserAttack(dir, startPoint);
                 break;
+            case WeaponData.WeaponType.ChargeFire:
+                ChargeFireAttack(dir, startPoint);
+                break;
+            case WeaponData.WeaponType.ChargeDash:
+                ChargeDashAttack(dir, startPoint);
+                break;
         }
     }
 
@@ -416,6 +475,190 @@ public class WeaponController : MonoBehaviour
     public void Fire(Vector2 dir, Transform startPoint)
     {
         FireAttack(dir, startPoint);
+    }
+
+    /// <summary>
+    /// 충전 대시 공격 시작 메소드: 마우스를 누르고 있는 동안 충전을 시작합니다.
+    /// </summary>
+    /// <param name="dir">공격 방향 (정규화됨)</param>
+    /// <param name="startPoint">공격 시작 위치와 회전</param>
+    public void StartChargeDash(Vector2 dir, Transform startPoint)
+    {
+        if (isDashing || isCharging) return;
+        
+        isCharging = true;
+        currentChargeTime = 0f;
+        dashDirection = dir.normalized;
+    }
+
+    /// <summary>
+    /// 충전 대시 공격 업데이트 메소드: 마우스를 누르고 있는 동안 호출되어 충전 시간을 증가시킵니다.
+    /// </summary>
+    /// <param name="dir">공격 방향 (정규화됨)</param>
+    public void UpdateChargeDash(Vector2 dir)
+    {
+        if (!isCharging || isDashing) return;
+        
+        // 충전 시간 증가
+        currentChargeTime += Time.deltaTime;
+        if (currentChargeTime > maxChargeTime)
+        {
+            currentChargeTime = maxChargeTime;
+        }
+        
+        // 방향 업데이트
+        dashDirection = dir.normalized;
+    }
+
+    /// <summary>
+    /// 충전 대시 공격 실행 메소드: 마우스를 떼는 순간 호출되어 돌진을 시작합니다.
+    /// </summary>
+    /// <param name="dir">공격 방향 (정규화됨)</param>
+    /// <param name="startPoint">공격 시작 위치와 회전</param>
+    public void ChargeDashAttack(Vector2 dir, Transform startPoint)
+    {
+        if (!isCharging || isDashing) return;
+        
+        isCharging = false;
+        dashDirection = dir.normalized;
+        
+        // 돌진 코루틴 시작
+        if (chargeDashCoroutine != null)
+        {
+            StopCoroutine(chargeDashCoroutine);
+        }
+        chargeDashCoroutine = StartCoroutine(ChargeDashRoutine(startPoint));
+    }
+
+    /// <summary>
+    /// 충전 대시 공격 취소 메소드: 충전 중인 공격을 취소합니다.
+    /// </summary>
+    public void CancelChargeDash()
+    {
+        if (isCharging)
+        {
+            isCharging = false;
+            currentChargeTime = 0f;
+        }
+    }
+
+    /// <summary>
+    /// 충전 대시 공격 코루틴: 돌진을 실행하고 이펙트와 콜라이더를 관리합니다.
+    /// </summary>
+    private IEnumerator ChargeDashRoutine(Transform startPoint)
+    {
+        isDashing = true;
+        
+        PlayerController playerController = GetPlayerController();
+        if (playerController == null)
+        {
+            isDashing = false;
+            yield break;
+        }
+        
+        // PlayerController의 isDashing 플래그 설정
+        playerController.isDashing = true;
+        
+        Rigidbody2D playerRb = playerController.GetComponent<Rigidbody2D>();
+        if (playerRb == null)
+        {
+            isDashing = false;
+            playerController.isDashing = false;
+            yield break;
+        }
+        
+        // meleeAttackCollider가 없으면 자동으로 찾거나 생성
+        EnsureMeleeAttackComponents();
+        
+        // fireEffect 생성
+        if (currentWeapon != null && currentWeapon.fireEffect != null)
+        {
+            dashFireEffect = new GameObject("DashFireEffect");
+            dashFireEffect.transform.SetParent(transform);
+            SpriteRenderer effectRenderer = dashFireEffect.AddComponent<SpriteRenderer>();
+            effectRenderer.sprite = currentWeapon.fireEffect;
+            effectRenderer.sortingOrder = 15;
+            
+            // 이펙트 회전 설정
+            float angle = Mathf.Atan2(dashDirection.y, dashDirection.x) * Mathf.Rad2Deg;
+            dashFireEffect.transform.rotation = Quaternion.Euler(0f, 0f, angle);
+        }
+        
+        // meleeAttackCollider 활성화 및 위치 설정
+        if (meleeAttackCollider != null)
+        {
+            meleeAttackCollider.enabled = true;
+        }
+        
+        // 돌진 거리 계산 (충전 시간에 비례)
+        float chargeRatio = Mathf.Clamp01(currentChargeTime / maxChargeTime);
+        float actualDashDistance = dashDistance * (0.5f + chargeRatio * 0.5f); // 최소 50%, 최대 100%
+        
+        Vector2 startPosition = playerRb.position;
+        Vector2 targetPosition = startPosition + dashDirection * actualDashDistance;
+        float remainingDistance = actualDashDistance;
+        
+        // 돌진 실행
+        while (remainingDistance > 0.1f)
+        {
+            float moveDistance = dashSpeed * Time.fixedDeltaTime;
+            if (moveDistance > remainingDistance)
+            {
+                moveDistance = remainingDistance;
+            }
+            
+            Vector2 nextPosition = playerRb.position + dashDirection * moveDistance;
+            playerRb.MovePosition(nextPosition);
+            
+            // fireEffect 위치 업데이트
+            if (dashFireEffect != null)
+            {
+                dashFireEffect.transform.position = playerRb.position;
+            }
+            
+            // meleeAttackCollider 위치 업데이트
+            if (meleeAttackCollider != null)
+            {
+                meleeAttackCollider.transform.position = playerRb.position;
+            }
+            
+            remainingDistance -= moveDistance;
+            yield return new WaitForFixedUpdate();
+        }
+        
+        // 최종 위치 설정
+        playerRb.MovePosition(targetPosition);
+        
+        // fireEffect 제거
+        if (dashFireEffect != null)
+        {
+            Destroy(dashFireEffect);
+            dashFireEffect = null;
+        }
+        
+        // meleeAttackCollider 비활성화
+        if (meleeAttackCollider != null)
+        {
+            meleeAttackCollider.enabled = false;
+        }
+        
+        // 충전 시간 리셋
+        currentChargeTime = 0f;
+        isDashing = false;
+        
+        // PlayerController의 isDashing 플래그 해제
+        if (playerController != null)
+        {
+            playerController.isDashing = false;
+        }
+        
+        chargeDashCoroutine = null;
+    }
+
+    public void ChargeFireAttack(Vector2 dir, Transform startPoint)
+    {
+        float chargeTime = 0.2f;
+        float maxChargeTime = 2f;
     }
 
     /// <summary>
@@ -607,6 +850,7 @@ public class WeaponController : MonoBehaviour
         {
             SyncWeaponStats(forceResetAmmo: true);
             UpdateWeaponIconSprite();
+            playerController.ChangeColor((int)ownedWeapons[slotIndex].element);
             return true;
         }
         return false;
