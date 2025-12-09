@@ -349,8 +349,12 @@ MonoBehaviour:
   isCleared: 0
   isClosed: 0
   roomColor: 3
+  roomDepth: 0
   doors:
   - {fileID: 7203742865108171834}
+  dungeonController: {fileID: 0}
+  player: {fileID: 0}
+  spawnPoints: []
 --- !u!1 &4549475630169073279
 GameObject:
   m_ObjectHideFlags: 0
@@ -362,7 +366,7 @@ GameObject:
   - component: {fileID: 4320954993151229463}
   - component: {fileID: 7597406444633792100}
   - component: {fileID: 1851096957388240327}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall
   m_TagString: WallOcclusion
   m_Icon: {fileID: 0}

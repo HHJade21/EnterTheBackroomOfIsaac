@@ -19,11 +19,12 @@ MonoBehaviour:
   icon: {fileID: -8561114005086872862, guid: a61aeb949a8d1aa4db02d26344af74d3, type: 3}
   element: 3
   weaponType: 1
-  projectilePrefab: {fileID: 2599106515927395768, guid: 92cd18ab095186246a4340542d3d12cd, type: 3}
+  autoFire: 0
+  projectilePrefab: {fileID: 2599106515927395768, guid: 7dda4657c5ded474b8b1dabee113107c, type: 3}
   projectileSpeed: 14
   projectileLifetime: 1.5
   baseDamage: 5
-  fireCooldown: 0.2
+  fireCooldown: 0.5
   magazineSize: 10
   reloadTime: 0.8
   fireSound: {fileID: 0}

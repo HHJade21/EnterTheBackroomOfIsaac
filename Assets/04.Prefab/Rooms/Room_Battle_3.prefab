@@ -630,7 +630,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1972497104472920983}
   - component: {fileID: 4922147070711658154}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall
   m_TagString: WallOcclusion
   m_Icon: {fileID: 0}

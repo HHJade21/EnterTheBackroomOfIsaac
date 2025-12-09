@@ -17,8 +17,9 @@ MonoBehaviour:
   description: "\uC9D1\uC911\uB41C \uBE5B\uC744 \uBC1C\uC0AC\uD569\uB2C8\uB2E4."
   icon: {fileID: 759552742998295194, guid: 1b3ad3071e4fcfe47ade7c18128904ca, type: 3}
   element: 2
-  weaponType: 2
-  projectilePrefab: {fileID: 2599106515927395768, guid: 92cd18ab095186246a4340542d3d12cd, type: 3}
+  weaponType: 3
+  autoFire: 0
+  projectilePrefab: {fileID: 2599106515927395768, guid: 64443dd2e9f5168468dedf1b6416d3fb, type: 3}
   projectileSpeed: 14
   projectileLifetime: 1.5
   baseDamage: 5

@@ -69,6 +69,16 @@ public class WeaponController : MonoBehaviour
     private GameObject dashFireEffect;
     private Coroutine chargeDashCoroutine;
 
+    [Header("Charge Fire Attack")]
+    [Tooltip("최대 충전 시간 (초)")]
+    public float maxChargeFireTime = 2f;
+    [Tooltip("레이저 빔 최대 거리")]
+    public float maxLaserDistance = 20f;
+    
+    public float currentChargeFireTime = 0f;
+    private bool isChargingFire = false;
+    private Vector2 chargeFireDirection;
+
     public WeaponData CurrentWeapon => currentWeapon;
     public IReadOnlyList<WeaponData> OwnedWeapons => ownedWeapons;
     public int CurrentWeaponIndex => ownedWeapons.IndexOf(currentWeapon);
@@ -655,10 +665,102 @@ public class WeaponController : MonoBehaviour
         chargeDashCoroutine = null;
     }
 
+    /// <summary>
+    /// 충전 발사 공격 시작 메소드: 마우스를 누르고 있는 동안 충전을 시작합니다.
+    /// </summary>
+    /// <param name="dir">공격 방향 (정규화됨)</param>
+    /// <param name="startPoint">공격 시작 위치와 회전</param>
+    public void StartChargeFire(Vector2 dir, Transform startPoint)
+    {
+        if (isChargingFire) return;
+        
+        isChargingFire = true;
+        currentChargeFireTime = 0f;
+        chargeFireDirection = dir.normalized;
+    }
+
+    /// <summary>
+    /// 충전 발사 공격 업데이트 메소드: 마우스를 누르고 있는 동안 호출되어 충전 시간을 증가시킵니다.
+    /// </summary>
+    /// <param name="dir">공격 방향 (정규화됨)</param>
+    public void UpdateChargeFire(Vector2 dir)
+    {
+        if (!isChargingFire) return;
+        
+        // 충전 시간 증가
+        currentChargeFireTime += Time.deltaTime;
+        if (currentChargeFireTime > maxChargeFireTime)
+        {
+            currentChargeFireTime = maxChargeFireTime;
+        }
+        
+        // 방향 업데이트
+        chargeFireDirection = dir.normalized;
+    }
+
+    /// <summary>
+    /// 충전 발사 공격 실행 메소드: 마우스를 떼는 순간 호출되어 레이저 빔을 발사합니다.
+    /// </summary>
+    /// <param name="dir">공격 방향 (정규화됨)</param>
+    /// <param name="startPoint">공격 시작 위치와 회전</param>
     public void ChargeFireAttack(Vector2 dir, Transform startPoint)
     {
-        float chargeTime = 0.2f;
-        float maxChargeTime = 2f;
+        if (!isChargingFire) return;
+        
+        isChargingFire = false;
+        chargeFireDirection = dir.normalized;
+        
+        // 레이저 빔 프리팹이 없으면 리턴
+        if (currentWeapon == null || currentWeapon.projectilePrefab == null)
+        {
+            currentChargeFireTime = 0f;
+            return;
+        }
+        
+        // 레이저 빔 생성
+        GameObject laserBeam = Instantiate(currentWeapon.projectilePrefab, startPoint.position, Quaternion.identity);
+        LaserBeamController beamController = laserBeam.GetComponent<LaserBeamController>();
+        
+        if (beamController != null)
+        {
+            // 데미지 계산 (WeaponData의 baseDamage 사용)
+            float damage = currentWeapon.baseDamage;
+            
+            // PlayerController의 attackDamageMultiplier 적용
+            PlayerController playerController = GetPlayerController();
+            if (playerController != null)
+            {
+                damage *= playerController.attackDamageMultiplier;
+            }
+            
+            // 레이저 빔 초기화
+            beamController.Initialize(startPoint.position, chargeFireDirection, maxLaserDistance, damage);
+        }
+        else
+        {
+            Debug.LogWarning("ChargeFireAttack: LaserBeamController 컴포넌트가 없습니다.");
+        }
+        
+        // 발사 사운드 재생
+        if (currentWeapon.fireSound != null)
+        {
+            AudioSource.PlayClipAtPoint(currentWeapon.fireSound, startPoint.position);
+        }
+        
+        // 충전 시간 리셋
+        currentChargeFireTime = 0f;
+    }
+
+    /// <summary>
+    /// 충전 발사 공격 취소 메소드: 충전 중인 공격을 취소합니다.
+    /// </summary>
+    public void CancelChargeFire()
+    {
+        if (isChargingFire)
+        {
+            isChargingFire = false;
+            currentChargeFireTime = 0f;
+        }
     }
 
     /// <summary>

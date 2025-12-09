@@ -254,6 +254,22 @@ public class PlayerController : MonoBehaviour
             return;
         }
         
+        // ChargeFire 무기 타입인 경우 특별 처리
+        if (weaponController.CurrentWeapon.weaponType == WeaponData.WeaponType.ChargeFire)
+        {
+            if (context.started)
+            {
+                // 마우스를 누르기 시작: 충전 시작
+                weaponController.StartChargeFire(dir, fireOrigin);
+            }
+            else if (context.canceled)
+            {
+                // 마우스를 떼는 순간: 레이저 빔 발사
+                weaponController.ChargeFireAttack(dir, fireOrigin);
+            }
+            return;
+        }
+        
         // autoFire가 true인 경우 자동 발사 처리
         if (weaponController.CurrentWeapon.autoFire)
         {
@@ -409,6 +425,15 @@ public class PlayerController : MonoBehaviour
             {
                 Vector2 dir = ((Vector2)Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - (Vector2)transform.position).normalized;
                 weaponController.UpdateChargeDash(dir);
+            }
+            
+            // ChargeFire 무기 타입이고 마우스를 누르고 있으면 충전 업데이트
+            if (weaponController.CurrentWeapon != null && 
+                weaponController.CurrentWeapon.weaponType == WeaponData.WeaponType.ChargeFire &&
+                Mouse.current != null && Mouse.current.leftButton.isPressed)
+            {
+                Vector2 dir = ((Vector2)Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - (Vector2)transform.position).normalized;
+                weaponController.UpdateChargeFire(dir);
             }
         }
         DetectNearbyWeapons();

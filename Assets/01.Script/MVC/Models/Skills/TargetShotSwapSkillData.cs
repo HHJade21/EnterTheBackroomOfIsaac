@@ -47,30 +47,23 @@ public class TargetShotSwapSkillData : WeaponSwapSkillData
     {
         EnemyController closestEnemy = null;
         float closestDistance = maxRange > 0f ? maxRange : float.MaxValue;
-
         // 씬의 모든 EnemyController 찾기
         EnemyController[] allEnemies = FindObjectsOfType<EnemyController>();
-
         foreach (EnemyController enemy in allEnemies)
         {
             if (enemy == null) continue;
-
             // 레이어 마스크 확인
             if (enemyLayer != 0 && ((1 << enemy.gameObject.layer) & enemyLayer) == 0)
             {
                 continue;
             }
-
             float distance = Vector2.Distance(fromPosition, enemy.transform.position);
-
             if (distance < closestDistance)
             {
                 closestDistance = distance;
                 closestEnemy = enemy;
             }
         }
-
         return closestEnemy;
     }
 }
-

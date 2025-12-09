@@ -190,7 +190,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5374341858421913926}
   - component: {fileID: 3185678490251678909}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -462,7 +462,7 @@ GameObject:
   - component: {fileID: 2472304242398196564}
   - component: {fileID: 4543517095123532476}
   - component: {fileID: 7839214558194072965}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Occlusion
   m_TagString: WallOcclusion
   m_Icon: {fileID: 0}
