@@ -36,6 +36,10 @@ public class DungeonController : MonoBehaviour
     
     // 충돌 체크 시 그릴 Bounds 저장 (Bounds, 충돌 여부)
     private List<(Bounds bounds, bool isColliding)> collisionBoundsToDraw = new List<(Bounds, bool)>();
+    
+    // 방향별 유효한 프리팹 리스트와 현재 인덱스 (1:북, 2:동, 3:남, 4:서)
+    private Dictionary<int, (List<GameObject> prefabs, int currentIndex)> prefabsQueueByDirection = 
+        new Dictionary<int, (List<GameObject>, int)>();
 
 
     // [Rooms] Data for current room, neighbors, and visited state
@@ -47,7 +51,38 @@ public class DungeonController : MonoBehaviour
     // [State] Track combat active/cleared flags
 
     void Start(){
+        InitializePrefabsByDirection();
         GenerateDungeon();
+    }
+    
+    // 방향별 유효한 프리팹 리스트를 미리 구성 (랜덤 섞기 + 순환 큐 초기화)
+    private void InitializePrefabsByDirection(){
+        prefabsQueueByDirection.Clear();
+        
+        // 각 방향(1~4)별로 유효한 프리팹 찾기
+        for(int direction = 1; direction <= 4; direction++){
+            List<GameObject> validPrefabs = new List<GameObject>();
+            foreach(var prefab in normalRoomPrefabs){
+                if(FindDoorInPrefab(prefab, direction) != null){
+                    validPrefabs.Add(prefab);
+                }
+            }
+            
+            // 프리팹을 랜덤으로 섞기
+            for(int i = 0; i < validPrefabs.Count; i++){
+                GameObject temp = validPrefabs[i];
+                int randomIndex = Random.Range(i, validPrefabs.Count);
+                validPrefabs[i] = validPrefabs[randomIndex];
+                validPrefabs[randomIndex] = temp;
+            }
+            
+            // 순환 큐 초기화 (프리팹 리스트, 현재 인덱스 0)
+            prefabsQueueByDirection[direction] = (validPrefabs, 0);
+            
+            if(validPrefabs.Count == 0){
+                Debug.LogWarning($"방향 {direction}의 문이 있는 방 프리팹이 없습니다!");
+            }
+        }
     }
 
     private void GenerateDungeon(){
@@ -94,23 +129,13 @@ public class DungeonController : MonoBehaviour
             
             int doorDirection = doorRenderer.sortingOrder; // 1:북, 2:동, 3:남, 4:서
             
-            // 복도 생성 (나중에 여러 칸 생성 로직 추가 가능)
-            Vector3 corridorEndPosition = CreateCorridor(door.transform.position, doorDirection);
+            // 복도 생성 (복도의 끝에 방 생성 시도도 포함되어 있음)
+            CreateCorridor(door.transform.position, doorDirection, roomController, doorRenderer);
             
-            // 복도 끝에 방 붙이기
-
-            GameObject newRoom = AttachRoomToCorridor(corridorEndPosition, doorDirection);
-            if(newRoom != null){
-                newRoom.GetComponent<RoomController>().roomDepth = roomController.roomDepth + 1;
-                if(rooms.Count < maxRooms){
-                    SpreadRoom(newRoom);
-                }
-                doorRenderer.sortingOrder = -1;
-            }
         }
     }
     
-    private Vector3 CreateCorridor(Vector3 startPosition, int direction){
+    private void CreateCorridor(Vector3 startPosition, int direction, RoomController roomController, SpriteRenderer doorRenderer){
         Vector3 corridorPosition = startPosition;
         Vector3 corridorMove = Vector3.zero;
         int corridorIndex = 0;
@@ -133,16 +158,35 @@ public class DungeonController : MonoBehaviour
                 corridorIndex = 0; // 가로 복도
                 break;
         }
+        List<GameObject> corridorList = new List<GameObject>();
+
         corridorPosition += corridorMove;
         // 복도 생성 (나중에 여러 칸 생성 로직으로 확장)
-        Instantiate(corridorPrefab[corridorIndex], corridorPosition, Quaternion.identity, corridorParent);
+        corridorList.Add(Instantiate(corridorPrefab[corridorIndex], corridorPosition, Quaternion.identity, corridorParent));
         corridorPosition += corridorMove;
-        Instantiate(corridorPrefab[corridorIndex], corridorPosition, Quaternion.identity, corridorParent);
+        corridorList.Add(Instantiate(corridorPrefab[corridorIndex], corridorPosition, Quaternion.identity, corridorParent));
         corridorPosition += corridorMove;
-        Instantiate(corridorPrefab[corridorIndex], corridorPosition, Quaternion.identity, corridorParent);
+        corridorList.Add(Instantiate(corridorPrefab[corridorIndex], corridorPosition, Quaternion.identity, corridorParent));
+        corridorPosition += corridorMove;
+        corridorList.Add(Instantiate(corridorPrefab[corridorIndex], corridorPosition, Quaternion.identity, corridorParent));
+        corridorPosition += corridorMove;
+        corridorList.Add(Instantiate(corridorPrefab[corridorIndex], corridorPosition, Quaternion.identity, corridorParent));
         corridorPosition += corridorMove;
 
-        return corridorPosition;
+        GameObject newRoom = AttachRoomToCorridor(corridorPosition, direction);
+        if(newRoom != null){
+            newRoom.GetComponent<RoomController>().roomDepth = roomController.roomDepth + 1;
+            if(rooms.Count < maxRooms){
+                SpreadRoom(newRoom);
+            }
+            doorRenderer.sortingOrder = -1;
+        }
+        else{
+            foreach(var corridor in corridorList){
+                Destroy(corridor);
+            }
+        }
+        return;
     }
     
 
@@ -151,44 +195,79 @@ public class DungeonController : MonoBehaviour
         // 1(북) → 3(남), 2(동) → 4(서), 3(남) → 1(북), 4(서) → 2(동)
         int requiredDoorDirection = GetOppositeDirection(corridorDirection);
         
-        // 방 프리팹에서 해당 방향의 문 찾기
-        GameObject roomPrefab = normalRoomPrefabs[Random.Range(0, normalRoomPrefabs.Length)];
-        GameObject targetDoor = FindDoorInPrefab(roomPrefab, requiredDoorDirection);
-        
-        if(targetDoor == null){
-            Debug.LogWarning($"방 프리팹에 {requiredDoorDirection} 방향 문이 없습니다.");
+        // 미리 구성된 방향별 프리팹 큐 확인
+        if(!prefabsQueueByDirection.ContainsKey(requiredDoorDirection)){
+            Debug.LogWarning($"방향({requiredDoorDirection})의 문이 있는 방 프리팹이 없습니다!");
             return null;
         }
         
-        // 문의 로컬 위치 기준으로 방 중심 위치 계산
-        Vector3 doorLocalPosition = targetDoor.transform.localPosition;
-        Vector3 roomCenterPosition = corridorEndPosition - doorLocalPosition;
-        
-        // 충돌 체크 - 다른 방과 겹치면 생성하지 않음
-        if(CheckRoomCollision(roomPrefab, roomCenterPosition)){
+        var (prefabs, startIndex) = prefabsQueueByDirection[requiredDoorDirection];
+        if(prefabs.Count == 0){
+            Debug.LogWarning($"방향({requiredDoorDirection})의 문이 있는 방 프리팹이 없습니다!");
             return null;
         }
         
-        // 방 생성
-        GameObject newRoom = Instantiate(roomPrefab, roomCenterPosition, Quaternion.identity, transform);
-
-        // 생성한 방의 스크립트에 데이터 할당 (방 깊이, 던전 컨트롤러)
-        RoomController newRoomController = newRoom.GetComponent<RoomController>();
-        if(newRoomController != null){
-            newRoomController.dungeonController = this;
-        }
+        // 최대 프리팹 개수의 절반만 시도 (무한 반복 방지 + 전부 도니까 가장 작은 방이 너무 많이 나옴)
+        int maxAttempts = Mathf.Max(1, prefabs.Count / 2);
+        int currentIndex = startIndex;
         
-        // 생성된 방의 연결된 문의 sortingOrder를 -1로 설정
-        GameObject connectedDoor = FindDoorInPrefab(newRoom, requiredDoorDirection);
-        if(connectedDoor != null){
-            SpriteRenderer doorRenderer = connectedDoor.GetComponent<SpriteRenderer>();
-            if(doorRenderer != null){
-                doorRenderer.sortingOrder = -1;
+        for(int attempt = 0; attempt < maxAttempts; attempt++){
+            // 현재 인덱스의 프리팹 가져오기
+            GameObject roomPrefab = prefabs[currentIndex];
+            GameObject targetDoor = FindDoorInPrefab(roomPrefab, requiredDoorDirection);
+            
+            if(targetDoor == null){
+                // 다음 프리팹으로 이동
+                currentIndex = (currentIndex + 1) % prefabs.Count;
+                continue;
             }
+            
+            // 문의 로컬 위치 기준으로 방 중심 위치 계산
+            Vector3 doorLocalPosition = targetDoor.transform.localPosition;
+            Vector3 roomCenterPosition = corridorEndPosition - doorLocalPosition;
+            
+            // 충돌 체크 - 다른 방과 겹치면 다음 프리팹 시도
+            if(CheckRoomCollision(roomPrefab, roomCenterPosition)){
+                currentIndex = (currentIndex + 1) % prefabs.Count;
+                continue;
+            }
+            
+            // 충돌 없음! 방 생성 성공
+            GameObject newRoom = Instantiate(roomPrefab, roomCenterPosition, Quaternion.identity, transform);
+
+            // 생성한 방의 스크립트에 데이터 할당 (방 깊이, 던전 컨트롤러)
+            RoomController newRoomController = newRoom.GetComponent<RoomController>();
+            if(newRoomController != null){
+                newRoomController.dungeonController = this;
+            }
+            
+            // 생성된 방의 연결된 문의 sortingOrder를 -1로 설정
+            GameObject connectedDoor = FindDoorInPrefab(newRoom, requiredDoorDirection);
+            if(connectedDoor != null){
+                SpriteRenderer doorRenderer = connectedDoor.GetComponent<SpriteRenderer>();
+                if(doorRenderer != null){
+                    doorRenderer.sortingOrder = -1;
+                }
+            }
+            
+            rooms.Add(newRoom);
+            
+            // 성공한 프리팹과 마지막 프리팹을 swap
+            if(currentIndex < prefabs.Count - 1){
+                GameObject temp = prefabs[currentIndex];
+                prefabs[currentIndex] = prefabs[prefabs.Count - 1];
+                prefabs[prefabs.Count - 1] = temp;
+            }
+            
+            // 다음 시도를 위해 인덱스는 그대로 유지 (이미 마지막으로 이동했으므로)
+            prefabsQueueByDirection[requiredDoorDirection] = (prefabs, currentIndex);
+            
+            return newRoom;
         }
         
-        rooms.Add(newRoom);
-        return newRoom;
+        // 모든 프리팹을 시도했지만 실패
+        Debug.LogWarning($"방향({requiredDoorDirection})의 모든 프리팹을 시도했지만 방 생성에 실패했습니다!");
+        return null;
     }
     
     // 방이 다른 방과 충돌하는지 체크

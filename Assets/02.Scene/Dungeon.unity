@@ -9065,7 +9065,7 @@ MonoBehaviour:
   - {fileID: 1731564292202486801, guid: 56fa82744d80e0341b2e8e473c688239, type: 3}
   - {fileID: 6196334910795999584, guid: cf8a5ab80f3457043a44628c07946abe, type: 3}
   minRooms: 5
-  maxRooms: 5
+  maxRooms: 7
   rooms: []
   roomCollisionMargin: 0
   showCollisionBounds: 1
