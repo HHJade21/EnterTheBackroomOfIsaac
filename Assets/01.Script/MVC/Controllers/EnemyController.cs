@@ -27,11 +27,13 @@ public class EnemyController : MonoBehaviour
     private float lastAttackTime;
     private Rigidbody2D rb;
     private bool isCollidingWithPlayer = false; // 플레이어와 충돌 중인지 여부
+    private Animator animator;
 
     private void Awake()
     {
         // Rigidbody2D 설정: 벽 충돌 감지를 위해 kinematic = false로 설정
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
         if (rb != null)
         {
             rb.isKinematic = false; // 물리 충돌 감지 가능
@@ -70,6 +72,7 @@ public class EnemyController : MonoBehaviour
         {
             // 추적 범위 밖이면 정지
             rb.linearVelocity = Vector2.zero;
+            animator.SetBool("Move", false);
             return;
         }
 
@@ -80,6 +83,7 @@ public class EnemyController : MonoBehaviour
             Vector2 direction = toTarget.normalized;
             Vector2 moveDelta = direction * enemyData.moveSpeed * Time.fixedDeltaTime;
             rb.MovePosition(rb.position + moveDelta);
+            animator.SetBool("Move", true);
         }
         else
         {
@@ -204,6 +208,7 @@ public class EnemyController : MonoBehaviour
     private void Die()
     {
         // TODO: 사망 이펙트, 드랍, 이벤트 호출 등 구현
+        animator.SetTrigger("Death");
         Destroy(gameObject);
     }
 
