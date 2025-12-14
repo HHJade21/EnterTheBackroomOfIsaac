@@ -14,7 +14,10 @@ using System.Linq;
 public class DungeonController : MonoBehaviour
 {
     [Header("Enemy Spawning")]
-    public GameObject enemyPrefab;
+    public List<GameObject> enemyPrefabC;
+    public List<GameObject> enemyPrefabM;
+    public List<GameObject> enemyPrefabY;
+    public List<GameObject> enemyPrefabK;
 
     [Header("Corridor")]
     public Transform corridorParent;
@@ -44,8 +47,23 @@ public class DungeonController : MonoBehaviour
 
     // [Rooms] Data for current room, neighbors, and visited state
     // [Spawning] Trigger enemy waves and boss spawn
-    public void SpawnEnemy(Transform transform)
+    public void SpawnEnemy(Transform transform, CMYKColor color = CMYKColor.Black)
     {
+        GameObject enemyPrefab = null;
+        switch(color){
+            case CMYKColor.Black:
+                enemyPrefab = enemyPrefabK[Random.Range(0, enemyPrefabK.Count)];
+                break;
+            case CMYKColor.Cyan:
+                enemyPrefab = enemyPrefabC[Random.Range(0, enemyPrefabC.Count)];
+                break;
+            case CMYKColor.Magenta:
+                enemyPrefab = enemyPrefabM[Random.Range(0, enemyPrefabM.Count)];
+                break;
+            case CMYKColor.Yellow:
+                enemyPrefab = enemyPrefabY[Random.Range(0, enemyPrefabY.Count)];
+                break;
+        }
         Instantiate(enemyPrefab, transform.position, Quaternion.identity);
     }
     // [State] Track combat active/cleared flags

@@ -9049,7 +9049,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc2018ad18c6cea429ca2c21eaf7d52c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DungeonController
-  enemyPrefab: {fileID: 5312735757910337222, guid: 20c5addc46943f24ba11532e9fc21b27, type: 3}
+  enemyPrefabC:
+  - {fileID: 5312735757910337222, guid: 20c5addc46943f24ba11532e9fc21b27, type: 3}
+  enemyPrefabM:
+  - {fileID: 5312735757910337222, guid: 8293e3c360584654db5754c96cf67db0, type: 3}
+  enemyPrefabY:
+  - {fileID: 5312735757910337222, guid: dfcd98ac3964a914eb8fe2412b92b232, type: 3}
+  enemyPrefabK: []
   corridorParent: {fileID: 1249429034}
   corridorPrefab:
   - {fileID: 599642475239265866, guid: 3d00f0a8483564541a94e54c384aa8c5, type: 3}
@@ -9064,6 +9070,8 @@ MonoBehaviour:
   - {fileID: 4185292659311260358, guid: 632a7f4df28f5df44b53f3f5b9e3ce15, type: 3}
   - {fileID: 1731564292202486801, guid: 56fa82744d80e0341b2e8e473c688239, type: 3}
   - {fileID: 6196334910795999584, guid: cf8a5ab80f3457043a44628c07946abe, type: 3}
+  - {fileID: 6516295237342567918, guid: 7318834da5776334992a1d5ccc637d1f, type: 3}
+  - {fileID: 2371183817177075536, guid: cc63cf2bb857f954bb4d176ea0ed113a, type: 3}
   minRooms: 5
   maxRooms: 7
   rooms: []

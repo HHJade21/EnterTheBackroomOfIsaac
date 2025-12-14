@@ -118,7 +118,7 @@ public class RoomController : MonoBehaviour
         // 선택된 스폰 포인트에 적 스폰
         foreach (Transform spawnPoint in selectedSpawnPoints)
         {
-            dungeonController.SpawnEnemy(spawnPoint);
+            dungeonController.SpawnEnemy(spawnPoint, roomColor);
         }
 
         Debug.Log($"RoomController: {selectedSpawnPoints.Count}개 적 스폰 완료.");
