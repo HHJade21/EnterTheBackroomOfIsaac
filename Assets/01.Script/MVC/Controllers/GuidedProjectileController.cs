@@ -139,7 +139,7 @@ public class GuidedProjectileController : MonoBehaviour
         
         foreach (EnemyController enemy in allEnemies)
         {
-            if (enemy == null || enemy.gameObject == null) continue;
+            if (enemy == null || enemy.gameObject == null || enemy.gameObject.tag != "Enemy") continue;
             
             // 레이어 마스크 확인
             if (enemyLayerMask != 0 && ((1 << enemy.gameObject.layer) & enemyLayerMask) == 0)

@@ -28,12 +28,17 @@ public class EnemyController : MonoBehaviour
     private Rigidbody2D rb;
     private bool isCollidingWithPlayer = false; // 플레이어와 충돌 중인지 여부
     private Animator animator;
+    private Collider2D collider;
+    private SpriteRenderer spriteRenderer;
+    private bool isDead = false;
 
     private void Awake()
     {
         // Rigidbody2D 설정: 벽 충돌 감지를 위해 kinematic = false로 설정
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        collider = GetComponent<Collider2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         if (rb != null)
         {
             rb.isKinematic = false; // 물리 충돌 감지 가능
@@ -62,7 +67,7 @@ public class EnemyController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (enemyData == null || target == null || rb == null) return;
+        if (enemyData == null || target == null || rb == null || isDead) return;
 
         Vector2 toTarget = target.position - transform.position;
         float sqrDistance = toTarget.sqrMagnitude;
@@ -198,17 +203,26 @@ public class EnemyController : MonoBehaviour
         currentHp -= amount;
         if (currentHp <= 0)
         {
-            Die();
+            StartCoroutine(DeathRoutine());
         }
     }
 
     /// <summary>
     /// 사망 처리 메소드: 적 오브젝트를 파괴합니다.
     /// </summary>
-    private void Die()
+    System.Collections.IEnumerator DeathRoutine()
     {
         // TODO: 사망 이펙트, 드랍, 이벤트 호출 등 구현
+        isDead = true;
+        gameObject.tag = "Corpse";
+        collider.enabled = false;
         animator.SetTrigger("Death");
+        yield return new WaitForSeconds(3f);
+        for(int i = 0; i < 100; i++)
+        {
+            spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 1f - i * 0.01f);
+            yield return new WaitForSeconds(0.02f);
+        }
         Destroy(gameObject);
     }
 
