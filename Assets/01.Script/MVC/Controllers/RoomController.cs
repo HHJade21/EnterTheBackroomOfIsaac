@@ -70,7 +70,7 @@ public class RoomController : MonoBehaviour
     /// <summary>
     /// 방 내부에 적을 스폰하는 메서드
     /// - spawnPoints 리스트에서 랜덤으로 enemyCount개의 좌표를 선택
-    /// - 각 좌표에 대해 dungeonController.SpawnEnemy() 호출
+    /// - 각 좌표에 대해 SpawnEnemy() 호출
     /// </summary>
     private void SpawnEnemiesInRoom()
     {
@@ -119,10 +119,32 @@ public class RoomController : MonoBehaviour
         // 선택된 스폰 포인트에 적 스폰
         foreach (Transform spawnPoint in selectedSpawnPoints)
         {
-            enemies.Add(dungeonController.SpawnEnemy(spawnPoint, this));
+            enemies.Add(SpawnEnemy(spawnPoint));
         }
 
         Debug.Log($"RoomController: {selectedSpawnPoints.Count}개 적 스폰 완료.");
+    }
+
+    public GameObject SpawnEnemy(Transform transform)
+    {
+        GameObject enemyPrefab = null;
+        switch(roomColor){
+            case CMYKColor.Black:
+                enemyPrefab = dungeonController.enemyPrefabK[Random.Range(0, dungeonController.enemyPrefabK.Count)];
+                break;
+            case CMYKColor.Cyan:
+                enemyPrefab = dungeonController.enemyPrefabC[Random.Range(0, dungeonController.enemyPrefabC.Count)];
+                break;
+            case CMYKColor.Magenta:
+                enemyPrefab = dungeonController.enemyPrefabM[Random.Range(0, dungeonController.enemyPrefabM.Count)];
+                break;
+            case CMYKColor.Yellow:
+                enemyPrefab = dungeonController.enemyPrefabY[Random.Range(0, dungeonController.enemyPrefabY.Count)];
+                break;
+        }
+        GameObject enemy = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
+        enemy.GetComponent<EnemyController>().roomController = this;
+        return enemy;
     }
 
     public void OnEnemyDeath(EnemyController deadEnemy)

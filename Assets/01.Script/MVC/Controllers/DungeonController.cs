@@ -5,7 +5,6 @@ using System.Linq;
 // Controls dungeon stage flow and room transitions
 // Responsibilities:
 // - Generate/track rooms (2 normal, 1 boss) and connections
-// - Handle entering rooms, spawning enemies, and locking doors during combat
 // - Detect room clear and open exits; transition to boss room
 // - Signal GameManager when stage completed or player died
 // SOLID:
@@ -45,29 +44,6 @@ public class DungeonController : MonoBehaviour
         new Dictionary<int, (List<GameObject>, int)>();
 
 
-    // [Rooms] Data for current room, neighbors, and visited state
-    // [Spawning] Trigger enemy waves and boss spawn
-    public GameObject SpawnEnemy(Transform transform, RoomController roomController)
-    {
-        GameObject enemyPrefab = null;
-        switch(roomController.roomColor){
-            case CMYKColor.Black:
-                enemyPrefab = enemyPrefabK[Random.Range(0, enemyPrefabK.Count)];
-                break;
-            case CMYKColor.Cyan:
-                enemyPrefab = enemyPrefabC[Random.Range(0, enemyPrefabC.Count)];
-                break;
-            case CMYKColor.Magenta:
-                enemyPrefab = enemyPrefabM[Random.Range(0, enemyPrefabM.Count)];
-                break;
-            case CMYKColor.Yellow:
-                enemyPrefab = enemyPrefabY[Random.Range(0, enemyPrefabY.Count)];
-                break;
-        }
-        GameObject enemy = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
-        enemy.GetComponent<EnemyController>().roomController = roomController;
-        return enemy;
-    }
     // [State] Track combat active/cleared flags
 
     void Start(){
