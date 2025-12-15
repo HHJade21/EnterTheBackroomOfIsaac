@@ -24,6 +24,9 @@ public class EnemyController : MonoBehaviour
     [Tooltip("플레이어와 충돌 시 밀려나는 속도 배율 (낮을수록 천천히 밀림)")]
     [SerializeField] private float pushBackSpeed = 0.3f; // 플레이어가 움직일 때 밀려나는 속도
 
+    [Tooltip("이 적이 속한 방의 RoomController")]
+    public RoomController roomController;
+
     private float lastAttackTime;
     private Rigidbody2D rb;
     private bool isCollidingWithPlayer = false; // 플레이어와 충돌 중인지 여부
@@ -215,6 +218,7 @@ public class EnemyController : MonoBehaviour
         // TODO: 사망 이펙트, 드랍, 이벤트 호출 등 구현
         isDead = true;
         gameObject.tag = "Corpse";
+        roomController.OnEnemyDeath(this);
         collider.enabled = false;
         animator.SetTrigger("Death");
         yield return new WaitForSeconds(3f);

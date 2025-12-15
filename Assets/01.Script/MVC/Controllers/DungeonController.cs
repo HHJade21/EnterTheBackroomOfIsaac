@@ -47,10 +47,10 @@ public class DungeonController : MonoBehaviour
 
     // [Rooms] Data for current room, neighbors, and visited state
     // [Spawning] Trigger enemy waves and boss spawn
-    public void SpawnEnemy(Transform transform, CMYKColor color = CMYKColor.Black)
+    public GameObject SpawnEnemy(Transform transform, RoomController roomController)
     {
         GameObject enemyPrefab = null;
-        switch(color){
+        switch(roomController.roomColor){
             case CMYKColor.Black:
                 enemyPrefab = enemyPrefabK[Random.Range(0, enemyPrefabK.Count)];
                 break;
@@ -64,7 +64,9 @@ public class DungeonController : MonoBehaviour
                 enemyPrefab = enemyPrefabY[Random.Range(0, enemyPrefabY.Count)];
                 break;
         }
-        Instantiate(enemyPrefab, transform.position, Quaternion.identity);
+        GameObject enemy = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
+        enemy.GetComponent<EnemyController>().roomController = roomController;
+        return enemy;
     }
     // [State] Track combat active/cleared flags
 

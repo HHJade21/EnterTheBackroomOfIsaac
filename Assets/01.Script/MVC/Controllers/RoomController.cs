@@ -22,9 +22,10 @@ public class RoomController : MonoBehaviour
     [Tooltip("인스펙터에서 할당하지 않으면 Start()에서 자동으로 찾습니다.")]
     public GameObject player;
 
-    [Header("Spawn Points")]
+    [Header("Enemies")]
     [Tooltip("적이 스폰될 위치들의 리스트 (인스펙터에서 할당)")]
     public List<Transform> spawnPoints = new List<Transform>();
+    public List<GameObject> enemies = new List<GameObject>();
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -44,7 +45,7 @@ public class RoomController : MonoBehaviour
             }
 
             CloseRoom();
-            StartCoroutine(_tmpWaitAndClear());
+            // StartCoroutine(_tmpWaitAndClear());
         }
     }
 
@@ -118,10 +119,20 @@ public class RoomController : MonoBehaviour
         // 선택된 스폰 포인트에 적 스폰
         foreach (Transform spawnPoint in selectedSpawnPoints)
         {
-            dungeonController.SpawnEnemy(spawnPoint, roomColor);
+            enemies.Add(dungeonController.SpawnEnemy(spawnPoint, this));
         }
 
         Debug.Log($"RoomController: {selectedSpawnPoints.Count}개 적 스폰 완료.");
+    }
+
+    public void OnEnemyDeath(EnemyController deadEnemy)
+    {
+        enemies.Remove(deadEnemy.gameObject);
+        if(enemies.Count == 0 && isClosed)
+        {
+            isCleared = true;
+            OpenRoom();
+        }
     }
 
     private void OpenRoom(){
