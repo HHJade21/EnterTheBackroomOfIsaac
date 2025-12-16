@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8626699121689413650}
   - component: {fileID: 6256844290080687304}
   m_Layer: 0
-  m_Name: Bug_M
+  m_Name: Statue_M
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -192,7 +192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7919ddbeb1b1da439ff8c6af2d2e3ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
-  enemyData: {fileID: 11400000, guid: 309e2623f52106f478c5b1f58b716d68, type: 2}
+  enemyData: {fileID: 11400000, guid: 8f42b0a8fbef8254299f20f15b7e1a28, type: 2}
   target: {fileID: 0}
   currentHp: 0
   pushBackSpeed: 0.3

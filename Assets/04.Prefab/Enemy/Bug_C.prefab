@@ -192,7 +192,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7919ddbeb1b1da439ff8c6af2d2e3ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
-  enemyData: {fileID: 11400000, guid: a1e9df4fd74d1ae4f934cbbc8c122a87, type: 2}
+  enemyData: {fileID: 11400000, guid: cce206a8adb7fda4786a41c6a24b13e4, type: 2}
   target: {fileID: 0}
   currentHp: 0
   pushBackSpeed: 0.3
+  roomController: {fileID: 0}

@@ -10,9 +10,9 @@ public class EnemyData : ScriptableObject
     public string enemyName = "Enemy";   // 디버깅 및 UI 표시용 이름
 
     [Header("Stats")]
-    public int maxHp = 10;               // 최대 체력
+    public float maxHp = 10f;               // 최대 체력
     public float moveSpeed = 2f;         // 이동 속도
-    public int contactDamage = 1;        // 플레이어와 충돌 시 입히는 피해
+    public float contactDamage = 1f;        // 플레이어와 충돌 시 입히는 피해
     public float attackCooldown = 1.5f;  // 공격 쿨다운
     public bool isRanged = false;        // 원거리 공격 여부
 

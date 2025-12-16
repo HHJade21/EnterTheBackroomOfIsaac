@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8626699121689413650}
   - component: {fileID: 6256844290080687304}
   m_Layer: 0
-  m_Name: Bug_M
+  m_Name: Statue_C
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -83,7 +83,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 1370226884051796016, guid: 1bb164db8e676b8468f720776dc86a00, type: 3}
+  m_Sprite: {fileID: -3712937628924475197, guid: 9c1e814ac48537742ab5e19debf3fcf2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -104,7 +104,7 @@ Animator:
   m_GameObject: {fileID: 5312735757910337222}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: 00e66b8f1ab7cb4448f2fce77c893a66, type: 2}
+  m_Controller: {fileID: 22100000, guid: 08162a1330fb9304497d223cc239034f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -192,7 +192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7919ddbeb1b1da439ff8c6af2d2e3ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
-  enemyData: {fileID: 11400000, guid: 309e2623f52106f478c5b1f58b716d68, type: 2}
+  enemyData: {fileID: 11400000, guid: 73e35990461aa6d4fb06cb4e407e52b6, type: 2}
   target: {fileID: 0}
   currentHp: 0
   pushBackSpeed: 0.3
