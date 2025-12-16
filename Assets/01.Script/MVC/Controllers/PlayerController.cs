@@ -113,6 +113,10 @@ public class PlayerController : MonoBehaviour
     public int currentHP = 10;
 
 
+    [Header("Pause panel")]
+    public GameObject pausePanel;
+
+
     // [주석 처리됨] 발사 및 재장전 관련 변수들은 WeaponController로 이동했습니다.
     // private float lastFireTime;
     // private bool isReloading;
@@ -187,6 +191,35 @@ public class PlayerController : MonoBehaviour
             yield return new WaitForSeconds(0.05f);
         }
         spriteRenderer.color = Color.white;
+    }
+
+    public void OnPauseContext(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        Time.timeScale = 0f;
+        pausePanel.SetActive(true);
+    }
+    public void Resume()
+    {
+        Time.timeScale = 1f;
+        pausePanel.SetActive(false);
+    }
+    public void GoToTitle()
+    {
+        Time.timeScale = 1f;
+        pausePanel.SetActive(false);
+        
+        // GameManager.Instance가 null인지 확인
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.LoadTitle();
+        }
+        else
+        {
+            // GameManager가 없으면 직접 씬 로드
+            Debug.LogWarning("GameManager.Instance가 null입니다. 직접 씬을 로드합니다.");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Title");
+        }
     }
 
     // Unity Events 방식 전용 메서드 (Invoke Unity Events 모드에서 사용)
@@ -1155,6 +1188,10 @@ public class PlayerController : MonoBehaviour
             
             // 적의 총알 파괴
             Destroy(other.gameObject);
+        }
+        else if (other.CompareTag("Enemy"))
+        {
+            TakeDamage(1);//데미지 가져와서 적용하도록 할 것.
         }
     }
     

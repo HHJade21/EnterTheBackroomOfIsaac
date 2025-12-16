@@ -18,14 +18,15 @@ MonoBehaviour:
   icon: {fileID: -9015736442291220469, guid: 19a56d78510405849a8e7c458c5ff130, type: 3}
   element: 3
   weaponType: 1
-  projectilePrefab: {fileID: 2599106515927395768, guid: 92cd18ab095186246a4340542d3d12cd, type: 3}
+  autoFire: 0
+  projectilePrefab: {fileID: 2599106515927395768, guid: 055102c5b2f3d9c4b9a7927624e556d5, type: 3}
   projectileSpeed: 14
   projectileLifetime: 1.5
   baseDamage: 5
   fireCooldown: 0.2
   magazineSize: 10
   reloadTime: 0.8
-  fireSound: {fileID: 0}
+  fireSound: {fileID: 8300000, guid: d717cdc6381071b4e93ad42a1e091772, type: 3}
   reloadSound: {fileID: 0}
   fireEffect: {fileID: 0}
   swapSkillData: {fileID: 0}

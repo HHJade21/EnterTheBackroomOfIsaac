@@ -1,0 +1,3679 @@
+fileFormatVersion: 2
+guid: 744dfd68f46ec7d4e8c21bf00809165b
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7931326065715971811
+    second: "esc\uCC3D_0"
+  - first:
+      213: 8488412857571046407
+    second: "esc\uCC3D_1"
+  - first:
+      213: 185250091954251881
+    second: "esc\uCC3D_2"
+  - first:
+      213: -1791304615597934740
+    second: "esc\uCC3D_3"
+  - first:
+      213: 7768028489241204547
+    second: "esc\uCC3D_4"
+  - first:
+      213: -8133194076969333165
+    second: "esc\uCC3D_5"
+  - first:
+      213: -104615200969097630
+    second: "esc\uCC3D_6"
+  - first:
+      213: 163496820171782566
+    second: "esc\uCC3D_7"
+  - first:
+      213: -6749653784100857925
+    second: "esc\uCC3D_8"
+  - first:
+      213: 8033895795574603812
+    second: "esc\uCC3D_9"
+  - first:
+      213: 823022107301382404
+    second: "esc\uCC3D_10"
+  - first:
+      213: 8085105612146580807
+    second: "esc\uCC3D_11"
+  - first:
+      213: 7668935610084686213
+    second: "esc\uCC3D_12"
+  - first:
+      213: -1511915528186622974
+    second: "esc\uCC3D_13"
+  - first:
+      213: -5970911195392285463
+    second: "esc\uCC3D_14"
+  - first:
+      213: -4878477489212099914
+    second: "esc\uCC3D_15"
+  - first:
+      213: 7701541421284415718
+    second: "esc\uCC3D_16"
+  - first:
+      213: 7315310711224431493
+    second: "esc\uCC3D_17"
+  - first:
+      213: 3527781928068765520
+    second: "esc\uCC3D_18"
+  - first:
+      213: -1563978923415915710
+    second: "esc\uCC3D_19"
+  - first:
+      213: 5160172912273331613
+    second: "esc\uCC3D_20"
+  - first:
+      213: -5535993577164130079
+    second: "esc\uCC3D_21"
+  - first:
+      213: -6633045918575054765
+    second: "esc\uCC3D_22"
+  - first:
+      213: 7205311716871849535
+    second: "esc\uCC3D_23"
+  - first:
+      213: 6345239137930576001
+    second: "esc\uCC3D_24"
+  - first:
+      213: 2029152281158346590
+    second: "esc\uCC3D_25"
+  - first:
+      213: 2651595621627235739
+    second: "esc\uCC3D_26"
+  - first:
+      213: -3351884385651616702
+    second: "esc\uCC3D_27"
+  - first:
+      213: -1494933598270454823
+    second: "esc\uCC3D_28"
+  - first:
+      213: 3796924168677922886
+    second: "esc\uCC3D_29"
+  - first:
+      213: -8929022931629836563
+    second: "esc\uCC3D_30"
+  - first:
+      213: 8797798762497450548
+    second: "esc\uCC3D_31"
+  - first:
+      213: -1507753992394493770
+    second: "esc\uCC3D_32"
+  - first:
+      213: -6723303562155805457
+    second: "esc\uCC3D_33"
+  - first:
+      213: -8973207006478082036
+    second: "esc\uCC3D_34"
+  - first:
+      213: 722968550688513317
+    second: "esc\uCC3D_35"
+  - first:
+      213: 4078641295994507324
+    second: "esc\uCC3D_36"
+  - first:
+      213: -7838423369331336241
+    second: "esc\uCC3D_37"
+  - first:
+      213: 36937181784755314
+    second: "esc\uCC3D_38"
+  - first:
+      213: 3324839815682398293
+    second: "esc\uCC3D_39"
+  - first:
+      213: -8401406410976682484
+    second: "esc\uCC3D_40"
+  - first:
+      213: 6550651866917936143
+    second: "esc\uCC3D_41"
+  - first:
+      213: -3145997866668908599
+    second: "esc\uCC3D_42"
+  - first:
+      213: -7643047406428883400
+    second: "esc\uCC3D_43"
+  - first:
+      213: 7044776996392245056
+    second: "esc\uCC3D_44"
+  - first:
+      213: -7730075592896063908
+    second: "esc\uCC3D_45"
+  - first:
+      213: 2219643068809889552
+    second: "esc\uCC3D_46"
+  - first:
+      213: -5522051139517929390
+    second: "esc\uCC3D_47"
+  - first:
+      213: 4219250467107898457
+    second: "esc\uCC3D_48"
+  - first:
+      213: 3879967727363673502
+    second: "esc\uCC3D_49"
+  - first:
+      213: 8093808850779956310
+    second: "esc\uCC3D_50"
+  - first:
+      213: 8081140498454038457
+    second: "esc\uCC3D_51"
+  - first:
+      213: 683038589456555985
+    second: "esc\uCC3D_52"
+  - first:
+      213: 1296606853446041066
+    second: "esc\uCC3D_53"
+  - first:
+      213: -4370391662177599650
+    second: "esc\uCC3D_54"
+  - first:
+      213: 425338626161542590
+    second: "esc\uCC3D_55"
+  - first:
+      213: -2769671241262607783
+    second: "esc\uCC3D_56"
+  - first:
+      213: 1875844618576435072
+    second: "esc\uCC3D_57"
+  - first:
+      213: 961550593714130672
+    second: "esc\uCC3D_58"
+  - first:
+      213: 5308867183056134648
+    second: "esc\uCC3D_59"
+  - first:
+      213: 9173511427343586808
+    second: "esc\uCC3D_60"
+  - first:
+      213: -4977890563687186106
+    second: "esc\uCC3D_61"
+  - first:
+      213: 4714076665887258199
+    second: "esc\uCC3D_62"
+  - first:
+      213: -6607323674158096727
+    second: "esc\uCC3D_63"
+  - first:
+      213: 6119486270462310729
+    second: "esc\uCC3D_64"
+  - first:
+      213: 3292929942061212618
+    second: "esc\uCC3D_65"
+  - first:
+      213: 3884144205434822548
+    second: "esc\uCC3D_66"
+  - first:
+      213: 2673086944844941429
+    second: "esc\uCC3D_67"
+  - first:
+      213: 355864890573002365
+    second: "esc\uCC3D_68"
+  - first:
+      213: -4327306574496064429
+    second: "esc\uCC3D_69"
+  - first:
+      213: -5680936298679608008
+    second: "esc\uCC3D_70"
+  - first:
+      213: -7491470106785382621
+    second: "esc\uCC3D_71"
+  - first:
+      213: 3445218335064585811
+    second: "esc\uCC3D_72"
+  - first:
+      213: 6131470347830237273
+    second: "esc\uCC3D_73"
+  - first:
+      213: 8763240815720818226
+    second: "esc\uCC3D_74"
+  - first:
+      213: -6160156896897283655
+    second: "esc\uCC3D_75"
+  - first:
+      213: 389863724660721771
+    second: "esc\uCC3D_76"
+  - first:
+      213: -8396984087236456228
+    second: "esc\uCC3D_77"
+  - first:
+      213: -1736417613685330360
+    second: "esc\uCC3D_78"
+  - first:
+      213: -3026541940663271497
+    second: "esc\uCC3D_79"
+  - first:
+      213: 2758972326888617655
+    second: "esc\uCC3D_80"
+  - first:
+      213: 2310174713243356147
+    second: "esc\uCC3D_81"
+  - first:
+      213: 623110496962955586
+    second: "esc\uCC3D_82"
+  - first:
+      213: -1385245120642401101
+    second: "esc\uCC3D_83"
+  - first:
+      213: 2967362199710591801
+    second: "esc\uCC3D_84"
+  - first:
+      213: -6261936555500604742
+    second: "esc\uCC3D_85"
+  - first:
+      213: -8572082387145430879
+    second: "esc\uCC3D_86"
+  - first:
+      213: 4002598645996071457
+    second: "esc\uCC3D_87"
+  - first:
+      213: -7254321186210646058
+    second: "esc\uCC3D_88"
+  - first:
+      213: 8615613617175422813
+    second: "esc\uCC3D_89"
+  - first:
+      213: 6643442362080462636
+    second: "esc\uCC3D_90"
+  - first:
+      213: 473663783307711520
+    second: "esc\uCC3D_91"
+  - first:
+      213: -677069738610253926
+    second: "esc\uCC3D_92"
+  - first:
+      213: -1600819767045294217
+    second: "esc\uCC3D_93"
+  - first:
+      213: -5791453375047564673
+    second: "esc\uCC3D_94"
+  - first:
+      213: -8269338127972201435
+    second: "esc\uCC3D_95"
+  - first:
+      213: -2255301548909174148
+    second: "esc\uCC3D_96"
+  - first:
+      213: -9212250254670990945
+    second: "esc\uCC3D_97"
+  - first:
+      213: 8789406319299036390
+    second: "esc\uCC3D_98"
+  - first:
+      213: -4787994297848302117
+    second: "esc\uCC3D_99"
+  - first:
+      213: 4554892121296226100
+    second: "esc\uCC3D_100"
+  - first:
+      213: -310714179037328070
+    second: "esc\uCC3D_101"
+  - first:
+      213: 1287399190902162154
+    second: "esc\uCC3D_102"
+  - first:
+      213: 1361967002295260272
+    second: "esc\uCC3D_103"
+  - first:
+      213: 2498582243675805358
+    second: "esc\uCC3D_104"
+  - first:
+      213: 1101750064407656736
+    second: "esc\uCC3D_105"
+  - first:
+      213: 5398479858944659944
+    second: "esc\uCC3D_106"
+  - first:
+      213: -5347787483968007412
+    second: "esc\uCC3D_107"
+  - first:
+      213: 6290967698445739442
+    second: "esc\uCC3D_108"
+  - first:
+      213: 5827045535541625921
+    second: "esc\uCC3D_109"
+  - first:
+      213: -7546375489150427225
+    second: "esc\uCC3D_110"
+  - first:
+      213: 346745113256045674
+    second: "esc\uCC3D_111"
+  - first:
+      213: -5268831233179331387
+    second: "esc\uCC3D_112"
+  - first:
+      213: 1542806998298723234
+    second: "esc\uCC3D_113"
+  - first:
+      213: 8515945275882690648
+    second: "esc\uCC3D_114"
+  - first:
+      213: -1913446717452716447
+    second: "esc\uCC3D_115"
+  - first:
+      213: -4244007849165842294
+    second: "esc\uCC3D_116"
+  - first:
+      213: -6384986179465338882
+    second: "esc\uCC3D_117"
+  - first:
+      213: -3612949935987779856
+    second: "esc\uCC3D_118"
+  - first:
+      213: 7023645943819516902
+    second: "esc\uCC3D_119"
+  - first:
+      213: -222482208088986762
+    second: "esc\uCC3D_120"
+  - first:
+      213: 5564775468627614511
+    second: "esc\uCC3D_121"
+  - first:
+      213: 6387961761968501926
+    second: "esc\uCC3D_122"
+  - first:
+      213: -3260703184338117132
+    second: "esc\uCC3D_123"
+  - first:
+      213: 3319837868946121302
+    second: "esc\uCC3D_124"
+  - first:
+      213: -4294088371125364136
+    second: "esc\uCC3D_125"
+  - first:
+      213: 4529011380880439800
+    second: "esc\uCC3D_126"
+  - first:
+      213: 7337393122332099813
+    second: "esc\uCC3D_127"
+  - first:
+      213: -1211343060683073190
+    second: "esc\uCC3D_128"
+  - first:
+      213: -6154202411480255264
+    second: "esc\uCC3D_129"
+  - first:
+      213: 8962260836150340797
+    second: "esc\uCC3D_130"
+  - first:
+      213: 9182031017742707395
+    second: "esc\uCC3D_131"
+  - first:
+      213: 1950581423816001342
+    second: "esc\uCC3D_132"
+  - first:
+      213: 8903749515403539883
+    second: "esc\uCC3D_133"
+  - first:
+      213: 3058105844475985983
+    second: "esc\uCC3D_134"
+  - first:
+      213: 5696129901175550644
+    second: "esc\uCC3D_135"
+  - first:
+      213: -3670286875165176153
+    second: "esc\uCC3D_136"
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: "esc\uCC3D_0"
+      rect:
+        serializedVersion: 2
+        x: 986
+        y: 12976
+        width: 101
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e60cc8e80bb11e60800000000000000
+      internalID: 7931326065715971811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_1"
+      rect:
+        serializedVersion: 2
+        x: 1114
+        y: 12872
+        width: 19
+        height: 194
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 704716a3586ecc570800000000000000
+      internalID: 8488412857571046407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_2"
+      rect:
+        serializedVersion: 2
+        x: 1172
+        y: 12909
+        width: 121
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 968aa852af3229200800000000000000
+      internalID: 185250091954251881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_3"
+      rect:
+        serializedVersion: 2
+        x: 1309
+        y: 12872
+        width: 20
+        height: 194
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6774ce51f10427e0800000000000000
+      internalID: -1791304615597934740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_4"
+      rect:
+        serializedVersion: 2
+        x: 1425
+        y: 12954
+        width: 116
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 347165211c49dcb60800000000000000
+      internalID: 7768028489241204547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_5"
+      rect:
+        serializedVersion: 2
+        x: 1558
+        y: 12950
+        width: 49
+        height: 116
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 35e8ee81417112f80800000000000000
+      internalID: -8133194076969333165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_6"
+      rect:
+        serializedVersion: 2
+        x: 1640
+        y: 12937
+        width: 138
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26e712c67055c8ef0800000000000000
+      internalID: -104615200969097630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_7"
+      rect:
+        serializedVersion: 2
+        x: 1817
+        y: 12955
+        width: 178
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a9be30ed7bd44200800000000000000
+      internalID: 163496820171782566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_8"
+      rect:
+        serializedVersion: 2
+        x: 2070
+        y: 12866
+        width: 70
+        height: 190
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb71cc105a96452a0800000000000000
+      internalID: -6749653784100857925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_9"
+      rect:
+        serializedVersion: 2
+        x: 2223
+        y: 12918
+        width: 109
+        height: 131
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4208ab129a12e7f60800000000000000
+      internalID: 8033895795574603812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_10"
+      rect:
+        serializedVersion: 2
+        x: 2346
+        y: 12872
+        width: 51
+        height: 194
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4090efbfe36fb6b00800000000000000
+      internalID: 823022107301382404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_11"
+      rect:
+        serializedVersion: 2
+        x: 2417
+        y: 12915
+        width: 101
+        height: 137
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74d938fa7b0143070800000000000000
+      internalID: 8085105612146580807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_12"
+      rect:
+        serializedVersion: 2
+        x: 2551
+        y: 12872
+        width: 20
+        height: 194
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 589f07c3e488d6a60800000000000000
+      internalID: 7668935610084686213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_13"
+      rect:
+        serializedVersion: 2
+        x: 2629
+        y: 12990
+        width: 134
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20c0a0c66d8940be0800000000000000
+      internalID: -1511915528186622974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_14"
+      rect:
+        serializedVersion: 2
+        x: 2875
+        y: 12846
+        width: 50
+        height: 209
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e46d3d27ef032da0800000000000000
+      internalID: -5970911195392285463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_15"
+      rect:
+        serializedVersion: 2
+        x: 2951
+        y: 12887
+        width: 108
+        height: 161
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b2f5c2229a2c4cb0800000000000000
+      internalID: -4878477489212099914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_16"
+      rect:
+        serializedVersion: 2
+        x: 3085
+        y: 12887
+        width: 112
+        height: 164
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e85d9e3e1f51ea60800000000000000
+      internalID: 7701541421284415718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_17"
+      rect:
+        serializedVersion: 2
+        x: 3225
+        y: 12846
+        width: 107
+        height: 165
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 583742c6554358560800000000000000
+      internalID: 7315310711224431493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_18"
+      rect:
+        serializedVersion: 2
+        x: 3348
+        y: 12888
+        width: 66
+        height: 149
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 057d49bf8f235f030800000000000000
+      internalID: 3527781928068765520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_19"
+      rect:
+        serializedVersion: 2
+        x: 3433
+        y: 12846
+        width: 50
+        height: 209
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 243b8999471ab4ae0800000000000000
+      internalID: -1563978923415915710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_20"
+      rect:
+        serializedVersion: 2
+        x: 3632
+        y: 12909
+        width: 121
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9515a78ced9c9740800000000000000
+      internalID: 5160172912273331613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_21"
+      rect:
+        serializedVersion: 2
+        x: 3767
+        y: 12872
+        width: 51
+        height: 194
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e8b94a2c233c23b0800000000000000
+      internalID: -5535993577164130079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_22"
+      rect:
+        serializedVersion: 2
+        x: 3831
+        y: 12945
+        width: 101
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 350ba7461efa2f3a0800000000000000
+      internalID: -6633045918575054765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_23"
+      rect:
+        serializedVersion: 2
+        x: 3964
+        y: 12923
+        width: 49
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f364b14c4d86ef360800000000000000
+      internalID: 7205311716871849535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_24"
+      rect:
+        serializedVersion: 2
+        x: 4095
+        y: 12890
+        width: 104
+        height: 161
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 180024f9061de0850800000000000000
+      internalID: 6345239137930576001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_25"
+      rect:
+        serializedVersion: 2
+        x: 4230
+        y: 12887
+        width: 108
+        height: 161
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e57ed91bf3ff82c10800000000000000
+      internalID: 2029152281158346590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_26"
+      rect:
+        serializedVersion: 2
+        x: 4417
+        y: 12866
+        width: 70
+        height: 190
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9d821b4b2c5cc420800000000000000
+      internalID: 2651595621627235739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_27"
+      rect:
+        serializedVersion: 2
+        x: 4569
+        y: 12872
+        width: 154
+        height: 194
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2449e0909e6bb71d0800000000000000
+      internalID: -3351884385651616702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_28"
+      rect:
+        serializedVersion: 2
+        x: 4780
+        y: 12975
+        width: 134
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d30b4810dde04be0800000000000000
+      internalID: -1494933598270454823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_29"
+      rect:
+        serializedVersion: 2
+        x: 5076
+        y: 12945
+        width: 178
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64894291a6261b430800000000000000
+      internalID: 3796924168677922886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_30"
+      rect:
+        serializedVersion: 2
+        x: 5295
+        y: 12987
+        width: 132
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de6f2e0a3fcb51480800000000000000
+      internalID: -8929022931629836563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_31"
+      rect:
+        serializedVersion: 2
+        x: 5541
+        y: 12846
+        width: 50
+        height: 209
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 432280c9c5f081a70800000000000000
+      internalID: 8797798762497450548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_32"
+      rect:
+        serializedVersion: 2
+        x: 5613
+        y: 12890
+        width: 119
+        height: 158
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b036aa7bb1631be0800000000000000
+      internalID: -1507753992394493770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_33"
+      rect:
+        serializedVersion: 2
+        x: 5757
+        y: 12887
+        width: 112
+        height: 164
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe4b594280702b2a0800000000000000
+      internalID: -6723303562155805457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_34"
+      rect:
+        serializedVersion: 2
+        x: 5897
+        y: 12846
+        width: 107
+        height: 165
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c00e3da05c3c87380800000000000000
+      internalID: -8973207006478082036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_35"
+      rect:
+        serializedVersion: 2
+        x: 6020
+        y: 12888
+        width: 66
+        height: 149
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52d519ff010880a00800000000000000
+      internalID: 722968550688513317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_36"
+      rect:
+        serializedVersion: 2
+        x: 6105
+        y: 12846
+        width: 50
+        height: 209
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c30ddfd26ae3a9830800000000000000
+      internalID: 4078641295994507324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_37"
+      rect:
+        serializedVersion: 2
+        x: 6365
+        y: 12909
+        width: 121
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fcb92efa973583390800000000000000
+      internalID: -7838423369331336241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_38"
+      rect:
+        serializedVersion: 2
+        x: 6500
+        y: 12872
+        width: 51
+        height: 194
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27cc84fcb2a338000800000000000000
+      internalID: 36937181784755314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_39"
+      rect:
+        serializedVersion: 2
+        x: 6564
+        y: 12945
+        width: 101
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55813d45234342e20800000000000000
+      internalID: 3324839815682398293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_40"
+      rect:
+        serializedVersion: 2
+        x: 6697
+        y: 12923
+        width: 49
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0e9b0cb165386b80800000000000000
+      internalID: -8401406410976682484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_41"
+      rect:
+        serializedVersion: 2
+        x: 6828
+        y: 12890
+        width: 104
+        height: 161
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0c94e68a2798ea50800000000000000
+      internalID: 6550651866917936143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_42"
+      rect:
+        serializedVersion: 2
+        x: 6963
+        y: 12887
+        width: 108
+        height: 161
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9cf1015cb9b2754d0800000000000000
+      internalID: -3145997866668908599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_43"
+      rect:
+        serializedVersion: 2
+        x: 972
+        y: 12878
+        width: 132
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 836f552e0e07ee590800000000000000
+      internalID: -7643047406428883400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_44"
+      rect:
+        serializedVersion: 2
+        x: 1621
+        y: 12899
+        width: 178
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0479dc77a5314c160800000000000000
+      internalID: 7044776996392245056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_45"
+      rect:
+        serializedVersion: 2
+        x: 2606
+        y: 12961
+        width: 178
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c565386343149b490800000000000000
+      internalID: -7730075592896063908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_46"
+      rect:
+        serializedVersion: 2
+        x: 5272
+        y: 12912
+        width: 178
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01742946c91cdce10800000000000000
+      internalID: 2219643068809889552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_47"
+      rect:
+        serializedVersion: 2
+        x: 1454
+        y: 12875
+        width: 124
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2582e75eebbbd53b0800000000000000
+      internalID: -5522051139517929390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_48"
+      rect:
+        serializedVersion: 2
+        x: 2627
+        y: 12874
+        width: 140
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9540e5ef1f9cd8a30800000000000000
+      internalID: 4219250467107898457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_49"
+      rect:
+        serializedVersion: 2
+        x: 4757
+        y: 12944
+        width: 178
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9dcd71571a68d530800000000000000
+      internalID: 3879967727363673502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_50"
+      rect:
+        serializedVersion: 2
+        x: 1838
+        y: 12872
+        width: 135
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 654e6a6544cf25070800000000000000
+      internalID: 8093808850779956310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_51"
+      rect:
+        serializedVersion: 2
+        x: 3512
+        y: 12846
+        width: 36
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b74066b77af52070800000000000000
+      internalID: 8081140498454038457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_52"
+      rect:
+        serializedVersion: 2
+        x: 3861
+        y: 12876
+        width: 132
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1df117c6af3aa7900800000000000000
+      internalID: 683038589456555985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_53"
+      rect:
+        serializedVersion: 2
+        x: 4780
+        y: 12876
+        width: 136
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aedfcf040197ef110800000000000000
+      internalID: 1296606853446041066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_54"
+      rect:
+        serializedVersion: 2
+        x: 4953
+        y: 12846
+        width: 36
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5f339640ff3953c0800000000000000
+      internalID: -4370391662177599650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_55"
+      rect:
+        serializedVersion: 2
+        x: 5099
+        y: 12877
+        width: 135
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb58c991a3b17e500800000000000000
+      internalID: 425338626161542590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_56"
+      rect:
+        serializedVersion: 2
+        x: 5294
+        y: 12876
+        width: 137
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9525def2ea62099d0800000000000000
+      internalID: -2769671241262607783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_57"
+      rect:
+        serializedVersion: 2
+        x: 6245
+        y: 12846
+        width: 36
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0879310fdb6580a10800000000000000
+      internalID: 1875844618576435072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_58"
+      rect:
+        serializedVersion: 2
+        x: 6594
+        y: 12876
+        width: 132
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0fe85e3ab2d185d00800000000000000
+      internalID: 961550593714130672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_59"
+      rect:
+        serializedVersion: 2
+        x: 972
+        y: 12634
+        width: 99
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f12acd4392eca940800000000000000
+      internalID: 5308867183056134648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_60"
+      rect:
+        serializedVersion: 2
+        x: 1078
+        y: 12489
+        width: 60
+        height: 194
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f51dc13a0cde4f70800000000000000
+      internalID: 9173511427343586808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_61"
+      rect:
+        serializedVersion: 2
+        x: 1177
+        y: 12582
+        width: 108
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64108a408eafaeab0800000000000000
+      internalID: -4977890563687186106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_62"
+      rect:
+        serializedVersion: 2
+        x: 1301
+        y: 12566
+        width: 49
+        height: 117
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 756fa2a50c3cb6140800000000000000
+      internalID: 4714076665887258199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_63"
+      rect:
+        serializedVersion: 2
+        x: 1433
+        y: 12489
+        width: 154
+        height: 194
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ae17cd10221e44a0800000000000000
+      internalID: -6607323674158096727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_64"
+      rect:
+        serializedVersion: 2
+        x: 1644
+        y: 12592
+        width: 134
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94939ce2758cce450800000000000000
+      internalID: 6119486270462310729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_65"
+      rect:
+        serializedVersion: 2
+        x: 1878
+        y: 12564
+        width: 116
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac36ecae556d2bd20800000000000000
+      internalID: 3292929942061212618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_66"
+      rect:
+        serializedVersion: 2
+        x: 1977
+        y: 12537
+        width: 63
+        height: 146
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49f9555639047e530800000000000000
+      internalID: 3884144205434822548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_67"
+      rect:
+        serializedVersion: 2
+        x: 2083
+        y: 12574
+        width: 87
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5788739e966b81520800000000000000
+      internalID: 2673086944844941429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_68"
+      rect:
+        serializedVersion: 2
+        x: 2178
+        y: 12564
+        width: 62
+        height: 119
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7613a68b3940f400800000000000000
+      internalID: 355864890573002365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_69"
+      rect:
+        serializedVersion: 2
+        x: 2269
+        y: 12636
+        width: 117
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 35c13f8f89152f3c0800000000000000
+      internalID: -4327306574496064429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_70"
+      rect:
+        serializedVersion: 2
+        x: 2402
+        y: 12489
+        width: 51
+        height: 194
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83d549509824921b0800000000000000
+      internalID: -5680936298679608008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_71"
+      rect:
+        serializedVersion: 2
+        x: 2475
+        y: 12541
+        width: 153
+        height: 142
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32f799f11a3f80890800000000000000
+      internalID: -7491470106785382621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_72"
+      rect:
+        serializedVersion: 2
+        x: 2721
+        y: 12536
+        width: 125
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 356ff2b72dfdfcf20800000000000000
+      internalID: 3445218335064585811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_73"
+      rect:
+        serializedVersion: 2
+        x: 2855
+        y: 12489
+        width: 51
+        height: 194
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9581341abcb571550800000000000000
+      internalID: 6131470347830237273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_74"
+      rect:
+        serializedVersion: 2
+        x: 2928
+        y: 12569
+        width: 111
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2366e3e97194d9970800000000000000
+      internalID: 8763240815720818226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_75"
+      rect:
+        serializedVersion: 2
+        x: 3053
+        y: 12539
+        width: 49
+        height: 144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b9c3cfa0f9b28aa0800000000000000
+      internalID: -6160156896897283655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_76"
+      rect:
+        serializedVersion: 2
+        x: 3116
+        y: 12572
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b688633fdf2196500800000000000000
+      internalID: 389863724660721771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_77"
+      rect:
+        serializedVersion: 2
+        x: 3221
+        y: 12565
+        width: 61
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd0d9a7367be77b80800000000000000
+      internalID: -8396984087236456228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_78"
+      rect:
+        serializedVersion: 2
+        x: 3381
+        y: 12535
+        width: 111
+        height: 131
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84eed8a516107e7e0800000000000000
+      internalID: -1736417613685330360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_79"
+      rect:
+        serializedVersion: 2
+        x: 3505
+        y: 12489
+        width: 51
+        height: 194
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7bfb1f8e3209ff5d0800000000000000
+      internalID: -3026541940663271497
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_80"
+      rect:
+        serializedVersion: 2
+        x: 3574
+        y: 12573
+        width: 103
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b63451b6b6d94620800000000000000
+      internalID: 2758972326888617655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_81"
+      rect:
+        serializedVersion: 2
+        x: 3711
+        y: 12540
+        width: 19
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3fbc5ff69a36f0020800000000000000
+      internalID: 2310174713243356147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_82"
+      rect:
+        serializedVersion: 2
+        x: 3772
+        y: 12532
+        width: 101
+        height: 137
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2494b4312bbb5a800800000000000000
+      internalID: 623110496962955586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_83"
+      rect:
+        serializedVersion: 2
+        x: 3906
+        y: 12489
+        width: 20
+        height: 194
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3bc3441f6ee96cce0800000000000000
+      internalID: -1385245120642401101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_84"
+      rect:
+        serializedVersion: 2
+        x: 4022
+        y: 12514
+        width: 179
+        height: 156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93beba9e2303e2920800000000000000
+      internalID: 2967362199710591801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_85"
+      rect:
+        serializedVersion: 2
+        x: 4225
+        y: 12532
+        width: 101
+        height: 137
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab27a5341e12919a0800000000000000
+      internalID: -6261936555500604742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_86"
+      rect:
+        serializedVersion: 2
+        x: 4359
+        y: 12489
+        width: 20
+        height: 194
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a860d85c78d90980800000000000000
+      internalID: -8572082387145430879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_87"
+      rect:
+        serializedVersion: 2
+        x: 4433
+        y: 12554
+        width: 138
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 12a2e0903461c8730800000000000000
+      internalID: 4002598645996071457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_88"
+      rect:
+        serializedVersion: 2
+        x: 4671
+        y: 12563
+        width: 178
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d7f251f059735b90800000000000000
+      internalID: -7254321186210646058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_89"
+      rect:
+        serializedVersion: 2
+        x: 4890
+        y: 12563
+        width: 135
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5762c5ffeec09770800000000000000
+      internalID: 8615613617175422813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_90"
+      rect:
+        serializedVersion: 2
+        x: 5122
+        y: 12536
+        width: 125
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c27869d31af323c50800000000000000
+      internalID: 6643442362080462636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_91"
+      rect:
+        serializedVersion: 2
+        x: 5256
+        y: 12489
+        width: 51
+        height: 194
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 024160b83bac29600800000000000000
+      internalID: 473663783307711520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_92"
+      rect:
+        serializedVersion: 2
+        x: 5328
+        y: 12569
+        width: 111
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9f18f5f8a09a96f0800000000000000
+      internalID: -677069738610253926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_93"
+      rect:
+        serializedVersion: 2
+        x: 5453
+        y: 12539
+        width: 49
+        height: 144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77777d347eeb8c9e0800000000000000
+      internalID: -1600819767045294217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_94"
+      rect:
+        serializedVersion: 2
+        x: 5516
+        y: 12572
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f728d0ff6df90afa0800000000000000
+      internalID: -5791453375047564673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_95"
+      rect:
+        serializedVersion: 2
+        x: 5621
+        y: 12565
+        width: 61
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52c8f9219c86d3d80800000000000000
+      internalID: -8269338127972201435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_96"
+      rect:
+        serializedVersion: 2
+        x: 5729
+        y: 12563
+        width: 143
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7261ebb03f83b0e0800000000000000
+      internalID: -2255301548909174148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_97"
+      rect:
+        serializedVersion: 2
+        x: 5908
+        y: 12513
+        width: 179
+        height: 156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f917554b333872080800000000000000
+      internalID: -9212250254670990945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_98"
+      rect:
+        serializedVersion: 2
+        x: 6173
+        y: 12535
+        width: 93
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e48468aa7e3af970800000000000000
+      internalID: 8789406319299036390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_99"
+      rect:
+        serializedVersion: 2
+        x: 6297
+        y: 12489
+        width: 51
+        height: 194
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd5f722dd80ad8db0800000000000000
+      internalID: -4787994297848302117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_100"
+      rect:
+        serializedVersion: 2
+        x: 6361
+        y: 12492
+        width: 162
+        height: 178
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4374610604a363f30800000000000000
+      internalID: 4554892121296226100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_101"
+      rect:
+        serializedVersion: 2
+        x: 6503
+        y: 12566
+        width: 20
+        height: 117
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3d8dc3b91f10bbf0800000000000000
+      internalID: -310714179037328070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_102"
+      rect:
+        serializedVersion: 2
+        x: 6569
+        y: 12463
+        width: 50
+        height: 209
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae249d14eb2cdd110800000000000000
+      internalID: 1287399190902162154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_103"
+      rect:
+        serializedVersion: 2
+        x: 6632
+        y: 12507
+        width: 132
+        height: 158
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 074dc97c5cda6e210800000000000000
+      internalID: 1361967002295260272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_104"
+      rect:
+        serializedVersion: 2
+        x: 6783
+        y: 12504
+        width: 111
+        height: 164
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea61564005fbca220800000000000000
+      internalID: 2498582243675805358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_105"
+      rect:
+        serializedVersion: 2
+        x: 6922
+        y: 12504
+        width: 114
+        height: 164
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0293844a8d33a4f00800000000000000
+      internalID: 1101750064407656736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_106"
+      rect:
+        serializedVersion: 2
+        x: 7065
+        y: 12504
+        width: 111
+        height: 164
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e15f7f44d04bea40800000000000000
+      internalID: 5398479858944659944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_107"
+      rect:
+        serializedVersion: 2
+        x: 7205
+        y: 12504
+        width: 114
+        height: 164
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c039ecbfd97d8c5b0800000000000000
+      internalID: -5347787483968007412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_108"
+      rect:
+        serializedVersion: 2
+        x: 7351
+        y: 12507
+        width: 97
+        height: 158
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b5a05f6ac10e4750800000000000000
+      internalID: 6290967698445739442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_109"
+      rect:
+        serializedVersion: 2
+        x: 7476
+        y: 12507
+        width: 104
+        height: 161
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1440cf3aa03ddd050800000000000000
+      internalID: 5827045535541625921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_110"
+      rect:
+        serializedVersion: 2
+        x: 979
+        y: 12533
+        width: 85
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7af597b9973e54790800000000000000
+      internalID: -7546375489150427225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_111"
+      rect:
+        serializedVersion: 2
+        x: 1193
+        y: 12489
+        width: 130
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6caa37e7d2efc400800000000000000
+      internalID: 346745113256045674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_112"
+      rect:
+        serializedVersion: 2
+        x: 1621
+        y: 12561
+        width: 178
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c4dcdca8e951e6b0800000000000000
+      internalID: -5268831233179331387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_113"
+      rect:
+        serializedVersion: 2
+        x: 2280
+        y: 12532
+        width: 97
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a305927ac6296510800000000000000
+      internalID: 1542806998298723234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_114"
+      rect:
+        serializedVersion: 2
+        x: 4414
+        y: 12516
+        width: 178
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 85857a7eb17be2670800000000000000
+      internalID: 8515945275882690648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_115"
+      rect:
+        serializedVersion: 2
+        x: 1644
+        y: 12493
+        width: 136
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 166f79d29521275e0800000000000000
+      internalID: -1913446717452716447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_116"
+      rect:
+        serializedVersion: 2
+        x: 1913
+        y: 12493
+        width: 131
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a88108ec8514a15c0800000000000000
+      internalID: -4244007849165842294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_117"
+      rect:
+        serializedVersion: 2
+        x: 2108
+        y: 12489
+        width: 132
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eff903d16e8f367a0800000000000000
+      internalID: -6384986179465338882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_118"
+      rect:
+        serializedVersion: 2
+        x: 2501
+        y: 12493
+        width: 131
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f69d2aec293cddc0800000000000000
+      internalID: -3612949935987779856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_119"
+      rect:
+        serializedVersion: 2
+        x: 2951
+        y: 12493
+        width: 131
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ebb975e5c0097160800000000000000
+      internalID: 7023645943819516902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_120"
+      rect:
+        serializedVersion: 2
+        x: 3150
+        y: 12489
+        width: 132
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67be20a4c9599ecf0800000000000000
+      internalID: -222482208088986762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_121"
+      rect:
+        serializedVersion: 2
+        x: 3604
+        y: 12493
+        width: 132
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2b5b562ecd0a3d40800000000000000
+      internalID: 5564775468627614511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_122"
+      rect:
+        serializedVersion: 2
+        x: 4694
+        y: 12493
+        width: 135
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a439eca06996a850800000000000000
+      internalID: 6387961761968501926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_123"
+      rect:
+        serializedVersion: 2
+        x: 4867
+        y: 12514
+        width: 179
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4fd9a83dab7afb2d0800000000000000
+      internalID: -3260703184338117132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_124"
+      rect:
+        serializedVersion: 2
+        x: 5351
+        y: 12493
+        width: 131
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6526c6ad3fe621e20800000000000000
+      internalID: 3319837868946121302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_125"
+      rect:
+        serializedVersion: 2
+        x: 5550
+        y: 12489
+        width: 132
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 85adfe4a0655864c0800000000000000
+      internalID: -4294088371125364136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_126"
+      rect:
+        serializedVersion: 2
+        x: 5712
+        y: 12514
+        width: 179
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f9741dead74ade30800000000000000
+      internalID: 4529011380880439800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_127"
+      rect:
+        serializedVersion: 2
+        x: 956
+        y: 8019
+        width: 8078
+        height: 4052
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e4cff96b28a3d560800000000000000
+      internalID: 7337393122332099813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_128"
+      rect:
+        serializedVersion: 2
+        x: 956
+        y: 3368
+        width: 8078
+        height: 4053
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a59d9de77e1703fe0800000000000000
+      internalID: -1211343060683073190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_129"
+      rect:
+        serializedVersion: 2
+        x: 1528
+        y: 1962
+        width: 855
+        height: 854
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e4fddb5381e79aa0800000000000000
+      internalID: -6154202411480255264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_130"
+      rect:
+        serializedVersion: 2
+        x: 3878
+        y: 1962
+        width: 855
+        height: 854
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbce2231fb8506c70800000000000000
+      internalID: 8962260836150340797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_131"
+      rect:
+        serializedVersion: 2
+        x: 6239
+        y: 1960
+        width: 859
+        height: 859
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ca2c29ef802d6f70800000000000000
+      internalID: 9182031017742707395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_132"
+      rect:
+        serializedVersion: 2
+        x: 7941
+        y: 1860
+        width: 1153
+        height: 376
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e374708687bd11b10800000000000000
+      internalID: 1950581423816001342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_133"
+      rect:
+        serializedVersion: 2
+        x: 1528
+        y: 686
+        width: 855
+        height: 854
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba53faa9209709b70800000000000000
+      internalID: 8903749515403539883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_134"
+      rect:
+        serializedVersion: 2
+        x: 3878
+        y: 686
+        width: 855
+        height: 854
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3089812013907a20800000000000000
+      internalID: 3058105844475985983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_135"
+      rect:
+        serializedVersion: 2
+        x: 6241
+        y: 684
+        width: 865
+        height: 859
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b2bc0a37f7bc0f40800000000000000
+      internalID: 5696129901175550644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D_136"
+      rect:
+        serializedVersion: 2
+        x: 7941
+        y: 1002
+        width: 1153
+        height: 376
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ae40067885801dc0800000000000000
+      internalID: -3670286875165176153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      "esc\uCC3D_0": 7931326065715971811
+      "esc\uCC3D_1": 8488412857571046407
+      "esc\uCC3D_10": 823022107301382404
+      "esc\uCC3D_100": 4554892121296226100
+      "esc\uCC3D_101": -310714179037328070
+      "esc\uCC3D_102": 1287399190902162154
+      "esc\uCC3D_103": 1361967002295260272
+      "esc\uCC3D_104": 2498582243675805358
+      "esc\uCC3D_105": 1101750064407656736
+      "esc\uCC3D_106": 5398479858944659944
+      "esc\uCC3D_107": -5347787483968007412
+      "esc\uCC3D_108": 6290967698445739442
+      "esc\uCC3D_109": 5827045535541625921
+      "esc\uCC3D_11": 8085105612146580807
+      "esc\uCC3D_110": -7546375489150427225
+      "esc\uCC3D_111": 346745113256045674
+      "esc\uCC3D_112": -5268831233179331387
+      "esc\uCC3D_113": 1542806998298723234
+      "esc\uCC3D_114": 8515945275882690648
+      "esc\uCC3D_115": -1913446717452716447
+      "esc\uCC3D_116": -4244007849165842294
+      "esc\uCC3D_117": -6384986179465338882
+      "esc\uCC3D_118": -3612949935987779856
+      "esc\uCC3D_119": 7023645943819516902
+      "esc\uCC3D_12": 7668935610084686213
+      "esc\uCC3D_120": -222482208088986762
+      "esc\uCC3D_121": 5564775468627614511
+      "esc\uCC3D_122": 6387961761968501926
+      "esc\uCC3D_123": -3260703184338117132
+      "esc\uCC3D_124": 3319837868946121302
+      "esc\uCC3D_125": -4294088371125364136
+      "esc\uCC3D_126": 4529011380880439800
+      "esc\uCC3D_127": 7337393122332099813
+      "esc\uCC3D_128": -1211343060683073190
+      "esc\uCC3D_129": -6154202411480255264
+      "esc\uCC3D_13": -1511915528186622974
+      "esc\uCC3D_130": 8962260836150340797
+      "esc\uCC3D_131": 9182031017742707395
+      "esc\uCC3D_132": 1950581423816001342
+      "esc\uCC3D_133": 8903749515403539883
+      "esc\uCC3D_134": 3058105844475985983
+      "esc\uCC3D_135": 5696129901175550644
+      "esc\uCC3D_136": -3670286875165176153
+      "esc\uCC3D_14": -5970911195392285463
+      "esc\uCC3D_15": -4878477489212099914
+      "esc\uCC3D_16": 7701541421284415718
+      "esc\uCC3D_17": 7315310711224431493
+      "esc\uCC3D_18": 3527781928068765520
+      "esc\uCC3D_19": -1563978923415915710
+      "esc\uCC3D_2": 185250091954251881
+      "esc\uCC3D_20": 5160172912273331613
+      "esc\uCC3D_21": -5535993577164130079
+      "esc\uCC3D_22": -6633045918575054765
+      "esc\uCC3D_23": 7205311716871849535
+      "esc\uCC3D_24": 6345239137930576001
+      "esc\uCC3D_25": 2029152281158346590
+      "esc\uCC3D_26": 2651595621627235739
+      "esc\uCC3D_27": -3351884385651616702
+      "esc\uCC3D_28": -1494933598270454823
+      "esc\uCC3D_29": 3796924168677922886
+      "esc\uCC3D_3": -1791304615597934740
+      "esc\uCC3D_30": -8929022931629836563
+      "esc\uCC3D_31": 8797798762497450548
+      "esc\uCC3D_32": -1507753992394493770
+      "esc\uCC3D_33": -6723303562155805457
+      "esc\uCC3D_34": -8973207006478082036
+      "esc\uCC3D_35": 722968550688513317
+      "esc\uCC3D_36": 4078641295994507324
+      "esc\uCC3D_37": -7838423369331336241
+      "esc\uCC3D_38": 36937181784755314
+      "esc\uCC3D_39": 3324839815682398293
+      "esc\uCC3D_4": 7768028489241204547
+      "esc\uCC3D_40": -8401406410976682484
+      "esc\uCC3D_41": 6550651866917936143
+      "esc\uCC3D_42": -3145997866668908599
+      "esc\uCC3D_43": -7643047406428883400
+      "esc\uCC3D_44": 7044776996392245056
+      "esc\uCC3D_45": -7730075592896063908
+      "esc\uCC3D_46": 2219643068809889552
+      "esc\uCC3D_47": -5522051139517929390
+      "esc\uCC3D_48": 4219250467107898457
+      "esc\uCC3D_49": 3879967727363673502
+      "esc\uCC3D_5": -8133194076969333165
+      "esc\uCC3D_50": 8093808850779956310
+      "esc\uCC3D_51": 8081140498454038457
+      "esc\uCC3D_52": 683038589456555985
+      "esc\uCC3D_53": 1296606853446041066
+      "esc\uCC3D_54": -4370391662177599650
+      "esc\uCC3D_55": 425338626161542590
+      "esc\uCC3D_56": -2769671241262607783
+      "esc\uCC3D_57": 1875844618576435072
+      "esc\uCC3D_58": 961550593714130672
+      "esc\uCC3D_59": 5308867183056134648
+      "esc\uCC3D_6": -104615200969097630
+      "esc\uCC3D_60": 9173511427343586808
+      "esc\uCC3D_61": -4977890563687186106
+      "esc\uCC3D_62": 4714076665887258199
+      "esc\uCC3D_63": -6607323674158096727
+      "esc\uCC3D_64": 6119486270462310729
+      "esc\uCC3D_65": 3292929942061212618
+      "esc\uCC3D_66": 3884144205434822548
+      "esc\uCC3D_67": 2673086944844941429
+      "esc\uCC3D_68": 355864890573002365
+      "esc\uCC3D_69": -4327306574496064429
+      "esc\uCC3D_7": 163496820171782566
+      "esc\uCC3D_70": -5680936298679608008
+      "esc\uCC3D_71": -7491470106785382621
+      "esc\uCC3D_72": 3445218335064585811
+      "esc\uCC3D_73": 6131470347830237273
+      "esc\uCC3D_74": 8763240815720818226
+      "esc\uCC3D_75": -6160156896897283655
+      "esc\uCC3D_76": 389863724660721771
+      "esc\uCC3D_77": -8396984087236456228
+      "esc\uCC3D_78": -1736417613685330360
+      "esc\uCC3D_79": -3026541940663271497
+      "esc\uCC3D_8": -6749653784100857925
+      "esc\uCC3D_80": 2758972326888617655
+      "esc\uCC3D_81": 2310174713243356147
+      "esc\uCC3D_82": 623110496962955586
+      "esc\uCC3D_83": -1385245120642401101
+      "esc\uCC3D_84": 2967362199710591801
+      "esc\uCC3D_85": -6261936555500604742
+      "esc\uCC3D_86": -8572082387145430879
+      "esc\uCC3D_87": 4002598645996071457
+      "esc\uCC3D_88": -7254321186210646058
+      "esc\uCC3D_89": 8615613617175422813
+      "esc\uCC3D_9": 8033895795574603812
+      "esc\uCC3D_90": 6643442362080462636
+      "esc\uCC3D_91": 473663783307711520
+      "esc\uCC3D_92": -677069738610253926
+      "esc\uCC3D_93": -1600819767045294217
+      "esc\uCC3D_94": -5791453375047564673
+      "esc\uCC3D_95": -8269338127972201435
+      "esc\uCC3D_96": -2255301548909174148
+      "esc\uCC3D_97": -9212250254670990945
+      "esc\uCC3D_98": 8789406319299036390
+      "esc\uCC3D_99": -4787994297848302117
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
