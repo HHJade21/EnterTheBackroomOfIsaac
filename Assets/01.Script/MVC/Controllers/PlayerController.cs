@@ -1183,6 +1183,7 @@ public class PlayerController : MonoBehaviour
     {
         isDead = true;
         Debug.Log("플레이어 사망");
+        animator.SetTrigger("Death");
         // TODO: 사망 처리 로직 구현
     }
     

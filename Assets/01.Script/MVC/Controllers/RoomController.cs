@@ -22,9 +22,10 @@ public class RoomController : MonoBehaviour
     [Tooltip("인스펙터에서 할당하지 않으면 Start()에서 자동으로 찾습니다.")]
     public GameObject player;
 
-    [Header("Spawn Points")]
+    [Header("Enemies")]
     [Tooltip("적이 스폰될 위치들의 리스트 (인스펙터에서 할당)")]
     public List<Transform> spawnPoints = new List<Transform>();
+    public List<GameObject> enemies = new List<GameObject>();
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -44,7 +45,7 @@ public class RoomController : MonoBehaviour
             }
 
             CloseRoom();
-            StartCoroutine(_tmpWaitAndClear());
+            // StartCoroutine(_tmpWaitAndClear());
         }
     }
 
@@ -69,7 +70,7 @@ public class RoomController : MonoBehaviour
     /// <summary>
     /// 방 내부에 적을 스폰하는 메서드
     /// - spawnPoints 리스트에서 랜덤으로 enemyCount개의 좌표를 선택
-    /// - 각 좌표에 대해 dungeonController.SpawnEnemy() 호출
+    /// - 각 좌표에 대해 SpawnEnemy() 호출
     /// </summary>
     private void SpawnEnemiesInRoom()
     {
@@ -118,10 +119,42 @@ public class RoomController : MonoBehaviour
         // 선택된 스폰 포인트에 적 스폰
         foreach (Transform spawnPoint in selectedSpawnPoints)
         {
-            dungeonController.SpawnEnemy(spawnPoint);
+            enemies.Add(SpawnEnemy(spawnPoint));
         }
 
         Debug.Log($"RoomController: {selectedSpawnPoints.Count}개 적 스폰 완료.");
+    }
+
+    public GameObject SpawnEnemy(Transform transform)
+    {
+        GameObject enemyPrefab = null;
+        switch(roomColor){
+            case CMYKColor.Black:
+                enemyPrefab = dungeonController.enemyPrefabK[Random.Range(0, dungeonController.enemyPrefabK.Count)];
+                break;
+            case CMYKColor.Cyan:
+                enemyPrefab = dungeonController.enemyPrefabC[Random.Range(0, dungeonController.enemyPrefabC.Count)];
+                break;
+            case CMYKColor.Magenta:
+                enemyPrefab = dungeonController.enemyPrefabM[Random.Range(0, dungeonController.enemyPrefabM.Count)];
+                break;
+            case CMYKColor.Yellow:
+                enemyPrefab = dungeonController.enemyPrefabY[Random.Range(0, dungeonController.enemyPrefabY.Count)];
+                break;
+        }
+        GameObject enemy = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
+        enemy.GetComponent<EnemyController>().roomController = this;
+        return enemy;
+    }
+
+    public void OnEnemyDeath(EnemyController deadEnemy)
+    {
+        enemies.Remove(deadEnemy.gameObject);
+        if(enemies.Count == 0 && isClosed)
+        {
+            isCleared = true;
+            OpenRoom();
+        }
     }
 
     private void OpenRoom(){
