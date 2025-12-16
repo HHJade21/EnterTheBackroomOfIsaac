@@ -35,6 +35,10 @@ public class EnemyController : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private bool isDead = false;
 
+    private bool isStatue = false;
+    private bool isStatueMoving = false;
+    private Vector2 statueMoveDirection = Vector2.zero;
+
     private void Awake()
     {
         // Rigidbody2D 설정: 벽 충돌 감지를 위해 kinematic = false로 설정
@@ -53,6 +57,10 @@ public class EnemyController : MonoBehaviour
         if (enemyData != null)
         {
             currentHp = enemyData.maxHp;
+            if (enemyData.enemyCategory == "Statue")
+            {
+                isStatue = true;
+            }
         }
     }
 
@@ -64,7 +72,24 @@ public class EnemyController : MonoBehaviour
             if (player != null)
             {
                 target = player.transform;
+                if(isStatue)
+                {
+                    StartCoroutine(StatueMoveRoutine());
+                }
             }
+        }
+    }
+
+    System.Collections.IEnumerator StatueMoveRoutine()
+    {
+        while (!isDead)
+        {
+            isStatueMoving = true;
+            statueMoveDirection = (target.position - transform.position).normalized;
+            yield return new WaitForSeconds(0.5f);
+            isStatueMoving = false;
+            animator.SetBool("Move", false);
+            yield return new WaitForSeconds(Random.Range(2.5f, 3.5f));
         }
     }
 
@@ -85,11 +110,33 @@ public class EnemyController : MonoBehaviour
         }
 
         // 플레이어와 충돌 중이 아닐 때만 이동
-        if (!isCollidingWithPlayer && sqrDistance > enemyData.attackRange * enemyData.attackRange)
+        if (!isCollidingWithPlayer && sqrDistance > enemyData.attackRange * enemyData.attackRange && !isStatue)
         {
             // 이동: MovePosition을 사용하여 벽 충돌 감지
             Vector2 direction = toTarget.normalized;
             Vector2 moveDelta = direction * enemyData.moveSpeed * Time.fixedDeltaTime;
+            if(moveDelta.x > 0)
+            {
+                spriteRenderer.flipX = true;
+            }
+            else
+            {
+                spriteRenderer.flipX = false;
+            }
+            rb.MovePosition(rb.position + moveDelta);
+            animator.SetBool("Move", true);
+        }
+        else if (isStatue && isStatueMoving)
+        {
+            Vector2 moveDelta = statueMoveDirection * enemyData.moveSpeed * Time.fixedDeltaTime;
+            if(moveDelta.x > 0)
+            {
+                spriteRenderer.flipX = true;
+            }
+            else
+            {
+                spriteRenderer.flipX = false;
+            }
             rb.MovePosition(rb.position + moveDelta);
             animator.SetBool("Move", true);
         }
