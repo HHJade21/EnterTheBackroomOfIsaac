@@ -31,6 +31,8 @@ public class WeaponController : MonoBehaviour
     public float reloadTime = 0.6f;        // 재장전 시간
     private float lastFireTime;            // 마지막 발사 시간
     private bool isReloading;              // 재장전 중 여부
+    public int multiBulletCount = 5;     // 산탄 공격 탄약 수
+    public int multiBulletSpread = 30;     // 산탄 공격 탄약 분산
 
     [Header("Weapon Icon")]
     [Tooltip("무기 아이콘을 표시할 Renderer (자동으로 찾거나 생성됩니다)")]
@@ -73,7 +75,7 @@ public class WeaponController : MonoBehaviour
     [Tooltip("최대 충전 시간 (초)")]
     public float maxChargeFireTime = 2f;
     [Tooltip("레이저 빔 최대 거리")]
-    public float maxLaserDistance = 20f;
+    public float maxMultiDistance = 20f;
     
     public float currentChargeFireTime = 0f;
     private bool isChargingFire = false;
@@ -368,8 +370,8 @@ public class WeaponController : MonoBehaviour
             case WeaponData.WeaponType.Fire:
                 FireAttack(dir, startPoint);
                 break;
-            case WeaponData.WeaponType.Laser:
-                LaserAttack(dir, startPoint);
+            case WeaponData.WeaponType.Multi:
+                MultiAttack(dir, startPoint);
                 break;
             case WeaponData.WeaponType.ChargeFire:
                 ChargeFireAttack(dir, startPoint);
@@ -467,13 +469,46 @@ public class WeaponController : MonoBehaviour
     }
 
     /// <summary>
-    /// 레이저 공격 메소드: 추후 구현 예정입니다.
+    /// 산탄 공격 메소드: multiBulletCount만큼의 투사체를 multiBulletSpread 각도로 분산 발사합니다.
     /// </summary>
     /// <param name="dir">공격 방향 (정규화됨)</param>
     /// <param name="startPoint">공격 시작 위치와 회전</param>
-    private void LaserAttack(Vector2 dir, Transform startPoint)
+    private void MultiAttack(Vector2 dir, Transform startPoint)
     {
-        // TODO: 레이저 공격 구현 예정
+        if (currentWeapon == null) return;
+        if (currentWeapon.projectilePrefab == null) return;
+
+        dir = dir.normalized;
+        
+        // 분산 각도 계산
+        float totalSpread = multiBulletSpread;
+        float angleStep = multiBulletCount > 1 ? totalSpread / (multiBulletCount - 1) : 0f;
+        float startAngle = multiBulletCount > 1 ? -totalSpread / 2f : 0f;
+        
+        // 각 투사체 생성
+        for (int i = 0; i < multiBulletCount; i++)
+        {
+            float angle = startAngle + angleStep * i;
+            float angleRad = angle * Mathf.Deg2Rad;
+            
+            // 방향 벡터 회전
+            Vector2 spreadDir = new Vector2(
+                dir.x * Mathf.Cos(angleRad) - dir.y * Mathf.Sin(angleRad),
+                dir.x * Mathf.Sin(angleRad) + dir.y * Mathf.Cos(angleRad)
+            ).normalized;
+            
+            // 투사체 생성 및 설정
+            GameObject projectile = Instantiate(currentWeapon.projectilePrefab, startPoint.position, startPoint.rotation);
+            projectile.transform.up = spreadDir;
+            
+            var rb = projectile.GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                rb.linearVelocity = spreadDir * currentWeapon.projectileSpeed;
+            }
+            
+            Destroy(projectile, currentWeapon.projectileLifetime);
+        }
     }
 
     /// <summary>
@@ -718,8 +753,8 @@ public class WeaponController : MonoBehaviour
         }
         
         // 레이저 빔 생성
-        GameObject laserBeam = Instantiate(currentWeapon.projectilePrefab, startPoint.position, Quaternion.identity);
-        LaserBeamController beamController = laserBeam.GetComponent<LaserBeamController>();
+        GameObject MultiBeam = Instantiate(currentWeapon.projectilePrefab, startPoint.position, Quaternion.identity);
+        LaserBeamController beamController = MultiBeam.GetComponent<LaserBeamController>();
         
         if (beamController != null)
         {
@@ -734,7 +769,7 @@ public class WeaponController : MonoBehaviour
             }
             
             // 레이저 빔 초기화
-            beamController.Initialize(startPoint.position, chargeFireDirection, maxLaserDistance, damage);
+            beamController.Initialize(startPoint.position, chargeFireDirection, maxMultiDistance, damage);
         }
         else
         {
@@ -872,7 +907,9 @@ public class WeaponController : MonoBehaviour
 
         // 발사 시간 기록 및 탄약 감소 (발사 타입만 탄약 소모)
         lastFireTime = Time.time;
-        if (currentWeapon != null && currentWeapon.weaponType == WeaponData.WeaponType.Fire)
+        if (currentWeapon != null && 
+            (currentWeapon.weaponType == WeaponData.WeaponType.Fire || 
+             currentWeapon.weaponType == WeaponData.WeaponType.Multi))
         {
             currentBulletCount--;
         }

@@ -17,7 +17,7 @@ public class WeaponData : ScriptableObject
     {
         Melee = 0,    // 근접 공격
         Fire = 1,     // 발사 공격 (투사체)
-        Laser = 2,   // 레이저 공격
+        Multi = 2,   // 산탄 공격
         ChargeFire = 3,   // 차지 공격
         ChargeDash = 4,   // 차지 대시 공격
     }

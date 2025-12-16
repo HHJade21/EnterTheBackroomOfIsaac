@@ -18,7 +18,7 @@ MonoBehaviour:
     \uBC1C\uC0AC\uD569\uB2C8\uB2E4."
   icon: {fileID: -8561114005086872862, guid: a61aeb949a8d1aa4db02d26344af74d3, type: 3}
   element: 3
-  weaponType: 1
+  weaponType: 2
   autoFire: 0
   projectilePrefab: {fileID: 2599106515927395768, guid: 7dda4657c5ded474b8b1dabee113107c, type: 3}
   projectileSpeed: 14
