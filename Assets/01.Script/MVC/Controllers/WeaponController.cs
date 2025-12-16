@@ -32,7 +32,7 @@ public class WeaponController : MonoBehaviour
     private float lastFireTime;            // 마지막 발사 시간
     private bool isReloading;              // 재장전 중 여부
     public int multiBulletCount = 5;     // 산탄 공격 탄약 수
-    public int multiBulletSpread = 30;     // 산탄 공격 탄약 분산
+    public int multiBulletSpread = 60;     // 산탄 공격 탄약 분산
 
     [Header("Weapon Icon")]
     [Tooltip("무기 아이콘을 표시할 Renderer (자동으로 찾거나 생성됩니다)")]
