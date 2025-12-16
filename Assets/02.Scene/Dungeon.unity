@@ -9774,7 +9774,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DungeonController
   enemyPrefabC:
-  - {fileID: 5312735757910337222, guid: 20c5addc46943f24ba11532e9fc21b27, type: 3}
+  - {fileID: 5312735757910337222, guid: d6614cd0c5c402445b5d209f5eb7f851, type: 3}
   enemyPrefabM:
   - {fileID: 5312735757910337222, guid: 8293e3c360584654db5754c96cf67db0, type: 3}
   enemyPrefabY:

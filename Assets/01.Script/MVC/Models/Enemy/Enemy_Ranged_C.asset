@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Enemy_Ranged_C
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   enemyName: Enemy_Test
+  enemyCategory: Statue
   maxHp: 10
-  moveSpeed: 2
+  moveSpeed: 5
   contactDamage: 1
   attackCooldown: 1.5
   isRanged: 1
