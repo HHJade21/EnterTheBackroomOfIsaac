@@ -6,21 +6,14 @@ using UnityEngine;
 public class PrinterController : MonoBehaviour
 {
     [Header("Spawn Settings")]
-    [Tooltip("무기가 생성될 위치를 가진 Transform (인스펙터에서 다른 오브젝트를 드래그 앤 드롭으로 할당)")]
+    [Tooltip("무기가 생성될 위치 (인스펙터에서 직접 설정 가능)")]
     [SerializeField]
-    private Transform weaponSpawnTransform;
-    
-    [Tooltip("Transform이 할당되지 않은 경우 사용할 기본 위치")]
-    [SerializeField]
-    private Vector3 defaultSpawnPosition = Vector3.zero;
+    private Vector3 weaponSpawnPosition = Vector3.zero;
     
     /// <summary>
-    /// 무기 생성 위치를 반환합니다. Transform이 할당되어 있으면 Transform의 위치를, 없으면 기본 위치를 반환합니다.
+    /// 무기 생성 위치 (인스펙터에서 설정)
     /// </summary>
-    private Vector3 GetWeaponSpawnPosition()
-    {
-        return weaponSpawnTransform != null ? weaponSpawnTransform.position : defaultSpawnPosition;
-    }
+    public Vector3 WeaponSpawnPosition => weaponSpawnPosition;
     
     private WeaponController weaponController;
     
@@ -56,7 +49,7 @@ public class PrinterController : MonoBehaviour
             // WeaponController가 있으면 무기 생성
             if (weaponController != null)
             {
-                weaponController.DevTool_DropNewWeapon(GetWeaponSpawnPosition());
+                weaponController.DevTool_DropNewWeapon(weaponSpawnPosition);
             }
             else
             {
