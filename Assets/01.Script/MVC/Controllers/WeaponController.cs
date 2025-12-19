@@ -508,6 +508,20 @@ public class WeaponController : MonoBehaviour
         if (currentWeapon == null) return;
         if (currentWeapon.projectilePrefab == null) return;
 
+        // 무기 아이콘 애니메이터에 Attack 애니메이션 강제 재생 (AutoFire 무기가 아닌 경우에만)
+        if (!currentWeapon.autoFire && currentWeapon.animatorController != null && weaponIconRenderer != null)
+        {
+            Animator weaponAnimator = weaponIconRenderer.GetComponent<Animator>();
+            if (weaponAnimator != null)
+            {
+                // Play()를 사용하여 현재 애니메이션을 중단하고 Attack 애니메이션을 처음부터 강제 재생
+                weaponAnimator.Play("Attack", 0, 0f);
+                
+                // lifetime 후 Idle로 돌아가도록 코루틴 시작
+                StartCoroutine(ResetWeaponAnimatorToIdle(weaponAnimator, currentWeapon.projectileLifetime));
+            }
+        }
+
         dir = dir.normalized;
         
         // 분산 각도 계산
