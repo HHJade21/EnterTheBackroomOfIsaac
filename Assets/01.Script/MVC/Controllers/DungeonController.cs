@@ -92,11 +92,14 @@ public class DungeonController : MonoBehaviour
         startRoom.GetComponent<RoomController>().roomDepth = 0;
         startRoom.GetComponent<RoomController>().dungeonController = this;
         rooms.Add(startRoom);
-        while(rooms.Count < minRooms){
+        for(int i=0; rooms.Count < minRooms && i < 100; i++){ // 혹시나 무한반복 걸릴까봐 100회까지만 시도.
             // ToList()로 복사본 만들어서 순회 (foreach 중 리스트 수정 가능)
             foreach(var room in rooms.ToList()){
                 SpreadRoom(room);
             }
+        }
+        foreach(var room in rooms){
+            room.GetComponent<RoomController>().UpdateRoomSprites();
         }
     }
 
@@ -113,7 +116,7 @@ public class DungeonController : MonoBehaviour
                 continue;
             }
             
-            SpriteRenderer doorRenderer = door.GetComponent<SpriteRenderer>();
+            SpriteRenderer doorRenderer = door.GetComponentInChildren<SpriteRenderer>();
             if(doorRenderer == null || doorRenderer.sortingOrder == -1){
                 continue;
             }
@@ -126,7 +129,7 @@ public class DungeonController : MonoBehaviour
             int doorDirection = doorRenderer.sortingOrder; // 1:북, 2:동, 3:남, 4:서
             
             // 복도 생성 (복도의 끝에 방 생성 시도도 포함되어 있음)
-            CreateCorridor(door.transform.position, doorDirection, roomController, doorRenderer);
+            CreateCorridor(roomController.corridors[doorDirection-1].transform.position, doorDirection, roomController, doorRenderer);
             
         }
     }
@@ -164,10 +167,6 @@ public class DungeonController : MonoBehaviour
         corridorPosition += corridorMove;
         corridorList.Add(Instantiate(corridorPrefab[corridorIndex], corridorPosition, Quaternion.identity, corridorParent));
         corridorPosition += corridorMove;
-        corridorList.Add(Instantiate(corridorPrefab[corridorIndex], corridorPosition, Quaternion.identity, corridorParent));
-        corridorPosition += corridorMove;
-        corridorList.Add(Instantiate(corridorPrefab[corridorIndex], corridorPosition, Quaternion.identity, corridorParent));
-        corridorPosition += corridorMove;
 
         GameObject newRoom = AttachRoomToCorridor(corridorPosition, direction);
         if(newRoom != null){
@@ -179,7 +178,7 @@ public class DungeonController : MonoBehaviour
         }
         else{
             foreach(var corridor in corridorList){
-                Destroy(corridor);
+                //Destroy(corridor);
             }
         }
         return;
@@ -217,9 +216,12 @@ public class DungeonController : MonoBehaviour
                 currentIndex = (currentIndex + 1) % prefabs.Count;
                 continue;
             }
+
+            SpriteRenderer doorRenderer = targetDoor.GetComponentInChildren<SpriteRenderer>();
+            GameObject targetCorridor = roomPrefab.GetComponent<RoomController>().corridors[doorRenderer.sortingOrder-1];
             
-            // 문의 로컬 위치 기준으로 방 중심 위치 계산
-            Vector3 doorLocalPosition = targetDoor.transform.localPosition;
+            // 로컬 위치 기준으로 방 중심 위치 계산
+            Vector3 doorLocalPosition = targetCorridor.transform.localPosition;
             Vector3 roomCenterPosition = corridorEndPosition - doorLocalPosition;
             
             // 충돌 체크 - 다른 방과 겹치면 다음 프리팹 시도
@@ -240,9 +242,9 @@ public class DungeonController : MonoBehaviour
             // 생성된 방의 연결된 문의 sortingOrder를 -1로 설정
             GameObject connectedDoor = FindDoorInPrefab(newRoom, requiredDoorDirection);
             if(connectedDoor != null){
-                SpriteRenderer doorRenderer = connectedDoor.GetComponent<SpriteRenderer>();
-                if(doorRenderer != null){
-                    doorRenderer.sortingOrder = -1;
+                SpriteRenderer newDoorRenderer = connectedDoor.GetComponentInChildren<SpriteRenderer>();
+                if(newDoorRenderer != null){
+                    newDoorRenderer.sortingOrder = -1;
                 }
             }
             
@@ -479,7 +481,7 @@ public class DungeonController : MonoBehaviour
         foreach(var door in roomController.doors){
             if(door == null) continue;
             
-            SpriteRenderer doorRenderer = door.GetComponent<SpriteRenderer>();
+            SpriteRenderer doorRenderer = door.GetComponentInChildren<SpriteRenderer>();
             //Debug.Log(doorRenderer.sortingOrder);
             if(doorRenderer != null && doorRenderer.sortingOrder == doorDirection){
                 return door;
