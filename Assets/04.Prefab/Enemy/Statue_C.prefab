@@ -83,12 +83,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -7219803942226845405, guid: 7c7ae3e4c8f7b6d4fa4ea0bc9d124cec, type: 3}
+  m_Sprite: {fileID: 1766040493, guid: 7c7ae3e4c8f7b6d4fa4ea0bc9d124cec, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 5.12, y: 6}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -177,9 +177,9 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -0.16}
-  m_Size: {x: 3.5, y: 0.92}
-  m_Direction: 1
+  m_Offset: {x: 0, y: -0.1}
+  m_Size: {x: 2.6, y: 5.5}
+  m_Direction: 0
 --- !u!114 &6256844290080687304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,7 +192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7919ddbeb1b1da439ff8c6af2d2e3ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
-  enemyData: {fileID: 11400000, guid: 73e35990461aa6d4fb06cb4e407e52b6, type: 2}
+  enemyData: {fileID: 11400000, guid: 36f5cf30dffc8534f90e7ebd5d3bb92b, type: 2}
   target: {fileID: 0}
   currentHp: 0
   pushBackSpeed: 0.1

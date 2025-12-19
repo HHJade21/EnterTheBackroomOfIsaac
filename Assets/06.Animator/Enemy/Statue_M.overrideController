@@ -6,18 +6,18 @@ AnimatorOverrideController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Statue_C
+  m_Name: Statue_M
   m_Controller: {fileID: 9100000, guid: 1ecb4bc1f18ba7a4e88f75dd83c72196, type: 2}
   m_Clips:
   - m_OriginalClip: {fileID: 7400000, guid: fa1b4eb6d5e14b44ba7b8621ea4916a3, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 84e1c8d75b4e22f44b57a361b5549cd8, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 46499e9347e876a40b942fbde2c3faba, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: edbe104935cc3fa4cb80284ad1f03ff6, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: da7885cf5b0df734aadfa8e2c8420e01, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: a495707967c83f248a85a587182d85cf, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: 4879137dd4c125c4baa920c516fc8f74, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: de6789e1f46639e408684f29286fdd76, type: 2}
-  - m_OriginalClip: {fileID: 7400000, guid: 48bfb36556da83d468b9e9e4530d8449, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: ed144815b643c2243a812f8c412edd71, type: 2}
-  - m_OriginalClip: {fileID: 7400000, guid: ac786bbc942f6ae4d85726ce9159fb32, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: e010d3da3e7dc38479308bd0fed1cecd, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 2d94e0549d798144ea1b078a72bcc793, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: 316f99f977691e54aa188bbc39dfe881, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: c188cdfa05d4b8b4bacf75b6a80c7169, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: cea19f3c1412a3a409341dec441d18cd, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 48bfb36556da83d468b9e9e4530d8449, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 4e9c1197680baa64c9c90eb5f33cb4f4, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: ac786bbc942f6ae4d85726ce9159fb32, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 6ed3ed205abd9e84c948e9b5cadc30ce, type: 2}
