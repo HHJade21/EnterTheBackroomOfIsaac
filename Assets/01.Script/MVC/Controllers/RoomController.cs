@@ -16,6 +16,7 @@ public class RoomController : MonoBehaviour
     
     [Header("Room Settings")]
     public GameObject[] doors; // Room의 자식 Door 오브젝트
+    public GameObject[] corridors; // 복도가 뻗어나갈 위치를 표시해둔 임시 복도 오브젝트
     [ArrayLabel("ULRD", "LRD", "ULD", "LD", "ULR", "LR", "UL", "L", "URD", "RD", "UD", "D", "UR", "R", "U")]
     public Sprite[] wallSprites = new Sprite[15];
     [ArrayLabel("ULRD", "LRD", "ULD", "LD", "ULR", "LR", "UL", "L", "URD", "RD", "UD", "D", "UR", "R", "U")]
@@ -230,21 +231,31 @@ public class RoomController : MonoBehaviour
 
     public void UpdateRoomSprites(){
         int doorState = 0;
+        List<GameObject> activeDoors = new List<GameObject>();
         
         foreach(var door in doors){
             if(door == null) continue;
             
-            SpriteRenderer doorRenderer = door.GetComponent<SpriteRenderer>();
+            SpriteRenderer doorRenderer = door.GetComponentInChildren<SpriteRenderer>();
             if(doorRenderer == null) continue;
             
             int sortingOrder = doorRenderer.sortingOrder;
             
             // 1:북, 2:동, 3:남, 4:서
             if(sortingOrder != -1 && sortingOrder >= 1 && sortingOrder <= 4){
+                door.SetActive(true);
+                doorRenderer.enabled = false; // 이미 가져온 doorRenderer 재사용
+                corridors[sortingOrder-1].SetActive(false);
                 int bitIndex = sortingOrder - 1;
                 doorState |= (1 << bitIndex);
             }
+            else{
+                // 복도가 뚫린 쪽의 문만 activeDoors에 추가
+                activeDoors.Add(door);
+            }
         }
+        
+        doors = activeDoors.ToArray();
         
         // 스프라이트 변경
         if(wallSpriteRenderer != null && doorState < wallSprites.Length && wallSprites[doorState] != null){
