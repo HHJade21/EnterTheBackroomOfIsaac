@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5c2ffc20f309ae54abb7b816cf5226a4
+guid: ec0b90145da246445a6bd68deeb93770
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -75,7 +75,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 250
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -128,7 +128,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 84
-        y: 692
+        y: 812
         width: 177
         height: 149
       alignment: 0
@@ -150,7 +150,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 460
-        y: 660
+        y: 780
         width: 168
         height: 146
       alignment: 0
@@ -172,7 +172,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 802
-        y: 668
+        y: 788
         width: 168
         height: 147
       alignment: 0
@@ -194,7 +194,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 100
-        y: 360
+        y: 440
         width: 168
         height: 147
       alignment: 0
@@ -216,7 +216,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 450
-        y: 360
+        y: 440
         width: 168
         height: 147
       alignment: 0
@@ -238,7 +238,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 800
-        y: 360
+        y: 440
         width: 168
         height: 147
       alignment: 0
@@ -260,7 +260,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 100
-        y: 50
+        y: 90
         width: 168
         height: 147
       alignment: 0
@@ -282,7 +282,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 434
-        y: 70
+        y: 110
         width: 177
         height: 153
       alignment: 0
@@ -304,7 +304,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 784
-        y: 57
+        y: 97
         width: 177
         height: 149
       alignment: 0

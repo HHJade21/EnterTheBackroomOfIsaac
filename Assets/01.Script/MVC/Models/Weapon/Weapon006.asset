@@ -16,7 +16,8 @@ MonoBehaviour:
   weaponName: "\uC120\uC778\uC7A5"
   description: "\uC801\uC5D0\uAC8C \uB79C\uB364\uD55C \uAC1C\uC218\uC758 \uAC00\uC2DC\uB97C
     \uBC1C\uC0AC\uD569\uB2C8\uB2E4."
-  icon: {fileID: -8561114005086872862, guid: a61aeb949a8d1aa4db02d26344af74d3, type: 3}
+  icon: {fileID: -6883478688915513063, guid: febc7ae1fbc6c844faf4864a1b9c57ad, type: 3}
+  animatorController: {fileID: 9100000, guid: 5914a4fe2b412a042a8396d27e5ddd5b, type: 2}
   element: 3
   weaponType: 2
   autoFire: 0

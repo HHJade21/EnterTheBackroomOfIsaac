@@ -16,9 +16,11 @@ MonoBehaviour:
   weaponName: "\uB9AC\uBCFC\uBC84"
   description: "\uAE30\uBCF8\uD615 \uBB34\uAE30"
   icon: {fileID: 7297654715872928862, guid: c6ff4055eb5f2e84faf381c5bce7f791, type: 3}
+  animatorController: {fileID: 9100000, guid: 92595332e78f5194faec07994c819757, type: 2}
   element: 0
   weaponType: 1
-  projectilePrefab: {fileID: 2599106515927395768, guid: 92cd18ab095186246a4340542d3d12cd, type: 3}
+  autoFire: 0
+  projectilePrefab: {fileID: 2599106515927395768, guid: df53bd18d2e843c41b6d6972f785f1f7, type: 3}
   projectileSpeed: 14
   projectileLifetime: 1.5
   baseDamage: 5
@@ -26,5 +28,6 @@ MonoBehaviour:
   magazineSize: 10
   reloadTime: 0.8
   fireSound: {fileID: 8300000, guid: 75adfe9a619833445a701305b983e548, type: 3}
+  reloadSound: {fileID: 0}
   fireEffect: {fileID: 0}
   swapSkillData: {fileID: 0}

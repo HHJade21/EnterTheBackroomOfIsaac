@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a748ec15d21939b4b958c679d0f03fbd, type: 3}
   m_Name: Bullet_Magic
   m_EditorClassIdentifier: Assembly-CSharp::BulletData
-  weaponElement: 0
+  weaponElement: 3
   damage: 1

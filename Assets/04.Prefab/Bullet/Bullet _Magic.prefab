@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -82,7 +82,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -5362673617081455618, guid: 354fadca4e2039749a84019515e69862, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -90,7 +90,7 @@ SpriteRenderer:
   m_Size: {x: 0.875, y: 0.875}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!50 &6076573477073753487
@@ -170,13 +170,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Bullet_Magic
   bulletData: {fileID: 11400000, guid: 470356360bda6584c88bdb73f9f759d9, type: 2}
   variants:
-  - sprite: {fileID: -5362673617081455618, guid: 354fadca4e2039749a84019515e69862, type: 3}
+  - sprite: {fileID: 3416800548803149068, guid: 3b5fad07796fe3948944a22e6fcaaf8c, type: 3}
     animatorController: {fileID: 0}
     damage: 1
-  - sprite: {fileID: -2795022231004690648, guid: 34201929c3c334044b9ab1c60bd4cb25, type: 3}
+    scale: 0
+  - sprite: {fileID: 1269860526340080293, guid: 949c3d42d6d034a4c9ef92d481c80342, type: 3}
     animatorController: {fileID: 0}
     damage: 3
-  - sprite: {fileID: -6719483062916065013, guid: c8fd80d13a56ede498f78b9c54443206, type: 3}
+    scale: 0
+  - sprite: {fileID: -5207986089364573992, guid: 5a4f3988241b2b847a22ae08fcc4d94c, type: 3}
     animatorController: {fileID: 0}
     damage: 10
+    scale: 0
+  - sprite: {fileID: 2378217483689072248, guid: 8566cfc96337b064c8c0c985fb88849a, type: 3}
+    animatorController: {fileID: 0}
+    damage: 10
+    scale: 0
   tmpIdxMax: 2

@@ -27,6 +27,8 @@ public class WeaponData : ScriptableObject
     public string weaponName = "Weapon";   // UI 및 디버깅 표시 이름
     public string description = "Description";   // UI 및 디버깅 표시 설명
     public Sprite icon;                    // UI 아이콘
+    [Tooltip("무기 아이콘에 사용할 애니메이터 컨트롤러 (선택사항)")]
+    public RuntimeAnimatorController animatorController;  // 무기 아이콘 애니메이터
     public WeaponElement element = WeaponElement.Cyan; // 무기 속성
     public WeaponType weaponType = WeaponType.Fire;   // 무기 타입
     public bool autoFire = false; // 자동 발사 여부

@@ -174,16 +174,17 @@ public class WeaponController : MonoBehaviour
         int itemID = RandomWeapon();
         return itemID;
     }
-    public void SpawnNewWeapon(int itemID)
+    public void SpawnNewWeapon(int itemID, Vector3? spawnPosition = null)
     {
-        GameObject newWeapon = Instantiate(weaponPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        Vector3 position = spawnPosition ?? new Vector3(0, 0, 0);
+        GameObject newWeapon = Instantiate(weaponPrefab, position, Quaternion.identity);
         newWeapon.GetComponent<SpriteRenderer>().sprite = allWeapons[itemID].icon;
         newWeapon.GetComponent<newWeapon>().itemID = itemID;
         droppedWeapons[itemID] = true;
     }
-    public void DevTool_DropNewWeapon(){
+    public void DevTool_DropNewWeapon(Vector3? spawnPosition = null){
         int newID = SelectNewWeapon();
-        SpawnNewWeapon(newID);
+        SpawnNewWeapon(newID, spawnPosition);
     }
 
     /// <summary>
@@ -391,6 +392,20 @@ public class WeaponController : MonoBehaviour
     {
         if (currentWeapon == null) return;
 
+        // 무기 아이콘 애니메이터에 Attack 애니메이션 강제 재생 (AutoFire 무기가 아닌 경우에만)
+        if (!currentWeapon.autoFire && currentWeapon.animatorController != null && weaponIconRenderer != null)
+        {
+            Animator weaponAnimator = weaponIconRenderer.GetComponent<Animator>();
+            if (weaponAnimator != null)
+            {
+                // Play()를 사용하여 현재 애니메이션을 중단하고 Attack 애니메이션을 처음부터 강제 재생
+                weaponAnimator.Play("Attack", 0, 0f);
+                
+                // meleeAttackDuration 후 Idle로 돌아가도록 코루틴 시작
+                StartCoroutine(ResetWeaponAnimatorToIdle(weaponAnimator, meleeAttackDuration));
+            }
+        }
+
         // Collider 활성화
         if (meleeAttackCollider != null)
         {
@@ -455,6 +470,20 @@ public class WeaponController : MonoBehaviour
         if (currentWeapon == null) return;
         if (currentWeapon.projectilePrefab == null) return;
 
+        // 무기 아이콘 애니메이터에 Attack 애니메이션 강제 재생 (AutoFire 무기가 아닌 경우에만)
+        if (!currentWeapon.autoFire && currentWeapon.animatorController != null && weaponIconRenderer != null)
+        {
+            Animator weaponAnimator = weaponIconRenderer.GetComponent<Animator>();
+            if (weaponAnimator != null)
+            {
+                // Play()를 사용하여 현재 애니메이션을 중단하고 Attack 애니메이션을 처음부터 강제 재생
+                weaponAnimator.Play("Attack", 0, 0f);
+                
+                // lifetime 후 Idle로 돌아가도록 코루틴 시작
+                StartCoroutine(ResetWeaponAnimatorToIdle(weaponAnimator, currentWeapon.projectileLifetime));
+            }
+        }
+        
         dir = dir.normalized;
         GameObject projectile = Instantiate(currentWeapon.projectilePrefab, startPoint.position, startPoint.rotation);
         projectile.transform.up = dir;
@@ -467,6 +496,22 @@ public class WeaponController : MonoBehaviour
 
         Destroy(projectile, currentWeapon.projectileLifetime);
     }
+    
+    /// <summary>
+    /// 무기 애니메이터를 Idle 상태로 리셋하는 코루틴: projectileLifetime 후에 실행됩니다.
+    /// </summary>
+    /// <param name="animator">리셋할 Animator</param>
+    /// <param name="lifetime">대기 시간 (초)</param>
+    private IEnumerator ResetWeaponAnimatorToIdle(Animator animator, float lifetime)
+    {
+        yield return new WaitForSeconds(lifetime);
+        
+        // Attack 트리거를 리셋 (다음 공격을 위해)
+        if (animator != null)
+        {
+            animator.ResetTrigger("Attack");
+        }
+    }
 
     /// <summary>
     /// 산탄 공격 메소드: multiBulletCount만큼의 투사체를 multiBulletSpread 각도로 분산 발사합니다.
@@ -477,6 +522,20 @@ public class WeaponController : MonoBehaviour
     {
         if (currentWeapon == null) return;
         if (currentWeapon.projectilePrefab == null) return;
+
+        // 무기 아이콘 애니메이터에 Attack 애니메이션 강제 재생 (AutoFire 무기가 아닌 경우에만)
+        if (!currentWeapon.autoFire && currentWeapon.animatorController != null && weaponIconRenderer != null)
+        {
+            Animator weaponAnimator = weaponIconRenderer.GetComponent<Animator>();
+            if (weaponAnimator != null)
+            {
+                // Play()를 사용하여 현재 애니메이션을 중단하고 Attack 애니메이션을 처음부터 강제 재생
+                weaponAnimator.Play("Attack", 0, 0f);
+                
+                // lifetime 후 Idle로 돌아가도록 코루틴 시작
+                StartCoroutine(ResetWeaponAnimatorToIdle(weaponAnimator, currentWeapon.projectileLifetime));
+            }
+        }
 
         dir = dir.normalized;
         
@@ -1058,7 +1117,12 @@ public class WeaponController : MonoBehaviour
         if (weaponIconTransform != null)
         {
             weaponIconRenderer = weaponIconTransform.GetComponent<SpriteRenderer>();
-            if (weaponIconRenderer != null) return;
+            if (weaponIconRenderer != null)
+            {
+                // Animator 컴포넌트 확인 및 추가
+                EnsureWeaponIconAnimator(weaponIconRenderer.gameObject);
+                return;
+            }
         }
 
         // 전체 하이어라키에서 "WeaponIcon" 이름으로 찾기 (같은 부모 기준)
@@ -1068,6 +1132,8 @@ public class WeaponController : MonoBehaviour
             if (renderer.gameObject.name == "WeaponIcon")
             {
                 weaponIconRenderer = renderer;
+                // Animator 컴포넌트 확인 및 추가
+                EnsureWeaponIconAnimator(weaponIconRenderer.gameObject);
                 return;
             }
         }
@@ -1080,10 +1146,28 @@ public class WeaponController : MonoBehaviour
         
         // Sorting Layer 설정 (플레이어보다 앞에 표시되도록)
         weaponIconRenderer.sortingOrder = 10;
+        
+        // Animator 컴포넌트도 추가 (애니메이션 사용 가능하도록)
+        EnsureWeaponIconAnimator(weaponIconObj);
+    }
+    
+    /// <summary>
+    /// 무기 아이콘에 Animator 컴포넌트가 있는지 확인하고 없으면 추가하는 헬퍼 메소드
+    /// </summary>
+    /// <param name="weaponIconObj">무기 아이콘 GameObject</param>
+    private void EnsureWeaponIconAnimator(GameObject weaponIconObj)
+    {
+        if (weaponIconObj == null) return;
+        
+        // Animator 컴포넌트가 없으면 추가
+        if (weaponIconObj.GetComponent<Animator>() == null)
+        {
+            weaponIconObj.AddComponent<Animator>();
+        }
     }
 
     /// <summary>
-    /// 무기 아이콘 스프라이트 업데이트 메소드: 현재 무기의 아이콘을 표시합니다.
+    /// 무기 아이콘 스프라이트 및 애니메이터 업데이트 메소드: 현재 무기의 아이콘과 애니메이터를 표시합니다.
     /// </summary>
     public void UpdateWeaponIconSprite()
     {
@@ -1095,16 +1179,31 @@ public class WeaponController : MonoBehaviour
 
         if (weaponIconRenderer == null) return;
 
+        // Animator 컴포넌트 가져오기 (한 번만 선언)
+        Animator animator = weaponIconRenderer.GetComponent<Animator>();
+
         if (currentWeapon == null)
         {
             weaponIconRenderer.sprite = null;
             weaponIconRenderer.enabled = false;
+            
+            // 애니메이터도 비활성화
+            if (animator != null)
+            {
+                animator.runtimeAnimatorController = null;
+            }
             return;
         }
 
         // currentWeapon.icon을 weaponIconRenderer.sprite에 설정
         weaponIconRenderer.sprite = currentWeapon.icon;
         weaponIconRenderer.enabled = weaponIconRenderer.sprite != null;
+        
+        // 애니메이터 컨트롤러 업데이트
+        if (animator != null)
+        {
+            animator.runtimeAnimatorController = currentWeapon.animatorController;
+        }
     }
 
     /// <summary>
