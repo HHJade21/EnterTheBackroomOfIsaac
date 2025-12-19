@@ -20,7 +20,7 @@ MonoBehaviour:
   element: 0
   weaponType: 1
   autoFire: 0
-  projectilePrefab: {fileID: 2599106515927395768, guid: 92cd18ab095186246a4340542d3d12cd, type: 3}
+  projectilePrefab: {fileID: 2599106515927395768, guid: df53bd18d2e843c41b6d6972f785f1f7, type: 3}
   projectileSpeed: 14
   projectileLifetime: 1.5
   baseDamage: 5

@@ -28,7 +28,7 @@ public class Bullet_Magic : BulletController
     [SerializeField] private List<VariantData> variants = new List<VariantData>();
     
     [Tooltip("변형 인덱스 최대값 (0부터 시작, variants.Count - 1까지)")]
-    [SerializeField] private int tmpIdxMax = 2;
+    [SerializeField] private int tmpIdxMax = 3;
     
     // [Header("Scale Settings")]
     // [Tooltip("스프라이트 전역 스케일 (1.0 = 기본 크기, 2.0 = 2배 크기). 변형별 스케일이 0이면 이 값을 사용")]
@@ -59,18 +59,22 @@ public class Bullet_Magic : BulletController
         int maxIndex = Mathf.Min(tmpIdxMax, variants.Count - 1);
         
         // 랜덤 인덱스 선택 (0부터 maxIndex까지)
-        tmpIdx = Random.Range(0, 3*maxIndex + 1);
-        if(tmpIdx < 3*maxIndex/2)
+        tmpIdx = Random.Range(0, 10);
+        if(tmpIdx < 4)
         {
             tmpIdx = 0;
         }
-        else if(tmpIdx <3*maxIndex)
+        else if(tmpIdx <7)
         {
             tmpIdx = 1;
         }
-        else
+        else if(tmpIdx < 9)
         {
             tmpIdx = 2;
+        }
+        else
+        {
+            tmpIdx = 3;
         }
         
         // 선택된 변형 데이터 적용
