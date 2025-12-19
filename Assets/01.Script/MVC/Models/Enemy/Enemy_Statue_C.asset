@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b5cbaea95d551240b909b19b11c7847, type: 3}
-  m_Name: Enemy_Ranged_C
+  m_Name: Enemy_Statue_C
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   enemyName: Enemy_Test
-  enemyCategory: Normal
+  enemyCategory: Statue
   maxHp: 10
-  moveSpeed: 2
+  moveSpeed: 5
   contactDamage: 1
   attackCooldown: 1.5
   isRanged: 1

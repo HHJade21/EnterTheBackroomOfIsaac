@@ -9887,11 +9887,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DungeonController
   enemyPrefabC:
+  - {fileID: 5312735757910337222, guid: 20c5addc46943f24ba11532e9fc21b27, type: 3}
   - {fileID: 5312735757910337222, guid: d6614cd0c5c402445b5d209f5eb7f851, type: 3}
   enemyPrefabM:
   - {fileID: 5312735757910337222, guid: 8293e3c360584654db5754c96cf67db0, type: 3}
+  - {fileID: 5312735757910337222, guid: 16ff88e82bb787d43877dc7f73bb613c, type: 3}
   enemyPrefabY:
   - {fileID: 5312735757910337222, guid: dfcd98ac3964a914eb8fe2412b92b232, type: 3}
+  - {fileID: 5312735757910337222, guid: ffd7159b83e86ae4ca7ca0f5c9840d5f, type: 3}
   enemyPrefabK: []
   corridorParent: {fileID: 1249429034}
   corridorPrefab:

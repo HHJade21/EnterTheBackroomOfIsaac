@@ -83,7 +83,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -1452585537097591116, guid: 69ff78db85c385e43a0cac6b15ae7078, type: 3}
+  m_Sprite: {fileID: 7086467874445851592, guid: b9528a82132a0fe4dae2168190171b66, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -104,7 +104,7 @@ Animator:
   m_GameObject: {fileID: 5312735757910337222}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: 1a93323dd145803408610702d37a9f76, type: 2}
+  m_Controller: {fileID: 22100000, guid: 453c8f6f2e3d2184d968103808f88d06, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -177,9 +177,9 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -0.16}
-  m_Size: {x: 3.5, y: 0.92}
-  m_Direction: 1
+  m_Offset: {x: 0, y: -0.1}
+  m_Size: {x: 2.6, y: 5.5}
+  m_Direction: 0
 --- !u!114 &6256844290080687304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,8 +192,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7919ddbeb1b1da439ff8c6af2d2e3ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
-  enemyData: {fileID: 11400000, guid: a7866aec76fd8a74ba6ce7586783eb8c, type: 2}
+  enemyData: {fileID: 11400000, guid: 96dca23ebc0cb044ca6fe1f488ae06f4, type: 2}
   target: {fileID: 0}
   currentHp: 0
-  pushBackSpeed: 0.3
+  pushBackSpeed: 0.1
   roomController: {fileID: 0}

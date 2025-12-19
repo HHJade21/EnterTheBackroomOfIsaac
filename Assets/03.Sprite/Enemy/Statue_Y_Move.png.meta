@@ -1,34 +1,34 @@
 fileFormatVersion: 2
-guid: 7c7ae3e4c8f7b6d4fa4ea0bc9d124cec
+guid: b9528a82132a0fe4dae2168190171b66
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7219803942226845405
-    second: Status_C.Move_0
+      213: 7086467874445851592
+    second: Statue_Y_Move_0
   - first:
-      213: 7454482404488256702
-    second: Status_C.Move_1
+      213: 1013885211370286726
+    second: Statue_Y_Move_1
   - first:
-      213: -3302923061566024677
-    second: Status_C.Move_2
+      213: 2011899047021997082
+    second: Statue_Y_Move_2
   - first:
-      213: -499558091813449263
-    second: Status_C.Move_3
+      213: -2591870622858884312
+    second: Statue_Y_Move_3
   - first:
-      213: -6395022591416740256
-    second: Status_C.Move_4
+      213: -4491619270728102843
+    second: Statue_Y_Move_4
   - first:
-      213: 4686356848252720418
-    second: Status_C.Move_5
+      213: -2956429177331817450
+    second: Statue_Y_Move_5
   - first:
-      213: 3329012096515673663
-    second: Status_C.Move_6
+      213: -7507803127706856924
+    second: Statue_Y_Move_6
   - first:
-      213: -3060731990539033935
-    second: Status_C.Move_7
+      213: 4771134720509286519
+    second: Statue_Y_Move_7
   - first:
-      213: -3977586965125676949
-    second: Status_C.Move_8
+      213: 3127712648857090595
+    second: Statue_Y_Move_8
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,7 +96,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -120,203 +120,216 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Status_C.Move_0
+      name: Statue_Y_Move_0
       rect:
         serializedVersion: 2
         x: 0
         y: 1200
         width: 512
         height: 600
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.53, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 321aa93119a1ecb90800000000000000
-      internalID: -7219803942226845405
+      spriteID: 8cbff807cf0385260800000000000000
+      internalID: 7086467874445851592
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Status_C.Move_1
+      name: Statue_Y_Move_1
       rect:
         serializedVersion: 2
         x: 512
         y: 1200
         width: 512
         height: 600
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.53, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ebc1ce75044a37760800000000000000
-      internalID: 7454482404488256702
+      spriteID: 68e6fba5a3b021e00800000000000000
+      internalID: 1013885211370286726
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Status_C.Move_2
+      name: Statue_Y_Move_2
       rect:
         serializedVersion: 2
         x: 1024
         y: 1200
         width: 512
         height: 600
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.53, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b1459e2a9f8a922d0800000000000000
-      internalID: -3302923061566024677
+      spriteID: a1c61b51683bbeb10800000000000000
+      internalID: 2011899047021997082
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Status_C.Move_3
+      name: Statue_Y_Move_3
       rect:
         serializedVersion: 2
         x: 0
         y: 600
         width: 512
         height: 600
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.53, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1d199c0ff863119f0800000000000000
-      internalID: -499558091813449263
+      spriteID: 82bc9bc9663d70cd0800000000000000
+      internalID: -2591870622858884312
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Status_C.Move_4
+      name: Statue_Y_Move_4
       rect:
         serializedVersion: 2
         x: 512
         y: 600
         width: 512
         height: 600
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.53, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 066d10cd5d05047a0800000000000000
-      internalID: -6395022591416740256
+      spriteID: 54cc3f522109aa1c0800000000000000
+      internalID: -4491619270728102843
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Status_C.Move_5
+      name: Statue_Y_Move_5
       rect:
         serializedVersion: 2
         x: 1024
         y: 600
         width: 512
         height: 600
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.53, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 22592de59b8490140800000000000000
-      internalID: 4686356848252720418
+      spriteID: 6146989b357a8f6d0800000000000000
+      internalID: -2956429177331817450
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Status_C.Move_6
+      name: Statue_Y_Move_6
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 512
         height: 600
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.53, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f3e8bc92dd6033e20800000000000000
-      internalID: 3329012096515673663
+      spriteID: 422577955dceec790800000000000000
+      internalID: -7507803127706856924
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Status_C.Move_7
+      name: Statue_Y_Move_7
       rect:
         serializedVersion: 2
         x: 512
         y: 0
         width: 512
         height: 600
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.53, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1b22f3798781685d0800000000000000
-      internalID: -3060731990539033935
+      spriteID: 7781d7fefb9763240800000000000000
+      internalID: 4771134720509286519
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Status_C.Move_8
+      name: Statue_Y_Move_8
       rect:
         serializedVersion: 2
         x: 1024
         y: 0
         width: 512
         height: 600
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.53, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b60c578bab5ccc8c0800000000000000
-      internalID: -3977586965125676949
+      spriteID: 32a7f92351ed76b20800000000000000
+      internalID: 3127712648857090595
       vertices: []
       indices: 
       edges: []
@@ -325,7 +338,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: eafd5d446925e3a4aa6eb72754bc2c7a
+    spriteID: 7aacb0a84641eac4f809f455100c8a3c
     internalID: 0
     vertices: []
     indices: 
@@ -335,17 +348,17 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":3.0,"y":3.0},"gridSpriteSize":{"x":512.0,"y":600.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":3.0,"y":3.0},"gridSpriteSize":{"x":512.0,"y":600.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5299999713897705,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":9,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Status_C.Move_0: -7219803942226845405
-      Status_C.Move_1: 7454482404488256702
-      Status_C.Move_2: -3302923061566024677
-      Status_C.Move_3: -499558091813449263
-      Status_C.Move_4: -6395022591416740256
-      Status_C.Move_5: 4686356848252720418
-      Status_C.Move_6: 3329012096515673663
-      Status_C.Move_7: -3060731990539033935
-      Status_C.Move_8: -3977586965125676949
+      Statue_Y_Move_0: 7086467874445851592
+      Statue_Y_Move_1: 1013885211370286726
+      Statue_Y_Move_2: 2011899047021997082
+      Statue_Y_Move_3: -2591870622858884312
+      Statue_Y_Move_4: -4491619270728102843
+      Statue_Y_Move_5: -2956429177331817450
+      Statue_Y_Move_6: -7507803127706856924
+      Statue_Y_Move_7: 4771134720509286519
+      Statue_Y_Move_8: 3127712648857090595
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
