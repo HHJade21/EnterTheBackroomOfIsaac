@@ -92,11 +92,14 @@ public class DungeonController : MonoBehaviour
         startRoom.GetComponent<RoomController>().roomDepth = 0;
         startRoom.GetComponent<RoomController>().dungeonController = this;
         rooms.Add(startRoom);
-        while(rooms.Count < minRooms){
+        for(int i=0; rooms.Count < minRooms && i < 100; i++){ // 혹시나 무한반복 걸릴까봐 100회까지만 시도.
             // ToList()로 복사본 만들어서 순회 (foreach 중 리스트 수정 가능)
             foreach(var room in rooms.ToList()){
                 SpreadRoom(room);
             }
+        }
+        foreach(var room in rooms){
+            room.GetComponent<RoomController>().UpdateRoomSprites();
         }
     }
 

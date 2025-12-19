@@ -11,9 +11,28 @@ public class RoomController : MonoBehaviour
     public CMYKColor roomColor;
 
     public int roomDepth = 0;
+
     
-    [Header("Door Settings")]
+    
+    [Header("Room Settings")]
     public GameObject[] doors; // Room의 자식 Door 오브젝트
+    [ArrayLabel("ULRD", "LRD", "ULD", "LD", "ULR", "LR", "UL", "L", "URD", "RD", "UD", "D", "UR", "R", "U")]
+    public Sprite[] wallSprites = new Sprite[15];
+    [ArrayLabel("ULRD", "LRD", "ULD", "LD", "ULR", "LR", "UL", "L", "URD", "RD", "UD", "D", "UR", "R", "U")]
+    public Sprite[] floorSprites = new Sprite[15];
+    [ArrayLabel("ULRD", "LRD", "ULD", "LD", "ULR", "LR", "UL", "L", "URD", "RD", "UD", "D", "UR", "R", "U")]
+    public Sprite[] borderSprites = new Sprite[15];
+
+    private SpriteRenderer wallSpriteRenderer;
+    private SpriteRenderer floorSpriteRenderer;
+    private SpriteRenderer borderSpriteRenderer;
+
+    private void Awake()
+    {
+        wallSpriteRenderer = transform.Find("Wall").GetComponentInChildren<SpriteRenderer>();
+        floorSpriteRenderer = transform.Find("Floor").GetComponentInChildren<SpriteRenderer>();
+        borderSpriteRenderer = transform.Find("Border").GetComponentInChildren<SpriteRenderer>();
+    }
 
     [Header("Dungeon Controller")]
     public DungeonController dungeonController;
@@ -206,6 +225,36 @@ public class RoomController : MonoBehaviour
             {
                 Debug.LogWarning("RoomController: 플레이어를 찾을 수 없습니다. 인스펙터에서 수동으로 할당해주세요.");
             }
+        }
+    }
+
+    public void UpdateRoomSprites(){
+        int doorState = 0;
+        
+        foreach(var door in doors){
+            if(door == null) continue;
+            
+            SpriteRenderer doorRenderer = door.GetComponent<SpriteRenderer>();
+            if(doorRenderer == null) continue;
+            
+            int sortingOrder = doorRenderer.sortingOrder;
+            
+            // 1:북, 2:동, 3:남, 4:서
+            if(sortingOrder != -1 && sortingOrder >= 1 && sortingOrder <= 4){
+                int bitIndex = sortingOrder - 1;
+                doorState |= (1 << bitIndex);
+            }
+        }
+        
+        // 스프라이트 변경
+        if(wallSpriteRenderer != null && doorState < wallSprites.Length && wallSprites[doorState] != null){
+            wallSpriteRenderer.sprite = wallSprites[doorState];
+        }
+        if(floorSpriteRenderer != null && doorState < floorSprites.Length && floorSprites[doorState] != null){
+            floorSpriteRenderer.sprite = floorSprites[doorState];
+        }
+        if(borderSpriteRenderer != null && doorState < borderSprites.Length && borderSprites[doorState] != null){
+            borderSpriteRenderer.sprite = borderSprites[doorState];
         }
     }
 
