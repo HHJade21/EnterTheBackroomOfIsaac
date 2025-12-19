@@ -311,16 +311,36 @@ public class PlayerController : MonoBehaviour
                 // 마우스를 누르기 시작: 자동 발사 코루틴 시작
                 if (autoFireCoroutine == null)
                 {
+                    // 무기 아이콘 애니메이터에 Attacking = true 설정 (Attack 애니메이션 루프 재생)
+                    if (weaponController.CurrentWeapon.animatorController != null && weaponController.weaponIconRenderer != null)
+                    {
+                        Animator weaponAnimator = weaponController.weaponIconRenderer.GetComponent<Animator>();
+                        if (weaponAnimator != null)
+                        {
+                            weaponAnimator.SetBool("Attacking", true);
+                        }
+                    }
+                    
                     autoFireCoroutine = StartCoroutine(AutoFireRoutine());
                 }
             }
             else if (context.canceled)
             {
-                // 마우스를 떼는 순간: 자동 발사 코루틴 중지
+                // 마우스를 떼는 순간: 자동 발사 코루틴 중지 및 Attacking = false 설정
                 if (autoFireCoroutine != null)
                 {
                     StopCoroutine(autoFireCoroutine);
                     autoFireCoroutine = null;
+                }
+                
+                // 무기 아이콘 애니메이터에 Attacking = false 설정 (Idle로 복귀)
+                if (weaponController.CurrentWeapon != null && weaponController.CurrentWeapon.animatorController != null && weaponController.weaponIconRenderer != null)
+                {
+                    Animator weaponAnimator = weaponController.weaponIconRenderer.GetComponent<Animator>();
+                    if (weaponAnimator != null)
+                    {
+                        weaponAnimator.SetBool("Attacking", false);
+                    }
                 }
             }
             return;

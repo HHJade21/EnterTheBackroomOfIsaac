@@ -16,6 +16,7 @@ MonoBehaviour:
   weaponName: "\uC694\uC220\uBD09"
   description: "\uB79C\uB364\uD55C \uD22C\uC0AC\uCCB4\uB97C \uC18C\uD658\uD574 \uBC1C\uC0AC\uD569\uB2C8\uB2E4."
   icon: {fileID: -9015736442291220469, guid: 19a56d78510405849a8e7c458c5ff130, type: 3}
+  animatorController: {fileID: 9100000, guid: c53deeec833f6494a9f83f1ed7cc381e, type: 2}
   element: 3
   weaponType: 1
   autoFire: 0
