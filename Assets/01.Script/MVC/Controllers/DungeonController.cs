@@ -178,7 +178,7 @@ public class DungeonController : MonoBehaviour
         }
         else{
             foreach(var corridor in corridorList){
-                //Destroy(corridor);
+                Destroy(corridor);
             }
         }
         return;

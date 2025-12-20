@@ -7117,7 +7117,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 3.5771427
+  orthographic size: 5.4
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -7426,8 +7426,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uB300\uCDA9 \uD604\uC7AC \uD0C4\uD658\uC774\uB791 \uCD5C\uB300 \uD0C4\uD658
-    \uAC1C\uC218\n"
+  m_text: "(\uD0C4\uCC3D\uC790\uB9AC\uC5D0 \uBA54\uBAA8\uC880\uD568\u314B\u314B)\n\uC138\uB85C1.2
+    \uAC00\uB85C2.06"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 789e34b2c64594d4b9b0ad0b4d9ee042, type: 2}
   m_sharedMaterial: {fileID: 3304469257396106184, guid: 789e34b2c64594d4b9b0ad0b4d9ee042, type: 2}
@@ -10095,8 +10095,9 @@ MonoBehaviour:
   startRoomPrefab: {fileID: 6602394229092112616, guid: e2d9b983ae54e47468f4ced22b26f14d, type: 3}
   normalRoomPrefabs:
   - {fileID: 4185292659311260358, guid: 632a7f4df28f5df44b53f3f5b9e3ce15, type: 3}
+  - {fileID: 4185292659311260358, guid: 10c3223080a13964daea7795210fda65, type: 3}
   minRooms: 5
-  maxRooms: 7
+  maxRooms: 10
   rooms: []
   roomCollisionMargin: 0
   showCollisionBounds: 1
