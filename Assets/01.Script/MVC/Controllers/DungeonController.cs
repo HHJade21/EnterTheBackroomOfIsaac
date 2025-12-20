@@ -40,7 +40,7 @@ public class DungeonController : MonoBehaviour
     private List<(Bounds bounds, bool isColliding)> collisionBoundsToDraw = new List<(Bounds, bool)>();
     
     // 방향별 유효한 프리팹 리스트와 현재 인덱스 (1:북, 2:동, 3:남, 4:서)
-    private Dictionary<int, (List<GameObject> prefabs, int currentIndex)> prefabsQueueByDirection = 
+    private Dictionary<int, (List<GameObject>, int)> prefabsQueueByDirection = 
         new Dictionary<int, (List<GameObject>, int)>();
 
 

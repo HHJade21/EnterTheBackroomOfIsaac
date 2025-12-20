@@ -589,7 +589,11 @@ public class WeaponController : MonoBehaviour
     public void StartChargeDash(Vector2 dir, Transform startPoint)
     {
         if (isDashing || isCharging) return;
-        
+        Animator weaponAnimator = weaponIconRenderer.GetComponent<Animator>();
+        if (weaponAnimator != null)
+        {
+            weaponAnimator.SetBool("Attacking", true);
+        }
         isCharging = true;
         currentChargeTime = 0f;
         dashDirection = dir.normalized;
@@ -605,9 +609,16 @@ public class WeaponController : MonoBehaviour
         
         // 충전 시간 증가
         currentChargeTime += Time.deltaTime;
+        Animator weaponAnimator = weaponIconRenderer.GetComponent<Animator>();
         if (currentChargeTime > maxChargeTime)
         {
             currentChargeTime = maxChargeTime;
+            
+            // ChargeMax 파라미터가 false라면 true로 변경
+            if (weaponAnimator != null && !weaponAnimator.GetBool("ChargeMax"))
+            {
+                weaponAnimator.SetBool("ChargeMax", true);
+            }
         }
         
         // 방향 업데이트
@@ -630,6 +641,15 @@ public class WeaponController : MonoBehaviour
         if (chargeDashCoroutine != null)
         {
             StopCoroutine(chargeDashCoroutine);
+        }
+        Animator weaponAnimator = weaponIconRenderer.GetComponent<Animator>();
+        if (weaponAnimator != null && weaponAnimator.GetBool("ChargeMax"))
+        {
+            weaponAnimator.SetBool("ChargeMax", false);
+        }
+        if (weaponAnimator != null)
+        {
+            weaponAnimator.SetBool("Attacking", false);
         }
         chargeDashCoroutine = StartCoroutine(ChargeDashRoutine(startPoint));
     }

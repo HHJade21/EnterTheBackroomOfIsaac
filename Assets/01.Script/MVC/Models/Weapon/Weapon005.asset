@@ -16,7 +16,7 @@ MonoBehaviour:
   weaponName: "\uBD09\uC81C \uB9D0 \uC2A4\uD2F1"
   description: "\uD798\uC744 \uBAA8\uC544 \uC801\uC5D0\uAC8C \uB3CC\uC9C4\uD569\uB2C8\uB2E4."
   icon: {fileID: 3887229940549265285, guid: 71627cfe1cabf0e45921395a867e25dd, type: 3}
-  animatorController: {fileID: 0}
+  animatorController: {fileID: 9100000, guid: 1aec924ca2798b5429ea7752d9a6ffa4, type: 2}
   element: 2
   weaponType: 4
   autoFire: 0
@@ -29,5 +29,5 @@ MonoBehaviour:
   reloadTime: 0.8
   fireSound: {fileID: 0}
   reloadSound: {fileID: 0}
-  fireEffect: {fileID: -4059824784355127163, guid: 8ad621b9488af0c4aaacb2a4d47f3dbf, type: 3}
+  fireEffect: {fileID: 0}
   swapSkillData: {fileID: 0}
