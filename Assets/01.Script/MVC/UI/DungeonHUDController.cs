@@ -23,6 +23,8 @@ public class DungeonHUDController : MonoBehaviour
     public Image ammoBar;
     [Header("Weapon")]
     public Image weaponIcon;
+    [Header("Swap")]
+    public TextMeshProUGUI swapText;
     // [Update] Methods to refresh UI based on events
     void Update()
     {
@@ -41,6 +43,11 @@ public class DungeonHUDController : MonoBehaviour
                 {
                     ammoText.text = "∞\nammo";
                 }
+            }
+            
+            if (playerController != null && swapText != null)
+            {
+                swapText.text = $"Swap: {playerController.swapCount}\nCharge: {playerController.swapCharge:F1}/{playerController.swapChargeMax:F1}";
             }
         }
     }
