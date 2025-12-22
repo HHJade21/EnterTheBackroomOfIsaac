@@ -117,7 +117,7 @@ public class DungeonController : MonoBehaviour
             }
             
             SpriteRenderer doorRenderer = door.GetComponentInChildren<SpriteRenderer>();
-            if(doorRenderer == null || doorRenderer.sortingOrder == -1){
+            if(doorRenderer == null || doorRenderer.sortingOrder < 0){
                 continue;
             }
             
@@ -174,7 +174,7 @@ public class DungeonController : MonoBehaviour
             if(rooms.Count < maxRooms){
                 SpreadRoom(newRoom);
             }
-            doorRenderer.sortingOrder = -1;
+            doorRenderer.sortingOrder *= -1;
         }
         else{
             foreach(var corridor in corridorList){
@@ -244,7 +244,7 @@ public class DungeonController : MonoBehaviour
             if(connectedDoor != null){
                 SpriteRenderer newDoorRenderer = connectedDoor.GetComponentInChildren<SpriteRenderer>();
                 if(newDoorRenderer != null){
-                    newDoorRenderer.sortingOrder = -1;
+                    newDoorRenderer.sortingOrder *= -1;
                 }
             }
             

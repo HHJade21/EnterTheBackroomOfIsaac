@@ -12,11 +12,14 @@ public class RoomController : MonoBehaviour
 
     public int roomDepth = 0;
 
+    public bool isDifferentColliderThanDoor = false; // 마젠타 2번 방의 경우 문이 있는 경우와 없는 경우에 다른 콜라이더를 사용해야 함.
+
     
     
     [Header("Room Settings")]
-    public GameObject[] doors; // Room의 자식 Door 오브젝트
-    public GameObject[] corridors; // 복도가 뻗어나갈 위치를 표시해둔 임시 복도 오브젝트
+    public GameObject[] doors = new GameObject[4]; // Room의 자식 Door 오브젝트
+    public GameObject[] corridors = new GameObject[4]; // 복도가 뻗어나갈 위치를 표시해둔 임시 복도 오브젝트
+    public GameObject[] diffColliders = new GameObject[4];
     [ArrayLabel("ULRD", "LRD", "ULD", "LD", "ULR", "LR", "UL", "L", "URD", "RD", "UD", "D", "UR", "R", "U")]
     public Sprite[] wallSprites = new Sprite[15];
     [ArrayLabel("ULRD", "LRD", "ULD", "LD", "ULR", "LR", "UL", "L", "URD", "RD", "UD", "D", "UR", "R", "U")]
@@ -242,20 +245,28 @@ public class RoomController : MonoBehaviour
             int sortingOrder = doorRenderer.sortingOrder;
             
             // 1:북, 2:동, 3:남, 4:서
-            if(sortingOrder != -1 && sortingOrder >= 1 && sortingOrder <= 4){
-                door.SetActive(true);
-                doorRenderer.enabled = false; // 이미 가져온 doorRenderer 재사용
+            if(sortingOrder >= 1 && sortingOrder <= 4){
+                if(isDifferentColliderThanDoor){
+                    diffColliders[sortingOrder-1].SetActive(true);
+                    door.SetActive(false);
+                }
+                else{
+                    door.SetActive(true);
+                    doorRenderer.enabled = false;
+                }
                 corridors[sortingOrder-1].SetActive(false);
-                int bitIndex = sortingOrder - 1;
-                doorState |= (1 << bitIndex);
+                // 양수인 경우 비트마스킹에 포함하지 않음
             }
-            else{
-                // 복도가 뚫린 쪽의 문만 activeDoors에 추가
+            else if(sortingOrder <= -1 && sortingOrder >= -4){
+                // 음수인 경우(연결된 문)만 비트마스킹에 포함
+                int bitIndex = -sortingOrder - 1;
+                doorState |= (1 << bitIndex);
                 activeDoors.Add(door);
             }
         }
         
         doors = activeDoors.ToArray();
+        doorState = 15-doorState;
         
         // 스프라이트 변경
         if(wallSpriteRenderer != null && doorState < wallSprites.Length && wallSprites[doorState] != null){
