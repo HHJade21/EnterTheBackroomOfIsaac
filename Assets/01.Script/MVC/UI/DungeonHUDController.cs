@@ -33,7 +33,14 @@ public class DungeonHUDController : MonoBehaviour
             
             if (weaponController != null && ammoText != null)
             {
-                ammoText.text = weaponController.CurrentBulletCount + "/" + weaponController.MaxBulletCount + "\nammo";
+                if (weaponController.IsAmmoWeapon)
+                {
+                    ammoText.text = weaponController.CurrentBulletCount + "/" + weaponController.MaxBulletCount + "\nammo";
+                }
+                else
+                {
+                    ammoText.text = "∞\nammo";
+                }
             }
         }
     }

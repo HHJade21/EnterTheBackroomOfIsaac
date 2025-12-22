@@ -14,7 +14,7 @@ using TMPro;
 
 public class WeaponController : MonoBehaviour
 {
-    private const int allWeaponsCount = 17;//구현된 모든 무기 종류의 개수를 여기 표시
+    private const int allWeaponsCount = 8;//구현된 모든 무기 종류의 개수를 여기 표시
     private const int MaxWeapons = 2;//플레이어가 소지할 수 있는 최대 무기 개수
 
     [Header("Data")]
@@ -79,6 +79,7 @@ public class WeaponController : MonoBehaviour
     
     public float currentChargeFireTime = 0f;
     private bool isChargingFire = false;
+    private bool isAmmoWeapon = true;
     private Vector2 chargeFireDirection;
 
     public WeaponData CurrentWeapon => currentWeapon;
@@ -88,6 +89,7 @@ public class WeaponController : MonoBehaviour
     public bool IsReloading => isReloading;
     public int CurrentBulletCount => currentBulletCount;
     public int MaxBulletCount => maxBulletCount;
+    public bool IsAmmoWeapon => isAmmoWeapon;
 
     public WeaponSlotUIController weaponSlotUIController;
 
@@ -304,6 +306,7 @@ public class WeaponController : MonoBehaviour
         }
 
         currentWeapon = data;
+        isAmmoWeapon = currentWeapon != null ? currentWeapon.isAmmoWeapon : true;
         SyncWeaponStats(forceResetAmmo: true);
         UpdateWeaponIconSprite();
     }
@@ -984,9 +987,9 @@ public class WeaponController : MonoBehaviour
         // 무기 타입에 따른 공격 실행
         Attack(dir, startPoint);
 
-        // 발사 시간 기록 및 탄약 감소 (발사 타입만 탄약 소모)
+        // 발사 시간 기록 및 탄약 감소 (isAmmoWeapon이 true인 경우에만 탄약 소모)
         lastFireTime = Time.time;
-        if (currentWeapon != null && 
+        if (isAmmoWeapon && currentWeapon != null && 
             (currentWeapon.weaponType == WeaponData.WeaponType.Fire || 
              currentWeapon.weaponType == WeaponData.WeaponType.Multi))
         {
