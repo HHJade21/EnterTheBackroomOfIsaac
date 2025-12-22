@@ -247,14 +247,20 @@ public class RoomController : MonoBehaviour
             // 1:북, 2:동, 3:남, 4:서
             if(sortingOrder >= 1 && sortingOrder <= 4){
                 if(isDifferentColliderThanDoor){
-                    diffColliders[sortingOrder-1].SetActive(true);
+                    int colliderIndex = sortingOrder - 1;
+                    if(diffColliders != null && colliderIndex >= 0 && colliderIndex < diffColliders.Length && diffColliders[colliderIndex] != null){
+                        diffColliders[colliderIndex].SetActive(true);
+                    }
                     door.SetActive(false);
                 }
                 else{
                     door.SetActive(true);
                     doorRenderer.enabled = false;
                 }
-                corridors[sortingOrder-1].SetActive(false);
+                int corridorIndex = sortingOrder - 1;
+                if(corridors != null && corridorIndex >= 0 && corridorIndex < corridors.Length && corridors[corridorIndex] != null){
+                    corridors[corridorIndex].SetActive(false);
+                }
                 // 양수인 경우 비트마스킹에 포함하지 않음
             }
             else if(sortingOrder <= -1 && sortingOrder >= -4){

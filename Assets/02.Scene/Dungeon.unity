@@ -3947,8 +3947,8 @@ MonoBehaviour:
   currentWeapon: {fileID: 0}
   droppedWeapons: 
   temporaryWeapon: {fileID: 0}
-  maxBulletCount: 10
-  currentBulletCount: 10
+  maxBulletCount: 
+  currentBulletCount: 
   attackCooldown: 0.2
   reloadTime: 0.6
   multiBulletCount: 5
@@ -9907,6 +9907,7 @@ MonoBehaviour:
   normalRoomPrefabs:
   - {fileID: 4185292659311260358, guid: 632a7f4df28f5df44b53f3f5b9e3ce15, type: 3}
   - {fileID: 4185292659311260358, guid: 10c3223080a13964daea7795210fda65, type: 3}
+  bossRoomPrefab: {fileID: 4185292659311260358, guid: 0c43dfd2bef2ec8469c48c57a9ed2426, type: 3}
   minRooms: 5
   maxRooms: 10
   rooms: []

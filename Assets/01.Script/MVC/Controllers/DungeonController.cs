@@ -26,6 +26,7 @@ public class DungeonController : MonoBehaviour
     [Header("Room Prefab")]
     public GameObject startRoomPrefab;
     public GameObject[] normalRoomPrefabs;
+    public GameObject bossRoomPrefab;
 
     [Header("Rooms")]
     public int minRooms = 1;
@@ -43,6 +44,8 @@ public class DungeonController : MonoBehaviour
     private Dictionary<int, (List<GameObject>, int)> prefabsQueueByDirection = 
         new Dictionary<int, (List<GameObject>, int)>();
 
+    private Dictionary<int, List<GameObject>> roomByDepth = new Dictionary<int, List<GameObject>>();
+    private int maxDepth = 0;
 
     // [State] Track combat active/cleared flags
 
@@ -98,8 +101,33 @@ public class DungeonController : MonoBehaviour
                 SpreadRoom(room);
             }
         }
+        AttachBossRoom();
         foreach(var room in rooms){
             room.GetComponent<RoomController>().UpdateRoomSprites();
+        }
+    }
+
+    private void AttachBossRoom(){
+        for(int i = maxDepth; i > 0; i--){
+            if(roomByDepth.ContainsKey(i)){
+                foreach(var room in roomByDepth[i]){
+                    RoomController roomController = room.GetComponent<RoomController>();
+                    if(roomController == null){
+                        continue;
+                    }
+                    foreach(var door in roomController.doors){
+                        if(door == null){
+                            continue;
+                        }
+                        SpriteRenderer doorRenderer = door.GetComponentInChildren<SpriteRenderer>();
+                        if(doorRenderer.sortingOrder == 1 || doorRenderer.sortingOrder == 2 || doorRenderer.sortingOrder == 4){
+                            if(CreateCorridor(roomController.corridors[doorRenderer.sortingOrder-1].transform.position, doorRenderer.sortingOrder, roomController, doorRenderer, true)){
+                                return;
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -134,7 +162,7 @@ public class DungeonController : MonoBehaviour
         }
     }
     
-    private void CreateCorridor(Vector3 startPosition, int direction, RoomController roomController, SpriteRenderer doorRenderer){
+    private bool CreateCorridor(Vector3 startPosition, int direction, RoomController roomController, SpriteRenderer doorRenderer, bool isBossRoom = false){
         Vector3 corridorPosition = startPosition;
         Vector3 corridorMove = Vector3.zero;
         int corridorIndex = 0;
@@ -168,20 +196,57 @@ public class DungeonController : MonoBehaviour
         corridorList.Add(Instantiate(corridorPrefab[corridorIndex], corridorPosition, Quaternion.identity, corridorParent));
         corridorPosition += corridorMove;
 
-        GameObject newRoom = AttachRoomToCorridor(corridorPosition, direction);
+        GameObject newRoom = isBossRoom ? AttachBossRoomToCorridor(corridorPosition, direction) : AttachRoomToCorridor(corridorPosition, direction);
         if(newRoom != null){
-            newRoom.GetComponent<RoomController>().roomDepth = roomController.roomDepth + 1;
-            if(rooms.Count < maxRooms){
+            int newRoomDepth = newRoom.GetComponent<RoomController>().roomDepth = roomController.roomDepth + 1;
+            if(!isBossRoom && rooms.Count < maxRooms){
                 SpreadRoom(newRoom);
             }
+            if(!roomByDepth.ContainsKey(newRoomDepth)){
+                roomByDepth[newRoomDepth] = new List<GameObject>();
+            }
+            roomByDepth[newRoomDepth].Add(newRoom);
+            if(newRoomDepth > maxDepth){
+                maxDepth = newRoomDepth;
+            }
             doorRenderer.sortingOrder *= -1;
+            return true;
         }
         else{
             foreach(var corridor in corridorList){
                 Destroy(corridor);
             }
         }
-        return;
+        return false;
+    }
+
+    private GameObject AttachBossRoomToCorridor(Vector3 corridorEndPosition, int corridorDirection){
+        int requiredDoorDirection = GetOppositeDirection(corridorDirection);
+        GameObject targetDoor = FindDoorInPrefab(bossRoomPrefab, requiredDoorDirection);
+        if(targetDoor == null){
+            return null;
+        }
+        SpriteRenderer doorRenderer = targetDoor.GetComponentInChildren<SpriteRenderer>();
+        GameObject targetCorridor = bossRoomPrefab.GetComponent<RoomController>().corridors[doorRenderer.sortingOrder-1];
+        Vector3 doorLocalPosition = targetCorridor.transform.localPosition;
+        Vector3 roomCenterPosition = corridorEndPosition - doorLocalPosition;
+        if(CheckRoomCollision(bossRoomPrefab, roomCenterPosition)){
+            return null;
+        }
+        GameObject newRoom = Instantiate(bossRoomPrefab, roomCenterPosition, Quaternion.identity, transform);
+        RoomController newRoomController = newRoom.GetComponent<RoomController>();
+        if(newRoomController != null){
+            newRoomController.dungeonController = this;
+        }
+        GameObject connectedDoor = FindDoorInPrefab(newRoom, requiredDoorDirection);
+        if(connectedDoor != null){
+            SpriteRenderer newDoorRenderer = connectedDoor.GetComponentInChildren<SpriteRenderer>();
+            if(newDoorRenderer != null){
+                newDoorRenderer.sortingOrder *= -1;
+            }
+        }
+        rooms.Add(newRoom);
+        return newRoom;
     }
     
 
