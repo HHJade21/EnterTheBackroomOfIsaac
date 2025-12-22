@@ -38,6 +38,8 @@ public class WeaponController : MonoBehaviour
     private bool isReloading;              // 재장전 중 여부
     public int multiBulletCount = 5;     // 산탄 공격 탄약 수
     public int multiBulletSpread = 60;     // 산탄 공격 탄약 분산
+    [Tooltip("투사체 속도 배율 (기본값: 1.0, 아이템 효과용)")]
+    public float projectileSpeedMultiplier = 1f;  // 투사체 속도 배율
 
     // ========== Weapon Icon ==========
     [Header("Weapon Icon")]
@@ -606,7 +608,7 @@ public class WeaponController : MonoBehaviour
         var rb = projectile.GetComponent<Rigidbody2D>();
         if (rb != null)
         {
-            rb.linearVelocity = dir * currentWeapon.projectileSpeed;
+            rb.linearVelocity = dir * currentWeapon.projectileSpeed * projectileSpeedMultiplier;
         }
 
         Destroy(projectile, currentWeapon.projectileLifetime);
@@ -662,7 +664,7 @@ public class WeaponController : MonoBehaviour
             var rb = projectile.GetComponent<Rigidbody2D>();
             if (rb != null)
             {
-                rb.linearVelocity = spreadDir * currentWeapon.projectileSpeed;
+                rb.linearVelocity = spreadDir * currentWeapon.projectileSpeed * projectileSpeedMultiplier;
             }
             
             Destroy(projectile, currentWeapon.projectileLifetime);
@@ -1216,6 +1218,81 @@ public class WeaponController : MonoBehaviour
     {
         if (itemID < 0 || itemID >= allWeapons.Count) return null;
         return allWeapons[itemID];
+    }
+
+    /// <summary>
+    /// 투사체 속도 배율 설정 메소드: 아이템 시스템에서 사용합니다.
+    /// </summary>
+    /// <param name="value">설정할 배율 값 (1.0이 기본값)</param>
+    public void SetProjectileSpeedMultiplier(float value)
+    {
+        projectileSpeedMultiplier = Mathf.Max(0f, value);
+    }
+    
+    /// <summary>
+    /// 투사체 속도 배율 곱하기 메소드: 기존 배율에 곱하여 적용합니다.
+    /// </summary>
+    /// <param name="multiplier">곱할 배율 값</param>
+    public void MultiplyProjectileSpeedMultiplier(float multiplier)
+    {
+        projectileSpeedMultiplier *= Mathf.Max(0f, multiplier);
+    }
+    
+    /// <summary>
+    /// 투사체 속도 배율 더하기 메소드: 기존 배율에 더합니다.
+    /// </summary>
+    /// <param name="value">더할 값</param>
+    public void AddProjectileSpeedMultiplier(float value)
+    {
+        projectileSpeedMultiplier = Mathf.Max(0f, projectileSpeedMultiplier + value);
+    }
+    
+    /// <summary>
+    /// 최대 탄약 수 설정 메소드: 아이템 시스템에서 사용합니다. (현재 장착된 무기의 슬롯에 적용)
+    /// </summary>
+    /// <param name="value">설정할 최대 탄약 수</param>
+    public void SetMaxAmmo(int value)
+    {
+        int slotIndex = CurrentWeaponIndex;
+        if (slotIndex < 0 || slotIndex >= MaxWeapons) return;
+        if (maxBulletCount == null || slotIndex >= maxBulletCount.Length) return;
+        
+        int oldMaxAmmo = maxBulletCount[slotIndex];
+        maxBulletCount[slotIndex] = Mathf.Max(1, value);
+        
+        // 현재 탄약 수 비율 유지
+        if (oldMaxAmmo > 0 && currentBulletCount != null && slotIndex < currentBulletCount.Length)
+        {
+            float ammoRatio = (float)currentBulletCount[slotIndex] / oldMaxAmmo;
+            currentBulletCount[slotIndex] = Mathf.RoundToInt(maxBulletCount[slotIndex] * ammoRatio);
+            currentBulletCount[slotIndex] = Mathf.Clamp(currentBulletCount[slotIndex], 0, maxBulletCount[slotIndex]);
+        }
+    }
+    
+    /// <summary>
+    /// 최대 탄약 수 곱하기 메소드: 기존 최대 탄약 수에 곱하여 적용합니다.
+    /// </summary>
+    /// <param name="multiplier">곱할 배율 값</param>
+    public void MultiplyMaxAmmo(float multiplier)
+    {
+        int slotIndex = CurrentWeaponIndex;
+        if (slotIndex < 0 || slotIndex >= MaxWeapons) return;
+        if (maxBulletCount == null || slotIndex >= maxBulletCount.Length) return;
+        
+        SetMaxAmmo(Mathf.RoundToInt(maxBulletCount[slotIndex] * multiplier));
+    }
+    
+    /// <summary>
+    /// 최대 탄약 수 더하기 메소드: 기존 최대 탄약 수에 더합니다.
+    /// </summary>
+    /// <param name="value">더할 값</param>
+    public void AddMaxAmmo(int value)
+    {
+        int slotIndex = CurrentWeaponIndex;
+        if (slotIndex < 0 || slotIndex >= MaxWeapons) return;
+        if (maxBulletCount == null || slotIndex >= maxBulletCount.Length) return;
+        
+        SetMaxAmmo(maxBulletCount[slotIndex] + value);
     }
 
     // ========== Weapon Icon ==========

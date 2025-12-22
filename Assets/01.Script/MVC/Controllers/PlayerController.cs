@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -35,6 +36,11 @@ public class PlayerController : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     private Animator animator;
     Rigidbody2D rigid;
+
+    // ========== Item Data ==========
+    [Header("Item Data")]
+    [Tooltip("모든 아이템 데이터 리스트 (itemID로 조회용)")]
+    [SerializeField] private List<ItemData> allItems = new List<ItemData>();
 
     // ========== Movement Settings ==========
     public Vector2 inputVec;
@@ -106,6 +112,7 @@ public class PlayerController : MonoBehaviour
     public float rollDurationMultiplier = 1f;
     public float rollCooldownMultiplier = 1f;
     public float swapCooldownMultiplier = 1f;
+    public float invincibilityMultiplier = 1f;
     
     // 기본 배율 값 저장 (리셋용)
     private const float DEFAULT_MULTIPLIER = 1f;
@@ -123,7 +130,7 @@ public class PlayerController : MonoBehaviour
     // ========== Weapon Related ==========
     private Coroutine autoFireCoroutine; // 자동 발사 코루틴 참조
 
-    // [주석 처리됨] 무기 관련 변수들은 WeaponController로 이동했습니다.
+    // 무기 관련 변수들은 WeaponController로 이동했습니다.
     // public int maxBulletCount = 10;
     // public int currentBulletCount = 10;
     // public float attackCooldown = 0.2f;
@@ -135,7 +142,7 @@ public class PlayerController : MonoBehaviour
     // public float weaponIconFollowSpeed = 10f;
     // public float weaponIconRotationOffset = 0f;
 
-    // [주석 처리됨] 발사 및 재장전 관련 변수들은 WeaponController로 이동했습니다.
+    // 발사 및 재장전 관련 변수들은 WeaponController로 이동했습니다.
     // private float lastFireTime;
     // private bool isReloading;
 
@@ -211,7 +218,7 @@ public class PlayerController : MonoBehaviour
             swapCharge = 0f;
         }
         
-        DetectNearbyWeapons();
+        DetectNearbyItems();
     }
 
     /************************************ FixedUpdate 잘보이라고 어그로끄는용 ************************************/
@@ -470,18 +477,19 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// 상호작용 입력 처리 메소드: E키로 targetItem과 상호작용합니다.
     /// - 무기인 경우: WeaponController의 인벤토리에 추가만 하고 자동 장착하지 않음, 프리팹 파괴
-    /// - 일반 아이템인 경우: 추후 구현 예정
+    /// - 일반 아이템인 경우: ItemData의 효과를 적용하고 프리팹 파괴
     /// </summary>
     public void OnInteractContext(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
         if (targetItemPrefab == null) return;
-        if (weaponController == null) return;
         
         // targetItem이 무기인지 확인 (newWeapon 컴포넌트가 있는지 확인)
         newWeapon weaponComponent = targetItemPrefab.GetComponent<newWeapon>();
         if (weaponComponent != null)
         {
+            if (weaponController == null) return;
+            
             // 무기인 경우: itemID로 WeaponData 가져오기
             WeaponData weaponData = weaponController.GetWeaponDataByID(weaponComponent.itemID);
             if (weaponData != null)
@@ -495,8 +503,25 @@ public class PlayerController : MonoBehaviour
                     targetItemPrefab = null;
                 }
             }
+            return;
         }
-        // 일반 아이템인 경우는 추후 구현 예정
+        
+        // targetItem이 일반 아이템인지 확인 (newItem 컴포넌트가 있는지 확인)
+        newItem itemComponent = targetItemPrefab.GetComponent<newItem>();
+        if (itemComponent != null)
+        {
+            // 아이템인 경우: itemID로 ItemData 가져오기
+            ItemData itemData = GetItemDataByID(itemComponent.itemID);
+            if (itemData != null)
+            {
+                // 아이템 효과 적용
+                itemData.ApplyEffects(this);
+                
+                // 획득 성공 시 아이템 프리팹 파괴
+                Destroy(targetItemPrefab);
+                targetItemPrefab = null;
+            }
+        }
     }
 
     public void OnPauseContext(InputAction.CallbackContext context)
@@ -714,43 +739,75 @@ public class PlayerController : MonoBehaviour
         return new Color(r + m, g + m, b + m, 1f);
     }
 
-    // ========== Interaction Methods ==========
-    // 주변 무기 감지 및 targetItemPrefab 할당
-    private void DetectNearbyWeapons()
+    // ========== Item Methods ==========
+    /// <summary>
+    /// 아이템 ID로 ItemData를 가져오는 메소드
+    /// </summary>
+    /// <param name="itemID">아이템 ID</param>
+    /// <returns>해당 ID의 ItemData, 없으면 null</returns>
+    public ItemData GetItemDataByID(int itemID)
     {
-        // 모든 newWeapon 컴포넌트를 가진 GameObject 찾기
-        newWeapon[] weapons = FindObjectsOfType<newWeapon>();
-        
-        if (weapons == null || weapons.Length == 0)
+        if (allItems == null) return null;
+        foreach (var item in allItems)
         {
-            // 주변에 무기가 없으면 targetItemPrefab 초기화
-            targetItemPrefab = null;
-            UpdateInteractionText();
-            return;
+            if (item != null && item.itemID == itemID)
+            {
+                return item;
+            }
         }
-        
+        return null;
+    }
+
+    // ========== Interaction Methods ==========
+    // 주변 무기 및 아이템 감지 및 targetItemPrefab 할당
+    private void DetectNearbyItems()
+    {
         Vector2 playerPos = transform.position;
-        GameObject closestWeapon = null;
+        GameObject closestItem = null;
         float closestDistance = float.MaxValue;
         
-        // 가장 가까운 무기 찾기
-        foreach (newWeapon weapon in weapons)
+        // 모든 newWeapon 컴포넌트를 가진 GameObject 찾기
+        newWeapon[] weapons = FindObjectsOfType<newWeapon>();
+        if (weapons != null && weapons.Length > 0)
         {
-            if (weapon == null || weapon.gameObject == null) continue;
-            
-            Vector2 weaponPos = weapon.transform.position;
-            float distance = Vector2.Distance(playerPos, weaponPos);
-            
-            // targetItemDistance 내에 있고, 가장 가까운 무기인지 확인
-            if (distance <= targetItemDistance && distance < closestDistance)
+            foreach (newWeapon weapon in weapons)
             {
-                closestDistance = distance;
-                closestWeapon = weapon.gameObject;
+                if (weapon == null || weapon.gameObject == null) continue;
+                
+                Vector2 weaponPos = weapon.transform.position;
+                float distance = Vector2.Distance(playerPos, weaponPos);
+                
+                // targetItemDistance 내에 있고, 가장 가까운 아이템인지 확인
+                if (distance <= targetItemDistance && distance < closestDistance)
+                {
+                    closestDistance = distance;
+                    closestItem = weapon.gameObject;
+                }
             }
         }
         
-        // 가장 가까운 무기를 targetItemPrefab에 할당
-        targetItemPrefab = closestWeapon;
+        // 모든 newItem 컴포넌트를 가진 GameObject 찾기
+        newItem[] items = FindObjectsOfType<newItem>();
+        if (items != null && items.Length > 0)
+        {
+            foreach (newItem item in items)
+            {
+                if (item == null || item.gameObject == null) continue;
+                
+                Vector2 itemPos = item.transform.position;
+                float distance = Vector2.Distance(playerPos, itemPos);
+                
+                // targetItemDistance 내에 있고, 가장 가까운 아이템인지 확인
+                if (distance <= targetItemDistance && distance < closestDistance)
+                {
+                    closestDistance = distance;
+                    closestItem = item.gameObject;
+                }
+            }
+        }
+        
+        // 가장 가까운 아이템을 targetItemPrefab에 할당
+        targetItemPrefab = closestItem;
         UpdateInteractionText();
     }
     
@@ -1106,6 +1163,32 @@ public class PlayerController : MonoBehaviour
     }
     
     /// <summary>
+    /// 무적 시간 배율 설정 메소드: 버프/디버프 시스템에서 사용합니다.
+    /// </summary>
+    /// <param name="value">설정할 배율 값 (1.0이 기본값)</param>
+    public void SetInvincibilityMultiplier(float value)
+    {
+        invincibilityMultiplier = Mathf.Max(0f, value);
+    }
+    
+    /// <summary>
+    /// 무적 시간 배율 곱하기 메소드: 기존 배율에 곱하여 적용합니다. (중첩 버프용)
+    /// </summary>
+    /// <param name="multiplier">곱할 배율 값</param>
+    public void MultiplyInvincibilityMultiplier(float multiplier)
+    {
+        invincibilityMultiplier *= Mathf.Max(0f, multiplier);
+    }
+    
+    /// <summary>
+    /// 무적 시간 배율 리셋 메소드: 기본값(1.0)으로 복구합니다.
+    /// </summary>
+    public void ResetInvincibilityMultiplier()
+    {
+        invincibilityMultiplier = DEFAULT_MULTIPLIER;
+    }
+    
+    /// <summary>
     /// 모든 배율을 기본값(1.0)으로 리셋하는 메소드: 버프/디버프가 모두 해제될 때 사용합니다.
     /// </summary>
     public void ResetAllMultipliers()
@@ -1119,6 +1202,47 @@ public class PlayerController : MonoBehaviour
         rollDurationMultiplier = DEFAULT_MULTIPLIER;
         rollCooldownMultiplier = DEFAULT_MULTIPLIER;
         swapCooldownMultiplier = DEFAULT_MULTIPLIER;
+        invincibilityMultiplier = DEFAULT_MULTIPLIER;
+    }
+    
+    /// <summary>
+    /// 최대 HP 설정 메소드: 아이템 시스템에서 사용합니다.
+    /// </summary>
+    /// <param name="value">설정할 최대 HP 값</param>
+    public void SetMaxHP(int value)
+    {
+        int oldMaxHP = maxHP;
+        maxHP = Mathf.Max(1, value);
+        
+        // HP 비율 유지 (최대 HP가 변경되어도 현재 HP 비율 유지)
+        if (oldMaxHP > 0)
+        {
+            float hpRatio = (float)currentHP / oldMaxHP;
+            currentHP = Mathf.RoundToInt(maxHP * hpRatio);
+            currentHP = Mathf.Clamp(currentHP, 0, maxHP);
+        }
+        else
+        {
+            currentHP = maxHP;
+        }
+    }
+    
+    /// <summary>
+    /// 최대 HP 곱하기 메소드: 기존 최대 HP에 곱하여 적용합니다.
+    /// </summary>
+    /// <param name="multiplier">곱할 배율 값</param>
+    public void MultiplyMaxHP(float multiplier)
+    {
+        SetMaxHP(Mathf.RoundToInt(maxHP * multiplier));
+    }
+    
+    /// <summary>
+    /// 최대 HP 더하기 메소드: 기존 최대 HP에 더합니다.
+    /// </summary>
+    /// <param name="value">더할 값</param>
+    public void AddMaxHP(int value)
+    {
+        SetMaxHP(maxHP + value);
     }
     
     #endregion
@@ -1184,117 +1308,4 @@ public class PlayerController : MonoBehaviour
     
     #endregion
 
-    // [Combat] Handle fire, reload, skill cooldowns, projectile size modifier
-    // [Roll] Implement roll state, duration, cooldown, i-frames
-    
-    // [Interaction] Detect interactables and invoke their Interact()
-    // [Damage] Calculate final damage taken using defense stat
-
-    // [주석 처리됨] 이 메서드들은 WeaponController로 이동했습니다.
-    // System.Collections.IEnumerator ReloadRoutine()
-    // {
-    //     isReloading = true; // 재장전 상태 시작
-    //     
-    //     // reloadTime만큼 대기
-    //     yield return new WaitForSeconds(reloadTime);
-    //     
-    //     // 탄약을 최대치로 복구
-    //     currentBulletCount = maxBulletCount;
-    //     
-    //     isReloading = false; // 재장전 상태 종료
-    // }
-
-    // private void SyncWeaponStatsFromData(bool forceResetAmmo = false)
-    // {
-    //     if (weaponController == null) return;
-    //     var data = weaponController.CurrentWeapon;
-    //     if (data == null) return;
-
-    //     maxBulletCount = Mathf.Max(0, data.magazineSize);
-    //     attackCooldown = data.fireCooldown;
-    //     reloadTime = data.reloadTime;
-
-    //     if (forceResetAmmo)
-    //     {
-    //         currentBulletCount = maxBulletCount;
-    //     }
-    //     else
-    //     {
-    //         currentBulletCount = Mathf.Clamp(currentBulletCount, 0, maxBulletCount);
-    //         if (currentBulletCount == 0)
-    //         {
-    //             currentBulletCount = maxBulletCount;
-    //         }
-    //     }
-    // }
-
-    // [주석 처리됨] 이 메서드들은 WeaponController로 이동했습니다.
-    // private void TryEquipWeaponSlot(int slotIndex)
-    // {
-    //     if (weaponController == null) return;
-    //     if (weaponController.EquipWeaponByIndex(slotIndex))
-    //     {
-    //         SyncWeaponStatsFromData(forceResetAmmo: true);
-    //         UpdateWeaponIconSprite();
-    //         UpdateWeaponIconTransform(true);
-    //     }
-    // }
-
-    // private void UpdateWeaponIconSprite()
-    // {
-    //     if (weaponIconRenderer == null) return;
-
-    //     if (weaponController == null)
-    //     {
-    //         weaponIconRenderer.sprite = null;
-    //         weaponIconRenderer.enabled = false;
-    //         return;
-    //     }
-
-    //     var data = weaponController.CurrentWeapon;
-    //     weaponIconRenderer.sprite = data != null ? data.icon : null;
-    //     weaponIconRenderer.enabled = weaponIconRenderer.sprite != null;
-    // }
-
-    // private void UpdateWeaponIconTransform(bool snapImmediate = false)
-    // {
-    //     if (weaponIconRenderer == null || !weaponIconRenderer.enabled) return;
-
-    //     Vector3 playerPos = transform.position;
-    //     Vector3 direction = Vector3.right;
-
-    //     if (Camera.main != null && Mouse.current != null)
-    //     {
-    //         Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-    //         mouseWorld.z = playerPos.z;
-    //         direction = (mouseWorld - playerPos);
-    //     }
-
-    //     if (direction.sqrMagnitude < 0.0001f)
-    //     {
-    //         direction = Vector3.right;
-    //     }
-    //     else
-    //     {
-    //         direction.Normalize();
-    //     }
-
-    //     Vector3 targetPos = playerPos + direction * weaponIconDistance;
-    //     Transform iconTransform = weaponIconRenderer.transform;
-
-    //     if (snapImmediate)
-    //     {
-    //         iconTransform.position = targetPos;
-    //     }
-    //     else
-    //     {
-    //         iconTransform.position = Vector3.Lerp(iconTransform.position, targetPos, weaponIconFollowSpeed * Time.deltaTime);
-    //     }
-
-    //     float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-    //     iconTransform.rotation = Quaternion.Euler(0f, 0f, angle + weaponIconRotationOffset);
-
-    //     // 왼쪽에 있을 경우 상하 반전
-    //     weaponIconRenderer.flipY = direction.x < 0f;
-    // }
 }

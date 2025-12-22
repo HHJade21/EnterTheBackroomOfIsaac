@@ -3954,6 +3954,7 @@ MonoBehaviour:
   reloadTime: 0.6
   multiBulletCount: 5
   multiBulletSpread: 10
+  projectileSpeedMultiplier: 1
   weaponIconRenderer: {fileID: 0}
   weaponIconDistance: 0.7
   weaponIconFollowSpeed: 10
@@ -6928,7 +6929,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.4
+  orthographic size: 3.5771427
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -9910,7 +9911,6 @@ MonoBehaviour:
   - {fileID: 4185292659311260358, guid: 632a7f4df28f5df44b53f3f5b9e3ce15, type: 3}
   - {fileID: 4185292659311260358, guid: 10c3223080a13964daea7795210fda65, type: 3}
   - {fileID: 2774152928177950668, guid: 11a5de9948bee2d4bb3f3ca999a5bc17, type: 3}
-  - {fileID: 2774152928177950668, guid: ac1bf9e481b0fca4f82378840f20cf9c, type: 3}
   bossRoomPrefab: {fileID: 4185292659311260358, guid: 0c43dfd2bef2ec8469c48c57a9ed2426, type: 3}
   minRooms: 5
   maxRooms: 10
@@ -10682,6 +10682,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player
   weaponController: {fileID: 658530958}
   spriteRenderer: {fileID: 0}
+  allItems:
+  - {fileID: 11400000, guid: 6d223301da85ce94eb1d513911a04510, type: 2}
+  - {fileID: 11400000, guid: a82eeae43fc74474a88920fd51ceef2c, type: 2}
+  - {fileID: 11400000, guid: 7c742fdc44c179e4fa14a78312325e3a, type: 2}
+  - {fileID: 11400000, guid: c5d13d4c109a57f478a101ef250a9a19, type: 2}
+  - {fileID: 11400000, guid: 392b74d982301134b834f5f2f140e5c9, type: 2}
+  - {fileID: 11400000, guid: f77efd5d39fc69b4daf05798a4ef81f3, type: 2}
   inputVec: {x: 0, y: 0}
   speed: 5
   maxHP: 10
@@ -10714,6 +10721,7 @@ MonoBehaviour:
   rollDurationMultiplier: 1
   rollCooldownMultiplier: 1
   swapCooldownMultiplier: 1
+  invincibilityMultiplier: 1
   targetItemPrefab: {fileID: 0}
   targetItemDistance: 1.5
   InteractionText: {fileID: 126857180}
