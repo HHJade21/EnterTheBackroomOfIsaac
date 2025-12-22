@@ -20,6 +20,7 @@ MonoBehaviour:
   element: 2
   weaponType: 3
   autoFire: 0
+  isAmmoWeapon: 0
   projectilePrefab: {fileID: 2599106515927395768, guid: 64443dd2e9f5168468dedf1b6416d3fb, type: 3}
   projectileSpeed: 14
   projectileLifetime: 1.5
