@@ -111,6 +111,10 @@ public class PlayerController : MonoBehaviour
     private Vector2 knockbackDirection;
     public int maxHP = 10;
     public int currentHP = 10;
+    public int swapCount=2;
+    public float swapCharge=0f;
+    [HideInInspector] public float swapChargeMax=5f;
+
 
 
     [Header("Pause panel")]
@@ -489,6 +493,25 @@ public class PlayerController : MonoBehaviour
                 weaponController.UpdateChargeFire(dir);
             }
         }
+        
+        // SwapCount가 2 미만일 시 swapCharge가 시간에 따라 서서히 증가
+        if (swapCount < 2)
+        {
+            swapCharge += Time.deltaTime;
+            
+            // swapCharge가 swapChargeMax와 같아지면, swapCharge가 0으로 초기화되고, swapCount가 1 증가
+            if (swapCharge >= swapChargeMax)
+            {
+                swapCharge = 0f;
+                swapCount++;
+            }
+        }
+        else
+        {
+            // swapCount가 2 이상이면 swapCharge를 0으로 유지
+            swapCharge = 0f;
+        }
+        
         DetectNearbyWeapons();
     }
 
@@ -736,9 +759,15 @@ public class PlayerController : MonoBehaviour
         if (!context.performed) return;
         if (weaponController == null) return;
         
+        // swapCount가 0 이하일 경우 Swap을 사용할 수 없음
+        if (swapCount <= 0) return;
+        
         // WeaponController에서 무기 교체 처리
         if (weaponController.SwapWeapon())
         {
+            // swap 사용 시 swapCount가 1 감소
+            swapCount--;
+            
             // 무기 교체 성공 시 색상 변경
             ChangeColor((int)weaponController.GetCurrentWeaponData().element);
         }
