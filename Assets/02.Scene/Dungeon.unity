@@ -3947,6 +3947,7 @@ MonoBehaviour:
   currentWeapon: {fileID: 0}
   droppedWeapons: 
   temporaryWeapon: {fileID: 0}
+  weaponPrefab: {fileID: 3864521659842927715, guid: d28a22798cd721a43bb7b7fda3626b7f, type: 3}
   maxBulletCount: 
   currentBulletCount: 
   attackCooldown: 0.2
@@ -3969,7 +3970,6 @@ MonoBehaviour:
   maxChargeFireTime: 2
   maxMultiDistance: 20
   currentChargeFireTime: 0
-  weaponPrefab: {fileID: 3864521659842927715, guid: d28a22798cd721a43bb7b7fda3626b7f, type: 3}
   weaponSlotUIController: {fileID: 643690858}
   playerController: {fileID: 1933784952}
 --- !u!4 &658530959
@@ -9803,6 +9803,7 @@ MonoBehaviour:
   hpBar: {fileID: 0}
   ammoBar: {fileID: 0}
   weaponIcon: {fileID: 0}
+  swapText: {fileID: 0}
 --- !u!114 &1812322579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9908,6 +9909,7 @@ MonoBehaviour:
   normalRoomPrefabs:
   - {fileID: 4185292659311260358, guid: 632a7f4df28f5df44b53f3f5b9e3ce15, type: 3}
   - {fileID: 4185292659311260358, guid: 10c3223080a13964daea7795210fda65, type: 3}
+  - {fileID: 2774152928177950668, guid: 11a5de9948bee2d4bb3f3ca999a5bc17, type: 3}
   bossRoomPrefab: {fileID: 4185292659311260358, guid: 0c43dfd2bef2ec8469c48c57a9ed2426, type: 3}
   minRooms: 5
   maxRooms: 10
@@ -10678,12 +10680,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
   weaponController: {fileID: 658530958}
+  spriteRenderer: {fileID: 0}
   inputVec: {x: 0, y: 0}
   speed: 5
-  spriteRenderer: {fileID: 0}
-  targetItemPrefab: {fileID: 0}
-  targetItemDistance: 1.5
-  InteractionText: {fileID: 126857180}
+  maxHP: 10
+  currentHP: 10
+  isDashing: 0
+  swapCount: 2
+  swapCharge: 0
+  swapChargeMax: 10
   rollSpeed: 12
   rollDuration: 0.2
   rollCooldown: 0.6
@@ -10698,6 +10703,7 @@ MonoBehaviour:
   - {fileID: 6393368352309336423, guid: 7d0f71e7705d23540815e3bcd3200d8d, type: 3}
   trailSpawnInterval: 0.05
   hitboxCollider: {fileID: 1933784947}
+  wallCollider: {fileID: 106216345}
   attackSpeedMultiplier: 1
   attackRangeMultiplier: 1
   attackDamageMultiplier: 1
@@ -10707,13 +10713,9 @@ MonoBehaviour:
   rollDurationMultiplier: 1
   rollCooldownMultiplier: 1
   swapCooldownMultiplier: 1
-  wallCollider: {fileID: 106216345}
-  isDashing: 0
-  maxHP: 10
-  currentHP: 10
-  swapCount: 2
-  swapCharge: 0
-  swapChargeMax: 10
+  targetItemPrefab: {fileID: 0}
+  targetItemDistance: 1.5
+  InteractionText: {fileID: 126857180}
   pausePanel: {fileID: 200398887}
 --- !u!1 &1993924205
 GameObject:
@@ -11496,15 +11498,15 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1332183786}
-  - {fileID: 1933784950}
   - {fileID: 1613961546}
+  - {fileID: 1838798360}
+  - {fileID: 1933784950}
   - {fileID: 1717056029}
   - {fileID: 1123805860}
   - {fileID: 751703279}
   - {fileID: 1904964067}
   - {fileID: 1996115877}
   - {fileID: 710443111}
-  - {fileID: 1838798360}
   - {fileID: 128259230}
   - {fileID: 1284743901}
   - {fileID: 837477354}
