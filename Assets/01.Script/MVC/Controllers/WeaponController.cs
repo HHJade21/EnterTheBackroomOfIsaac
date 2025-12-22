@@ -25,8 +25,8 @@ public class WeaponController : MonoBehaviour
     [SerializeField] private WeaponData temporaryWeapon;
 
     [Header("Weapon Stats")]
-    public int maxBulletCount = 10;        // 최대 탄약 수
-    public int currentBulletCount = 10;    // 현재 탄약 수
+    public int[] maxBulletCount = new int[2] {10, 10};        // 최대 탄약 수
+    public int[] currentBulletCount = new int[2] {10, 10};    // 현재 탄약 수
     public float attackCooldown = 0.2f;    // 발사 쿨다운
     public float reloadTime = 0.6f;        // 재장전 시간
     private float lastFireTime;            // 마지막 발사 시간
@@ -79,7 +79,7 @@ public class WeaponController : MonoBehaviour
     
     public float currentChargeFireTime = 0f;
     private bool isChargingFire = false;
-    private bool isAmmoWeapon = true;
+    private bool[] isAmmoWeapon = new bool[2] {true, true};
     private Vector2 chargeFireDirection;
 
     public WeaponData CurrentWeapon => currentWeapon;
@@ -87,9 +87,36 @@ public class WeaponController : MonoBehaviour
     public int CurrentWeaponIndex => ownedWeapons.IndexOf(currentWeapon);
     public GameObject weaponPrefab;
     public bool IsReloading => isReloading;
-    public int CurrentBulletCount => currentBulletCount;
-    public int MaxBulletCount => maxBulletCount;
-    public bool IsAmmoWeapon => isAmmoWeapon;
+    
+    // 현재 무기의 탄창 정보를 반환하는 프로퍼티
+    public int CurrentBulletCount => GetCurrentBulletCount();
+    public int MaxBulletCount => GetMaxBulletCount();
+    public bool IsAmmoWeapon => GetIsAmmoWeapon();
+    
+    // 슬롯별 탄창 정보를 반환하는 메서드
+    public int GetCurrentBulletCount(int slotIndex = -1)
+    {
+        if (currentBulletCount == null) return 0;
+        int index = slotIndex >= 0 ? slotIndex : CurrentWeaponIndex;
+        if (index < 0 || index >= MaxWeapons || index >= currentBulletCount.Length) return 0;
+        return currentBulletCount[index];
+    }
+    
+    public int GetMaxBulletCount(int slotIndex = -1)
+    {
+        if (maxBulletCount == null) return 0;
+        int index = slotIndex >= 0 ? slotIndex : CurrentWeaponIndex;
+        if (index < 0 || index >= MaxWeapons || index >= maxBulletCount.Length) return 0;
+        return maxBulletCount[index];
+    }
+    
+    public bool GetIsAmmoWeapon(int slotIndex = -1)
+    {
+        if (isAmmoWeapon == null) return true;
+        int index = slotIndex >= 0 ? slotIndex : CurrentWeaponIndex;
+        if (index < 0 || index >= MaxWeapons || index >= isAmmoWeapon.Length) return true;
+        return isAmmoWeapon[index];
+    }
 
     public WeaponSlotUIController weaponSlotUIController;
 
@@ -103,6 +130,34 @@ public class WeaponController : MonoBehaviour
     /// </summary>
     private void Awake()
     {
+        // 배열 초기화 (null이거나 크기가 맞지 않으면 초기화)
+        if (maxBulletCount == null || maxBulletCount.Length != MaxWeapons)
+        {
+            maxBulletCount = new int[MaxWeapons];
+            for (int i = 0; i < MaxWeapons; i++)
+            {
+                maxBulletCount[i] = 10;
+            }
+        }
+        
+        if (currentBulletCount == null || currentBulletCount.Length != MaxWeapons)
+        {
+            currentBulletCount = new int[MaxWeapons];
+            for (int i = 0; i < MaxWeapons; i++)
+            {
+                currentBulletCount[i] = 10;
+            }
+        }
+        
+        if (isAmmoWeapon == null || isAmmoWeapon.Length != MaxWeapons)
+        {
+            isAmmoWeapon = new bool[MaxWeapons];
+            for (int i = 0; i < MaxWeapons; i++)
+            {
+                isAmmoWeapon[i] = true;
+            }
+        }
+        
         //기본무기 드랍체크(중복으로 안 뜨게)
         EnsureDroppedWeaponList();
 
@@ -136,6 +191,13 @@ public class WeaponController : MonoBehaviour
         // 초기 무기 스탯 동기화
         if (currentWeapon != null)
         {
+            int slotIndex = CurrentWeaponIndex;
+            if (slotIndex >= 0 && slotIndex < MaxWeapons && 
+                isAmmoWeapon != null && slotIndex < isAmmoWeapon.Length)
+            {
+                // 초기 무기의 isAmmoWeapon 설정
+                isAmmoWeapon[slotIndex] = currentWeapon.isAmmoWeapon;
+            }
             SyncWeaponStats(forceResetAmmo: true);
             UpdateWeaponIconSprite();
         }
@@ -211,7 +273,21 @@ public class WeaponController : MonoBehaviour
                 temporaryWeapon = data;
                 OpenweaponSlotUIController(ownedWeapons[0], ownedWeapons[1], data);
             }
-            else ownedWeapons.Add(data);
+            else
+            {
+                ownedWeapons.Add(data);
+                // 새 무기를 추가한 슬롯의 탄창 정보 초기화
+                int newSlotIndex = ownedWeapons.Count - 1;
+                if (newSlotIndex >= 0 && newSlotIndex < MaxWeapons &&
+                    isAmmoWeapon != null && newSlotIndex < isAmmoWeapon.Length &&
+                    maxBulletCount != null && newSlotIndex < maxBulletCount.Length &&
+                    currentBulletCount != null && newSlotIndex < currentBulletCount.Length)
+                {
+                    isAmmoWeapon[newSlotIndex] = data.isAmmoWeapon;
+                    maxBulletCount[newSlotIndex] = data.magazineSize;
+                    currentBulletCount[newSlotIndex] = data.magazineSize; // 처음 추가 시 최대치로 설정
+                }
+            }
         }
 
         if (makeCurrent)
@@ -232,6 +308,16 @@ public class WeaponController : MonoBehaviour
         int newID = ownedWeapons[0].itemID;
         SpawnNewWeapon(newID);
         ownedWeapons[0] = temporaryWeapon;
+        // 슬롯 0의 탄창 정보를 새 무기로 초기화
+        if (temporaryWeapon != null &&
+            isAmmoWeapon != null && 0 < isAmmoWeapon.Length &&
+            maxBulletCount != null && 0 < maxBulletCount.Length &&
+            currentBulletCount != null && 0 < currentBulletCount.Length)
+        {
+            isAmmoWeapon[0] = temporaryWeapon.isAmmoWeapon;
+            maxBulletCount[0] = temporaryWeapon.magazineSize;
+            currentBulletCount[0] = temporaryWeapon.magazineSize;
+        }
         temporaryWeapon = null;
         CloseweaponSlotUIController();
         TryEquipWeaponSlot(0);
@@ -240,6 +326,16 @@ public class WeaponController : MonoBehaviour
         int newID = ownedWeapons[1].itemID;
         SpawnNewWeapon(newID);
         ownedWeapons[1] = temporaryWeapon;
+        // 슬롯 1의 탄창 정보를 새 무기로 초기화
+        if (temporaryWeapon != null &&
+            isAmmoWeapon != null && 1 < isAmmoWeapon.Length &&
+            maxBulletCount != null && 1 < maxBulletCount.Length &&
+            currentBulletCount != null && 1 < currentBulletCount.Length)
+        {
+            isAmmoWeapon[1] = temporaryWeapon.isAmmoWeapon;
+            maxBulletCount[1] = temporaryWeapon.magazineSize;
+            currentBulletCount[1] = temporaryWeapon.magazineSize;
+        }
         temporaryWeapon = null;
         CloseweaponSlotUIController();
         TryEquipWeaponSlot(1);
@@ -291,10 +387,14 @@ public class WeaponController : MonoBehaviour
     /// <summary>
     /// 현재 무기 설정 메소드: 내부적으로 현재 무기를 변경합니다.
     /// - 무기 교체 시 교체 스킬을 실행합니다.
+    /// - 이전 무기의 탄창 정보를 저장하고, 새 무기의 탄창 정보를 불러옵니다.
     /// </summary>
     /// <param name="data">설정할 무기 데이터</param>
     private void SetCurrentWeapon(WeaponData data)
     {
+        // 이전 무기의 슬롯 인덱스 저장 (currentWeapon이 바뀌기 전에)
+        int previousIndex = CurrentWeaponIndex;
+        
         // 무기 교체 시 교체 스킬 실행
         if (data != null && data.swapSkillData != null)
         {
@@ -305,9 +405,22 @@ public class WeaponController : MonoBehaviour
             }
         }
 
+        // 새 무기의 슬롯 인덱스 찾기 (currentWeapon 변경 전)
+        int newIndex = ownedWeapons.IndexOf(data);
+        
+        // currentWeapon 변경
         currentWeapon = data;
-        isAmmoWeapon = currentWeapon != null ? currentWeapon.isAmmoWeapon : true;
-        SyncWeaponStats(forceResetAmmo: true);
+        
+        // 새 무기가 유효한 슬롯에 있는 경우
+        if (newIndex >= 0 && newIndex < MaxWeapons && 
+            isAmmoWeapon != null && newIndex < isAmmoWeapon.Length)
+        {
+            // 새 무기의 isAmmoWeapon 설정
+            isAmmoWeapon[newIndex] = data != null ? data.isAmmoWeapon : true;
+        }
+        
+        // SyncWeaponStats에서 현재 슬롯의 탄창 정보를 업데이트 (저장된 값 유지)
+        SyncWeaponStats(forceResetAmmo: false);
         UpdateWeaponIconSprite();
     }
 
@@ -930,13 +1043,22 @@ public class WeaponController : MonoBehaviour
     /// <summary>
     /// 무기 스탯 동기화 메소드: 현재 무기의 데이터로부터 스탯을 동기화합니다.
     /// - attackCooldown과 reloadTime은 PlayerController의 배율을 적용하여 계산됩니다.
+    /// - 현재 무기의 슬롯 인덱스에 해당하는 배열 요소를 업데이트합니다.
     /// </summary>
     /// <param name="forceResetAmmo">탄약을 강제로 최대치로 리셋할지 여부</param>
     public void SyncWeaponStats(bool forceResetAmmo = false)
     {
         if (currentWeapon == null) return;
 
-        maxBulletCount = Mathf.Max(0, currentWeapon.magazineSize);
+        int slotIndex = CurrentWeaponIndex;
+        if (slotIndex < 0 || slotIndex >= MaxWeapons) return;
+        
+        // 배열 null 체크 및 길이 체크
+        if (maxBulletCount == null || maxBulletCount.Length <= slotIndex) return;
+        if (currentBulletCount == null || currentBulletCount.Length <= slotIndex) return;
+
+        // 현재 슬롯의 최대 탄약 수 업데이트
+        maxBulletCount[slotIndex] = Mathf.Max(0, currentWeapon.magazineSize);
         
         // PlayerController의 배율을 적용하여 계산
         PlayerController playerController = GetPlayerController();
@@ -948,14 +1070,17 @@ public class WeaponController : MonoBehaviour
 
         if (forceResetAmmo)
         {
-            currentBulletCount = maxBulletCount;
+            // 강제 리셋 시 최대치로 설정
+            currentBulletCount[slotIndex] = maxBulletCount[slotIndex];
         }
         else
         {
-            currentBulletCount = Mathf.Clamp(currentBulletCount, 0, maxBulletCount);
-            if (currentBulletCount == 0)
+            // 저장된 탄약 수를 유지하되, 최대치를 초과하지 않도록 클램프
+            currentBulletCount[slotIndex] = Mathf.Clamp(currentBulletCount[slotIndex], 0, maxBulletCount[slotIndex]);
+            // 탄약이 0이면 최대치로 복구 (첫 장착 시)
+            if (currentBulletCount[slotIndex] == 0 && maxBulletCount[slotIndex] > 0)
             {
-                currentBulletCount = maxBulletCount;
+                currentBulletCount[slotIndex] = maxBulletCount[slotIndex];
             }
         }
     }
@@ -968,7 +1093,18 @@ public class WeaponController : MonoBehaviour
     {
         if (currentWeapon == null) return false;
         if (isReloading) return false;
-        if (currentBulletCount <= 0) return false;
+        
+        int slotIndex = CurrentWeaponIndex;
+        if (slotIndex < 0 || slotIndex >= MaxWeapons) return false;
+        
+        // 배열 null 체크 및 길이 체크
+        if (isAmmoWeapon == null || slotIndex >= isAmmoWeapon.Length) return false;
+        if (currentBulletCount == null || slotIndex >= currentBulletCount.Length) return false;
+        
+        // 탄약 무기가 아니면 탄약 체크 스킵
+        if (!isAmmoWeapon[slotIndex]) return true;
+        
+        if (currentBulletCount[slotIndex] <= 0) return false;
         if (Time.time < lastFireTime + attackCooldown) return false;
         return true;
     }
@@ -989,11 +1125,16 @@ public class WeaponController : MonoBehaviour
 
         // 발사 시간 기록 및 탄약 감소 (isAmmoWeapon이 true인 경우에만 탄약 소모)
         lastFireTime = Time.time;
-        if (isAmmoWeapon && currentWeapon != null && 
+        
+        int slotIndex = CurrentWeaponIndex;
+        if (slotIndex >= 0 && slotIndex < MaxWeapons && 
+            isAmmoWeapon != null && slotIndex < isAmmoWeapon.Length &&
+            currentBulletCount != null && slotIndex < currentBulletCount.Length &&
+            isAmmoWeapon[slotIndex] && currentWeapon != null && 
             (currentWeapon.weaponType == WeaponData.WeaponType.Fire || 
              currentWeapon.weaponType == WeaponData.WeaponType.Multi))
         {
-            currentBulletCount--;
+            currentBulletCount[slotIndex]--;
         }
 
         // 발사 사운드 재생 (WeaponData의 fireSound가 있으면 우선 사용, 없으면 기본 fireSound 사용)
@@ -1014,9 +1155,22 @@ public class WeaponController : MonoBehaviour
     /// <returns>재장전 시작 성공 여부</returns>
     public bool Reload(Vector3 reloadOrigin)
     {
-        // 이미 재장전 중이거나 탄약이 최대면 무시
+        // 이미 재장전 중이면 무시
         if (isReloading) return false;
-        if (currentBulletCount >= maxBulletCount) return false;
+        
+        int slotIndex = CurrentWeaponIndex;
+        if (slotIndex < 0 || slotIndex >= MaxWeapons) return false;
+        
+        // 배열 null 체크 및 길이 체크
+        if (isAmmoWeapon == null || slotIndex >= isAmmoWeapon.Length) return false;
+        if (currentBulletCount == null || slotIndex >= currentBulletCount.Length) return false;
+        if (maxBulletCount == null || slotIndex >= maxBulletCount.Length) return false;
+        
+        // 탄약 무기가 아니면 재장전 불가
+        if (!isAmmoWeapon[slotIndex]) return false;
+        
+        // 탄약이 최대면 무시
+        if (currentBulletCount[slotIndex] >= maxBulletCount[slotIndex]) return false;
 
         // 재장전 시작
         StartCoroutine(ReloadRoutine());
@@ -1036,12 +1190,27 @@ public class WeaponController : MonoBehaviour
     private IEnumerator ReloadRoutine()
     {
         isReloading = true; // 재장전 상태 시작
+        
+        int slotIndex = CurrentWeaponIndex;
+        if (slotIndex < 0 || slotIndex >= MaxWeapons)
+        {
+            isReloading = false;
+            yield break;
+        }
+        
+        // 배열 null 체크 및 길이 체크
+        if (currentBulletCount == null || slotIndex >= currentBulletCount.Length ||
+            maxBulletCount == null || slotIndex >= maxBulletCount.Length)
+        {
+            isReloading = false;
+            yield break;
+        }
 
         // reloadTime만큼 대기
         yield return new WaitForSeconds(reloadTime);
 
         // 탄약을 최대치로 복구
-        currentBulletCount = maxBulletCount;
+        currentBulletCount[slotIndex] = maxBulletCount[slotIndex];
 
         isReloading = false; // 재장전 상태 종료
     }
@@ -1069,7 +1238,7 @@ public class WeaponController : MonoBehaviour
     {
         if (EquipWeaponByIndex(slotIndex))
         {
-            SyncWeaponStats(forceResetAmmo: true);
+            SyncWeaponStats(forceResetAmmo: false); // 탄약은 저장된 값 유지
             UpdateWeaponIconSprite();
             playerController.ChangeColor((int)ownedWeapons[slotIndex].element);
             return true;
