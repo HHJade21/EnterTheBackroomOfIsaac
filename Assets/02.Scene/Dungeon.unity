@@ -10684,7 +10684,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player
   weaponController: {fileID: 658530958}
   spriteRenderer: {fileID: 0}
-  allItems: []
+  allItems:
+  - {fileID: 11400000, guid: 6d223301da85ce94eb1d513911a04510, type: 2}
+  - {fileID: 11400000, guid: a82eeae43fc74474a88920fd51ceef2c, type: 2}
+  - {fileID: 11400000, guid: 7c742fdc44c179e4fa14a78312325e3a, type: 2}
+  - {fileID: 11400000, guid: c5d13d4c109a57f478a101ef250a9a19, type: 2}
+  - {fileID: 11400000, guid: 392b74d982301134b834f5f2f140e5c9, type: 2}
+  - {fileID: 11400000, guid: f77efd5d39fc69b4daf05798a4ef81f3, type: 2}
   inputVec: {x: 0, y: 0}
   speed: 5
   maxHP: 10
