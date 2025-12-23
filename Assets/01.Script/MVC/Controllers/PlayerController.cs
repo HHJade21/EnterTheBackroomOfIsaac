@@ -52,6 +52,10 @@ public class PlayerController : MonoBehaviour
     public int currentHP = 10;
     private bool isDead = false;
     private bool isInvincible;          // 구르는 동안 무적
+    private bool isHitInvincible = false; // 피격 무적 상태
+    private float invincibilityTime = 0f;
+    private float invincibilityTimeMax = 1f;
+    private Coroutine invincibilityBlinkCoroutine; // 무적 깜빡임 코루틴 참조
     public bool isDashing = false;      // 돌진 중 여부 (WeaponController에서 설정)
 
     // ========== Swap System ==========
@@ -130,21 +134,6 @@ public class PlayerController : MonoBehaviour
     // ========== Weapon Related ==========
     private Coroutine autoFireCoroutine; // 자동 발사 코루틴 참조
 
-    // 무기 관련 변수들은 WeaponController로 이동했습니다.
-    // public int maxBulletCount = 10;
-    // public int currentBulletCount = 10;
-    // public float attackCooldown = 0.2f;
-    // public float reloadTime = 0.6f;
-    // public AudioClip fireSound;
-    // public AudioClip reloadSound;
-    // public SpriteRenderer weaponIconRenderer;
-    // public float weaponIconDistance = 0.7f;
-    // public float weaponIconFollowSpeed = 10f;
-    // public float weaponIconRotationOffset = 0f;
-
-    // 발사 및 재장전 관련 변수들은 WeaponController로 이동했습니다.
-    // private float lastFireTime;
-    // private bool isReloading;
 
     // ========== Unity Lifecycle ==========
     void Awake()
@@ -219,6 +208,35 @@ public class PlayerController : MonoBehaviour
         }
         
         DetectNearbyItems();
+        
+        // 피격 무적 시간 처리
+        if (isHitInvincible)
+        {
+            invincibilityTime += Time.deltaTime;
+            
+            // 무적시간에 invincibilityMultiplier 적용
+            float actualInvincibilityTime = invincibilityTimeMax * invincibilityMultiplier;
+            
+            // 무적시간이 끝나면 무적 상태 해제
+            if (invincibilityTime >= actualInvincibilityTime)
+            {
+                invincibilityTime = 0f;
+                isHitInvincible = false;
+                
+                // 깜빡임 코루틴 중지
+                if (invincibilityBlinkCoroutine != null)
+                {
+                    StopCoroutine(invincibilityBlinkCoroutine);
+                    invincibilityBlinkCoroutine = null;
+                }
+                
+                // 스프라이트 다시 활성화 (깜빡임 중에 꺼져있을 수 있음)
+                if (spriteRenderer != null)
+                {
+                    spriteRenderer.enabled = true;
+                }
+            }
+        }
     }
 
     /************************************ FixedUpdate 잘보이라고 어그로끄는용 ************************************/
@@ -1256,8 +1274,8 @@ public class PlayerController : MonoBehaviour
     /// <param name="other">충돌한 오브젝트의 Collider2D</param>
     void OnTriggerEnter2D(Collider2D other)
     {
-        // 무적 상태(구르기 중)이면 피격 무시
-        if (isInvincible) return;
+        // 무적 상태(구르기 중 또는 피격 무적 중)이면 피격 무시
+        if (isInvincible || isHitInvincible) return;
         
         // 사망 상태면 피격 무시
         if (isDead) return;
@@ -1288,11 +1306,67 @@ public class PlayerController : MonoBehaviour
         
         Debug.Log($"플레이어 피격: {amount} 데미지 받음. 현재 HP: {currentHP}/{maxHP}");
         
+        // 피격 무적 시작
+        StartHitInvincibility();
+        
         // HP가 0 이하가 되면 사망
         if (currentHP <= 0)
         {
             Die();
         }
+    }
+    
+    /// <summary>
+    /// 피격 무적 상태를 시작합니다. invincibilityTimeMax만큼 무적 시간이 적용됩니다.
+    /// </summary>
+    private void StartHitInvincibility()
+    {
+        // 이미 피격 무적 중이면 중복 시작 방지
+        if (isHitInvincible) return;
+        
+        isHitInvincible = true;
+        invincibilityTime = 0f;
+        
+        // 무적시간에 invincibilityMultiplier 적용
+        float actualInvincibilityTime = invincibilityTimeMax * invincibilityMultiplier;
+        
+        // 깜빡임 코루틴 시작
+        if (invincibilityBlinkCoroutine != null)
+        {
+            StopCoroutine(invincibilityBlinkCoroutine);
+        }
+        invincibilityBlinkCoroutine = StartCoroutine(InvincibilityBlinkRoutine(actualInvincibilityTime));
+    }
+    
+    /// <summary>
+    /// 무적 시간 동안 스프라이트를 깜빡이는 코루틴
+    /// </summary>
+    private System.Collections.IEnumerator InvincibilityBlinkRoutine(float duration)
+    {
+        float blinkInterval = 0.1f; // 깜빡임 간격 (초)
+        float elapsed = 0f;
+        bool isVisible = true;
+        
+        while (elapsed < duration)
+        {
+            // 스프라이트 깜빡임
+            if (spriteRenderer != null)
+            {
+                isVisible = !isVisible;
+                spriteRenderer.enabled = isVisible;
+            }
+            
+            yield return new WaitForSeconds(blinkInterval);
+            elapsed += blinkInterval;
+        }
+        
+        // 무적 시간 종료 시 스프라이트 다시 활성화
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.enabled = true;
+        }
+        
+        invincibilityBlinkCoroutine = null;
     }
     
     /// <summary>
