@@ -1,4 +1,4 @@
-using System.Collections; 
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -21,9 +21,15 @@ public class DungeonHUDController : MonoBehaviour
     public TextMeshProUGUI ammoText;
     public TextMeshProUGUI swapText;
 
-    [Header("Shake Effect")]
+    [Header("Effects")]
     [Tooltip("전체 HUD를 포함하는 최상위 RectTransform")]
     public RectTransform hudContainer;
+    [Tooltip("플레이어 움직임에 대한 관성 효과의 강도")]
+    [Range(0f, 10f)]
+    public float inertiaStrength = 1.5f;
+    [Tooltip("관성 효과가 원래 위치로 돌아오는 부드러움. 값이 높을수록 빨리 따라옵니다.")]
+    [Range(0.1f, 20f)]
+    public float inertiaSmoothing = 5f;
 
     [Header("HP Hearts")]
     [Tooltip("체력 하트 아이콘 프리팹 (Image 컴포넌트를 포함해야 함)")]
@@ -47,7 +53,8 @@ public class DungeonHUDController : MonoBehaviour
     // --- Private members ---
     private PlayerController playerController;
     private WeaponController weaponController;
-    private Animator playerAnimator; // 플레이어 Animator 참조
+    private Animator playerAnimator;
+
     private readonly List<Image> heartIcons = new List<Image>();
 
     private int lastMaxHP = -1;
@@ -56,6 +63,10 @@ public class DungeonHUDController : MonoBehaviour
 
     private Coroutine shakeCoroutine;
     private Vector3 originalHudPos;
+    
+    // For manual velocity calculation
+    private Vector2 lastPlayerPosition;
+    private Vector2 manualVelocity;
 
     void Start()
     {
@@ -64,11 +75,12 @@ public class DungeonHUDController : MonoBehaviour
             originalHudPos = hudContainer.anchoredPosition;
         }
 
-        // ... 기존 Start 로직 ...
         if (player != null)
         {
             playerController = player.GetComponent<PlayerController>();
             playerAnimator = player.GetComponentInChildren<Animator>();
+            lastPlayerPosition = player.transform.position; // 초기 위치 저장
+            
             if (playerController != null)
             {
                 weaponController = playerController.weaponController;
@@ -80,12 +92,12 @@ public class DungeonHUDController : MonoBehaviour
             InitializeUI();
         }
     }
-
+    
+    // 데이터 업데이트는 Update에서
     void Update()
     {
-        // ... 기존 Update 로직 ...
         if (playerController == null || playerAnimator == null) return;
-
+        
         bool maxHpChanged = playerController.maxHP != lastMaxHP;
         bool currentHpChanged = playerController.currentHP != lastCurrentHP;
         CMYKColor currentPlayerColor = (CMYKColor)playerAnimator.GetInteger("CMYK");
@@ -104,9 +116,18 @@ public class DungeonHUDController : MonoBehaviour
         UpdateSwapUI();
     }
 
-    /// <summary>
-    /// 외부에서 호출하여 HUD 흔들림 효과를 시작합니다.
-    /// </summary>
+    // 시각적 효과 및 위치 업데이트는 LateUpdate에서
+    void LateUpdate()
+    {
+        if (player == null) return;
+
+        // 위치 변화를 기반으로 수동으로 속도 계산
+        manualVelocity = ((Vector2)player.transform.position - lastPlayerPosition) / Time.deltaTime;
+        lastPlayerPosition = player.transform.position;
+        
+        ApplyInertiaEffect();
+    }
+
     public void TriggerShake()
     {
         if (hudContainer == null) return;
@@ -138,7 +159,15 @@ public class DungeonHUDController : MonoBehaviour
         shakeCoroutine = null;
     }
     
-    // --- 기존 UI 업데이트 함수들 ---
+    private void ApplyInertiaEffect()
+    {
+        if (hudContainer == null || shakeCoroutine != null) return;
+
+        Vector2 inertiaOffset = manualVelocity * inertiaStrength;
+        Vector2 targetPos = originalHudPos - new Vector3(inertiaOffset.x, inertiaOffset.y, 0);
+        
+        hudContainer.anchoredPosition = Vector2.Lerp(hudContainer.anchoredPosition, targetPos, Time.deltaTime * inertiaSmoothing);
+    }
     
     private void InitializeUI()
     {
@@ -183,22 +212,13 @@ public class DungeonHUDController : MonoBehaviour
         hpBackgroundObject_5?.SetActive(false);
 
         GameObject activeBackgroundObject = null;
-        if (playerController.maxHP <= 3) activeBackgroundObject = hpBackgroundObject_3;
-        else if (playerController.maxHP == 4) activeBackgroundObject = hpBackgroundObject_4;
+        if (playerController.maxHP <= 6) activeBackgroundObject = hpBackgroundObject_3;
+        else if (playerController.maxHP <= 8) activeBackgroundObject = hpBackgroundObject_4;
         else activeBackgroundObject = hpBackgroundObject_5;
         
         if (activeBackgroundObject != null)
         {
             activeBackgroundObject.SetActive(true);
-            Image backgroundImage = activeBackgroundObject.GetComponent<Image>();
-            if (backgroundImage != null)
-            {
-                backgroundImage.type = Image.Type.Sliced;
-                
-                Canvas.ForceUpdateCanvases(); 
-                Vector2 newSize = heartsContainer.rect.size;
-                backgroundImage.rectTransform.sizeDelta = newSize;
-            }
         }
     }
 
@@ -237,8 +257,8 @@ public class DungeonHUDController : MonoBehaviour
         if (weaponController != null && ammoText != null)
         {
             ammoText.text = weaponController.IsAmmoWeapon 
-                ? $"{weaponController.CurrentBulletCount}/{weaponController.MaxBulletCount}\n ammo" 
-                : "∞\n ammo";
+                ? string.Format("{0}/{1}\nammo", weaponController.CurrentBulletCount, weaponController.MaxBulletCount) 
+                : string.Format("∞\nammo");
         }
     }
 
@@ -246,7 +266,7 @@ public class DungeonHUDController : MonoBehaviour
     {
         if (playerController != null && swapText != null)
         {
-            swapText.text = $"Swap: {playerController.swapCount}\nCharge: {playerController.swapCharge:F1}/{playerController.swapChargeMax:F1}";
+            swapText.text = string.Format("Swap: {0}\nCharge: {1:F1}/{2:F1}", playerController.swapCount, playerController.swapCharge, playerController.swapChargeMax);
         }
     }
 }
