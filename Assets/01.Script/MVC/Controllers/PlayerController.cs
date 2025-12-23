@@ -130,6 +130,7 @@ public class PlayerController : MonoBehaviour
     // ========== UI Settings ==========
     [Header("Pause panel")]
     public GameObject pausePanel;
+    public DungeonHUDController hudController;
 
     // ========== Weapon Related ==========
     private Coroutine autoFireCoroutine; // 자동 발사 코루틴 참조
@@ -1303,6 +1304,8 @@ public class PlayerController : MonoBehaviour
     {
         currentHP -= amount;
         currentHP = Mathf.Max(0, currentHP); // 음수 방지
+
+        hudController?.TriggerShake(); // HUD 흔들림 효과 호출
         
         Debug.Log($"플레이어 피격: {amount} 데미지 받음. 현재 HP: {currentHP}/{maxHP}");
         
