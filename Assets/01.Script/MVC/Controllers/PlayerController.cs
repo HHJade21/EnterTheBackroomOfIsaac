@@ -250,7 +250,7 @@ public class PlayerController : MonoBehaviour
         Vector2 nextVec = inputVec.normalized * speed * Time.fixedDeltaTime;
         if(isSande && Time.timeScale > 0){
             nextVec /= Time.timeScale;
-            nextVec *= 1.5f;
+            nextVec *= 2f;
         }
         rigid.MovePosition(rigid.position + nextVec);
         if(inputVec.x != 0){

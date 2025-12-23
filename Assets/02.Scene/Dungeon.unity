@@ -9913,9 +9913,10 @@ MonoBehaviour:
   - {fileID: 2774152928177950668, guid: 11a5de9948bee2d4bb3f3ca999a5bc17, type: 3}
   - {fileID: 2774152928177950668, guid: ac1bf9e481b0fca4f82378840f20cf9c, type: 3}
   - {fileID: 2774152928177950668, guid: 49ce4e6c2b60e9a4ea6449657a9a9a9f, type: 3}
+  - {fileID: 2774152928177950668, guid: d3e5465bf3598d0458eeba2873c1af13, type: 3}
   bossRoomPrefab: {fileID: 4185292659311260358, guid: 0c43dfd2bef2ec8469c48c57a9ed2426, type: 3}
   minRooms: 5
-  maxRooms: 10
+  maxRooms: 8
   rooms: []
   roomCollisionMargin: 0
   showCollisionBounds: 1
