@@ -844,16 +844,19 @@ MonoBehaviour:
   isClosed: 0
   roomColor: 0
   roomDepth: 0
+  isDifferentColliderThanDoor: 0
   doors:
   - {fileID: 4916017459038493388}
-  - {fileID: 1369351160052919856}
-  - {fileID: 8794874365436639406}
-  - {fileID: 1784049626853350128}
   corridors:
   - {fileID: 4916017459038493388}
   - {fileID: 1369351160052919856}
   - {fileID: 8794874365436639406}
   - {fileID: 1784049626853350128}
+  diffColliders:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   wallSprites:
   - {fileID: 0}
   - {fileID: 0}

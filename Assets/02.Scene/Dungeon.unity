@@ -7336,7 +7336,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 3.5771427
+  orthographic size: 5.4
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -10396,8 +10396,8 @@ MonoBehaviour:
   enemyPrefabK: []
   corridorParent: {fileID: 1249429034}
   corridorPrefab:
-  - {fileID: 599642475239265866, guid: 3d00f0a8483564541a94e54c384aa8c5, type: 3}
-  - {fileID: 445126722683447747, guid: ba86e07ffb76b5b47933e2548775a390, type: 3}
+  - {fileID: 599642475239265866, guid: 2372e2410833bea4996eed7b3d02145d, type: 3}
+  - {fileID: 599642475239265866, guid: 6c0104ff9a8da3f4291fe510621f6b2c, type: 3}
   - {fileID: 1659519211985066721, guid: 35fa37f9ece869341b28345e6a4be76d, type: 3}
   - {fileID: 4863161835567292834, guid: 1287343355588a94fa6035a3cc360889, type: 3}
   - {fileID: 8193406390501720912, guid: d408e404befab094084cda52183b23de, type: 3}
@@ -10415,7 +10415,7 @@ MonoBehaviour:
   maxRooms: 8
   rooms: []
   roomCollisionMargin: 0
-  showCollisionBounds: 1
+  showCollisionBounds: 0
 --- !u!1 &1844762904
 GameObject:
   m_ObjectHideFlags: 0
