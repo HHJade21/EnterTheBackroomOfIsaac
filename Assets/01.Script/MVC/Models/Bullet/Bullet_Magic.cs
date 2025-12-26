@@ -51,7 +51,7 @@ public class Bullet_Magic : BulletController
         // 변형 데이터가 없으면 경고하고 종료
         if (variants == null || variants.Count == 0)
         {
-            Debug.LogWarning("Bullet_Magic: variants 리스트가 비어있습니다!");
+            Debug.LogWarning("Bullet_Magic: variants 리스트가 비어있습니다! 투사체가 제대로 표시되지 않을 수 있습니다.");
             return;
         }
         
@@ -59,22 +59,29 @@ public class Bullet_Magic : BulletController
         int maxIndex = Mathf.Min(tmpIdxMax, variants.Count - 1);
         
         // 랜덤 인덱스 선택 (0부터 maxIndex까지)
-        tmpIdx = Random.Range(0, 10);
-        if(tmpIdx < 4)
+        int randomValue = Random.Range(0, 10);
+        if(randomValue < 4)
         {
             tmpIdx = 0;
         }
-        else if(tmpIdx <7)
+        else if(randomValue < 7)
         {
             tmpIdx = 1;
         }
-        else if(tmpIdx < 9)
+        else if(randomValue < 9)
         {
             tmpIdx = 2;
         }
         else
         {
             tmpIdx = 3;
+        }
+        
+        // tmpIdx가 variants 범위를 벗어나면 0으로 설정
+        if (tmpIdx >= variants.Count)
+        {
+            Debug.LogWarning($"Bullet_Magic: tmpIdx({tmpIdx})가 variants.Count({variants.Count})를 초과합니다. 0으로 설정합니다.");
+            tmpIdx = 0;
         }
         
         // 선택된 변형 데이터 적용

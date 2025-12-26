@@ -623,6 +623,13 @@ public class WeaponController : MonoBehaviour
         
         dir = dir.normalized;
         GameObject projectile = Instantiate(currentWeapon.projectilePrefab, startPoint.position, startPoint.rotation);
+        
+        if (projectile == null)
+        {
+            Debug.LogError($"WeaponController.FireAttack: 투사체 생성 실패! 무기: {currentWeapon.weaponName}, 프리팹: {currentWeapon.projectilePrefab}");
+            return;
+        }
+        
         projectile.transform.up = dir;
 
         // 총알의 속성을 무기의 속성으로 설정
@@ -631,11 +638,19 @@ public class WeaponController : MonoBehaviour
         {
             bulletController.weaponElement = currentWeapon.element;
         }
+        else
+        {
+            Debug.LogWarning($"WeaponController.FireAttack: BulletController 컴포넌트를 찾을 수 없습니다! 무기: {currentWeapon.weaponName}, 투사체: {projectile.name}");
+        }
 
         var rb = projectile.GetComponent<Rigidbody2D>();
         if (rb != null)
         {
             rb.linearVelocity = dir * currentWeapon.projectileSpeed * projectileSpeedMultiplier;
+        }
+        else
+        {
+            Debug.LogWarning($"WeaponController.FireAttack: Rigidbody2D 컴포넌트를 찾을 수 없습니다! 무기: {currentWeapon.weaponName}, 투사체: {projectile.name}");
         }
 
         Destroy(projectile, currentWeapon.projectileLifetime);
