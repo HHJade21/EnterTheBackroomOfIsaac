@@ -96,6 +96,13 @@ public class WeaponController : MonoBehaviour
     // ========== References ==========
     public WeaponSlotUIController weaponSlotUIController;
     public PlayerController playerController;
+    
+    // ========== Reload UI ==========
+    [Header("Reload UI")]
+    [Tooltip("재장전 중 표시할 텍스트 (플레이어 머리 위에 표시)")]
+    public TextMeshPro reloadText; // 월드 스페이스 TextMeshPro
+    [Tooltip("플레이어 머리 위에서 텍스트까지의 오프셋 (Y축)")]
+    public float reloadTextOffsetY = 1.5f;
 
     // ========== Properties ==========
     public WeaponData CurrentWeapon => currentWeapon;
@@ -201,6 +208,9 @@ public class WeaponController : MonoBehaviour
     {
         // 근접 공격용 컴포넌트 자동 찾기 또는 생성
         EnsureMeleeAttackComponents();
+        
+        // 재장전 텍스트 초기화
+        EnsureReloadText();
 
         // 초기 무기 스탯 동기화
         if (currentWeapon != null)
@@ -214,6 +224,15 @@ public class WeaponController : MonoBehaviour
             }
             SyncWeaponStats(forceResetAmmo: true);
             UpdateWeaponIconSprite();
+        }
+    }
+    
+    private void Update()
+    {
+        // 재장전 중일 때 텍스트 위치 업데이트
+        if (isReloading && reloadText != null && reloadText.gameObject.activeSelf)
+        {
+            UpdateReloadTextPosition();
         }
     }
 
@@ -604,6 +623,13 @@ public class WeaponController : MonoBehaviour
         
         dir = dir.normalized;
         GameObject projectile = Instantiate(currentWeapon.projectilePrefab, startPoint.position, startPoint.rotation);
+        
+        if (projectile == null)
+        {
+            Debug.LogError($"WeaponController.FireAttack: 투사체 생성 실패! 무기: {currentWeapon.weaponName}, 프리팹: {currentWeapon.projectilePrefab}");
+            return;
+        }
+        
         projectile.transform.up = dir;
 
         // 총알의 속성을 무기의 속성으로 설정
@@ -612,11 +638,19 @@ public class WeaponController : MonoBehaviour
         {
             bulletController.weaponElement = currentWeapon.element;
         }
+        else
+        {
+            Debug.LogWarning($"WeaponController.FireAttack: BulletController 컴포넌트를 찾을 수 없습니다! 무기: {currentWeapon.weaponName}, 투사체: {projectile.name}");
+        }
 
         var rb = projectile.GetComponent<Rigidbody2D>();
         if (rb != null)
         {
             rb.linearVelocity = dir * currentWeapon.projectileSpeed * projectileSpeedMultiplier;
+        }
+        else
+        {
+            Debug.LogWarning($"WeaponController.FireAttack: Rigidbody2D 컴포넌트를 찾을 수 없습니다! 무기: {currentWeapon.weaponName}, 투사체: {projectile.name}");
         }
 
         Destroy(projectile, currentWeapon.projectileLifetime);
@@ -1099,6 +1133,14 @@ public class WeaponController : MonoBehaviour
         // 탄약이 최대면 무시
         if (currentBulletCount[slotIndex] >= maxBulletCount[slotIndex]) return false;
 
+        // 재장전 텍스트 표시
+        if (reloadText != null)
+        {
+            reloadText.gameObject.SetActive(true);
+            reloadText.text = "재장전";
+            UpdateReloadTextPosition();
+        }
+
         // 재장전 시작
         StartCoroutine(ReloadRoutine());
 
@@ -1140,6 +1182,12 @@ public class WeaponController : MonoBehaviour
         currentBulletCount[slotIndex] = maxBulletCount[slotIndex];
 
         isReloading = false; // 재장전 상태 종료
+        
+        // 재장전 텍스트 숨기기
+        if (reloadText != null)
+        {
+            reloadText.gameObject.SetActive(false);
+        }
     }
 
     // ========== Weapon Stats ==========
@@ -1560,6 +1608,63 @@ public class WeaponController : MonoBehaviour
         if (weaponIconObj.GetComponent<Animator>() == null)
         {
             weaponIconObj.AddComponent<Animator>();
+        }
+    }
+    
+    /// <summary>
+    /// 재장전 텍스트 자동 찾기 또는 생성 메소드: reloadText가 없으면 자동으로 찾거나 생성합니다.
+    /// </summary>
+    private void EnsureReloadText()
+    {
+        // 이미 할당되어 있으면 무시
+        if (reloadText != null) return;
+        
+        // 자식 오브젝트에서 "ReloadText" 이름으로 찾기
+        Transform reloadTextTransform = transform.Find("ReloadText");
+        if (reloadTextTransform != null)
+        {
+            reloadText = reloadTextTransform.GetComponent<TextMeshPro>();
+            if (reloadText != null)
+            {
+                reloadText.gameObject.SetActive(false); // 초기에는 비활성화
+                return;
+            }
+        }
+        
+        // 찾지 못했으면 새로 생성
+        GameObject reloadTextObj = new GameObject("ReloadText");
+        reloadTextObj.transform.SetParent(transform);
+        reloadTextObj.transform.localPosition = Vector3.zero;
+        reloadText = reloadTextObj.AddComponent<TextMeshPro>();
+        
+        // 텍스트 설정
+        reloadText.text = "재장전";
+        reloadText.fontSize = 2f;
+        reloadText.alignment = TextAlignmentOptions.Center;
+        reloadText.color = Color.white;
+        
+        // 초기에는 비활성화
+        reloadTextObj.SetActive(false);
+    }
+    
+    /// <summary>
+    /// 재장전 텍스트 위치 업데이트 메소드: 플레이어 머리 위에 표시되도록 위치를 업데이트합니다.
+    /// </summary>
+    private void UpdateReloadTextPosition()
+    {
+        if (reloadText == null || playerController == null) return;
+        
+        // 플레이어 위치 가져오기
+        Vector3 playerPosition = playerController.transform.position;
+        
+        // 플레이어 머리 위에 텍스트 배치
+        reloadText.transform.position = playerPosition + Vector3.up * reloadTextOffsetY;
+        
+        // 카메라를 향하도록 회전 (Billboard 효과)
+        if (Camera.main != null)
+        {
+            reloadText.transform.LookAt(Camera.main.transform);
+            reloadText.transform.Rotate(0f, 180f, 0f); // 텍스트가 뒤집히지 않도록
         }
     }
 }
