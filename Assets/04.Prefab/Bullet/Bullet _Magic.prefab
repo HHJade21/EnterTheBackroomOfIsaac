@@ -79,18 +79,18 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_SortingLayerID: 560096115
+  m_SortingLayer: 2
+  m_SortingOrder: 2
+  m_Sprite: {fileID: -537537479, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.875, y: 0.875}
+  m_Size: {x: 0.22222222, y: 0.44444445}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!50 &6076573477073753487
@@ -180,10 +180,10 @@ MonoBehaviour:
     scale: 0
   - sprite: {fileID: -5207986089364573992, guid: 5a4f3988241b2b847a22ae08fcc4d94c, type: 3}
     animatorController: {fileID: 0}
-    damage: 10
+    damage: 5
     scale: 0
   - sprite: {fileID: 2378217483689072248, guid: 8566cfc96337b064c8c0c985fb88849a, type: 3}
     animatorController: {fileID: 0}
     damage: 10
     scale: 0
-  tmpIdxMax: 2
+  tmpIdxMax: 3
