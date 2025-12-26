@@ -48,10 +48,12 @@ public class Bullet_Magic : BulletController
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         
-        // 변형 데이터가 없으면 경고하고 종료
+        // 변형 데이터가 없으면 경고하고 종료 (하지만 부모 클래스 초기화는 계속 진행)
         if (variants == null || variants.Count == 0)
         {
-            Debug.LogWarning("Bullet_Magic: variants 리스트가 비어있습니다! 투사체가 제대로 표시되지 않을 수 있습니다.");
+            Debug.LogError($"Bullet_Magic: variants 리스트가 비어있습니다! 프리팹 '{gameObject.name}'의 Inspector에서 variants를 설정해주세요. 투사체가 제대로 표시되지 않을 수 있습니다.");
+            // variants가 비어있어도 부모 클래스의 초기화는 계속 진행되도록 return하지 않음
+            // 대신 기본 동작을 하도록 함
             return;
         }
         
@@ -110,9 +112,20 @@ public class Bullet_Magic : BulletController
         }
         
         // 스프라이트 적용
-        if (spriteRenderer != null && selectedVariant.sprite != null)
+        if (spriteRenderer != null)
         {
-            spriteRenderer.sprite = selectedVariant.sprite;
+            if (selectedVariant.sprite != null)
+            {
+                spriteRenderer.sprite = selectedVariant.sprite;
+            }
+            else
+            {
+                Debug.LogWarning($"Bullet_Magic: 인덱스 {index}의 variant sprite가 null입니다. 스프라이트가 표시되지 않을 수 있습니다.");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Bullet_Magic: SpriteRenderer 컴포넌트를 찾을 수 없습니다!");
         }
         
         // 스케일 적용 (변형별 스케일이 0보다 크면 그것을 사용, 아니면 전역 스케일 사용)
