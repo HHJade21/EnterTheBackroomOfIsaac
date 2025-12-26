@@ -519,6 +519,7 @@ public class PlayerController : MonoBehaviour
 
     /// <summary>
     /// 상호작용 입력 처리 메소드: E키로 targetItem과 상호작용합니다.
+    /// - 프린터인 경우: PrinterController.OpenSelectPanel() 호출
     /// - 무기인 경우: WeaponController의 인벤토리에 추가만 하고 자동 장착하지 않음, 프리팹 파괴
     /// - 일반 아이템인 경우: ItemData의 효과를 적용하고 프리팹 파괴
     /// </summary>
@@ -526,6 +527,15 @@ public class PlayerController : MonoBehaviour
     {
         if (!context.performed) return;
         if (targetItemPrefab == null) return;
+        
+        // targetItem이 프린터인지 확인 (PrinterController 컴포넌트가 있는지 확인)
+        PrinterController printerController = targetItemPrefab.GetComponent<PrinterController>();
+        if (printerController != null)
+        {
+            // 프린터인 경우: OpenSelectPanel() 호출
+            printerController.OpenSelectPanel();
+            return;
+        }
         
         // targetItem이 무기인지 확인 (newWeapon 컴포넌트가 있는지 확인)
         newWeapon weaponComponent = targetItemPrefab.GetComponent<newWeapon>();

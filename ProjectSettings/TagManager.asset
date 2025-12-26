@@ -11,6 +11,7 @@ TagManager:
   - Bullet_Player
   - Bullet_Enemy
   - Corpse
+  - Wall
   layers:
   - Default
   - TransparentFX
