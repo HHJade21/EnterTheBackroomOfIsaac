@@ -18,7 +18,6 @@ public class DungeonHUDController : MonoBehaviour
 {
     [Header("Component References")]
     public GameObject player;
-    public TextMeshProUGUI ammoText;
     public TextMeshProUGUI swapText;
 
     [Header("Effects")]
@@ -112,7 +111,6 @@ public class DungeonHUDController : MonoBehaviour
             UpdateHeartFill();
         }
 
-        UpdateAmmoUI();
         UpdateSwapUI();
     }
 
@@ -120,6 +118,9 @@ public class DungeonHUDController : MonoBehaviour
     void LateUpdate()
     {
         if (player == null) return;
+        
+        // Time.timeScale이 0일 때 Time.deltaTime이 0이 되어 발생하는 DivideByZeroException 방지
+        if (Time.deltaTime <= 0f) return;
 
         // 위치 변화를 기반으로 수동으로 속도 계산
         manualVelocity = ((Vector2)player.transform.position - lastPlayerPosition) / Time.deltaTime;
@@ -250,16 +251,6 @@ public class DungeonHUDController : MonoBehaviour
         }
         lastCurrentHP = playerController.currentHP;
         lastPlayerColor = currentPlayerColor;
-    }
-
-    void UpdateAmmoUI()
-    {
-        if (weaponController != null && ammoText != null)
-        {
-            ammoText.text = weaponController.IsAmmoWeapon 
-                ? string.Format("{0}/{1}\nammo", weaponController.CurrentBulletCount, weaponController.MaxBulletCount) 
-                : string.Format("∞\nammo");
-        }
     }
 
     void UpdateSwapUI()
