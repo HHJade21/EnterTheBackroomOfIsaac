@@ -35,4 +35,19 @@ public class BulletController : MonoBehaviour
     {
         
     }
+    
+    /// <summary>
+    /// 충돌 감지 메소드: Enemy, Player, Wall 태그와 충돌 시 총알을 파괴합니다.
+    /// </summary>
+    /// <param name="other">충돌한 오브젝트의 Collider2D</param>
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        // Enemy, Player, Wall 태그와 충돌 시 총알 파괴
+        if (other.CompareTag("Enemy") || other.CompareTag("Player") || other.CompareTag("Wall"))
+        {
+            //여기서 투사체 충돌 애니메이션 재생해주시면 됩니다.
+            Destroy(gameObject);
+        }
+    }
 }
+

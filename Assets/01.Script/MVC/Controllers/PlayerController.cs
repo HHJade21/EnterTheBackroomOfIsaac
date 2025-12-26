@@ -1310,8 +1310,7 @@ public class PlayerController : MonoBehaviour
             }
             TakeDamage(damage, bulletElement);
             
-            // 적의 총알 파괴
-            Destroy(other.gameObject);
+            // 총알은 BulletController에서 자동으로 파괴됨
         }
         else if (other.CompareTag("Enemy"))
         {

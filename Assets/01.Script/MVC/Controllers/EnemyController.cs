@@ -217,8 +217,7 @@ public class EnemyController : MonoBehaviour
             // 데미지 적용 (속성 포함)
             ApplyDamage(damage, bulletElement);
 
-            // 총알 파괴
-            Destroy(other.gameObject);
+            // 총알은 BulletController에서 자동으로 파괴됨
         }
     }
 
