@@ -200,24 +200,6 @@ public class PlayerController : MonoBehaviour
             }
         }
         
-        // SwapCount가 2 미만일 시 swapCharge가 시간에 따라 서서히 증가
-        if (swapCount < 2)
-        {
-            swapCharge += Time.deltaTime;
-            
-            // swapCharge가 swapChargeMax와 같아지면, swapCharge가 0으로 초기화되고, swapCount가 1 증가
-            if (swapCharge >= swapChargeMax)
-            {
-                swapCharge = 0f;
-                swapCount++;
-            }
-        }
-        else
-        {
-            // swapCount가 2 이상이면 swapCharge를 0으로 유지
-            swapCharge = 0f;
-        }
-        
         DetectNearbyItems();
         
         // 피격 무적 시간 처리
@@ -286,6 +268,24 @@ public class PlayerController : MonoBehaviour
             spriteRenderer.flipX = inputVec.x > 0;
         }
         animator.SetFloat("Speed", nextVec.magnitude);
+        
+        // SwapCount가 2 미만일 시 swapCharge가 시간에 따라 서서히 증가 (FixedUpdate로 이동하여 프레임 드랍에 영향받지 않도록 수정)
+        if (swapCount < 2)
+        {
+            swapCharge += Time.fixedDeltaTime;
+            
+            // swapCharge가 swapChargeMax와 같아지면, swapCharge가 0으로 초기화되고, swapCount가 1 증가
+            if (swapCharge >= swapChargeMax)
+            {
+                swapCharge = 0f;
+                swapCount++;
+            }
+        }
+        else
+        {
+            // swapCount가 2 이상이면 swapCharge를 0으로 유지
+            swapCharge = 0f;
+        }
     }
 
     // ========== Input Handlers ==========
