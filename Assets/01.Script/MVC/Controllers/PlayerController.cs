@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using TMPro;
 
 // Orchestrates player behavior (Controller in MVC)
 // Responsibilities:
@@ -126,6 +127,8 @@ public class PlayerController : MonoBehaviour
     [Header("Interaction Settings")]
     public GameObject targetItemPrefab;
     public float targetItemDistance = 1.5f;
+    [Tooltip("Printer 오브젝트 탐색 범위 (일반 아이템보다 크게 설정)")]
+    public float printerDetectionDistance = 3f;
     public GameObject InteractionText;
 
     // ========== UI Settings ==========
@@ -318,6 +321,17 @@ public class PlayerController : MonoBehaviour
     {
         if (weaponController == null) return;
         if (weaponController.CurrentWeapon == null) return;
+        
+        // 탄약이 0이고 탄약 무기인 경우 자동 재장전
+        if (weaponController.IsAmmoWeapon && weaponController.CurrentBulletCount <= 0)
+        {
+            if (context.performed)
+            {
+                // 재장전 처리
+                weaponController.Reload(transform.position);
+            }
+            return;
+        }
         
         // 발사 방향 계산
         Vector2 dir = ((Vector2)Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - (Vector2)transform.position).normalized;
@@ -835,6 +849,27 @@ public class PlayerController : MonoBehaviour
             }
         }
         
+        // 모든 PrinterController 컴포넌트를 가진 GameObject 찾기 (별도 탐색 범위 사용)
+        PrinterController[] printers = FindObjectsOfType<PrinterController>();
+        if (printers != null && printers.Length > 0)
+        {
+            foreach (PrinterController printer in printers)
+            {
+                if (printer == null || printer.gameObject == null) continue;
+                if (!printer.gameObject.activeInHierarchy) continue; // 비활성화된 오브젝트는 제외
+                
+                Vector2 printerPos = printer.transform.position;
+                float distance = Vector2.Distance(playerPos, printerPos);
+                
+                // printerDetectionDistance 내에 있고, 가장 가까운 오브젝트인지 확인
+                if (distance <= printerDetectionDistance && distance < closestDistance)
+                {
+                    closestDistance = distance;
+                    closestItem = printer.gameObject;
+                }
+            }
+        }
+        
         // 가장 가까운 아이템을 targetItemPrefab에 할당
         targetItemPrefab = closestItem;
         UpdateInteractionText();
@@ -850,12 +885,41 @@ public class PlayerController : MonoBehaviour
             // targetItemPrefab이 있으면 InteractionText 활성화 및 위치 설정
             InteractionText.SetActive(true);
             
+            // 텍스트 내용 설정 (Printer인지 확인)
+            TextMeshProUGUI textComponent = InteractionText.GetComponent<TextMeshProUGUI>();
+            if (textComponent != null)
+            {
+                // PrinterController가 있으면 "상호작용", 아니면 "획득"
+                PrinterController printer = targetItemPrefab.GetComponent<PrinterController>();
+                if (printer != null)
+                {
+                    textComponent.text = "[E]상호작용";
+                }
+                else
+                {
+                    textComponent.text = "[E]획득";
+                }
+            }
+            
             // UI 요소의 위치를 설정하기 위해 RectTransform 사용
             RectTransform rectTransform = InteractionText.GetComponent<RectTransform>();
             if (rectTransform != null)
             {
-                // 월드 좌표를 스크린 좌표로 변환
-                Vector3 worldPos = targetItemPrefab.transform.position;
+                // Printer인 경우 플레이어 머리 위에 표시, 그 외는 오브젝트 위치에 표시
+                PrinterController printer = targetItemPrefab.GetComponent<PrinterController>();
+                Vector3 worldPos;
+                
+                if (printer != null)
+                {
+                    // Printer인 경우: 플레이어 머리 위에 표시 (Y축 오프셋 추가)
+                    worldPos = transform.position + Vector3.up * 1.5f;
+                }
+                else
+                {
+                    // 일반 아이템/무기인 경우: 오브젝트 위치에 표시
+                    worldPos = targetItemPrefab.transform.position;
+                }
+                
                 Vector3 screenPos = Camera.main.WorldToScreenPoint(worldPos);
                 
                 // Canvas를 찾아서 좌표 변환
