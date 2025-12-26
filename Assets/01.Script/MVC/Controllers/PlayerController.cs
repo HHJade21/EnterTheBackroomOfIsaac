@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     private Animator animator;
     Rigidbody2D rigid;
+    public List<GridController> gridControllers = new List<GridController>();
 
     // ========== Item Data ==========
     [Header("Item Data")]
@@ -907,6 +908,9 @@ public class PlayerController : MonoBehaviour
     public void ChangeColor(CMYKColor color){
         animator.SetInteger("CMYK", (int)color);
         animator.SetTrigger("Change");
+        foreach(GridController gridController in gridControllers){
+            gridController.ChangeColor(color);
+        }
     }
 
     public void ChangeColor(int colorIndex){ //이거 있는 이유: 버튼에 함수 할당할때 enum은 안보임 이슈...
