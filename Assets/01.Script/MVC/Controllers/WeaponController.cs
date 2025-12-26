@@ -1275,11 +1275,16 @@ public class WeaponController : MonoBehaviour
         int oldMaxAmmo = maxBulletCount[slotIndex];
         maxBulletCount[slotIndex] = Mathf.Max(1, value);
         
-        // 현재 탄약 수 비율 유지
-        if (oldMaxAmmo > 0 && currentBulletCount != null && slotIndex < currentBulletCount.Length)
+        // 최대 탄창이 증가한 만큼 현재 탄약도 증가 (비율 유지가 아님)
+        if (currentBulletCount != null && slotIndex < currentBulletCount.Length)
         {
-            float ammoRatio = (float)currentBulletCount[slotIndex] / oldMaxAmmo;
-            currentBulletCount[slotIndex] = Mathf.RoundToInt(maxBulletCount[slotIndex] * ammoRatio);
+            int maxAmmoIncrease = maxBulletCount[slotIndex] - oldMaxAmmo;
+            if (maxAmmoIncrease > 0)
+            {
+                // 최대 탄창이 증가한 만큼 현재 탄약도 증가
+                currentBulletCount[slotIndex] += maxAmmoIncrease;
+            }
+            // 최대 탄창이 감소한 경우는 현재 탄약을 최대치로 제한
             currentBulletCount[slotIndex] = Mathf.Clamp(currentBulletCount[slotIndex], 0, maxBulletCount[slotIndex]);
         }
     }
