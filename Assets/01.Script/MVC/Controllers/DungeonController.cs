@@ -169,29 +169,24 @@ public class DungeonController : MonoBehaviour
         
         switch(direction){
             case 1: // 북
-                corridorMove.y += 2;
+                corridorMove.y += 6;
                 corridorIndex = 1; // 세로 복도
                 break;
             case 2: // 동
-                corridorMove.x += 2;
+                corridorMove.x += 6;
                 corridorIndex = 0; // 가로 복도
                 break;
             case 3: // 남
-                corridorMove.y -= 2;
+                corridorMove.y -= 6;
                 corridorIndex = 1; // 세로 복도
                 break;
             case 4: // 서
-                corridorMove.x -= 2;
+                corridorMove.x -= 6;
                 corridorIndex = 0; // 가로 복도
                 break;
         }
         List<GameObject> corridorList = new List<GameObject>();
 
-        corridorPosition += corridorMove;
-        // 복도 생성 (나중에 여러 칸 생성 로직으로 확장)
-        corridorList.Add(Instantiate(corridorPrefab[corridorIndex], corridorPosition, Quaternion.identity, corridorParent));
-        corridorPosition += corridorMove;
-        corridorList.Add(Instantiate(corridorPrefab[corridorIndex], corridorPosition, Quaternion.identity, corridorParent));
         corridorPosition += corridorMove;
         corridorList.Add(Instantiate(corridorPrefab[corridorIndex], corridorPosition, Quaternion.identity, corridorParent));
         corridorPosition += corridorMove;
