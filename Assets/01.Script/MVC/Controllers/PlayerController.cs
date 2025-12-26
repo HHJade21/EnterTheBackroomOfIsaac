@@ -443,6 +443,9 @@ public class PlayerController : MonoBehaviour
         if (!context.performed) return;
         if (isRolling) return;
         if (Time.time < lastRollTime + rollCooldown) return;
+        
+        // ChargeFire 또는 ChargeDash 무기를 충전 중이면 Roll 작동하지 않음
+        if (weaponController != null && weaponController.IsCharging) return;
 
         rollDirection = (inputVec.sqrMagnitude > 0.0001f ? inputVec : (lastMoveDirection.sqrMagnitude > 0 ? lastMoveDirection : Vector2.right)).normalized;
         

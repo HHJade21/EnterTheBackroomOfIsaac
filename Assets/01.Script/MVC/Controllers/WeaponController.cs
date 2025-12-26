@@ -102,6 +102,7 @@ public class WeaponController : MonoBehaviour
     public IReadOnlyList<WeaponData> OwnedWeapons => ownedWeapons;
     public int CurrentWeaponIndex => ownedWeapons.IndexOf(currentWeapon);
     public bool IsReloading => isReloading;
+    public bool IsCharging => isCharging || isChargingFire; // ChargeDash 또는 ChargeFire 충전 중인지 확인
     
     // 현재 무기의 탄창 정보를 반환하는 프로퍼티
     public int CurrentBulletCount => GetCurrentBulletCount();
