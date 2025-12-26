@@ -19,6 +19,7 @@ public class EnemyController : MonoBehaviour
     [Header("Runtime State")]
     [SerializeField] private Transform target;       // 추적할 대상 (보통 Player)
     [SerializeField] private float currentHp;        // 실시간 체력
+    private WeaponData.WeaponElement element;        // 적 속성
 
     [Header("Collision Settings")]
     [Tooltip("플레이어와 충돌 시 밀려나는 속도 배율 (낮을수록 천천히 밀림)")]
@@ -57,6 +58,7 @@ public class EnemyController : MonoBehaviour
         if (enemyData != null)
         {
             currentHp = enemyData.maxHp;
+            element = enemyData.element;
             if (enemyData.enemyCategory == "Statue")
             {
                 isStatue = true;
@@ -175,7 +177,16 @@ public class EnemyController : MonoBehaviour
         }
         else
         {
-            // TODO: 근접 공격 데미지 적용 (예: PlayerController의 TakeDamage 호출)
+            // 근접 공격: 플레이어에게 데미지 적용
+            if (target != null)
+            {
+                PlayerController playerController = target.GetComponent<PlayerController>();
+                if (playerController != null)
+                {
+                    // 적의 속성으로 플레이어에게 데미지 적용
+                    playerController.TakeDamage(Mathf.RoundToInt(enemyData.contactDamage), element);
+                }
+            }
         }
     }
 
@@ -188,8 +199,23 @@ public class EnemyController : MonoBehaviour
         // 플레이어 총알 태그 확인
         if (other.CompareTag("Bullet_Player"))
         {
-            // 데미지 1 적용
-            ApplyDamage(1);
+            // 총알의 속성 가져오기
+            WeaponData.WeaponElement bulletElement = WeaponData.WeaponElement.Cyan; // 기본값
+            BulletController bulletController = other.GetComponent<BulletController>();
+            if (bulletController != null)
+            {
+                bulletElement = bulletController.weaponElement;
+            }
+            
+            // 총알의 데미지 가져오기
+            int damage = 1; // 기본값
+            if (bulletController != null)
+            {
+                damage = Mathf.RoundToInt(bulletController.damage);
+            }
+            
+            // 데미지 적용 (속성 포함)
+            ApplyDamage(damage, bulletElement);
 
             // 총알 파괴
             Destroy(other.gameObject);
@@ -248,13 +274,61 @@ public class EnemyController : MonoBehaviour
     /// 데미지 적용 메소드: 체력을 감소시키고, 체력이 0 이하가 되면 사망 처리합니다.
     /// </summary>
     /// <param name="amount">받을 데미지량</param>
-    public void ApplyDamage(int amount)
+    /// <param name="attackerElement">공격자의 속성 (상성 계산용)</param>
+    public void ApplyDamage(int amount, WeaponData.WeaponElement attackerElement = WeaponData.WeaponElement.Cyan)
     {
-        currentHp -= amount;
+        // 상성 관계에 따른 데미지 배율 계산
+        float damageMultiplier = CalculateElementMultiplier(attackerElement, element);
+        int finalDamage = Mathf.RoundToInt(amount * damageMultiplier);
+        
+        currentHp -= finalDamage;
         if (currentHp <= 0)
         {
             StartCoroutine(DeathRoutine());
         }
+    }
+    
+    /// <summary>
+    /// 상성 관계에 따른 데미지 배율을 계산합니다.
+    /// </summary>
+    /// <param name="attackerElement">공격자의 속성</param>
+    /// <param name="defenderElement">방어자의 속성</param>
+    /// <returns>데미지 배율 (1.5배: 약점, 0.5배: 약함, 1.0배: 일반)</returns>
+    private float CalculateElementMultiplier(WeaponData.WeaponElement attackerElement, WeaponData.WeaponElement defenderElement)
+    {
+        // Key 속성은 예외: 어떤 속성에도 강하지 않고 약하지 않음 (항상 1.0배)
+        if (attackerElement == WeaponData.WeaponElement.Key || defenderElement == WeaponData.WeaponElement.Key)
+        {
+            return 1.0f;
+        }
+        
+        // 상성 관계: Cyan -> Magenta -> Yellow -> Cyan
+        // 공격자의 다음 속성이 방어자와 같으면 약점 (1.5배)
+        // 방어자의 다음 속성이 공격자와 같으면 약함 (0.5배)
+        
+        int attackerValue = (int)attackerElement;
+        int defenderValue = (int)defenderElement;
+        
+        // 공격자의 다음 속성 계산 (Cyan(1) -> Magenta(2) -> Yellow(3) -> Cyan(1))
+        int attackerNext = ((attackerValue - 1 + 1) % 3) + 1; // -1로 0-based로 변환, +1로 다음, %3로 순환, +1로 다시 1-based
+        
+        // 방어자의 다음 속성 계산
+        int defenderNext = ((defenderValue - 1 + 1) % 3) + 1;
+        
+        // 약점: 공격자의 다음 속성이 방어자와 같으면 1.5배
+        if (attackerNext == defenderValue)
+        {
+            return 1.5f;
+        }
+        
+        // 약함: 방어자의 다음 속성이 공격자와 같으면 0.5배
+        if (defenderNext == attackerValue)
+        {
+            return 0.5f;
+        }
+        
+        // 그 외는 1.0배
+        return 1.0f;
     }
 
     /// <summary>

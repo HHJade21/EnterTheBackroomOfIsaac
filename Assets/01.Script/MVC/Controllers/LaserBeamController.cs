@@ -19,6 +19,8 @@ public class LaserBeamController : MonoBehaviour
     public LayerMask enemyLayerMask = 1 << 6; // 기본값: Layer 6 (Enemy)
     [Tooltip("빔 지속 시간 (초)")]
     public float lifetime = 0.5f;
+    [Tooltip("빔 속성")]
+    private WeaponData.WeaponElement element = WeaponData.WeaponElement.Cyan;
 
     private SpriteRenderer spriteRenderer;
     private BoxCollider2D beamCollider;
@@ -61,9 +63,11 @@ public class LaserBeamController : MonoBehaviour
     /// <param name="direction">발사 방향 (정규화됨)</param>
     /// <param name="maxDistance">최대 거리 (벽이 없을 경우)</param>
     /// <param name="beamDamage">데미지량</param>
-    public void Initialize(Vector2 startPosition, Vector2 direction, float maxDistance, float beamDamage)
+    /// <param name="beamElement">빔 속성</param>
+    public void Initialize(Vector2 startPosition, Vector2 direction, float maxDistance, float beamDamage, WeaponData.WeaponElement beamElement = WeaponData.WeaponElement.Cyan)
     {
         damage = beamDamage;
+        element = beamElement;
         
         // 방향으로 회전 (스프라이트가 위쪽을 향하고 있으므로 -90도 오프셋 추가)
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
@@ -111,9 +115,9 @@ public class LaserBeamController : MonoBehaviour
         EnemyController enemy = other.GetComponent<EnemyController>();
         if (enemy != null && !hitEnemies.Contains(enemy))
         {
-            // 이미 맞은 적이 아니면 데미지 적용
+            // 이미 맞은 적이 아니면 데미지 적용 (속성 포함)
             hitEnemies.Add(enemy);
-            enemy.ApplyDamage(Mathf.RoundToInt(damage));
+            enemy.ApplyDamage(Mathf.RoundToInt(damage), element);
         }
     }
 }

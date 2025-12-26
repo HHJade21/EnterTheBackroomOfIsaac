@@ -16,6 +16,7 @@ public class EnemyData : ScriptableObject
     public float contactDamage = 1f;        // 플레이어와 충돌 시 입히는 피해
     public float attackCooldown = 1.5f;  // 공격 쿨다운
     public bool isRanged = false;        // 원거리 공격 여부
+    public WeaponData.WeaponElement element = WeaponData.WeaponElement.Cyan; // 적 속성
 
     [Header("Detection")]
     public float detectionRange = 20f;    // 플레이어 추적 시작 거리

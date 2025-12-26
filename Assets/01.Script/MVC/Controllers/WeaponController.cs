@@ -605,6 +605,13 @@ public class WeaponController : MonoBehaviour
         GameObject projectile = Instantiate(currentWeapon.projectilePrefab, startPoint.position, startPoint.rotation);
         projectile.transform.up = dir;
 
+        // 총알의 속성을 무기의 속성으로 설정
+        BulletController bulletController = projectile.GetComponent<BulletController>();
+        if (bulletController != null)
+        {
+            bulletController.weaponElement = currentWeapon.element;
+        }
+
         var rb = projectile.GetComponent<Rigidbody2D>();
         if (rb != null)
         {
@@ -660,6 +667,13 @@ public class WeaponController : MonoBehaviour
             // 투사체 생성 및 설정
             GameObject projectile = Instantiate(currentWeapon.projectilePrefab, startPoint.position, startPoint.rotation);
             projectile.transform.up = spreadDir;
+            
+            // 총알의 속성을 무기의 속성으로 설정
+            BulletController bulletController = projectile.GetComponent<BulletController>();
+            if (bulletController != null)
+            {
+                bulletController.weaponElement = currentWeapon.element;
+            }
             
             var rb = projectile.GetComponent<Rigidbody2D>();
             if (rb != null)
@@ -966,8 +980,8 @@ public class WeaponController : MonoBehaviour
                 damage *= playerController.attackDamageMultiplier;
             }
             
-            // 레이저 빔 초기화
-            beamController.Initialize(startPoint.position, chargeFireDirection, maxMultiDistance, damage);
+            // 레이저 빔 초기화 (속성 포함)
+            beamController.Initialize(startPoint.position, chargeFireDirection, maxMultiDistance, damage, currentWeapon.element);
         }
         else
         {
