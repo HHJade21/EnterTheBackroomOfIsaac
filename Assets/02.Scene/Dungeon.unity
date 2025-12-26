@@ -8304,8 +8304,8 @@ RectTransform:
   - {fileID: 716319838}
   - {fileID: 158533358}
   - {fileID: 476927257}
-  - {fileID: 1754228335}
   - {fileID: 1867407811}
+  - {fileID: 1754228335}
   m_Father: {fileID: 1812322577}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -10189,7 +10189,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 2850697721972416636, guid: faa5c6844d9c5cf4898031f7b7fae562, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -10874,7 +10874,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: -3374988173161288442, guid: faa5c6844d9c5cf4898031f7b7fae562, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
