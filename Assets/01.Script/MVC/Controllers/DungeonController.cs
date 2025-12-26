@@ -37,6 +37,9 @@ public class DungeonController : MonoBehaviour
     [Tooltip("충돌 체크 범위를 시각적으로 표시")]
     public bool showCollisionBounds = true;
     
+    [Header("Minimap")]
+    public MinimapController minimapController;
+    
     // 충돌 체크 시 그릴 Bounds 저장 (Bounds, 충돌 여부)
     private List<(Bounds bounds, bool isColliding)> collisionBoundsToDraw = new List<(Bounds, bool)>();
     
@@ -104,6 +107,20 @@ public class DungeonController : MonoBehaviour
         AttachBossRoom();
         foreach(var room in rooms){
             room.GetComponent<RoomController>().UpdateRoomSprites();
+        }
+
+        // Generate the minimap by finding the controller and passing the room list
+        if (minimapController == null)
+        {
+            minimapController = FindObjectOfType<MinimapController>();
+        }
+        if (minimapController != null)
+        {
+            // Convert List<GameObject> to List<RoomController>
+            List<RoomController> roomControllers = rooms.Select(g => g.GetComponent<RoomController>())
+                                                      .Where(rc => rc != null) // Ensure no null RoomController references
+                                                      .ToList();
+            minimapController.Generate(roomControllers);
         }
     }
 
