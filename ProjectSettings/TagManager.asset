@@ -4,7 +4,6 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - WallOcclusion
   - DroppedItem
   - PlayerFeet
   - Enemy
@@ -12,6 +11,7 @@ TagManager:
   - Bullet_Enemy
   - Corpse
   - PlayerArea
+  - Wall
   layers:
   - Default
   - TransparentFX
