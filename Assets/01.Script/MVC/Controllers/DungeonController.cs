@@ -226,19 +226,19 @@ public class DungeonController : MonoBehaviour
 
         switch(direction){
             case 1: // 북
-                corridorMove.y += 6;
+                corridorMove.y += 5.43f;
                 corridorIndex = 1; // 세로 복도
                 break;
             case 2: // 동
-                corridorMove.x += 6;
+                corridorMove.x += 6.29f;
                 corridorIndex = 0; // 가로 복도
                 break;
             case 3: // 남
-                corridorMove.y -= 6;
+                corridorMove.y -= 5.43f;
                 corridorIndex = 1; // 세로 복도
                 break;
             case 4: // 서
-                corridorMove.x -= 6;
+                corridorMove.x -= 6.29f;
                 corridorIndex = 0; // 가로 복도
                 break;
         }
@@ -380,19 +380,19 @@ public class DungeonController : MonoBehaviour
         
         switch(direction){
             case 1: // 북
-                corridorMove.y += 6;
+                corridorMove.y += 5.43f;
                 corridorIndex = 1; // 세로 복도
                 break;
             case 2: // 동
-                corridorMove.x += 6;
+                corridorMove.x += 6.29f;
                 corridorIndex = 0; // 가로 복도
                 break;
             case 3: // 남
-                corridorMove.y -= 6;
+                corridorMove.y -= 5.43f;
                 corridorIndex = 1; // 세로 복도
                 break;
             case 4: // 서
-                corridorMove.x -= 6;
+                corridorMove.x -= 6.29f;
                 corridorIndex = 0; // 가로 복도
                 break;
         }

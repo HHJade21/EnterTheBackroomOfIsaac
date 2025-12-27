@@ -13017,13 +13017,13 @@ MonoBehaviour:
   - {fileID: 2774152928177950668, guid: d3e5465bf3598d0458eeba2873c1af13, type: 3}
   itemRoomPrefab: {fileID: 4185292659311260358, guid: 7499e2d748b77eb46a61361c50a54eb6, type: 3}
   bossRoomPrefab: {fileID: 4185292659311260358, guid: 0c43dfd2bef2ec8469c48c57a9ed2426, type: 3}
-  minRooms: 5
-  maxRooms: 8
+  minRooms: 10
+  maxRooms: 15
   rooms: []
   showCollisionBounds: 0
   minimapController: {fileID: 520458503}
   selectPanel: {fileID: 1178701931}
-  useBetaGenerator: 1
+  useBetaGenerator: 0
 --- !u!1 &1844762904
 GameObject:
   m_ObjectHideFlags: 0
