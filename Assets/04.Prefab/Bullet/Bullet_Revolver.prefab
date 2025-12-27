@@ -169,3 +169,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BulletController
   bulletData: {fileID: 0}
+  isPlayerBullet: 1
