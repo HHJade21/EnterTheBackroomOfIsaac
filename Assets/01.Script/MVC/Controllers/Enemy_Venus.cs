@@ -32,7 +32,7 @@ public class Enemy_Venus : EnemyController
             rb.linearVelocity = Vector2.zero;
             if (animator != null)
             {
-                animator.SetBool("Move", false);
+                // animator.SetBool("Move", false);
             }
             return;
         }
@@ -41,7 +41,7 @@ public class Enemy_Venus : EnemyController
         rb.linearVelocity = Vector2.zero;
         if (animator != null)
         {
-            animator.SetBool("Move", false);
+            // animator.SetBool("Move", false);
         }
 
         // 공격 범위에 들어오면 소환 시도 (공격 대신)

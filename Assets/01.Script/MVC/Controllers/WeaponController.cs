@@ -151,6 +151,7 @@ public class WeaponController : MonoBehaviour
     /// </summary>
     private void Awake()
     {
+        GameManager.Instance.weaponController = this;
         // 배열 초기화 (null이거나 크기가 맞지 않으면 초기화)
         if (maxBulletCount == null || maxBulletCount.Length != MaxWeapons)
         {
@@ -206,6 +207,7 @@ public class WeaponController : MonoBehaviour
 
     private void Start()
     {
+        playerController = GameManager.Instance.playerController;
         // 근접 공격용 컴포넌트 자동 찾기 또는 생성
         EnsureMeleeAttackComponents();
         
@@ -364,6 +366,11 @@ public class WeaponController : MonoBehaviour
         if (index < 0 || index >= ownedWeapons.Count) return false;
 
         var data = ownedWeapons[index];
+        if (data == null)
+        {
+            Debug.LogWarning($"WeaponController: EquipWeaponByIndex 실패 - ownedWeapons[{index}]가 null 입니다.");
+            return false;
+        }
         if (data == currentWeapon) return false;
 
         SetCurrentWeapon(data);
@@ -384,7 +391,6 @@ public class WeaponController : MonoBehaviour
         // 무기 교체 시 교체 스킬 실행
         if (data != null && data.swapSkillData != null)
         {
-            PlayerController playerController = GetPlayerController();
             if (playerController != null)
             {
                 data.swapSkillData.Execute(this, playerController);
@@ -435,7 +441,18 @@ public class WeaponController : MonoBehaviour
         {
             SyncWeaponStats(forceResetAmmo: false); // 탄약은 저장된 값 유지
             UpdateWeaponIconSprite();
-            playerController.ChangeColor((int)ownedWeapons[slotIndex].element);
+
+            if (playerController == null)
+            {
+                playerController = GameManager.Instance.playerController;
+            }
+
+            if (playerController != null &&
+                slotIndex >= 0 && slotIndex < ownedWeapons.Count &&
+                ownedWeapons[slotIndex] != null)
+            {
+                playerController.ChangeColor((int)ownedWeapons[slotIndex].element);
+            }
             return true;
         }
         return false;
@@ -845,7 +862,6 @@ public class WeaponController : MonoBehaviour
     {
         isDashing = true;
         
-        PlayerController playerController = GetPlayerController();
         if (playerController == null)
         {
             isDashing = false;
@@ -1014,7 +1030,6 @@ public class WeaponController : MonoBehaviour
             float damage = currentWeapon.baseDamage;
             
             // PlayerController의 attackDamageMultiplier 적용
-            PlayerController playerController = GetPlayerController();
             if (playerController != null)
             {
                 damage *= playerController.attackDamageMultiplier;
@@ -1217,7 +1232,6 @@ public class WeaponController : MonoBehaviour
         maxBulletCount[slotIndex] = Mathf.Max(0, currentWeapon.magazineSize);
         
         // PlayerController의 배율을 적용하여 계산
-        PlayerController playerController = GetPlayerController();
         float attackMultiplier = playerController != null ? playerController.attackSpeedMultiplier : 1f;
         float reloadMultiplier = playerController != null ? playerController.reloadSpeedMultiplier : 1f;
         
@@ -1457,25 +1471,6 @@ public class WeaponController : MonoBehaviour
         weaponIconRenderer.flipY = direction.x > 0f;
     }
 
-    // ========== Helper Methods ==========
-    /// <summary>
-    /// PlayerController 참조를 가져오는 헬퍼 메소드: 부모 오브젝트나 같은 GameObject에서 찾습니다.
-    /// </summary>
-    /// <returns>PlayerController 참조, 없으면 null</returns>
-    private PlayerController GetPlayerController()
-    {
-        // 같은 GameObject에서 찾기
-        PlayerController pc = GetComponent<PlayerController>();
-        if (pc != null) return pc;
-
-        // 부모 오브젝트에서 찾기
-        pc = GetComponentInParent<PlayerController>();
-        if (pc != null) return pc;
-
-        // 전체 씬에서 찾기 (fallback)
-        pc = Object.FindAnyObjectByType<PlayerController>();
-        return pc;
-    }
 
     /// <summary>
     /// 드랍된 무기 리스트 관리 메소드: 드랍된 무기 추적 리스트를 allWeapons 리스트 크기에 맞춰 동기화합니다.

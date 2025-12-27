@@ -144,6 +144,7 @@ public class PlayerController : MonoBehaviour
     // ========== Unity Lifecycle ==========
     void Awake()
     {
+        GameManager.Instance.playerController = this;
         rigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>(); // 회전할 때 히트박스도 움직이면 벽에 걸리니까 스프라이트를 자식으로 보내서 그림만 회전하게 만듬
         animator = GetComponentInChildren<Animator>();
@@ -534,7 +535,7 @@ public class PlayerController : MonoBehaviour
         if (printerController != null)
         {
             // 프린터인 경우: OpenSelectPanel() 호출
-            printerController.OpenSelectPanel();
+            GameManager.Instance.panelController.OpenSelectPanel();
             return;
         }
         
