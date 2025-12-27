@@ -4,13 +4,13 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - WallOcclusion
   - DroppedItem
   - PlayerFeet
   - Enemy
   - Bullet_Player
   - Bullet_Enemy
   - Corpse
+  - PlayerArea
   - Wall
   layers:
   - Default

@@ -26,6 +26,7 @@ public class DungeonController : MonoBehaviour
     [Header("Room Prefab")]
     public GameObject startRoomPrefab;
     public GameObject[] normalRoomPrefabs;
+    public GameObject itemRoomPrefab;
     public GameObject bossRoomPrefab;
 
     [Header("Rooms")]
@@ -36,6 +37,9 @@ public class DungeonController : MonoBehaviour
     public float roomCollisionMargin = 2f;
     [Tooltip("충돌 체크 범위를 시각적으로 표시")]
     public bool showCollisionBounds = true;
+    
+    [Header("Minimap")]
+    public MinimapController minimapController;
     
     // 충돌 체크 시 그릴 Bounds 저장 (Bounds, 충돌 여부)
     private List<(Bounds bounds, bool isColliding)> collisionBoundsToDraw = new List<(Bounds, bool)>();
@@ -49,9 +53,18 @@ public class DungeonController : MonoBehaviour
 
     // [State] Track combat active/cleared flags
 
+    [Header("Debug / Beta")]
+    [Tooltip("체크하면 간단한 북쪽 직선 구조(일반-일반-아이템-보스)로 생성")]
+    public bool useBetaGenerator = false;
+
     void Start(){
         InitializePrefabsByDirection();
-        GenerateDungeon();
+        if(useBetaGenerator){
+            _betaGenerateDungeon();
+        }
+        else{
+            GenerateDungeon();
+        }
     }
     
     // 방향별 유효한 프리팹 리스트를 미리 구성 (랜덤 섞기 + 순환 큐 초기화)
@@ -84,6 +97,172 @@ public class DungeonController : MonoBehaviour
         }
     }
 
+    private void _betaGenerateDungeon(){
+        rooms.Clear();
+        roomByDepth.Clear();
+        maxDepth = 0;
+        if(showCollisionBounds){
+            collisionBoundsToDraw.Clear();
+        }
+
+        GameObject startRoom = Instantiate(startRoomPrefab, transform.position, Quaternion.identity, transform);
+        RoomController startRoomController = startRoom.GetComponent<RoomController>();
+        if(startRoomController != null){
+            startRoomController.isCleared = true;
+            startRoomController.roomDepth = 0;
+            startRoomController.dungeonController = this;
+        }
+
+        rooms.Add(startRoom);
+        roomByDepth[0] = new List<GameObject>(){ startRoom };
+
+        GameObject currentRoom = startRoom;
+
+        for(int i = 0; i < 2; i++){
+            currentRoom = _betaSpreadRoom(currentRoom, RoomType.Normal);
+            if(currentRoom == null){
+                break;
+            }
+        }
+        if(currentRoom != null){
+            currentRoom = _betaSpreadRoom(currentRoom, RoomType.Item);
+        }
+        if(currentRoom != null){
+            currentRoom = _betaSpreadRoom(currentRoom, RoomType.Boss);
+        }
+
+        foreach(var room in rooms){
+            RoomController rc = room.GetComponent<RoomController>();
+            if(rc != null){
+                rc.UpdateRoomSprites();
+            }
+        }
+    }
+
+    private enum RoomType{
+        Normal,
+        Item,
+        Boss
+    }
+
+    private GameObject _betaSpreadRoom(GameObject fromRoom, RoomType roomType){
+        if(fromRoom == null){
+            return null;
+        }
+
+        RoomController roomController = fromRoom.GetComponent<RoomController>();
+        if(roomController == null || roomController.doors == null){
+            return null;
+        }
+
+        // 북쪽 문 찾기
+        SpriteRenderer northDoorRenderer = null;
+        foreach(var door in roomController.doors){
+            if(door == null) continue;
+            SpriteRenderer doorRenderer = door.GetComponentInChildren<SpriteRenderer>();
+            if(doorRenderer != null && doorRenderer.sortingOrder == 1){
+                northDoorRenderer = doorRenderer;
+                break;
+            }
+        }
+
+        if(northDoorRenderer == null){
+            return null;
+        }
+
+        Vector3 corridorStartPos = roomController.corridors[northDoorRenderer.sortingOrder - 1].transform.position;
+
+        GameObject newRoom = null;
+
+        switch(roomType){
+            case RoomType.Boss:
+                newRoom = _betaCreateCorridor(corridorStartPos, 1, roomController, northDoorRenderer, true);
+                break;
+
+            case RoomType.Item:
+                if(itemRoomPrefab == null){
+                    // 아이템 방 프리팹이 없으면 일반 방 생성
+                    newRoom = _betaCreateCorridor(corridorStartPos, 1, roomController, northDoorRenderer, false);
+                }
+                else{
+                    GameObject originalBossPrefab = bossRoomPrefab;
+                    bossRoomPrefab = itemRoomPrefab;
+                    newRoom = _betaCreateCorridor(corridorStartPos, 1, roomController, northDoorRenderer, true);
+                    bossRoomPrefab = originalBossPrefab;
+                }
+                break;
+
+            case RoomType.Normal:
+            default:
+                newRoom = _betaCreateCorridor(corridorStartPos, 1, roomController, northDoorRenderer, false);
+                break;
+        }
+
+        return newRoom;
+    }
+    
+    private GameObject _betaCreateCorridor(Vector3 startPosition, int direction, RoomController roomController, SpriteRenderer doorRenderer, bool isBossRoom = false){
+        Vector3 corridorPosition = startPosition;
+        Vector3 corridorMove = Vector3.zero;
+        int corridorIndex = 0;
+
+        switch(direction){
+            case 1: // 북
+                corridorMove.y += 6;
+                corridorIndex = 1; // 세로 복도
+                break;
+            case 2: // 동
+                corridorMove.x += 6;
+                corridorIndex = 0; // 가로 복도
+                break;
+            case 3: // 남
+                corridorMove.y -= 6;
+                corridorIndex = 1; // 세로 복도
+                break;
+            case 4: // 서
+                corridorMove.x -= 6;
+                corridorIndex = 0; // 가로 복도
+                break;
+        }
+
+        List<GameObject> corridorList = new List<GameObject>();
+
+        corridorPosition += corridorMove;
+        corridorList.Add(Instantiate(corridorPrefab[corridorIndex], corridorPosition, Quaternion.identity, corridorParent));
+        corridorPosition += corridorMove;
+
+        GameObject newRoom = isBossRoom ? AttachBossRoomToCorridor(corridorPosition, direction) : AttachRoomToCorridor(corridorPosition, direction);
+
+        if(newRoom != null){
+            RoomController newRoomController = newRoom.GetComponent<RoomController>();
+            int newRoomDepth = 0;
+            if(newRoomController != null){
+                newRoomDepth = newRoomController.roomDepth = roomController.roomDepth + 1;
+            }
+
+            if(!roomByDepth.ContainsKey(newRoomDepth)){
+                roomByDepth[newRoomDepth] = new List<GameObject>();
+            }
+            roomByDepth[newRoomDepth].Add(newRoom);
+
+            if(newRoomDepth > maxDepth){
+                maxDepth = newRoomDepth;
+            }
+
+            // 사용한 문은 음수로 바꿔서 재사용되지 않도록
+            doorRenderer.sortingOrder *= -1;
+
+            return newRoom;
+        }
+        else{
+            foreach(var corridor in corridorList){
+                Destroy(corridor);
+            }
+        }
+
+        return null;
+    }
+
     private void GenerateDungeon(){
         // 충돌 체크 시각화 리스트 초기화
         if(showCollisionBounds){
@@ -104,6 +283,20 @@ public class DungeonController : MonoBehaviour
         AttachBossRoom();
         foreach(var room in rooms){
             room.GetComponent<RoomController>().UpdateRoomSprites();
+        }
+
+        // Generate the minimap by finding the controller and passing the room list
+        if (minimapController == null)
+        {
+            minimapController = FindObjectOfType<MinimapController>();
+        }
+        if (minimapController != null)
+        {
+            // Convert List<GameObject> to List<RoomController>
+            List<RoomController> roomControllers = rooms.Select(g => g.GetComponent<RoomController>())
+                                                      .Where(rc => rc != null) // Ensure no null RoomController references
+                                                      .ToList();
+            minimapController.Generate(roomControllers);
         }
     }
 

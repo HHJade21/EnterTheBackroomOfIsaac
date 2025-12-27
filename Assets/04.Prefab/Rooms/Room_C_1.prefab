@@ -697,7 +697,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3b32feb5e90c69e4a9433c0ef84c11b7, type: 3}
   - {fileID: 21300000, guid: 4cf383ce03c0a9e49a07c3901f9b622b, type: 3}
   - {fileID: 21300000, guid: 23fb5aaca43b55c4c8744e134119e585, type: 3}
-  - {fileID: 21300000, guid: b117c1430e8024f46b1441e7c7b7349e, type: 3}
+  - {fileID: 21300000, guid: d0e5b8144b5f71a42be3b5eb2ba4ca9a, type: 3}
   - {fileID: 21300000, guid: 479c27182aac7074994a26904c21eb66, type: 3}
   - {fileID: 21300000, guid: 90268e573d044c14693136d176040b71, type: 3}
   - {fileID: 21300000, guid: d5b9fe591a663f240a0960b7624181f4, type: 3}
@@ -1732,7 +1732,7 @@ GameObject:
   - component: {fileID: 3755313429161743275}
   m_Layer: 8
   m_Name: Wall
-  m_TagString: WallOcclusion
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
