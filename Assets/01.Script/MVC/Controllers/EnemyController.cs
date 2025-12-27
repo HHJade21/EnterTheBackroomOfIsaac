@@ -14,12 +14,12 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     [Header("Data")]
-    [SerializeField] private EnemyData enemyData;    // 공유 가능한 스크립터블 오브젝트
+    [SerializeField] protected EnemyData enemyData;    // 공유 가능한 스크립터블 오브젝트
 
     [Header("Runtime State")]
-    [SerializeField] private Transform target;       // 추적할 대상 (보통 Player)
+    [SerializeField] protected Transform target;       // 추적할 대상 (보통 Player)
     [SerializeField] private float currentHp;        // 실시간 체력
-    private WeaponData.WeaponElement element;        // 적 속성
+    protected WeaponData.WeaponElement element;        // 적 속성
 
     [Header("Collision Settings")]
     [Tooltip("플레이어와 충돌 시 밀려나는 속도 배율 (낮을수록 천천히 밀림)")]
@@ -28,13 +28,13 @@ public class EnemyController : MonoBehaviour
     [Tooltip("이 적이 속한 방의 RoomController")]
     public RoomController roomController;
 
-    private float lastAttackTime;
-    private Rigidbody2D rb;
-    private bool isCollidingWithPlayer = false; // 플레이어와 충돌 중인지 여부
-    private Animator animator;
+    protected float lastAttackTime;
+    protected Rigidbody2D rb;
+    protected bool isCollidingWithPlayer = false; // 플레이어와 충돌 중인지 여부
+    protected Animator animator;
     private Collider2D collider;
-    private SpriteRenderer spriteRenderer;
-    private bool isDead = false;
+    protected SpriteRenderer spriteRenderer;
+    protected bool isDead = false;
 
     private bool isStatue = false;
     private bool isStatueMoving = false;
@@ -66,7 +66,7 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    private void Start()
+    protected virtual void Start()
     {
         if (target == null)
         {
@@ -95,7 +95,7 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         if (enemyData == null || target == null || rb == null || isDead) return;
 
@@ -156,7 +156,7 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    private void TryAttack(Vector2 direction)
+    protected virtual void TryAttack(Vector2 direction)
     {
         if (enemyData == null) return;
         if (Time.time < lastAttackTime + enemyData.attackCooldown) return;
