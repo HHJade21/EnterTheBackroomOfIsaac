@@ -33,13 +33,13 @@ public class DungeonController : MonoBehaviour
     public int minRooms = 1;
     public int maxRooms = 10;
     public List<GameObject> rooms = new List<GameObject>();
-    [Tooltip("충돌 체크 시 방 크기에 추가할 여유 공간")]
-    public float roomCollisionMargin = 2f;
     [Tooltip("충돌 체크 범위를 시각적으로 표시")]
     public bool showCollisionBounds = true;
     
     [Header("Minimap")]
     public MinimapController minimapController;
+
+    public GameObject selectPanel;
     
     // 충돌 체크 시 그릴 Bounds 저장 (Bounds, 충돌 여부)
     private List<(Bounds bounds, bool isColliding)> collisionBoundsToDraw = new List<(Bounds, bool)>();
@@ -59,6 +59,12 @@ public class DungeonController : MonoBehaviour
 
     void Start(){
         InitializePrefabsByDirection();
+        if(selectPanel != null && itemRoomPrefab != null){
+            var printer = itemRoomPrefab.GetComponentInChildren<PrinterController>();
+            if(printer != null){
+                printer.selectPanel = selectPanel;
+            }
+        }
         if(useBetaGenerator){
             _betaGenerateDungeon();
         }
@@ -140,7 +146,7 @@ public class DungeonController : MonoBehaviour
 
         if (minimapController == null)
         {
-            minimapController = FindObjectOfType<MinimapController>();
+            minimapController = Object.FindAnyObjectByType<MinimapController>();
         }
         if (minimapController != null)
         {
@@ -220,19 +226,19 @@ public class DungeonController : MonoBehaviour
 
         switch(direction){
             case 1: // 북
-                corridorMove.y += 6;
+                corridorMove.y += 5.43f;
                 corridorIndex = 1; // 세로 복도
                 break;
             case 2: // 동
-                corridorMove.x += 6;
+                corridorMove.x += 6.29f;
                 corridorIndex = 0; // 가로 복도
                 break;
             case 3: // 남
-                corridorMove.y -= 6;
+                corridorMove.y -= 5.43f;
                 corridorIndex = 1; // 세로 복도
                 break;
             case 4: // 서
-                corridorMove.x -= 6;
+                corridorMove.x -= 6.29f;
                 corridorIndex = 0; // 가로 복도
                 break;
         }
@@ -300,7 +306,7 @@ public class DungeonController : MonoBehaviour
         // Generate the minimap by finding the controller and passing the room list
         if (minimapController == null)
         {
-            minimapController = FindObjectOfType<MinimapController>();
+            minimapController = Object.FindAnyObjectByType<MinimapController>();
         }
         if (minimapController != null)
         {
@@ -374,19 +380,19 @@ public class DungeonController : MonoBehaviour
         
         switch(direction){
             case 1: // 북
-                corridorMove.y += 6;
+                corridorMove.y += 5.43f;
                 corridorIndex = 1; // 세로 복도
                 break;
             case 2: // 동
-                corridorMove.x += 6;
+                corridorMove.x += 6.29f;
                 corridorIndex = 0; // 가로 복도
                 break;
             case 3: // 남
-                corridorMove.y -= 6;
+                corridorMove.y -= 5.43f;
                 corridorIndex = 1; // 세로 복도
                 break;
             case 4: // 서
-                corridorMove.x -= 6;
+                corridorMove.x -= 6.29f;
                 corridorIndex = 0; // 가로 복도
                 break;
         }
@@ -594,19 +600,6 @@ public class DungeonController : MonoBehaviour
         else {
             bounds = new Bounds(obj.transform.position, Vector3.one * 10f);
         }
-        
-        // SpriteRenderer보다 조금 더 크게 계산 (여유 공간 추가)
-        // roomCollisionMargin이 마이너스여도 최소 크기는 보장
-        Vector3 marginOffset = Vector3.one * (roomCollisionMargin * 2f);
-        Vector3 expandedSize = bounds.size + marginOffset;
-        
-        // 최소 크기 보장 (원본 크기의 50% 이하로 축소되지 않도록)
-        Vector3 minSize = bounds.size * 0.5f;
-        expandedSize.x = Mathf.Max(expandedSize.x, minSize.x);
-        expandedSize.y = Mathf.Max(expandedSize.y, minSize.y);
-        expandedSize.z = Mathf.Max(expandedSize.z, minSize.z);
-        
-        bounds.size = expandedSize;
         
         return bounds;
     }

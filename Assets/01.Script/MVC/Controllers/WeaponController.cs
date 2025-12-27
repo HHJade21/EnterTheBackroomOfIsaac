@@ -284,6 +284,11 @@ public class WeaponController : MonoBehaviour
         SpawnNewWeapon(newID, spawnPosition);
     }
 
+    public void DevTool_DropNewWeapon_DefaultPos() // Vector3? << 물음표 들어가면 OnClick에서 안 떠서 임시로 만듬
+    {
+        DevTool_DropNewWeapon((Vector3?)null);
+    }
+
     // ========== Weapon Management ==========
     /// <summary>
     /// 무기 추가 메소드: 플레이어의 인벤토리에 새로운 무기를 추가합니다.
@@ -1468,7 +1473,7 @@ public class WeaponController : MonoBehaviour
         if (pc != null) return pc;
 
         // 전체 씬에서 찾기 (fallback)
-        pc = FindObjectOfType<PlayerController>();
+        pc = Object.FindAnyObjectByType<PlayerController>();
         return pc;
     }
 

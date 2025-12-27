@@ -1133,7 +1133,7 @@ SpriteRenderer:
   m_SortingLayer: -2
   m_SortingOrder: -2
   m_Sprite: {fileID: 21300000, guid: 5734bcc7cc60c2649a72db87c638633f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.2}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -7925,7 +7925,7 @@ SpriteRenderer:
   m_SortingLayer: -2
   m_SortingOrder: -2
   m_Sprite: {fileID: 21300000, guid: 5734bcc7cc60c2649a72db87c638633f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.2}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -8365,7 +8365,7 @@ SpriteRenderer:
   m_SortingLayer: -2
   m_SortingOrder: -2
   m_Sprite: {fileID: 21300000, guid: 5734bcc7cc60c2649a72db87c638633f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.2}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -9513,7 +9513,7 @@ SpriteRenderer:
   m_SortingLayer: -2
   m_SortingOrder: -2
   m_Sprite: {fileID: 21300000, guid: 5734bcc7cc60c2649a72db87c638633f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.2}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -13007,10 +13007,6 @@ MonoBehaviour:
   corridorPrefab:
   - {fileID: 599642475239265866, guid: 2372e2410833bea4996eed7b3d02145d, type: 3}
   - {fileID: 599642475239265866, guid: 6c0104ff9a8da3f4291fe510621f6b2c, type: 3}
-  - {fileID: 1659519211985066721, guid: 35fa37f9ece869341b28345e6a4be76d, type: 3}
-  - {fileID: 4863161835567292834, guid: 1287343355588a94fa6035a3cc360889, type: 3}
-  - {fileID: 8193406390501720912, guid: d408e404befab094084cda52183b23de, type: 3}
-  - {fileID: 2753398452698691470, guid: ba5a58d32451097469c3afc200235407, type: 3}
   startRoomPrefab: {fileID: 6602394229092112616, guid: e2d9b983ae54e47468f4ced22b26f14d, type: 3}
   normalRoomPrefabs:
   - {fileID: 4185292659311260358, guid: 632a7f4df28f5df44b53f3f5b9e3ce15, type: 3}
@@ -13021,13 +13017,13 @@ MonoBehaviour:
   - {fileID: 2774152928177950668, guid: d3e5465bf3598d0458eeba2873c1af13, type: 3}
   itemRoomPrefab: {fileID: 4185292659311260358, guid: 7499e2d748b77eb46a61361c50a54eb6, type: 3}
   bossRoomPrefab: {fileID: 4185292659311260358, guid: 0c43dfd2bef2ec8469c48c57a9ed2426, type: 3}
-  minRooms: 5
-  maxRooms: 8
+  minRooms: 10
+  maxRooms: 15
   rooms: []
-  roomCollisionMargin: 0
   showCollisionBounds: 0
   minimapController: {fileID: 520458503}
-  useBetaGenerator: 1
+  selectPanel: {fileID: 1178701931}
+  useBetaGenerator: 0
 --- !u!1 &1844762904
 GameObject:
   m_ObjectHideFlags: 0

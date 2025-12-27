@@ -49,7 +49,7 @@ public class MinimapController : MonoBehaviour
 
     void Start()
     {
-        PlayerController player = FindObjectOfType<PlayerController>();
+        PlayerController player = Object.FindAnyObjectByType<PlayerController>();
         if (player != null)
         {
             playerTransform = player.transform;
@@ -151,7 +151,7 @@ public class MinimapController : MonoBehaviour
         HashSet<Vector3> generatedCorridorPositions = new HashSet<Vector3>();
 
         // Get DungeonController to access map-level corridors
-        DungeonController dungeonController = FindObjectOfType<DungeonController>();
+        DungeonController dungeonController = Object.FindAnyObjectByType<DungeonController>();
         if (dungeonController != null && dungeonController.corridorParent != null)
         {
             // First pass: Generate map-level corridors to ensure they are drawn below rooms

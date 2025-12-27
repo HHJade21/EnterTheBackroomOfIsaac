@@ -32,7 +32,7 @@ public class EnemyController : MonoBehaviour
     protected Rigidbody2D rb;
     protected bool isCollidingWithPlayer = false; // 플레이어와 충돌 중인지 여부
     protected Animator animator;
-    private Collider2D collider;
+    private Collider2D enemyCollider;
     protected SpriteRenderer spriteRenderer;
     protected bool isDead = false;
 
@@ -45,11 +45,12 @@ public class EnemyController : MonoBehaviour
         // Rigidbody2D 설정: 벽 충돌 감지를 위해 kinematic = false로 설정
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        collider = GetComponent<Collider2D>();
+        enemyCollider = GetComponent<Collider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         if (rb != null)
         {
-            rb.isKinematic = false; // 물리 충돌 감지 가능
+            // rb.isKinematic = false; << 이거 구식 표현이라고 경고 계속 떠서 아래줄로 바꿈
+            rb.bodyType = RigidbodyType2D.Dynamic; // 물리 충돌 감지 가능
             rb.constraints = RigidbodyConstraints2D.FreezeRotation; // 회전 방지
             rb.linearDamping = 10f; // 자연스럽게 멈추도록 높은 마찰력 설정
             rb.gravityScale = 0f; // 중력 비활성화
@@ -339,7 +340,7 @@ public class EnemyController : MonoBehaviour
         isDead = true;
         gameObject.tag = "Corpse";
         roomController.OnEnemyDeath(this);
-        collider.enabled = false;
+        enemyCollider.enabled = false;
         animator.SetTrigger("Death");
         yield return new WaitForSeconds(3f);
         for(int i = 0; i < 100; i++)

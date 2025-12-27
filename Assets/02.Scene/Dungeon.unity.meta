@@ -1,10 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/04.Audio.meta
-guid: 87d26d469069c264b96d6d33022008c1
-folderAsset: yes
-========
-guid: b5257b0b40b27dc47b0122f4306edbcb
->>>>>>>> 2f8cf946627ea50f19866177b0033a31b4312208:Assets/02.Scene/Dungeon.unity.meta
+guid: ae66c2372c77a1c429431bb6a187c30e
 DefaultImporter:
   externalObjects: {}
   userData: 
