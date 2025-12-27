@@ -4,13 +4,6 @@ using UnityEngine.UI;
 
 public class MinimapController : MonoBehaviour
 {
-    // private nested class to hold references for any minimap object
-    private class MinimapObject
-    {
-        public RectTransform UIRect;
-        public Transform WorldTransform;
-    }
-
     [Header("Minimap Settings")]
     [Tooltip("The UI Panel that will contain all minimap elements.")]
     public RectTransform container;
@@ -50,9 +43,9 @@ public class MinimapController : MonoBehaviour
 
     private Transform playerTransform;
     private RectTransform playerIcon;
+    private RectTransform minimapContent; // Parent for all map icons, which will be moved.
     private Dictionary<RoomController, Image> roomIconMap = new Dictionary<RoomController, Image>();
     private RoomController currentPlayerRoom = null;
-    private List<MinimapObject> minimapObjects = new List<MinimapObject>();
 
     void Start()
     {
@@ -69,6 +62,15 @@ public class MinimapController : MonoBehaviour
 
         if (container != null)
         {
+            // Create a parent object for all map icons that will move
+            GameObject contentObj = new GameObject("MinimapContent");
+            contentObj.transform.SetParent(container, false);
+            minimapContent = contentObj.AddComponent<RectTransform>();
+            minimapContent.anchorMin = minimapContent.anchorMax = minimapContent.pivot = new Vector2(0.5f, 0.5f);
+            minimapContent.anchoredPosition = Vector2.zero;
+            minimapContent.sizeDelta = Vector2.zero;
+
+            // Create the player icon, which stays fixed in the center
             GameObject playerIconObj = new GameObject("Player Icon");
             playerIconObj.transform.SetParent(container, false);
             Image playerImage = playerIconObj.AddComponent<Image>();
@@ -77,6 +79,9 @@ public class MinimapController : MonoBehaviour
             playerIcon.sizeDelta = new Vector2(10, 10);
             playerIcon.anchorMin = playerIcon.anchorMax = playerIcon.pivot = new Vector2(0.5f, 0.5f);
             playerIcon.anchoredPosition = Vector2.zero;
+
+            // Ensure content is rendered behind the player icon
+            minimapContent.SetAsFirstSibling();
         }
     }
 
@@ -84,15 +89,12 @@ public class MinimapController : MonoBehaviour
     {
         if (playerTransform == null) return;
 
-        // --- Update All Minimap Object Positions ---
-        Vector2 playerPos = new Vector2(playerTransform.position.x, playerTransform.position.y);
-        foreach (var minimapObject in minimapObjects)
+        // --- Update Minimap Position ---
+        // Instead of moving every icon, we move the single parent container.
+        if (minimapContent != null)
         {
-            if (minimapObject.UIRect != null && minimapObject.WorldTransform != null)
-            {
-                Vector2 worldPos = new Vector2(minimapObject.WorldTransform.position.x, minimapObject.WorldTransform.position.y);
-                minimapObject.UIRect.anchoredPosition = (worldPos - playerPos) * mapScale;
-            }
+            Vector2 playerPos = new Vector2(playerTransform.position.x, playerTransform.position.y);
+            minimapContent.anchoredPosition = -playerPos * mapScale;
         }
 
         // --- Update Room Colors ---
@@ -137,16 +139,14 @@ public class MinimapController : MonoBehaviour
 
     public void Generate(List<RoomController> rooms)
     {
-        if (container == null) return;
+        if (container == null || minimapContent == null) return;
 
-        // Clear previous minimap elements
-        foreach (Transform child in container)
+        // Clear previous minimap elements from the content container
+        foreach (Transform child in minimapContent)
         {
-            if (playerIcon != null && child == playerIcon.transform) continue;
             Destroy(child.gameObject);
         }
         roomIconMap.Clear();
-        minimapObjects.Clear();
 
         HashSet<Vector3> generatedCorridorPositions = new HashSet<Vector3>();
 
@@ -167,7 +167,7 @@ public class MinimapController : MonoBehaviour
 
                     // --- Create corridor icon using the same Mask/Fill/Outline method as rooms ---
                     GameObject maskObj = new GameObject("Corridor");
-                    maskObj.transform.SetParent(container, false);
+                    maskObj.transform.SetParent(minimapContent, false); // Parent to the moving content
                     Image maskImage = maskObj.AddComponent<Image>();
                     Mask mask = maskObj.AddComponent<Mask>();
                     mask.showMaskGraphic = false;
@@ -190,7 +190,7 @@ public class MinimapController : MonoBehaviour
                     outline.effectColor = outlineColor;
                     outline.effectDistance = outlineEffectDistance;
 
-                    // Set sizes
+                    // Set sizes and position
                     RectTransform maskRect = maskObj.GetComponent<RectTransform>();
                     RectTransform fillRect = fillObj.GetComponent<RectTransform>();
 
@@ -207,8 +207,8 @@ public class MinimapController : MonoBehaviour
                     fillRect.anchorMax = Vector2.one;
                     fillRect.sizeDelta = Vector2.zero;
 
-                    // Add to minimap objects for position updates
-                    minimapObjects.Add(new MinimapObject { UIRect = maskRect, WorldTransform = corridorGO.transform });
+                    // Set position based on world coordinates
+                    maskRect.anchoredPosition = new Vector2(corridorGO.transform.position.x, corridorGO.transform.position.y) * mapScale;
                 }
             }
         }
@@ -221,7 +221,7 @@ public class MinimapController : MonoBehaviour
         foreach (RoomController room in rooms)
         {
             GameObject maskObj = new GameObject($"Room ({room.transform.position.x}, {room.transform.position.y})");
-            maskObj.transform.SetParent(container, false);
+            maskObj.transform.SetParent(minimapContent, false); // Parent to the moving content
             Image maskImage = maskObj.AddComponent<Image>();
             Mask mask = maskObj.AddComponent<Mask>();
             mask.showMaskGraphic = false;
@@ -259,8 +259,10 @@ public class MinimapController : MonoBehaviour
             fillRect.anchorMax = Vector2.one;
             fillRect.sizeDelta = Vector2.zero;
 
+            // Set position based on world coordinates
+            maskRect.anchoredPosition = new Vector2(room.transform.position.x, room.transform.position.y) * mapScale;
+
             roomIconMap[room] = fillImage; // Store for color updates
-            minimapObjects.Add(new MinimapObject { UIRect = maskRect, WorldTransform = room.transform }); // Store for position updates
         }
         
         if (playerIcon != null) playerIcon.transform.SetAsLastSibling();

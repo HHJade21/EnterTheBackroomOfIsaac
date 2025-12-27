@@ -137,6 +137,18 @@ public class DungeonController : MonoBehaviour
                 rc.UpdateRoomSprites();
             }
         }
+
+        if (minimapController == null)
+        {
+            minimapController = FindObjectOfType<MinimapController>();
+        }
+        if (minimapController != null)
+        {
+            List<RoomController> roomControllers = rooms.Select(g => g.GetComponent<RoomController>())
+                                                      .Where(rc => rc != null)
+                                                      .ToList();
+            minimapController.Generate(roomControllers);
+        }
     }
 
     private enum RoomType{
