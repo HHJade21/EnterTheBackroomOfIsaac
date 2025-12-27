@@ -22,7 +22,7 @@ public class PrinterController : MonoBehaviour
     void Start()
     {
         // WeaponController 찾기
-        weaponController = FindObjectOfType<WeaponController>();
+        weaponController = Object.FindAnyObjectByType<WeaponController>();
         if (weaponController == null)
         {
             Debug.LogWarning("PrinterController: WeaponController를 찾을 수 없습니다.");

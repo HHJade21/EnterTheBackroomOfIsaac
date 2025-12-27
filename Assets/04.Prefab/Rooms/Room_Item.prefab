@@ -329,7 +329,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c80825a6cdb0364ab982041cc595c14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomController
-  isCleared: 0
+  isCleared: 1
   isClosed: 0
   roomColor: 0
   roomDepth: 0
@@ -747,6 +747,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PrinterController
   weaponSpawnTransform: {fileID: 8628438542159948886}
   defaultSpawnPosition: {x: 0, y: 0, z: 0}
+  selectPanel: {fileID: 0}
 --- !u!60 &6158854079512450775
 PolygonCollider2D:
   m_ObjectHideFlags: 0

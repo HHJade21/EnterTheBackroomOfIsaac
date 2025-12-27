@@ -135,7 +135,7 @@ public class GuidedProjectileController : MonoBehaviour
         float closestDistance = maxDetectionRange > 0f ? maxDetectionRange : float.MaxValue;
         
         // 씬의 모든 EnemyController 찾기
-        EnemyController[] allEnemies = FindObjectsOfType<EnemyController>();
+        EnemyController[] allEnemies = Object.FindObjectsByType<EnemyController>(FindObjectsSortMode.None);
         
         foreach (EnemyController enemy in allEnemies)
         {

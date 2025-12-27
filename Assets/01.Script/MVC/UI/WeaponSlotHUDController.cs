@@ -75,7 +75,7 @@ public class WeaponSlotHUDController : MonoBehaviour
         else
         {
              // Fallback to find the player if not set in inspector
-            PlayerController player = FindObjectOfType<PlayerController>();
+            PlayerController player = Object.FindAnyObjectByType<PlayerController>();
             if (player != null)
             {
                 playerController = player;

@@ -212,7 +212,7 @@ public class RoomController : MonoBehaviour
     /// </summary>
     private void FindPlayer()
     {
-        PlayerController playerController = FindObjectOfType<PlayerController>();
+        PlayerController playerController = Object.FindAnyObjectByType<PlayerController>();
         if (playerController != null)
         {
             player = playerController.gameObject;

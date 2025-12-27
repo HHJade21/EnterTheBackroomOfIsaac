@@ -25,7 +25,7 @@ public class BulletController : MonoBehaviour
     void Awake()
     {
         // 디버깅: BulletController가 생성되었는지 확인
-        Debug.Log($"BulletController.Awake: {gameObject.name} 생성됨");
+        // Debug.Log($"BulletController.Awake: {gameObject.name} 생성됨");
     }
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created

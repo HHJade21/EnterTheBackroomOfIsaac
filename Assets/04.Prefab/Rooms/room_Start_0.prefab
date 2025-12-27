@@ -840,7 +840,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c80825a6cdb0364ab982041cc595c14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomController
-  isCleared: 0
+  isCleared: 1
   isClosed: 0
   roomColor: 0
   roomDepth: 0

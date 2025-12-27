@@ -821,7 +821,7 @@ public class PlayerController : MonoBehaviour
         float closestDistance = float.MaxValue;
         
         // 모든 newWeapon 컴포넌트를 가진 GameObject 찾기
-        newWeapon[] weapons = FindObjectsOfType<newWeapon>();
+        newWeapon[] weapons = Object.FindObjectsByType<newWeapon>(FindObjectsSortMode.None);
         if (weapons != null && weapons.Length > 0)
         {
             foreach (newWeapon weapon in weapons)
@@ -841,7 +841,7 @@ public class PlayerController : MonoBehaviour
         }
         
         // 모든 newItem 컴포넌트를 가진 GameObject 찾기
-        newItem[] items = FindObjectsOfType<newItem>();
+        newItem[] items = Object.FindObjectsByType<newItem>(FindObjectsSortMode.None);
         if (items != null && items.Length > 0)
         {
             foreach (newItem item in items)
@@ -861,7 +861,7 @@ public class PlayerController : MonoBehaviour
         }
         
         // 모든 PrinterController 컴포넌트를 가진 GameObject 찾기 (별도 탐색 범위 사용)
-        PrinterController[] printers = FindObjectsOfType<PrinterController>();
+        PrinterController[] printers = Object.FindObjectsByType<PrinterController>(FindObjectsSortMode.None);
         if (printers != null && printers.Length > 0)
         {
             foreach (PrinterController printer in printers)
