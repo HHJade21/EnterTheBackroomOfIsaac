@@ -2,16 +2,24 @@ using UnityEngine;
 
 public class BulletController : MonoBehaviour
 {
+    [Header("Data")]
     public BulletData bulletData;
-    private WeaponData.WeaponElement _weaponElement; // 런타임에 설정 가능한 속성
+    private WeaponData.WeaponElement _weaponElement;
     public bool isPlayerBullet = true;
-    
+
+    [Header("Settings")]
+    public float destroyDelay = 0.4f; // 폭발 애니메이션이 끝날 때까지 기다리는 시간
+
+    // 내부 컴포넌트 참조
+    protected Animator anim;
+    protected Rigidbody2D rb;
+    private bool isHit = false; // 중복 충돌 방지용 플래그
+
     public float damage => bulletData != null ? bulletData.damage : 1f;
     public WeaponData.WeaponElement weaponElement
     {
         get
         {
-            // 런타임에 설정된 element가 있으면 우선 사용, 없으면 bulletData의 element 사용
             if (bulletData != null && bulletData.weaponElement != WeaponData.WeaponElement.Cyan)
             {
                 return bulletData.weaponElement;
@@ -20,46 +28,65 @@ public class BulletController : MonoBehaviour
         }
         set => _weaponElement = value;
     }
-    
-    // Awake는 Instantiate 직후 즉시 호출됨
+
     void Awake()
     {
-        // 디버깅: BulletController가 생성되었는지 확인
-        // Debug.Log($"BulletController.Awake: {gameObject.name} 생성됨");
+        // 애니메이터와 리지드바디 가져오기
+        anim = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
     }
-    
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
-        // bulletData가 있으면 초기값 설정
         if (bulletData != null)
         {
             _weaponElement = bulletData.weaponElement;
         }
     }
 
-    // Update is called once per frame
+    // (참고) 만약 Update에서 transform.Translate로 이동 중이었다면,
+    // if(!isHit) 감싸서 멈추게 해야 합니다.
     void Update()
     {
-        
+
     }
-    
-    /// <summary>
-    /// 충돌 감지 메소드: Enemy, Player, Wall 태그와 충돌 시 총알을 파괴합니다.
-    /// </summary>
-    /// <param name="other">충돌한 오브젝트의 Collider2D</param>
+
     void OnTriggerEnter2D(Collider2D other)
     {
-        // Enemy, Player, Wall 태그와 충돌 시 총알 파괴
+        // 이미 충돌한 상태라면 무시 (다단 히트 방지)
+        if (isHit) return;
+
+        bool targetHit = false;
+
+        // 플레이어 총알 -> 적/벽 충돌
         if (isPlayerBullet && (other.CompareTag("Enemy") || other.CompareTag("Wall")))
         {
-            //여기서 투사체 충돌 애니메이션 재생해주시면 됩니다.
-            Destroy(gameObject);
+            targetHit = true;
         }
+        // 적 총알 -> 플레이어/벽 충돌
         else if (!isPlayerBullet && (other.CompareTag("Player") || other.CompareTag("Wall")))
         {
-            Destroy(gameObject);
+            targetHit = true;
+        }
+
+        if (targetHit)
+        {
+            // 1. 상태 잠금 (추가 충돌 방지)
+            isHit = true;
+
+            // 2. 물리 이동 정지 (Rigidbody를 쓰는 경우)
+            if (rb != null) rb.linearVelocity = Vector2.zero;
+
+            // 3. 콜라이더 끄기 (시체에 또 부딪히지 않게)
+            GetComponent<Collider2D>().enabled = false;
+
+            // 4. 애니메이션 트리거 작동 (아까 만든 BaseController의 OnHit)
+            if (anim != null) anim.SetTrigger("OnHit");
+                
+              
+            // 5. 애니메이션 재생 시간만큼 기다렸다가 삭제
+            // (폭발 애니메이션 길이에 맞춰 destroyDelay를 조절하세요)
+            Destroy(gameObject, destroyDelay);
         }
     }
 }
-

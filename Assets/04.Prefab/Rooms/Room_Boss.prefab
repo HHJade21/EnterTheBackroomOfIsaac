@@ -558,7 +558,7 @@ MonoBehaviour:
   isClosed: 0
   roomColor: 0
   roomDepth: 0
-  isDifferentColliderThanDoor: 1
+  isDifferentColliderThanDoor: 0
   doors:
   - {fileID: 5165560919065312652}
   - {fileID: 7248615160785657610}
@@ -1589,7 +1589,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4974563053541954446, guid: 2372e2410833bea4996eed7b3d02145d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -20.01
+      value: -20
       objectReference: {fileID: 0}
     - target: {fileID: 4974563053541954446, guid: 2372e2410833bea4996eed7b3d02145d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1660,7 +1660,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4974563053541954446, guid: 6c0104ff9a8da3f4291fe510621f6b2c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -14.54
+      value: -14.53
       objectReference: {fileID: 0}
     - target: {fileID: 4974563053541954446, guid: 6c0104ff9a8da3f4291fe510621f6b2c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1723,7 +1723,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4974563053541954446, guid: 2372e2410833bea4996eed7b3d02145d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 20.105
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4974563053541954446, guid: 2372e2410833bea4996eed7b3d02145d, type: 3}
       propertyPath: m_LocalPosition.y

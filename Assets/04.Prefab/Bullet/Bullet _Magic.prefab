@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 6076573477073753487}
   - component: {fileID: 735227738718143436}
   - component: {fileID: -8503586706640593453}
+  - component: {fileID: -4233441103625279255}
+  - component: {fileID: 8590513085951878379}
   m_Layer: 0
   m_Name: Bullet _Magic
   m_TagString: Bullet_Player
@@ -170,21 +172,59 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Bullet_Magic
   bulletData: {fileID: 11400000, guid: 470356360bda6584c88bdb73f9f759d9, type: 2}
   isPlayerBullet: 1
+  destroyDelay: 0.4
   variants:
   - sprite: {fileID: 3416800548803149068, guid: 3b5fad07796fe3948944a22e6fcaaf8c, type: 3}
-    animatorController: {fileID: 0}
+    animatorController: {fileID: 22100000, guid: 42c76710ae5b043488d1b277a93bd6c9, type: 2}
     damage: 1
     scale: 0
   - sprite: {fileID: 1269860526340080293, guid: 949c3d42d6d034a4c9ef92d481c80342, type: 3}
-    animatorController: {fileID: 0}
+    animatorController: {fileID: 22100000, guid: 831389d502480be45b39a0fba5d2ebf6, type: 2}
     damage: 3
     scale: 0
   - sprite: {fileID: -5207986089364573992, guid: 5a4f3988241b2b847a22ae08fcc4d94c, type: 3}
-    animatorController: {fileID: 0}
+    animatorController: {fileID: 22100000, guid: f0e8b73807a05af43b0c1393bd82ae5d, type: 2}
     damage: 5
     scale: 0
   - sprite: {fileID: 2378217483689072248, guid: 8566cfc96337b064c8c0c985fb88849a, type: 3}
-    animatorController: {fileID: 0}
+    animatorController: {fileID: 22100000, guid: 7d1774eb3d35c134899e382529774439, type: 2}
     damage: 10
     scale: 0
   tmpIdxMax: 3
+--- !u!114 &-4233441103625279255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2599106515927395768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6121caf1ad9dd1c44857faac977e2856, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BulletController
+  bulletData: {fileID: 0}
+  isPlayerBullet: 1
+  destroyDelay: 0.4
+--- !u!95 &8590513085951878379
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2599106515927395768}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

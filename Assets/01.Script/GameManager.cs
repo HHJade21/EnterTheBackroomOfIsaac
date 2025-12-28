@@ -8,7 +8,28 @@ public class GameManager : MonoBehaviour // 전역 게임 상태를 관리하는
     // - 씬 전환 간에도 파괴되지 않도록 유지
     // - 정적 프로퍼티로 Instance 접근자 제공
     // - 중복 인스턴스가 생기면 제거
-    public static GameManager Instance { get; private set; } // 싱글톤 인스턴스 보관
+    private static GameManager _instance;
+    private static bool _isShuttingDown;
+    public static GameManager Instance // 싱글톤 인스턴스 보관 (필요 시 자동 생성)
+    {
+        get
+        {
+            // 플레이/앱 종료 중에는 새 인스턴스를 만들지 않음 (종료 시점 경고 방지)
+            if (_isShuttingDown) return null;
+
+            if (_instance == null)
+            {
+                _instance = UnityEngine.Object.FindAnyObjectByType<GameManager>();
+                if (_instance == null)
+                {
+                    var go = new GameObject(nameof(GameManager));
+                    _instance = go.AddComponent<GameManager>();
+                }
+            }
+            return _instance;
+        }
+        private set => _instance = value;
+    }
 
     // [Game State] 전역 게임 상태 관리
     // - Title, Lobby, Dungeon, Pause, GameOver 상태 정의
@@ -51,13 +72,20 @@ public class GameManager : MonoBehaviour // 전역 게임 상태를 관리하는
 
     private AudioSource bgmSource; // BGM 재생용 오디오 소스
 
+    [Header("Controllers")]
+    public PanelController panelController;
+    public PrinterController printerController;
+    public PlayerController playerController;
+    public WeaponController weaponController;
+    public DungeonController dungeonController;
+
     // [Lifecycle] 부트스트랩 루틴
     // - 서비스 초기화
     // - 이벤트 구독/해제 준비
     // - 초기 씬/상태 로드
     private void Awake() // 유니티 라이프사이클: 오브젝트 생성 시 호출
     {
-        if (Instance != null && Instance != this) // 이미 인스턴스가 존재하고 자신이 아니면
+        if (_instance != null && _instance != this) // 이미 인스턴스가 존재하고 자신이 아니면
         {
             Destroy(gameObject); // 중복 오브젝트 제거
             return; // 이후 로직 중단
@@ -74,6 +102,19 @@ public class GameManager : MonoBehaviour // 전역 게임 상태를 관리하는
 
         // 씬 로드 완료 이벤트 구독 (씬에 따라 BGM 제어)
         SceneManager.sceneLoaded += HandleSceneLoaded; // 씬 로드시 콜백 등록
+    }
+
+    private void OnApplicationQuit()
+    {
+        _isShuttingDown = true;
+    }
+
+    private void OnDestroy()
+    {
+        if (_instance == this)
+        {
+            _instance = null;
+        }
     }
 
     private void Start() // 유니티 라이프사이클: 첫 프레임 전에 호출

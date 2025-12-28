@@ -1,0 +1,290 @@
+fileFormatVersion: 2
+guid: 006b61591956ebc47a0da3a6b68ee9c6
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 964311315750869100
+    second: Bubble_exp_gen_0
+  - first:
+      213: -2422523910969511486
+    second: Bubble_exp_gen_1
+  - first:
+      213: 7632383549959700569
+    second: Bubble_exp_gen_2
+  - first:
+      213: -8749020938560331579
+    second: Bubble_exp_gen_3
+  - first:
+      213: 3700895578648137258
+    second: Bubble_exp_gen_4
+  - first:
+      213: -5183466708272344971
+    second: Bubble_exp_gen_5
+  - first:
+      213: 3671472003570666377
+    second: Bubble_exp_gen_6
+  - first:
+      213: -322236517810722800
+    second: Bubble_exp_gen_7
+  - first:
+      213: 7770751526765754106
+    second: Bubble_exp_gen_8
+  - first:
+      213: -7298182590432698180
+    second: Bubble_exp_gen_9
+  - first:
+      213: 7892398388749043613
+    second: Bubble_exp_gen_10
+  - first:
+      213: -6202972075100822996
+    second: Bubble_exp_gen_11
+  - first:
+      213: 4739949230894243512
+    second: Bubble_exp_gen_12
+  - first:
+      213: -3502542975204355212
+    second: Bubble_exp_gen_13
+  - first:
+      213: 6077499871963449584
+    second: Bubble_exp_gen_14
+  - first:
+      213: -7638278865931454776
+    second: Bubble_exp_gen_15
+  - first:
+      213: -3248074688090093147
+    second: Bubble_exp_gen_16
+  - first:
+      213: 260288618723977079
+    second: Bubble_exp_gen_17
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 1
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Bubble_exp_gen_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 600
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c685834580ce16d00800000000000000
+      internalID: 964311315750869100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bubble_exp_gen_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 400
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c1b5ca8657716ed0800000000000000
+      internalID: -2422523910969511486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bubble_exp_gen_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95002ec866cabe960800000000000000
+      internalID: 7632383549959700569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bubble_exp_gen_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c028a88fcb359680800000000000000
+      internalID: -8749020938560331579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Bubble_exp_gen_0: 964311315750869100
+      Bubble_exp_gen_1: -2422523910969511486
+      Bubble_exp_gen_10: 7892398388749043613
+      Bubble_exp_gen_11: -6202972075100822996
+      Bubble_exp_gen_12: 4739949230894243512
+      Bubble_exp_gen_13: -3502542975204355212
+      Bubble_exp_gen_14: 6077499871963449584
+      Bubble_exp_gen_15: -7638278865931454776
+      Bubble_exp_gen_16: -3248074688090093147
+      Bubble_exp_gen_17: 260288618723977079
+      Bubble_exp_gen_2: 7632383549959700569
+      Bubble_exp_gen_3: -8749020938560331579
+      Bubble_exp_gen_4: 3700895578648137258
+      Bubble_exp_gen_5: -5183466708272344971
+      Bubble_exp_gen_6: 3671472003570666377
+      Bubble_exp_gen_7: -322236517810722800
+      Bubble_exp_gen_8: 7770751526765754106
+      Bubble_exp_gen_9: -7298182590432698180
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6076573477073753487}
   - component: {fileID: 735227738718143436}
   - component: {fileID: 2504291474770902375}
+  - component: {fileID: 4910838892610831902}
   m_Layer: 0
   m_Name: Bullet_Revolver
   m_TagString: Bullet_Player
@@ -170,3 +171,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BulletController
   bulletData: {fileID: 0}
   isPlayerBullet: 1
+  destroyDelay: 0.4
+--- !u!95 &4910838892610831902
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2599106515927395768}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: 86ce43397f2bef94dbf567f71835ff71, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

@@ -153,7 +153,10 @@ public class RoomController : MonoBehaviour
         GameObject enemyPrefab = null;
         switch(roomColor){
             case CMYKColor.Black:
-                enemyPrefab = dungeonController.enemyPrefabK[Random.Range(0, dungeonController.enemyPrefabK.Count)];
+                if(dungeonController.enemyPrefabK.Count > 0)
+                {
+                    enemyPrefab = dungeonController.enemyPrefabK[Random.Range(0, dungeonController.enemyPrefabK.Count)];
+                }
                 break;
             case CMYKColor.Cyan:
                 enemyPrefab = dungeonController.enemyPrefabC[Random.Range(0, dungeonController.enemyPrefabC.Count)];
@@ -164,6 +167,11 @@ public class RoomController : MonoBehaviour
             case CMYKColor.Yellow:
                 enemyPrefab = dungeonController.enemyPrefabY[Random.Range(0, dungeonController.enemyPrefabY.Count)];
                 break;
+        }
+        if(enemyPrefab == null)
+        {
+            Debug.LogWarning("RoomController: 적 스폰 실패 - enemyPrefab is null.");
+            return null;
         }
         GameObject enemy = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
         enemy.GetComponent<EnemyController>().roomController = this;

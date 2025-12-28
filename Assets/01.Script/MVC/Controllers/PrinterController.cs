@@ -7,26 +7,33 @@ public class PrinterController : MonoBehaviour
 {
     [Header("Spawn Settings")]
     [Tooltip("무기가 생성될 위치를 가진 Transform (인스펙터에서 다른 오브젝트를 드래그 앤 드롭으로 할당)")]
-    [SerializeField]
-    private Transform weaponSpawnTransform;
+    public Transform weaponSpawnTransform;
     
     [Tooltip("Transform이 할당되지 않은 경우 사용할 기본 위치")]
-    [SerializeField]
-    private Vector3 defaultSpawnPosition = Vector3.zero;
+    public Vector3 defaultSpawnPosition = Vector3.zero;
     
-    private WeaponController weaponController;
+    public WeaponController weaponController;
 
     public GameObject selectPanel;
+
+    private void Awake()
+    {
+        GameManager.Instance.printerController = this;
+    }
+
+    private void OnDestroy()
+    {
+        if (GameManager.Instance != null && GameManager.Instance.printerController == this)
+        {
+            GameManager.Instance.printerController = null;
+        }
+    }
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         // WeaponController 찾기
-        weaponController = Object.FindAnyObjectByType<WeaponController>();
-        if (weaponController == null)
-        {
-            Debug.LogWarning("PrinterController: WeaponController를 찾을 수 없습니다.");
-        }
+        weaponController = GameManager.Instance.weaponController;
     }
 
     // Update is called once per frame
@@ -61,29 +68,17 @@ public class PrinterController : MonoBehaviour
     //     }
     // }
 
-    public void OpenSelectPanel()
-    {
-        Time.timeScale = 0;
-        selectPanel.SetActive(true);
-    }
-
-    public void CloseSelectPanel()
-    {
-        Time.timeScale = 1;
-        selectPanel.SetActive(false);
-    }
-
-    public void SelectOption(){
-        // WeaponController가 있으면 무기 생성
-        if (weaponController != null)
-        {
-            Vector3 spawnPos = weaponSpawnTransform != null ? weaponSpawnTransform.position : defaultSpawnPosition;
-            weaponController.DevTool_DropNewWeapon(spawnPos);
-        }
-        else
-        {
-            Debug.LogWarning("PrinterController: WeaponController가 없어 무기를 생성할 수 없습니다.");
-        }
-        CloseSelectPanel();
-    }
+    // public void SelectOption(){
+    //     // WeaponController가 있으면 무기 생성
+    //     if (weaponController != null)
+    //     {
+    //         Vector3 spawnPos = weaponSpawnTransform != null ? weaponSpawnTransform.position : defaultSpawnPosition;
+    //         weaponController.DevTool_DropNewWeapon(spawnPos);
+    //     }
+    //     else
+    //     {
+    //         Debug.LogWarning("PrinterController: WeaponController가 없어 무기를 생성할 수 없습니다.");
+    //     }
+    //     CloseSelectPanel();
+    // }
 }

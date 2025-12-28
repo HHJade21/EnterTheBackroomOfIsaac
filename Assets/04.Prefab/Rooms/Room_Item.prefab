@@ -333,7 +333,7 @@ MonoBehaviour:
   isClosed: 0
   roomColor: 0
   roomDepth: 0
-  isDifferentColliderThanDoor: 1
+  isDifferentColliderThanDoor: 0
   doors:
   - {fileID: 7376595824631771109}
   - {fileID: 5165560919065312652}
@@ -747,6 +747,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PrinterController
   weaponSpawnTransform: {fileID: 8628438542159948886}
   defaultSpawnPosition: {x: 0, y: 0, z: 0}
+  weaponController: {fileID: 0}
   selectPanel: {fileID: 0}
 --- !u!60 &6158854079512450775
 PolygonCollider2D:
@@ -1647,11 +1648,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 599642475239265866, guid: 00bfd7732f7b5484685057f641629d99, type: 3}
       propertyPath: m_Name
-      value: Corridor_V_Link
+      value: Corridor4
       objectReference: {fileID: 0}
     - target: {fileID: 4974563053541954446, guid: 00bfd7732f7b5484685057f641629d99, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.845
+      value: -11.83
       objectReference: {fileID: 0}
     - target: {fileID: 4974563053541954446, guid: 00bfd7732f7b5484685057f641629d99, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1722,7 +1723,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4974563053541954446, guid: 00bfd7732f7b5484685057f641629d99, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.845
+      value: 11.83
       objectReference: {fileID: 0}
     - target: {fileID: 4974563053541954446, guid: 00bfd7732f7b5484685057f641629d99, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1797,7 +1798,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4974563053541954446, guid: aa14d1a301f514b47a27d357976fc0c4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 14.235
+      value: 14.22
       objectReference: {fileID: 0}
     - target: {fileID: 4974563053541954446, guid: aa14d1a301f514b47a27d357976fc0c4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1868,7 +1869,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4974563053541954446, guid: aa14d1a301f514b47a27d357976fc0c4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -14.235
+      value: -14.22
       objectReference: {fileID: 0}
     - target: {fileID: 4974563053541954446, guid: aa14d1a301f514b47a27d357976fc0c4, type: 3}
       propertyPath: m_LocalPosition.z
