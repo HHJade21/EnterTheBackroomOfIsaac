@@ -28,8 +28,17 @@ public class Enemy_Siren : EnemyController
     [Tooltip("발사 후 다음 Diving까지의 딜레이 시간")]
     [SerializeField] private float postAttackDelay = 1f;
     
-    [Tooltip("원형 발사 시 투사체 개수")]
-    [SerializeField] private int projectileCount = 6;
+    [Tooltip("발사할 투사체 개수")]
+    [SerializeField] private int projectileCount = 5;
+    
+    [Tooltip("플레이어 방향 기준 각도 분산 범위 (도 단위)")]
+    [SerializeField] private float spreadAngle = 20f;
+    
+    [Tooltip("각 탄환 발사 간 최소 딜레이 (초)")]
+    [SerializeField] private float minFireDelay = 0f;
+    
+    [Tooltip("각 탄환 발사 간 최대 딜레이 (초)")]
+    [SerializeField] private float maxFireDelay = 0.1f;
     
     // 상태 변수
     private bool isDiving = false; // 현재 Diving 상태인지 여부
@@ -227,29 +236,44 @@ public class Enemy_Siren : EnemyController
     }
     
     /// <summary>
-    /// Jump 애니메이션과 함께 원형으로 투사체를 발사합니다.
+    /// Jump 애니메이션과 함께 플레이어 방향으로 탄환 뭉치를 발사합니다.
     /// 이 메소드는 애니메이션 이벤트에서 호출됩니다.
     /// </summary>
     public void OnJumpAttack()
     {
         if (enemyData == null || enemyData.projectilePrefab == null) return;
         
+        // 플레이어 방향으로 탄환 뭉치 발사 코루틴 시작
+        StartCoroutine(FireSpreadProjectiles());
+        
+        // 공격 후 딜레이 시작
+        StartCoroutine(PostAttackDelayRoutine());
+    }
+    
+    /// <summary>
+    /// 플레이어 방향으로 분산된 탄환 뭉치를 발사하는 코루틴.
+    /// 각 탄환은 플레이어 방향 기준 ±20도 범위 내 랜덤 각도로 발사되며,
+    /// 발사 시간에 미세한 오차가 있어 무질서한 탄환 덩어리처럼 보입니다.
+    /// </summary>
+    private IEnumerator FireSpreadProjectiles()
+    {
         // 플레이어 방향 계산
         Vector2 toPlayer = target != null 
             ? ((Vector2)target.position - (Vector2)transform.position).normalized 
             : Vector2.up;
         
-        // 원형으로 투사체 발사
-        float angleStep = 360f / projectileCount;
+        // 플레이어 방향의 기본 각도 계산 (라디안)
+        float baseAngle = Mathf.Atan2(toPlayer.y, toPlayer.x);
         
-        // 플레이어 방향의 각도 계산
-        float baseAngle = Mathf.Atan2(toPlayer.y, toPlayer.x) * Mathf.Rad2Deg;
-        
+        // 각 탄환 발사
         for (int i = 0; i < projectileCount; i++)
         {
-            // 각 투사체의 각도 계산 (플레이어 방향을 기준으로 원형 배치)
-            float angle = (baseAngle + i * angleStep) * Mathf.Deg2Rad;
-            Vector2 direction = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
+            // ±spreadAngle 범위 내 랜덤 각도 계산
+            float randomSpread = Random.Range(-spreadAngle, spreadAngle) * Mathf.Deg2Rad;
+            float finalAngle = baseAngle + randomSpread;
+            
+            // 발사 방향 계산
+            Vector2 direction = new Vector2(Mathf.Cos(finalAngle), Mathf.Sin(finalAngle));
             
             // 투사체 생성
             GameObject projectile = Instantiate(enemyData.projectilePrefab, transform.position, Quaternion.identity);
@@ -261,10 +285,18 @@ public class Enemy_Siren : EnemyController
             }
             
             Destroy(projectile, enemyData.projectileLifetime);
+            
+            // 다음 탄환 발사까지 랜덤 딜레이 (미세한 오차)
+            float delay = Random.Range(minFireDelay, maxFireDelay);
+            if (delay > 0f)
+            {
+                yield return new WaitForSeconds(delay);
+            }
+            else
+            {
+                yield return null; // 최소 딜레이가 0이면 한 프레임만 대기
+            }
         }
-        
-        // 공격 후 딜레이 시작
-        StartCoroutine(PostAttackDelayRoutine());
     }
     
     /// <summary>
@@ -347,7 +379,7 @@ public class Enemy_Siren : EnemyController
             {
                 damage = Mathf.RoundToInt(bulletController.damage);
             }
-            
+            animator.SetTrigger("Hit");
             // 데미지 적용 (속성 포함)
             ApplyDamage(damage, bulletElement);
             

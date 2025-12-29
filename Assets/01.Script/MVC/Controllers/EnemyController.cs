@@ -214,7 +214,7 @@ public class EnemyController : MonoBehaviour
             {
                 damage = Mathf.RoundToInt(bulletController.damage);
             }
-            
+            animator.SetTrigger("Hit");
             // 데미지 적용 (속성 포함)
             ApplyDamage(damage, bulletElement);
 

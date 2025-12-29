@@ -7684,6 +7684,7 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+  m_IsActive: 0
 --- !u!224 &1178701932
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11381,9 +11382,9 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 644829615}
+  - {fileID: 371539444}
   - {fileID: 1312369807}
   - {fileID: 1936147826}
-  - {fileID: 371539444}
   m_Father: {fileID: 1178701932}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -11437,7 +11438,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 128259231}
         m_TargetAssemblyTypeName: PanelController, Assembly-CSharp
-        m_MethodName: SelectOption
+        m_MethodName: SelectOption1
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -13269,9 +13270,9 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 284596422}
+  - {fileID: 1336098663}
   - {fileID: 1594421913}
   - {fileID: 822241728}
-  - {fileID: 1336098663}
   m_Father: {fileID: 1178701932}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -13325,7 +13326,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 128259231}
         m_TargetAssemblyTypeName: PanelController, Assembly-CSharp
-        m_MethodName: SelectOption
+        m_MethodName: SelectOption2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -14788,9 +14789,9 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1665528272}
+  - {fileID: 472556678}
   - {fileID: 545500168}
   - {fileID: 1258084328}
-  - {fileID: 472556678}
   m_Father: {fileID: 1178701932}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -14844,7 +14845,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 128259231}
         m_TargetAssemblyTypeName: PanelController, Assembly-CSharp
-        m_MethodName: SelectOption
+        m_MethodName: SelectOption3
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -15714,4 +15715,3 @@ SceneRoots:
   - {fileID: 1284743901}
   - {fileID: 837477354}
   - {fileID: 918675996}
-  - {fileID: 1149566675340026715}
