@@ -1,5 +1,74 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4559167763187376222
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 547433860081710875}
+  - component: {fileID: 1492644191354953187}
+  m_Layer: 0
+  m_Name: Diving Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &547433860081710875
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4559167763187376222}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8154655195602935755}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &1492644191354953187
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4559167763187376222}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.5, y: 1}
+  m_Direction: 0
 --- !u!1 &5312735757910337222
 GameObject:
   m_ObjectHideFlags: 0
@@ -12,8 +81,8 @@ GameObject:
   - component: {fileID: 7717730135250230745}
   - component: {fileID: 3061325478431365070}
   - component: {fileID: 8626699121689413650}
-  - component: {fileID: -345464005485795352}
-  - component: {fileID: 3569732834639024817}
+  - component: {fileID: 7728971193701931291}
+  - component: {fileID: 7541114615357815026}
   m_Layer: 0
   m_Name: Special_C_Siren
   m_TagString: Enemy
@@ -33,7 +102,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 547433860081710875}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7717730135250230745
@@ -83,7 +153,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 2578926514624344731, guid: a42f3f9d755c57c4da3ed5debcd7c16d, type: 3}
+  m_Sprite: {fileID: 5047062032632825435, guid: 684218f5a40c389479436440daa2a221, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -158,28 +228,7 @@ CapsuleCollider2D:
   m_Offset: {x: -0.23857434, y: -0.15854199}
   m_Size: {x: 2.1906471, y: 4.422715}
   m_Direction: 0
---- !u!114 &-345464005485795352
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5312735757910337222}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99816e78411afc84b8cd2f7f9c528cce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Enemy_Venus
-  enemyData: {fileID: 11400000, guid: a416a3710142d0146a4c5817ee8cc7c3, type: 2}
-  target: {fileID: 0}
-  currentHp: 0
-  pushBackSpeed: 0.3
-  roomController: {fileID: 0}
-  vinePrefab: {fileID: 5312735757910337222, guid: 856361c79aa38054aae7e3a6ed3aa9ce, type: 3}
-  minSpawnDistance: 2
-  maxSpawnDistance: 5
-  maxSpawnAttempts: 10
---- !u!95 &3569732834639024817
+--- !u!95 &7728971193701931291
 Animator:
   serializedVersion: 7
   m_ObjectHideFlags: 0
@@ -189,7 +238,7 @@ Animator:
   m_GameObject: {fileID: 5312735757910337222}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5e6b4be6bd86e554789673e4243a357a, type: 2}
+  m_Controller: {fileID: 9100000, guid: 48a3d02784caddd42a02ea2156ff2614, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -201,3 +250,26 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7541114615357815026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5312735757910337222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b277617a4c617ce47b151ae3adfebabf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy_Siren
+  enemyData: {fileID: 11400000, guid: a4219ffe976bc6746a3d6603cb169785, type: 2}
+  target: {fileID: 0}
+  currentHp: 0
+  pushBackSpeed: 0.3
+  roomController: {fileID: 0}
+  divingCollider: {fileID: 1492644191354953187}
+  jumpCollider: {fileID: 8626699121689413650}
+  diveMinDistance: 5
+  diveMaxDistance: 8
+  postAttackDelay: 1
+  projectileCount: 6
