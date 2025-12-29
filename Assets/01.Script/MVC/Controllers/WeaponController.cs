@@ -291,6 +291,22 @@ public class WeaponController : MonoBehaviour
         DevTool_DropNewWeapon((Vector3?)null);
     }
 
+    /// <summary>
+    /// 특정 인덱스의 무기를 필드 위에 생성하는 메소드: allWeapons[idx]에 해당하는 무기를 생성합니다.
+    /// </summary>
+    /// <param name="idx">생성할 무기의 인덱스 (allWeapons 리스트의 인덱스)</param>
+    /// <param name="spawnPosition">생성 위치 (null이면 기본값 사용)</param>
+    public void SpawnWeaponByIndex(int idx, Vector3? spawnPosition = null)
+    {
+        if (idx < 0 || idx >= allWeapons.Count)
+        {
+            Debug.LogWarning($"WeaponController: SpawnWeaponByIndex 실패 - 인덱스 {idx}가 범위를 벗어났습니다. (allWeapons.Count: {allWeapons.Count})");
+            return;
+        }
+
+        SpawnNewWeapon(idx, spawnPosition);
+    }
+
     // ========== Weapon Management ==========
     /// <summary>
     /// 무기 추가 메소드: 플레이어의 인벤토리에 새로운 무기를 추가합니다.

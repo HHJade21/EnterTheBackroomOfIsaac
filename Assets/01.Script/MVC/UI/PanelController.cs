@@ -165,15 +165,37 @@ public class PanelController : MonoBehaviour
         }
     }
 
-    public void SelectOption(){
-        // WeaponController가 있으면 무기 생성
+    public void SelectOption1(){
+        SelectOption(0);
+    }
+    public void SelectOption2(){
+        SelectOption(1);
+    }
+    public void SelectOption3(){
+        SelectOption(2);
+    }
+    public void SelectOption(int index){
         WeaponController weaponController = GameManager.Instance.weaponController;
         PrinterController printerController = GameManager.Instance.printerController;
         if (weaponController != null)
         {
+            int newWeaponIndex = selectWeaponIDs[index];
+            //여기에 해당 무기 스폰 구현
             Vector3 spawnPos = printerController.weaponSpawnTransform != null ? printerController.weaponSpawnTransform.position : printerController.defaultSpawnPosition;
-            weaponController.DevTool_DropNewWeapon(spawnPos);
+            weaponController.SpawnWeaponByIndex(newWeaponIndex, spawnPos);
         }
         CloseSelectPanel();
     }
+
+    // public void SelectOption(){
+    //     // WeaponController가 있으면 무기 생성
+    //     WeaponController weaponController = GameManager.Instance.weaponController;
+    //     PrinterController printerController = GameManager.Instance.printerController;
+    //     if (weaponController != null)
+    //     {
+    //         Vector3 spawnPos = printerController.weaponSpawnTransform != null ? printerController.weaponSpawnTransform.position : printerController.defaultSpawnPosition;
+    //         weaponController.DevTool_DropNewWeapon(spawnPos);
+    //     }
+    //     CloseSelectPanel();
+    // }
 }
