@@ -148,20 +148,17 @@ public class Enemy_Siren : EnemyController
         }
         
         // Diving 이동 계속
-        if(animator.GetBool("Move"))
+        Vector2 moveDelta = diveDirection * enemyData.moveSpeed * Time.fixedDeltaTime;
+        rb.MovePosition(rb.position + moveDelta);
+        // 스프라이트 방향 설정
+        if (moveDelta.x > 0)
         {
-            Vector2 moveDelta = diveDirection * enemyData.moveSpeed * Time.fixedDeltaTime;
-            rb.MovePosition(rb.position + moveDelta);
-            // 스프라이트 방향 설정
-            if (moveDelta.x > 0)
-            {
-                spriteRenderer.flipX = true;
-            }
-            else
-            {
-                spriteRenderer.flipX = false;
-            }
-            }
+            spriteRenderer.flipX = true;
+        }
+        else
+        {
+            spriteRenderer.flipX = false;
+        }
         
         
     }

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 547433860081710875}
   - component: {fileID: 1492644191354953187}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Diving Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,7 +83,7 @@ GameObject:
   - component: {fileID: 8626699121689413650}
   - component: {fileID: 7728971193701931291}
   - component: {fileID: 7541114615357815026}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Special_C_Siren
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -271,5 +271,6 @@ MonoBehaviour:
   jumpCollider: {fileID: 8626699121689413650}
   diveMinDistance: 5
   diveMaxDistance: 8
+  diveDuration: 2
   postAttackDelay: 1
   projectileCount: 6

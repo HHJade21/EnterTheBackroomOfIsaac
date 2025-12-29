@@ -1301,6 +1301,26 @@ public class WeaponController : MonoBehaviour
         if (itemID < 0 || itemID >= allWeapons.Count) return null;
         return allWeapons[itemID];
     }
+    
+    /// <summary>
+    /// 아직 드랍되지 않은 무기의 인덱스 목록을 반환하는 메소드: droppedWeapons에서 false인 인덱스들을 반환합니다.
+    /// </summary>
+    /// <returns>아직 드랍되지 않은 무기의 인덱스 목록</returns>
+    public List<int> GetAvailableWeaponIndices()
+    {
+        EnsureDroppedWeaponList();
+        List<int> availableIndices = new List<int>();
+        
+        for (int i = 0; i < droppedWeapons.Count && i < allWeapons.Count; i++)
+        {
+            if (!droppedWeapons[i])
+            {
+                availableIndices.Add(i);
+            }
+        }
+        
+        return availableIndices;
+    }
 
     /// <summary>
     /// 투사체 속도 배율 설정 메소드: 아이템 시스템에서 사용합니다.

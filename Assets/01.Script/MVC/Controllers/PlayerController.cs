@@ -535,6 +535,7 @@ public class PlayerController : MonoBehaviour
         if (printerController != null)
         {
             // 프린터인 경우: OpenSelectPanel() 호출
+            GameManager.Instance.panelController.SetSelectPanelOptions();
             GameManager.Instance.panelController.OpenSelectPanel();
             return;
         }
@@ -1373,6 +1374,8 @@ public class PlayerController : MonoBehaviour
         // 적의 총알과 충돌했는지 확인
         if (other.CompareTag("Bullet_Enemy"))
         {
+            //디버그용 코드
+            Debug.Log("PlayerController: OnTriggerEnter2D - Bullet_Enemy 태그를 가진 오브젝트와 충돌 : " + other.gameObject.name);
             // 적 총알의 속성 가져오기 (기본값: Cyan)
             WeaponData.WeaponElement bulletElement = WeaponData.WeaponElement.Cyan;
             BulletController bulletController = other.GetComponent<BulletController>();
@@ -1393,6 +1396,8 @@ public class PlayerController : MonoBehaviour
         }
         else if (other.CompareTag("Enemy"))
         {
+            //디버그용 코드
+            Debug.Log("PlayerController: OnTriggerEnter2D - Enemy 태그를 가진 오브젝트와 충돌 : " + other.gameObject.name);
             // 적의 속성 가져오기
             WeaponData.WeaponElement enemyElement = WeaponData.WeaponElement.Cyan; // 기본값
             EnemyController enemyController = other.GetComponent<EnemyController>();

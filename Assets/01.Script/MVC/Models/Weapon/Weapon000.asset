@@ -14,12 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
   itemID: 0
   weaponName: "\uB9AC\uBCFC\uBC84"
-  description: "\uAE30\uBCF8\uD615 \uBB34\uAE30"
+  description: "\uC801\uC744 \uD5A5\uD574 \uBC1C\uC0AC\uD569\uB2C8\uB2E4."
+  detailDescription: Detail Description
   icon: {fileID: 7297654715872928862, guid: c6ff4055eb5f2e84faf381c5bce7f791, type: 3}
+  selectIcon: {fileID: 1426393649633590029, guid: 348a0ef57f72d0540aadb5825de48c30, type: 3}
   animatorController: {fileID: 9100000, guid: 92595332e78f5194faec07994c819757, type: 2}
   element: 0
   weaponType: 1
   autoFire: 0
+  isAmmoWeapon: 1
   projectilePrefab: {fileID: 2599106515927395768, guid: df53bd18d2e843c41b6d6972f785f1f7, type: 3}
   projectileSpeed: 14
   projectileLifetime: 1.5

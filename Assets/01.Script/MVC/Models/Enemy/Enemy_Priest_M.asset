@@ -19,8 +19,9 @@ MonoBehaviour:
   contactDamage: 1
   attackCooldown: 1.5
   isRanged: 1
+  element: 2
   detectionRange: 20
-  attackRange: 2
+  attackRange: 6
   projectilePrefab: {fileID: 2599106515927395768, guid: d8c84b7851c176a4490f34abf7e0870e, type: 3}
   projectileSpeed: 7
   projectileLifetime: 2

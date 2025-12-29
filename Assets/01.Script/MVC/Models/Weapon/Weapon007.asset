@@ -15,11 +15,14 @@ MonoBehaviour:
   itemID: 7
   weaponName: "\uC694\uC220\uBD09"
   description: "\uB79C\uB364\uD55C \uD22C\uC0AC\uCCB4\uB97C \uC18C\uD658\uD574 \uBC1C\uC0AC\uD569\uB2C8\uB2E4."
+  detailDescription: Detail Description
   icon: {fileID: -9015736442291220469, guid: 19a56d78510405849a8e7c458c5ff130, type: 3}
+  selectIcon: {fileID: -2594410131531622419, guid: 695d527acc50f434692b174c4f4579d5, type: 3}
   animatorController: {fileID: 9100000, guid: c53deeec833f6494a9f83f1ed7cc381e, type: 2}
   element: 3
   weaponType: 1
   autoFire: 0
+  isAmmoWeapon: 1
   projectilePrefab: {fileID: 2599106515927395768, guid: 055102c5b2f3d9c4b9a7927624e556d5, type: 3}
   projectileSpeed: 14
   projectileLifetime: 1.5

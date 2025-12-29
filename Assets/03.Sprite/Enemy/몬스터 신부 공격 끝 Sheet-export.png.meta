@@ -118,10 +118,10 @@ TextureImporter:
       name: "\uBAAC\uC2A4\uD130 \uC2E0\uBD80 \uACF5\uACA9 \uB05D Sheet-export_0"
       rect:
         serializedVersion: 2
-        x: 124
-        y: 622
-        width: 257
-        height: 48
+        x: 13
+        y: 17
+        width: 394
+        height: 652
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,10 +140,10 @@ TextureImporter:
       name: "\uBAAC\uC2A4\uD130 \uC2E0\uBD80 \uACF5\uACA9 \uB05D Sheet-export_1"
       rect:
         serializedVersion: 2
-        x: 693
-        y: 648
-        width: 140
-        height: 37
+        x: 671
+        y: 17
+        width: 214
+        height: 667
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -162,10 +162,10 @@ TextureImporter:
       name: "\uBAAC\uC2A4\uD130 \uC2E0\uBD80 \uACF5\uACA9 \uB05D Sheet-export_2"
       rect:
         serializedVersion: 2
-        x: 1199
-        y: 643
-        width: 148
-        height: 37
+        x: 1183
+        y: 17
+        width: 214
+        height: 662
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -180,77 +180,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: "\uBAAC\uC2A4\uD130 \uC2E0\uBD80 \uACF5\uACA9 \uB05D Sheet-export_3"
-      rect:
-        serializedVersion: 2
-        x: 11
-        y: 16
-        width: 397
-        height: 613
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3975c8ad63e9d1640800000000000000
-      internalID: 5052368315411617683
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: "\uBAAC\uC2A4\uD130 \uC2E0\uBD80 \uACF5\uACA9 \uB05D Sheet-export_4"
-      rect:
-        serializedVersion: 2
-        x: 670
-        y: 16
-        width: 216
-        height: 620
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e3ecbfc33fd0d12a0800000000000000
-      internalID: -6765235726889267650
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: "\uBAAC\uC2A4\uD130 \uC2E0\uBD80 \uACF5\uACA9 \uB05D Sheet-export_5"
-      rect:
-        serializedVersion: 2
-        x: 1182
-        y: 16
-        width: 216
-        height: 620
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cbc9b46f31ac5cb70800000000000000
-      internalID: 8918756824162475196
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 4c2ec8c915e393643a3af367c6896c06
     internalID: 0
     vertices: []
     indices: 

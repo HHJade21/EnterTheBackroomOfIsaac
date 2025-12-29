@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
   itemID: 4
   weaponName: "\uC190\uC804\uB4F1"
-  description: "\uC9D1\uC911\uB41C \uBE5B\uC744 \uBC1C\uC0AC\uD569\uB2C8\uB2E4."
+  description: "\uD798\uC744 \uBAA8\uC544 \uC9D1\uC911\uB41C \uBE5B\uC744 \uBC1C\uC0AC\uD569\uB2C8\uB2E4."
+  detailDescription: Detail Description
   icon: {fileID: 4962515976095810413, guid: ac757ac17f9548e448f20043e88070cf, type: 3}
+  selectIcon: {fileID: -4274630363128130359, guid: 9cfb7ac5125a71249859bc5d7cf19ff9, type: 3}
   animatorController: {fileID: 0}
   element: 2
   weaponType: 3
