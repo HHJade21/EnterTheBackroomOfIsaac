@@ -612,7 +612,7 @@ GameObject:
   - component: {fileID: 106216344}
   - component: {fileID: 106216345}
   - component: {fileID: 106216347}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Feet
   m_TagString: PlayerFeet
   m_Icon: {fileID: 0}
@@ -631,8 +631,7 @@ Transform:
   m_LocalPosition: {x: 0.02, y: -0.67, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 658530959}
+  m_Children: []
   m_Father: {fileID: 1933784950}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!70 &106216345
@@ -669,8 +668,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.2}
-  m_Size: {x: 2.5, y: 1.5}
+  m_Offset: {x: 0, y: 0.35}
+  m_Size: {x: 2.5, y: 1.15}
   m_Direction: 1
 --- !u!212 &106216347
 SpriteRenderer:
@@ -1159,7 +1158,7 @@ SpriteRenderer:
   m_SortingLayer: -2
   m_SortingOrder: -2
   m_Sprite: {fileID: 21300000, guid: 5734bcc7cc60c2649a72db87c638633f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.043137256}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -5608,11 +5607,11 @@ Transform:
   m_GameObject: {fileID: 658530957}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.57804, y: -10.75108, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 1}
+  m_LocalPosition: {x: -1.87451, y: -3.35777, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 106216344}
+  m_Father: {fileID: 1933784950}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &658530960
 SpriteRenderer:
@@ -6198,7 +6197,7 @@ GameObject:
   m_Component:
   - component: {fileID: 723541679}
   - component: {fileID: 723541680}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: MeleeCollider
   m_TagString: Bullet_Player
   m_Icon: {fileID: 0}
@@ -7684,7 +7683,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1178701932
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8448,7 +8447,7 @@ SpriteRenderer:
   m_SortingLayer: -2
   m_SortingOrder: -2
   m_Sprite: {fileID: 21300000, guid: 5734bcc7cc60c2649a72db87c638633f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.043137256}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -8963,7 +8962,7 @@ SpriteRenderer:
   m_SortingLayer: -2
   m_SortingOrder: -2
   m_Sprite: {fileID: 21300000, guid: 5734bcc7cc60c2649a72db87c638633f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.043137256}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -10186,7 +10185,7 @@ SpriteRenderer:
   m_SortingLayer: -2
   m_SortingOrder: -2
   m_Sprite: {fileID: 21300000, guid: 5734bcc7cc60c2649a72db87c638633f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.043137256}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -14338,6 +14337,7 @@ Transform:
   - {fileID: 536343276}
   - {fileID: 1252838326}
   - {fileID: 106216344}
+  - {fileID: 658530959}
   - {fileID: 723541679}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -15647,6 +15647,10 @@ PrefabInstance:
     - target: {fileID: 5312735757910337222, guid: a9e80842df07225479ccab0b400612f1, type: 3}
       propertyPath: m_Name
       value: Special_M_Priest
+      objectReference: {fileID: 0}
+    - target: {fileID: 5312735757910337222, guid: a9e80842df07225479ccab0b400612f1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7717730135250230745, guid: a9e80842df07225479ccab0b400612f1, type: 3}
       propertyPath: m_Sprite

@@ -294,6 +294,7 @@ public class PlayerController : MonoBehaviour
     // Unity Events 방식 전용 메서드 (Invoke Unity Events 모드에서 사용)
     public void OnMoveContext(InputAction.CallbackContext context)
     {
+        if (isDead) return;
         if (context.performed || context.canceled)
         {
             inputVec = context.ReadValue<Vector2>();
@@ -306,6 +307,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnRunContext(InputAction.CallbackContext context)
     {
+        if (isDead) return;
         switch (context.phase)
         {
         case InputActionPhase.Performed:
@@ -321,6 +323,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnFireContext(InputAction.CallbackContext context)
     {
+        if (isDead) return;
         if (weaponController == null) return;
         if (weaponController.CurrentWeapon == null) return;
         
@@ -428,6 +431,7 @@ public class PlayerController : MonoBehaviour
     // Input System에서 "Reload" 액션에 매핑 (Invoke Unity Events 모드)
     public void OnReloadContext(InputAction.CallbackContext context)
     {
+        if (isDead) return;
         if (!context.performed) return;
         if (weaponController == null) return;
         
@@ -437,6 +441,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnSwapContext(InputAction.CallbackContext context)
     {
+        if (isDead) return;
         if (!context.performed) return;
         if (weaponController == null) return;
         
@@ -456,6 +461,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnRollContext(InputAction.CallbackContext context)
     {
+        if (isDead) return;
         if (!context.performed) return;
         if (isRolling) return;
         if (Time.time < lastRollTime + rollCooldown) return;
@@ -471,6 +477,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnWarpContext(InputAction.CallbackContext context) //Roll 대체 할 수도 있는거
     {
+        if (isDead) return;
         if (!context.performed) return;
         if (Time.time < lastRollTime + rollCooldown) return;
 
@@ -487,6 +494,7 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
+        if (isDead) return;
         
         switch (context.phase)
         {
@@ -527,6 +535,7 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     public void OnInteractContext(InputAction.CallbackContext context)
     {
+        if (isDead) return;
         if (!context.performed) return;
         if (targetItemPrefab == null) return;
         
@@ -672,9 +681,10 @@ public class PlayerController : MonoBehaviour
             yield return null;
         }
         isRolling = false;
-        isInvincible = false;
         spriteRenderer.enabled = true;
         animator.SetTrigger("Warp");
+        yield return new WaitForSeconds(0.5f);
+        isInvincible = false;
         
     }
 
