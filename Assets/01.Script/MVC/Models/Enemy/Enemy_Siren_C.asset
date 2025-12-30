@@ -22,6 +22,6 @@ MonoBehaviour:
   element: 1
   detectionRange: 20
   attackRange: 2
-  projectilePrefab: {fileID: 2599106515927395768, guid: d8c84b7851c176a4490f34abf7e0870e, type: 3}
+  projectilePrefab: {fileID: 2599106515927395768, guid: 7f303556289bdd64c95b03ca15a4aea7, type: 3}
   projectileSpeed: 7
   projectileLifetime: 2

@@ -277,6 +277,8 @@ public class Enemy_Siren : EnemyController
             
             // 투사체 생성
             GameObject projectile = Instantiate(enemyData.projectilePrefab, transform.position, Quaternion.identity);
+
+            projectile.transform.rotation = Quaternion.Euler(0f, 0f, finalAngle * Mathf.Rad2Deg);
             
             Rigidbody2D projectileRb = projectile.GetComponent<Rigidbody2D>();
             if (projectileRb != null)

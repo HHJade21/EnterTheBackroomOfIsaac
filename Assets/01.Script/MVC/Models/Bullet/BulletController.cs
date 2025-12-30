@@ -6,6 +6,8 @@ public class BulletController : MonoBehaviour
     public BulletData bulletData;
     private WeaponData.WeaponElement _weaponElement;
     public bool isPlayerBullet = true;
+    [Tooltip("투사체 머리 방향: 왼0 위90")]
+    public float headAngle = 90f;
 
     [Header("Settings")]
     public float destroyDelay = 0.4f; // 폭발 애니메이션이 끝날 때까지 기다리는 시간
@@ -42,6 +44,7 @@ public class BulletController : MonoBehaviour
         {
             _weaponElement = bulletData.weaponElement;
         }
+        transform.rotation = Quaternion.Euler(0f, 0f, transform.rotation.eulerAngles.z + headAngle);
     }
 
     // (참고) 만약 Update에서 transform.Translate로 이동 중이었다면,
