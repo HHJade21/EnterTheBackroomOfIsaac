@@ -103,12 +103,12 @@ TextureImporter:
       name: "\uBB34\uAE30_\uB9D0\uC2A4\uD2F1_0"
       rect:
         serializedVersion: 2
-        x: 98
-        y: 26
-        width: 577
-        height: 749
+        x: 26
+        y: 28
+        width: 748
+        height: 747
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -136,6 +136,7 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       "\uBB34\uAE30_\uB9D0\uC2A4\uD2F1_0": -6184904041798479282
+      "\uBB34\uAE30_\uB9D0\uC2A4\uD2F1_1": 1126702652
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -154,12 +154,16 @@ public class PanelController : MonoBehaviour
             if (textList.Count > 0)
             {
                 // 첫 번째 텍스트는 description
-                textList[0].text = selectWeapons[i].description;
+                textList[0].text = selectWeapons[i].weaponName;
                 
                 // 두 번째 텍스트는 detailDescription (존재하는 경우)
                 if (textList.Count > 1)
                 {
-                    textList[1].text = selectWeapons[i].detailDescription;
+                    textList[1].text = selectWeapons[i].description;
+                    if (textList.Count > 2)
+                    {
+                        textList[2].text = selectWeapons[i].detailDescription;
+                    }
                 }
             }
         }
@@ -198,4 +202,6 @@ public class PanelController : MonoBehaviour
     //     }
     //     CloseSelectPanel();
     // }
+
+
 }

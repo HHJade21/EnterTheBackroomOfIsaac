@@ -103,12 +103,12 @@ TextureImporter:
       name: "\uBB34\uAE30_\uB9C8\uC220\uBD09_0"
       rect:
         serializedVersion: 2
-        x: 92
-        y: 87
-        width: 577
-        height: 608
+        x: 93
+        y: 88
+        width: 606
+        height: 606
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

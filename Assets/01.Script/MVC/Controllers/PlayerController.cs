@@ -324,6 +324,13 @@ public class PlayerController : MonoBehaviour
     public void OnFireContext(InputAction.CallbackContext context)
     {
         if (isDead) return;
+        
+        // Time.timeScale이 0이면 발사하지 않음 (패널이 열려있을 때)
+        if (Time.timeScale <= 0f)
+        {
+            return;
+        }
+        
         if (weaponController == null) return;
         if (weaponController.CurrentWeapon == null) return;
         
