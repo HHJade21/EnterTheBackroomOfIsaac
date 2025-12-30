@@ -605,12 +605,21 @@ public class PlayerController : MonoBehaviour
     public void OnPauseContext(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
+        
+        // 일시정지 패널이 이미 활성화되어 있으면 Resume() 호출하여 비활성화
+        if (pausePanel != null && pausePanel.activeSelf)
+        {
+            Resume();
+            return;
+        }
+
         Time.timeScale = 0f;
         
         if (pausePanel != null)
         {
             pausePanel.SetActive(true);
         }
+        
         
         if (pausePanelAnimator != null)
         {
