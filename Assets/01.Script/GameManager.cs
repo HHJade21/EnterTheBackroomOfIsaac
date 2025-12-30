@@ -1,6 +1,8 @@
 using System; // System 네임스페이스 사용 (Action, 기본 유틸)
+using System.Collections; // 코루틴을 위한 네임스페이스
 using UnityEngine; // Unity 관련 기본 타입 사용
 using UnityEngine.SceneManagement; // 씬 전환을 위한 SceneManager 사용
+using UnityEngine.UI; // UI 관련 네임스페이스
 
 public class GameManager : MonoBehaviour // 전역 게임 상태를 관리하는 싱글톤 매니저
 {
@@ -78,6 +80,10 @@ public class GameManager : MonoBehaviour // 전역 게임 상태를 관리하는
     public PlayerController playerController;
     public WeaponController weaponController;
     public DungeonController dungeonController;
+    
+    [Header("Fade Out")]
+    [Tooltip("화면 전체를 덮을 페이드아웃 이미지 (검은색 Image 컴포넌트)")]
+    [SerializeField] private Image fadeOutImage;
 
     // [Lifecycle] 부트스트랩 루틴
     // - 서비스 초기화
@@ -166,6 +172,55 @@ public class GameManager : MonoBehaviour // 전역 게임 상태를 관리하는
     public void LoadDungeon() // 던전 씬 로드
     {
         SetState(GameState.Dungeon); // 상태를 Dungeon으로 설정
+        StartCoroutine(LoadDungeonWithFadeOut()); // 페이드아웃과 함께 던전 씬 로드
+    }
+    
+    /// <summary>
+    /// 페이드아웃 후 던전 씬을 로드하는 코루틴
+    /// </summary>
+    private IEnumerator LoadDungeonWithFadeOut()
+    {
+        // 페이드아웃 이미지가 있으면 페이드아웃 실행
+        if (fadeOutImage != null)
+        {
+            // 페이드아웃 이미지 활성화
+            fadeOutImage.gameObject.SetActive(true);
+            
+            // 페이드아웃 이미지 초기 설정 (투명)
+            Color fadeColor = fadeOutImage.color;
+            fadeColor.a = 0f;
+            fadeOutImage.color = fadeColor;
+            
+            // 1초에 걸쳐 페이드아웃
+            float fadeDuration = 1.0f;
+            float elapsedTime = 0f;
+            
+            while (elapsedTime < fadeDuration)
+            {
+                elapsedTime += Time.unscaledDeltaTime;
+                float t = elapsedTime / fadeDuration;
+                
+                // 투명에서 불투명으로 (검은색으로)
+                fadeColor.a = Mathf.Clamp01(t);
+                fadeOutImage.color = fadeColor;
+                
+                yield return null;
+            }
+            
+            // 최종적으로 완전히 불투명하게 설정
+            fadeColor.a = 1f;
+            fadeOutImage.color = fadeColor;
+            
+            // 1초 대기
+            yield return new WaitForSecondsRealtime(1.0f);
+        }
+        else
+        {
+            // 페이드아웃 이미지가 없으면 바로 1초 대기
+            yield return new WaitForSecondsRealtime(1.0f);
+        }
+        
+        // 씬 로드
         LoadSceneByName(dungeonSceneName); // 던전 씬 로드 호출
         StopBGM(); // 타이틀 BGM 정지
         PlayDungeonBGM(); // 던전 BGM 재생
