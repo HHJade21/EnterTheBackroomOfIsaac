@@ -1,0 +1,559 @@
+fileFormatVersion: 2
+guid: 3771eeaba4d775b4292c9f3d8850d706
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8494136571532716925
+    second: Obj_Magenta2_all_0
+  - first:
+      213: -183376095293766854
+    second: Obj_Magenta2_all_1
+  - first:
+      213: -6131690482751167933
+    second: Obj_Magenta2_all_2
+  - first:
+      213: -6434356706841831022
+    second: Obj_Magenta2_all_3
+  - first:
+      213: 4006901851157789610
+    second: Obj_Magenta2_all_4
+  - first:
+      213: 2371480488433783040
+    second: Obj_Magenta2_all_5
+  - first:
+      213: -8178990775957751904
+    second: Obj_Magenta2_all_6
+  - first:
+      213: -5547572267658963395
+    second: Obj_Magenta2_all_7
+  - first:
+      213: -2332255537300505999
+    second: Obj_Magenta2_all_8
+  - first:
+      213: -7473010473461421715
+    second: Obj_Magenta2_all_9
+  - first:
+      213: 6716855892883694007
+    second: Obj_Magenta2_all_10
+  - first:
+      213: 4034143643232465194
+    second: Obj_Magenta2_all_11
+  - first:
+      213: 1812764354305874059
+    second: Obj_Magenta2_all_12
+  - first:
+      213: -4206567797981573488
+    second: Obj_Magenta2_all_13
+  - first:
+      213: -5062459016064334332
+    second: Obj_Magenta2_all_14
+  - first:
+      213: -8789679246297709325
+    second: Obj_Magenta2_all_15
+  - first:
+      213: 4075863950594393729
+    second: Obj_Magenta2_all_16
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Obj_Magenta2_all_0
+      rect:
+        serializedVersion: 2
+        x: 724
+        y: 1433
+        width: 237
+        height: 417
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3845324cac3ce1a80800000000000000
+      internalID: -8494136571532716925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Obj_Magenta2_all_1
+      rect:
+        serializedVersion: 2
+        x: 869
+        y: 1434
+        width: 222
+        height: 482
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3387b3b964847df0800000000000000
+      internalID: -183376095293766854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Obj_Magenta2_all_2
+      rect:
+        serializedVersion: 2
+        x: 1184
+        y: 1619
+        width: 57
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34229f63efbd7eaa0800000000000000
+      internalID: -6131690482751167933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Obj_Magenta2_all_3
+      rect:
+        serializedVersion: 2
+        x: 1369
+        y: 1595
+        width: 125
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2995a827aa294b6a0800000000000000
+      internalID: -6434356706841831022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Obj_Magenta2_all_4
+      rect:
+        serializedVersion: 2
+        x: 1515
+        y: 1537
+        width: 256
+        height: 379
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aab7d1011006b9730800000000000000
+      internalID: 4006901851157789610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Obj_Magenta2_all_5
+      rect:
+        serializedVersion: 2
+        x: 591
+        y: 1070
+        width: 634
+        height: 527
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0019dd880f039e020800000000000000
+      internalID: 2371480488433783040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Obj_Magenta2_all_6
+      rect:
+        serializedVersion: 2
+        x: 1061
+        y: 1530
+        width: 37
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a777d139336e7e80800000000000000
+      internalID: -8178990775957751904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Obj_Magenta2_all_7
+      rect:
+        serializedVersion: 2
+        x: 1420
+        y: 966
+        width: 621
+        height: 642
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3611643a601303b0800000000000000
+      internalID: -5547572267658963395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Obj_Magenta2_all_8
+      rect:
+        serializedVersion: 2
+        x: 1271
+        y: 1138
+        width: 42
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17af3c512f922afd0800000000000000
+      internalID: -2332255537300505999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Obj_Magenta2_all_9
+      rect:
+        serializedVersion: 2
+        x: 719
+        y: 813
+        width: 1158
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d69ee8e61988a4890800000000000000
+      internalID: -7473010473461421715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Obj_Magenta2_all_10
+      rect:
+        serializedVersion: 2
+        x: 989
+        y: 613
+        width: 112
+        height: 155
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b162ded8d0173d50800000000000000
+      internalID: 6716855892883694007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Obj_Magenta2_all_11
+      rect:
+        serializedVersion: 2
+        x: 1528
+        y: 718
+        width: 58
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2175cb05482cf730800000000000000
+      internalID: 4034143643232465194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Obj_Magenta2_all_12
+      rect:
+        serializedVersion: 2
+        x: 1097
+        y: 597
+        width: 57
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8854e7639b382910800000000000000
+      internalID: 1812764354305874059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Obj_Magenta2_all_13
+      rect:
+        serializedVersion: 2
+        x: 1348
+        y: 458
+        width: 177
+        height: 155
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09e06b500e44f95c0800000000000000
+      internalID: -4206567797981573488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Obj_Magenta2_all_14
+      rect:
+        serializedVersion: 2
+        x: 1451
+        y: 584
+        width: 29
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4060381d8588eb9b0800000000000000
+      internalID: -5062459016064334332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Obj_Magenta2_all_15
+      rect:
+        serializedVersion: 2
+        x: 1511
+        y: 601
+        width: 42
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f44dc29b49c40680800000000000000
+      internalID: -8789679246297709325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Obj_Magenta2_all_16
+      rect:
+        serializedVersion: 2
+        x: 1061
+        y: 560
+        width: 56
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 186cfff0ba0609830800000000000000
+      internalID: 4075863950594393729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Obj_Magenta2_all_0: -8494136571532716925
+      Obj_Magenta2_all_1: -183376095293766854
+      Obj_Magenta2_all_10: 6716855892883694007
+      Obj_Magenta2_all_11: 4034143643232465194
+      Obj_Magenta2_all_12: 1812764354305874059
+      Obj_Magenta2_all_13: -4206567797981573488
+      Obj_Magenta2_all_14: -5062459016064334332
+      Obj_Magenta2_all_15: -8789679246297709325
+      Obj_Magenta2_all_16: 4075863950594393729
+      Obj_Magenta2_all_2: -6131690482751167933
+      Obj_Magenta2_all_3: -6434356706841831022
+      Obj_Magenta2_all_4: 4006901851157789610
+      Obj_Magenta2_all_5: 2371480488433783040
+      Obj_Magenta2_all_6: -8178990775957751904
+      Obj_Magenta2_all_7: -5547572267658963395
+      Obj_Magenta2_all_8: -2332255537300505999
+      Obj_Magenta2_all_9: -7473010473461421715
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
