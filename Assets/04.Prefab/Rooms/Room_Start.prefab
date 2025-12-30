@@ -280,6 +280,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5374341858421913926}
   - component: {fileID: 3185678490251678909}
+  - component: {fileID: 8588463671601828311}
   m_Layer: 8
   m_Name: Wall
   m_TagString: Wall
@@ -360,6 +361,69 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!68 &8588463671601828311
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1087613095266649306}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: 1.04, y: 12.4}
+  - {x: 1.04, y: 3.62}
+  - {x: 1.5779421, y: 3.6035519}
+  - {x: 1.761322, y: 1.9303782}
+  - {x: 4.697808, y: 1.8973292}
+  - {x: 4.941388, y: 0.19212216}
+  - {x: 6.963839, y: 0.16375619}
+  - {x: 6.933001, y: -9.657749}
+  - {x: 5.644992, y: -9.658732}
+  - {x: 4.875156, y: -10.203387}
+  - {x: 4.884577, y: -11.73735}
+  - {x: -4.8626785, y: -11.783198}
+  - {x: -4.8766494, y: -10.220483}
+  - {x: -5.632412, y: -9.666168}
+  - {x: -6.8860993, y: -9.655983}
+  - {x: -6.8575225, y: 0.18597743}
+  - {x: -4.862346, y: 0.15863985}
+  - {x: -4.6664677, y: 1.925357}
+  - {x: -1.7343458, y: 1.9064155}
+  - {x: -1.5516914, y: 3.6183298}
+  - {x: -1.02, y: 3.62}
+  - {x: -1.02, y: 12.4}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!1 &2075322578761769449
 GameObject:
   m_ObjectHideFlags: 0
@@ -461,7 +525,7 @@ GameObject:
   - component: {fileID: 7605953194338627942}
   - component: {fileID: 5495460249995098162}
   m_Layer: 0
-  m_Name: Obj_Start_all
+  m_Name: FloorObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -526,9 +590,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 1269600105
-  m_SortingLayer: -2
-  m_SortingOrder: 0
+  m_SortingLayerID: 2079108057
+  m_SortingLayer: -1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: fb1fe220c887c5c43adce4522375a6af, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -584,7 +648,7 @@ GameObject:
   - component: {fileID: 7460243407445894893}
   m_Layer: 0
   m_Name: Door1
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -657,7 +721,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2995801500433993442}
-  - component: {fileID: 4782633500236647407}
   - component: {fileID: -8509706813697435696}
   - component: {fileID: 4668540863666486473}
   m_Layer: 0
@@ -689,69 +752,6 @@ Transform:
   - {fileID: 6986308583971945401}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!68 &4782633500236647407
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6602394229092112616}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: 1.04, y: 12.4}
-  - {x: 1.04, y: 3.62}
-  - {x: 1.5779421, y: 3.6035519}
-  - {x: 1.761322, y: 1.9303782}
-  - {x: 4.697808, y: 1.8973292}
-  - {x: 4.941388, y: 0.19212216}
-  - {x: 6.963839, y: 0.16375619}
-  - {x: 6.933001, y: -9.657749}
-  - {x: 5.644992, y: -9.658732}
-  - {x: 4.875156, y: -10.203387}
-  - {x: 4.884577, y: -11.73735}
-  - {x: -4.8626785, y: -11.783198}
-  - {x: -4.8766494, y: -10.220483}
-  - {x: -5.632412, y: -9.666168}
-  - {x: -6.8860993, y: -9.655983}
-  - {x: -6.8575225, y: 0.18597743}
-  - {x: -4.862346, y: 0.15863985}
-  - {x: -4.6664677, y: 1.925357}
-  - {x: -1.7343458, y: 1.9064155}
-  - {x: -1.5516914, y: 3.6183298}
-  - {x: -1.02, y: 3.62}
-  - {x: -1.02, y: 12.4}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
 --- !u!60 &-8509706813697435696
 PolygonCollider2D:
   m_ObjectHideFlags: 0
