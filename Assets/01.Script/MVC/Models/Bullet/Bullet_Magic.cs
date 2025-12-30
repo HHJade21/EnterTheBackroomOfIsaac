@@ -103,6 +103,8 @@ public class Bullet_Magic : BulletController
             return;
         }
         
+        
+
         VariantData selectedVariant = variants[index];
         
         if (selectedVariant == null)
@@ -127,10 +129,24 @@ public class Bullet_Magic : BulletController
         {
             Debug.LogWarning("Bullet_Magic: SpriteRenderer 컴포넌트를 찾을 수 없습니다!");
         }
-        
-        // 스케일 적용 (변형별 스케일이 0보다 크면 그것을 사용, 아니면 전역 스케일 사용)
-        // float scaleToApply = selectedVariant.scale > 0f ? selectedVariant.scale : globalScale;
-        // transform.localScale = Vector3.one * scaleToApply;
+        float scaleToApply = 0.0f;
+        // 스케일 적용: index에 따라 0.25f + 0.25f * index 배 크기로 조정
+        switch(index)
+        {
+            case 0:
+                scaleToApply = 0.5f;
+                break;
+            case 1:
+                scaleToApply = 0.75f;
+                break;
+            case 2:
+                scaleToApply = 1.0f;
+                break;
+            case 3:
+                scaleToApply = 2.0f;
+                break;
+        }
+        transform.localScale = Vector3.one * scaleToApply;
         
         // 애니메이션 컨트롤러 적용
         if (animator != null && selectedVariant.animatorController != null)
