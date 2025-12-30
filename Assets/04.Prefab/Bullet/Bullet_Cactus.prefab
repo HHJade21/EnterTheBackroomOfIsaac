@@ -83,7 +83,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -3179546675667580681, guid: 1dc87aec9489c124eabe75ab295cac9b, type: 3}
+  m_Sprite: {fileID: 6251799716358767487, guid: 1943d52828e99854d9194894a3271150, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -193,5 +193,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BulletController
   bulletData: {fileID: 11400000, guid: 178bf6e660beb2a44a55f0ad81213a6a, type: 2}
   isPlayerBullet: 1
-  headAngle: 270
+  headAngle: 90
   destroyDelay: 0.4

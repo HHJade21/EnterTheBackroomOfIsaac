@@ -672,7 +672,7 @@ public class WeaponController : MonoBehaviour
             return;
         }
         
-        projectile.transform.up = dir;
+        //projectile.transform.up = dir;
 
         // 총알의 속성을 무기의 속성으로 설정
         BulletController bulletController = projectile.GetComponent<BulletController>();
@@ -762,8 +762,9 @@ public class WeaponController : MonoBehaviour
             // 발사 방향 계산
             Vector2 direction = new Vector2(Mathf.Cos(finalAngle), Mathf.Sin(finalAngle));
             
-            // 투사체 생성
-            GameObject projectile = Instantiate(currentWeapon.projectilePrefab, startPoint.position, Quaternion.identity);
+            // 투사체 생성 및 설정
+            GameObject projectile = Instantiate(currentWeapon.projectilePrefab, startPoint.position, startPoint.rotation * Quaternion.Euler(0f, 0f, angle));
+            // projectile.transform.up = spreadDir;
             
             // 총알의 속성을 무기의 속성으로 설정
             BulletController bulletController = projectile.GetComponent<BulletController>();

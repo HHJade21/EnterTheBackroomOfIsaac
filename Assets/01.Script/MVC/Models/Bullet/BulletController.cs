@@ -44,6 +44,7 @@ public class BulletController : MonoBehaviour
         {
             _weaponElement = bulletData.weaponElement;
         }
+        Debug.Log("Start: " + transform.rotation.eulerAngles.z + " + " + headAngle);
         transform.rotation = Quaternion.Euler(0f, 0f, transform.rotation.eulerAngles.z + headAngle);
     }
 
