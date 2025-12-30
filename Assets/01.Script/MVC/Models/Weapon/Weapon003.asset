@@ -15,7 +15,9 @@ MonoBehaviour:
   itemID: 3
   weaponName: "\uACE0\uC555\uD638\uC2A4"
   description: "\uAC15\uB825\uD55C \uBB3C\uC904\uAE30\uB97C \uBC1C\uC0AC\uD569\uB2C8\uB2E4."
-  detailDescription: Detail Description
+  detailDescription: "\uD574\uB2F9 \uBB34\uAE30\uB85C \uAD50\uCCB4 \uC2DC, \uC77C\uC815
+    \uC2DC\uAC04 \uB3D9\uC548 \uC0AC\uC6A9\uC790\uC758 \uC774\uB3D9\uC18D\uB3C4\uAC00
+    \uC99D\uAC00\uD569\uB2C8\uB2E4."
   icon: {fileID: -3179546675667580681, guid: 1dc87aec9489c124eabe75ab295cac9b, type: 3}
   selectIcon: {fileID: -7332247125576927426, guid: e7f9284513774b74da9497071d5b8df8, type: 3}
   animatorController: {fileID: 9100000, guid: 5d0d56e0a765b3740bf6dc14b13bf8c2, type: 2}
