@@ -172,6 +172,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Bullet_Magic
   bulletData: {fileID: 11400000, guid: 470356360bda6584c88bdb73f9f759d9, type: 2}
   isPlayerBullet: 1
+  headAngle: 90
   destroyDelay: 0.4
   variants:
   - sprite: {fileID: 3416800548803149068, guid: 3b5fad07796fe3948944a22e6fcaaf8c, type: 3}
@@ -205,6 +206,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BulletController
   bulletData: {fileID: 0}
   isPlayerBullet: 1
+  headAngle: 0
   destroyDelay: 0.4
 --- !u!95 &8590513085951878379
 Animator:

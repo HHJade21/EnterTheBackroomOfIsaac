@@ -36,8 +36,12 @@ public class WeaponController : MonoBehaviour
     public float reloadTime = 0.6f;        // 재장전 시간
     private float lastFireTime;            // 마지막 발사 시간
     private bool isReloading;              // 재장전 중 여부
-    public int multiBulletCount = 5;     // 산탄 공격 탄약 수
+    public int multiBulletCount = 2;     // 산탄 공격 탄약 수
     public int multiBulletSpread = 60;     // 산탄 공격 탄약 분산
+    [Tooltip("각 탄환 발사 간 최소 딜레이 (초)")]
+    public float multiBulletMinFireDelay = 0f;
+    [Tooltip("각 탄환 발사 간 최대 딜레이 (초)")]
+    public float multiBulletMaxFireDelay = 0.1f;
     [Tooltip("투사체 속도 배율 (기본값: 1.0, 아이템 효과용)")]
     public float projectileSpeedMultiplier = 1f;  // 투사체 속도 배율
 
@@ -695,7 +699,7 @@ public class WeaponController : MonoBehaviour
     }
 
     /// <summary>
-    /// 산탄 공격 메소드: multiBulletCount만큼의 투사체를 multiBulletSpread 각도로 분산 발사합니다.
+    /// 산탄 공격 메소드: Enemy_Siren과 같은 방식으로 플레이어 방향 기준 분산 각도 내 랜덤한 각도로 순차 발사합니다.
     /// </summary>
     /// <param name="dir">공격 방향 (정규화됨)</param>
     /// <param name="startPoint">공격 시작 위치와 회전</param>
@@ -718,28 +722,48 @@ public class WeaponController : MonoBehaviour
             }
         }
 
+        // 순차 발사 코루틴 시작
+        StartCoroutine(MultiAttackCoroutine(dir, startPoint));
+    }
+    
+    /// <summary>
+    /// 산탄 공격을 순차적으로 발사하는 코루틴 (Enemy_Siren 방식)
+    /// </summary>
+    private IEnumerator MultiAttackCoroutine(Vector2 dir, Transform startPoint)
+    {
         dir = dir.normalized;
         
-        // 분산 각도 계산
-        float totalSpread = multiBulletSpread;
-        float angleStep = multiBulletCount > 1 ? totalSpread / (multiBulletCount - 1) : 0f;
-        float startAngle = multiBulletCount > 1 ? -totalSpread / 2f : 0f;
-        
-        // 각 투사체 생성
-        for (int i = 0; i < multiBulletCount; i++)
+        // 공격 방향의 기본 각도 계산 (라디안)
+        float baseAngle = Mathf.Atan2(dir.y, dir.x);
+
+        int tmp = Random.Range(0, 10);
+        multiBulletCount = 2;
+        if(tmp<4) tmp = multiBulletCount;
+        else if(tmp<7) tmp = multiBulletCount + 1;
+        else if(tmp<9) tmp = multiBulletCount + 2;
+        else tmp = multiBulletCount + 3;
+
+        int tmpSpread = tmp * multiBulletSpread;
+        Debug.Log("tmp: " + tmp);
+        Debug.Log("multiBulletCount: " + multiBulletCount);
+        Debug.Log("multiBulletSpread: " + multiBulletSpread);
+        // Debug.Log("baseAngle: " + baseAngle);
+        // Debug.Log("dir: " + dir);
+        // Debug.Log("startPoint: " + startPoint.position);
+        // Debug.Log("currentWeapon.projectilePrefab: " + currentWeapon.projectilePrefab);
+        // Debug.Log("currentWeapon.element: " + currentWeapon.element);
+        // 각 탄환 발사
+        for (int i = 0; i < tmp; i++)
         {
-            float angle = startAngle + angleStep * i;
-            float angleRad = angle * Mathf.Deg2Rad;
+            // ±multiBulletSpread/2 범위 내 랜덤 각도 계산
+            float randomSpread = Random.Range(-multiBulletSpread / 2f, multiBulletSpread / 2f) * Mathf.Deg2Rad;
+            float finalAngle = baseAngle + randomSpread;
             
-            // 방향 벡터 회전
-            Vector2 spreadDir = new Vector2(
-                dir.x * Mathf.Cos(angleRad) - dir.y * Mathf.Sin(angleRad),
-                dir.x * Mathf.Sin(angleRad) + dir.y * Mathf.Cos(angleRad)
-            ).normalized;
+            // 발사 방향 계산
+            Vector2 direction = new Vector2(Mathf.Cos(finalAngle), Mathf.Sin(finalAngle));
             
-            // 투사체 생성 및 설정
-            GameObject projectile = Instantiate(currentWeapon.projectilePrefab, startPoint.position, startPoint.rotation);
-            projectile.transform.up = spreadDir;
+            // 투사체 생성
+            GameObject projectile = Instantiate(currentWeapon.projectilePrefab, startPoint.position, Quaternion.identity);
             
             // 총알의 속성을 무기의 속성으로 설정
             BulletController bulletController = projectile.GetComponent<BulletController>();
@@ -748,13 +772,27 @@ public class WeaponController : MonoBehaviour
                 bulletController.weaponElement = currentWeapon.element;
             }
             
-            var rb = projectile.GetComponent<Rigidbody2D>();
-            if (rb != null)
+            // 회전 설정
+            projectile.transform.rotation = Quaternion.Euler(0f, 0f, finalAngle * Mathf.Rad2Deg);
+            
+            Rigidbody2D projectileRb = projectile.GetComponent<Rigidbody2D>();
+            if (projectileRb != null)
             {
-                rb.linearVelocity = spreadDir * currentWeapon.projectileSpeed * projectileSpeedMultiplier;
+                projectileRb.linearVelocity = direction * currentWeapon.projectileSpeed * projectileSpeedMultiplier;
             }
             
             Destroy(projectile, currentWeapon.projectileLifetime);
+            
+            // 다음 탄환 발사까지 랜덤 딜레이 (미세한 오차)
+            float delay = Random.Range(multiBulletMinFireDelay, multiBulletMaxFireDelay);
+            if (delay > 0f)
+            {
+                yield return new WaitForSeconds(delay);
+            }
+            else
+            {
+                yield return null; // 최소 딜레이가 0이면 한 프레임만 대기
+            }
         }
     }
 

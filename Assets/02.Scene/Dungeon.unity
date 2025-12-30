@@ -5576,7 +5576,9 @@ MonoBehaviour:
   attackCooldown: 0.2
   reloadTime: 0.6
   multiBulletCount: 5
-  multiBulletSpread: 10
+  multiBulletSpread: 30
+  multiBulletMinFireDelay: 0
+  multiBulletMaxFireDelay: 0.03
   projectileSpeedMultiplier: 1
   weaponIconRenderer: {fileID: 0}
   weaponIconDistance: 0.7
@@ -9369,7 +9371,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 3.5771427
+  orthographic size: 5.4
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

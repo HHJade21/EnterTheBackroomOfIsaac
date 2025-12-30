@@ -212,6 +212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6121caf1ad9dd1c44857faac977e2856, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BulletController
-  bulletData: {fileID: 0}
+  bulletData: {fileID: 11400000, guid: 57d3e73aa6a575f4091f4dbeff711997, type: 2}
   isPlayerBullet: 1
+  headAngle: 0
   destroyDelay: 0.4
