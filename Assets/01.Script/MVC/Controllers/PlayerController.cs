@@ -263,7 +263,7 @@ public class PlayerController : MonoBehaviour
         Vector2 nextVec = inputVec.normalized * speed * Time.fixedDeltaTime;
         if(isSande && Time.timeScale > 0){
             nextVec /= Time.timeScale;
-            nextVec *= 2f;
+            nextVec *= 3f;
         }
         rigid.MovePosition(rigid.position + nextVec);
         if(inputVec.x != 0){
@@ -451,6 +451,11 @@ public class PlayerController : MonoBehaviour
         // WeaponController에서 무기 교체 처리
         if (weaponController.SwapWeapon())
         {
+            if (autoFireCoroutine != null)
+            {
+                StopCoroutine(autoFireCoroutine);
+                autoFireCoroutine = null;
+            }
             // swap 사용 시 swapCount가 1 감소
             swapCount--;
             
