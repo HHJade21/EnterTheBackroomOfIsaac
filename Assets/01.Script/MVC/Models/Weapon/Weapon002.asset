@@ -16,7 +16,9 @@ MonoBehaviour:
   weaponName: "\uBC84\uBE14\uAC74"
   description: "\uC801\uC744 \uCD94\uC801\uD558\uB294 \uBE44\uB217\uBC29\uC6B8\uC744
     \uBC1C\uC0AC\uD569\uB2C8\uB2E4."
-  detailDescription: Detail Description
+  detailDescription: "\uD574\uB2F9 \uBB34\uAE30\uB85C \uAD50\uCCB4 \uC2DC, \uC77C\uC815
+    \uC2DC\uAC04 \uB3D9\uC548 \uC0AC\uC6A9\uC790\uB97C \uBCF4\uD638\uD574\uC8FC\uB294
+    \uBC29\uC5B4\uB9C9\uC744 \uD615\uC131\uD569\uB2C8\uB2E4."
   icon: {fileID: -2167902997876963161, guid: 8eb0398744f03124daa46fb80a8c0da7, type: 3}
   selectIcon: {fileID: -6353096553391861718, guid: 9c6a871bcd61a8f49ba6d3418598e575, type: 3}
   animatorController: {fileID: 9100000, guid: d6c9a7ee4f2d3b347994f48223482023, type: 2}

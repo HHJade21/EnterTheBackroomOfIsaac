@@ -96,7 +96,7 @@ public class WeaponSlotUIController : MonoBehaviour
         if (textList.Count > 0)
         {
             // 첫 번째 텍스트는 description
-            textList[0].text = weaponData.weaponName;
+            textList[0].text = "< " + weaponData.weaponName + " >";
             
             // 두 번째 텍스트는 detailDescription (존재하는 경우)
             if (textList.Count > 1)
