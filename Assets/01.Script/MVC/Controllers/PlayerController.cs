@@ -135,6 +135,7 @@ public class PlayerController : MonoBehaviour
     // ========== UI Settings ==========
     [Header("Pause panel")]
     public GameObject pausePanel;
+    public PanelGroupAnimator pausePanelAnimator;
     public DungeonHUDController hudController;
 
     // ========== Weapon Related ==========
@@ -605,7 +606,16 @@ public class PlayerController : MonoBehaviour
     {
         if (!context.performed) return;
         Time.timeScale = 0f;
-        pausePanel.SetActive(true);
+        
+        if (pausePanel != null)
+        {
+            pausePanel.SetActive(true);
+        }
+        
+        if (pausePanelAnimator != null)
+        {
+            pausePanelAnimator.AnimateOn();
+        }
     }
 
     // ========== Weapon Methods ==========
@@ -1036,12 +1046,30 @@ public class PlayerController : MonoBehaviour
     public void Resume()
     {
         Time.timeScale = 1f;
-        pausePanel.SetActive(false);
+        
+        if (pausePanelAnimator != null)
+        {
+            pausePanelAnimator.AnimateOff();
+        }
+        
+        if (pausePanel != null)
+        {
+            pausePanel.SetActive(false);
+        }
     }
     public void GoToTitle()
     {
         Time.timeScale = 1f;
-        pausePanel.SetActive(false);
+        
+        if (pausePanelAnimator != null)
+        {
+            pausePanelAnimator.AnimateOff();
+        }
+
+        if (pausePanel != null)
+        {
+            pausePanel.SetActive(false);
+        }
         
         // GameManager.Instance가 null인지 확인
         if (GameManager.Instance != null)

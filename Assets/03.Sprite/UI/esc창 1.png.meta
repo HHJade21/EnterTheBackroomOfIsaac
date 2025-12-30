@@ -1,0 +1,416 @@
+fileFormatVersion: 2
+guid: b67a77599f3efd944aaf40893f2f0ebf
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3776837707639990201
+    second: "esc\uCC3D 1_0"
+  - first:
+      213: -5939831666952716484
+    second: "esc\uCC3D 1_1"
+  - first:
+      213: -8542507559877569524
+    second: "esc\uCC3D 1_2"
+  - first:
+      213: 4538863297288142105
+    second: "esc\uCC3D 1_3"
+  - first:
+      213: -2951019907246529462
+    second: "esc\uCC3D 1_4"
+  - first:
+      213: 704457044304501291
+    second: "esc\uCC3D 1_5"
+  - first:
+      213: -2106532548266981654
+    second: "esc\uCC3D 1_6"
+  - first:
+      213: 2417306497248980057
+    second: "esc\uCC3D 1_7"
+  - first:
+      213: 2172496023883149837
+    second: "esc\uCC3D 1_8"
+  - first:
+      213: 4043113311944606272
+    second: "esc\uCC3D 1_9"
+  - first:
+      213: 4184077719543968960
+    second: "esc\uCC3D 1_10"
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: "esc\uCC3D 1_0"
+      rect:
+        serializedVersion: 2
+        x: 543
+        y: 1571
+        width: 4119
+        height: 2075
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74851dd8d1af59bc0800000000000000
+      internalID: -3776837707639990201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D 1_1"
+      rect:
+        serializedVersion: 2
+        x: 459
+        y: 914
+        width: 450
+        height: 449
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3fbaa9c19a719da0800000000000000
+      internalID: -5939831666952716484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D 1_2"
+      rect:
+        serializedVersion: 2
+        x: 1298
+        y: 915
+        width: 448
+        height: 447
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c04986a62aae27980800000000000000
+      internalID: -8542507559877569524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D 1_3"
+      rect:
+        serializedVersion: 2
+        x: 2136
+        y: 915
+        width: 447
+        height: 447
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91dfae6fe184dfe30800000000000000
+      internalID: 4538863297288142105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D 1_4"
+      rect:
+        serializedVersion: 2
+        x: 2939
+        y: 915
+        width: 448
+        height: 447
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a44e67f870fdb07d0800000000000000
+      internalID: -2951019907246529462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D 1_5"
+      rect:
+        serializedVersion: 2
+        x: 4141
+        y: 901
+        width: 605
+        height: 211
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2a9a4d03fbb6c900800000000000000
+      internalID: 704457044304501291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D 1_6"
+      rect:
+        serializedVersion: 2
+        x: 459
+        y: 257
+        width: 450
+        height: 450
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae68fb8eec714c2e0800000000000000
+      internalID: -2106532548266981654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D 1_7"
+      rect:
+        serializedVersion: 2
+        x: 1298
+        y: 258
+        width: 448
+        height: 448
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95ce4c9a37ffb8120800000000000000
+      internalID: 2417306497248980057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D 1_8"
+      rect:
+        serializedVersion: 2
+        x: 2136
+        y: 258
+        width: 447
+        height: 448
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d02f0839f91462e10800000000000000
+      internalID: 2172496023883149837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D 1_9"
+      rect:
+        serializedVersion: 2
+        x: 2939
+        y: 258
+        width: 448
+        height: 448
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0428c19c2260c1830800000000000000
+      internalID: 4043113311944606272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "esc\uCC3D 1_10"
+      rect:
+        serializedVersion: 2
+        x: 4143
+        y: 511
+        width: 601
+        height: 207
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c47b0a8484d01a30800000000000000
+      internalID: 4184077719543968960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      "esc\uCC3D 1_0": -3776837707639990201
+      "esc\uCC3D 1_1": -5939831666952716484
+      "esc\uCC3D 1_10": 4184077719543968960
+      "esc\uCC3D 1_2": -8542507559877569524
+      "esc\uCC3D 1_3": 4538863297288142105
+      "esc\uCC3D 1_4": -2951019907246529462
+      "esc\uCC3D 1_5": 704457044304501291
+      "esc\uCC3D 1_6": -2106532548266981654
+      "esc\uCC3D 1_7": 2417306497248980057
+      "esc\uCC3D 1_8": 2172496023883149837
+      "esc\uCC3D 1_9": 4043113311944606272
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
