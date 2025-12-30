@@ -529,7 +529,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1759257910296838893}
-  - component: {fileID: 623733422969535470}
+  - component: {fileID: 2461815275788362003}
   - component: {fileID: 2242121217967094074}
   - component: {fileID: 7842289142609545967}
   - component: {fileID: 3053538094178021010}
@@ -554,6 +554,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 5190233703799546400}
   - {fileID: 4587516990780255721}
   - {fileID: 5937961955515168679}
   - {fileID: 7041096735796192188}
@@ -565,7 +566,7 @@ Transform:
   - {fileID: 199554947923066385}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &623733422969535470
+--- !u!114 &2461815275788362003
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -574,9 +575,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 4185292659311260358}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c80825a6cdb0364ab982041cc595c14, type: 3}
+  m_Script: {fileID: 11500000, guid: e1009274d90988342ba63b8a879e3212, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RoomController
+  m_EditorClassIdentifier: Assembly-CSharp::BossRoomController
   isCleared: 0
   isClosed: 0
   roomColor: 0
@@ -646,18 +647,13 @@ MonoBehaviour:
   - {fileID: 0}
   dungeonController: {fileID: 0}
   player: {fileID: 0}
-  spawnPoints:
-  - {fileID: 789515587701728836}
-  - {fileID: 3681143523761649384}
-  - {fileID: 741431263673785817}
-  - {fileID: 6041082153392777280}
-  - {fileID: 4618784263883995194}
-  - {fileID: 4800939300815799645}
-  - {fileID: 5990133392788955585}
-  - {fileID: 4694132687550915331}
-  - {fileID: 3744318857260355311}
-  - {fileID: 2210565891792609147}
+  spawnPoints: []
   enemies: []
+  BossPos: {fileID: 5190233703799546400}
+  BossEnemyPrefab: {fileID: 5312735757910337222, guid: 92c56c82499d44a4aa74067c986de630, type: 3}
+  BossIdleAnimationObject: {fileID: 0}
+  cameraMoveSpeed: 5
+  cameraStayDuration: 2
 --- !u!68 &2242121217967094074
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -1184,6 +1180,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &5810887552719386840
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5190233703799546400}
+  m_Layer: 0
+  m_Name: BosPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5190233703799546400
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5810887552719386840}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1759257910296838893}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6472393836943945392
 GameObject:
   m_ObjectHideFlags: 0
