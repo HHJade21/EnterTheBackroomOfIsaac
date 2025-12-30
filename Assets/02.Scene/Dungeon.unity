@@ -4134,7 +4134,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 363967625583771059, guid: faa5c6844d9c5cf4898031f7b7fae562, type: 3}
+  m_Sprite: {fileID: 4845992581705234975, guid: f375203599da25a4ebfe249bee635c99, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7684,7 +7684,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
-  m_IsActive: 0
 --- !u!224 &1178701932
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9370,7 +9369,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.4
+  orthographic size: 3.5771427
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -15715,3 +15714,4 @@ SceneRoots:
   - {fileID: 1284743901}
   - {fileID: 837477354}
   - {fileID: 918675996}
+  - {fileID: 1149566675340026715}

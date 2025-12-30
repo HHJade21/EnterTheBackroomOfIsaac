@@ -1,0 +1,263 @@
+fileFormatVersion: 2
+guid: f3ffe55419b7e664b8dc4196d6238cee
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4468693754545581716
+    second: "\uC120\uD0DD \uC804_0"
+  - first:
+      213: 2181279409864719906
+    second: "\uC120\uD0DD \uC804_1"
+  - first:
+      213: -6098750498270715594
+    second: "\uC120\uD0DD \uC804_2"
+  - first:
+      213: -988809430797178413
+    second: "\uC120\uD0DD \uC804_3"
+  - first:
+      213: -4860046101396246997
+    second: "\uC120\uD0DD \uC804_4"
+  - first:
+      213: 569471726802188817
+    second: "\uC120\uD0DD \uC804_5"
+  - first:
+      213: -8660722062933407484
+    second: "\uC120\uD0DD \uC804_6"
+  - first:
+      213: -1432009151736121999
+    second: "\uC120\uD0DD \uC804_7"
+  - first:
+      213: -303701516162824966
+    second: "\uC120\uD0DD \uC804_8"
+  - first:
+      213: -6725871273006078669
+    second: "\uC120\uD0DD \uC804_9"
+  - first:
+      213: -6366389695572966097
+    second: "\uC120\uD0DD \uC804_10"
+  - first:
+      213: -1672879873319229879
+    second: "\uC120\uD0DD \uC804_11"
+  - first:
+      213: 2228378867122411853
+    second: "\uC120\uD0DD \uC804_12"
+  - first:
+      213: -6476573494447548575
+    second: "\uC120\uD0DD \uC804_13"
+  - first:
+      213: 2896708441859250651
+    second: "\uC120\uD0DD \uC804_14"
+  - first:
+      213: -7790331038817816145
+    second: "\uC120\uD0DD \uC804_15"
+  - first:
+      213: -2287667403597321693
+    second: "\uC120\uD0DD \uC804_16"
+  - first:
+      213: 390948262714750704
+    second: "\uC120\uD0DD \uC804_17"
+  - first:
+      213: -4564046199848272058
+    second: "\uC120\uD0DD \uC804_18"
+  - first:
+      213: 2098892586367222608
+    second: "\uC120\uD0DD \uC804_19"
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: "\uC120\uD0DD \uC804_0"
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 597
+        width: 725
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49e22b92b4df30e30800000000000000
+      internalID: 4468693754545581716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC120\uD0DD \uC804_1"
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 333
+        width: 531
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22e3cdcf016754e10800000000000000
+      internalID: 2181279409864719906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC120\uD0DD \uC804_2"
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 46
+        width: 711
+        height: 116
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63166d00cb2ec5ba0800000000000000
+      internalID: -6098750498270715594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 220e0ce266d87634490ff5b2f16778ed
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      "\uC120\uD0DD \uC804_0": 4468693754545581716
+      "\uC120\uD0DD \uC804_1": 2181279409864719906
+      "\uC120\uD0DD \uC804_10": -6366389695572966097
+      "\uC120\uD0DD \uC804_11": -1672879873319229879
+      "\uC120\uD0DD \uC804_12": 2228378867122411853
+      "\uC120\uD0DD \uC804_13": -6476573494447548575
+      "\uC120\uD0DD \uC804_14": 2896708441859250651
+      "\uC120\uD0DD \uC804_15": -7790331038817816145
+      "\uC120\uD0DD \uC804_16": -2287667403597321693
+      "\uC120\uD0DD \uC804_17": 390948262714750704
+      "\uC120\uD0DD \uC804_18": -4564046199848272058
+      "\uC120\uD0DD \uC804_19": 2098892586367222608
+      "\uC120\uD0DD \uC804_2": -6098750498270715594
+      "\uC120\uD0DD \uC804_3": -988809430797178413
+      "\uC120\uD0DD \uC804_4": -4860046101396246997
+      "\uC120\uD0DD \uC804_5": 569471726802188817
+      "\uC120\uD0DD \uC804_6": -8660722062933407484
+      "\uC120\uD0DD \uC804_7": -1432009151736121999
+      "\uC120\uD0DD \uC804_8": -303701516162824966
+      "\uC120\uD0DD \uC804_9": -6725871273006078669
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
