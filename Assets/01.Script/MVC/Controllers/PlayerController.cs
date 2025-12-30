@@ -612,7 +612,11 @@ public class PlayerController : MonoBehaviour
             Resume();
             return;
         }
-
+        if (autoFireCoroutine != null)
+        {
+            StopCoroutine(autoFireCoroutine);
+            autoFireCoroutine = null;
+        }
         Time.timeScale = 0f;
         
         if (pausePanel != null)
@@ -1015,6 +1019,11 @@ public class PlayerController : MonoBehaviour
     public void Death(){
         animator.SetTrigger("Death");
         isDead = true;
+        if (autoFireCoroutine != null)
+        {
+            StopCoroutine(autoFireCoroutine);
+            autoFireCoroutine = null;
+        }
     }
 
     public void Revive(){
