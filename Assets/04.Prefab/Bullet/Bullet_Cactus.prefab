@@ -193,5 +193,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BulletController
   bulletData: {fileID: 11400000, guid: 178bf6e660beb2a44a55f0ad81213a6a, type: 2}
   isPlayerBullet: 1
-  headAngle: 90
+  headAngle: 270
   destroyDelay: 0.4

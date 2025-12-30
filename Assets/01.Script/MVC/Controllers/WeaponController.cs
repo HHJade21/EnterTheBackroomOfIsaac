@@ -763,7 +763,7 @@ public class WeaponController : MonoBehaviour
             Vector2 direction = new Vector2(Mathf.Cos(finalAngle), Mathf.Sin(finalAngle));
             
             // 투사체 생성 및 설정
-            GameObject projectile = Instantiate(currentWeapon.projectilePrefab, startPoint.position, startPoint.rotation * Quaternion.Euler(0f, 0f, angle));
+            GameObject projectile = Instantiate(currentWeapon.projectilePrefab, startPoint.position, Quaternion.Euler(0f, 0f, finalAngle * Mathf.Rad2Deg));
             // projectile.transform.up = spreadDir;
             
             // 총알의 속성을 무기의 속성으로 설정
