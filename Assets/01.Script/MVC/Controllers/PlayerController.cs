@@ -1288,6 +1288,15 @@ public class PlayerController : MonoBehaviour
     }
     
     /// <summary>
+    /// 플레이어가 현재 구르는 중인지 확인하는 메소드
+    /// </summary>
+    /// <returns>구르는 중이면 true, 아니면 false</returns>
+    public bool IsRolling()
+    {
+        return isRolling;
+    }
+    
+    /// <summary>
     /// 구르기 쿨다운 배율 설정 메소드: 버프/디버프 시스템에서 사용합니다.
     /// </summary>
     /// <param name="value">설정할 배율 값 (1.0이 기본값)</param>

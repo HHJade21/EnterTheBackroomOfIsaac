@@ -12,11 +12,8 @@ public class BossRoomController : RoomController
     [Tooltip("보스가 스폰될 위치 (인스펙터에서 할당)")]
     public Transform BossPos;
     
-    [Tooltip("보스 프리팹 (인스펙터에서 할당)")]
+    [Tooltip("보스 프리팹 (인스펙터에서 할당, Idle 애니메이션을 재생하기 위해 사용)")]
     public GameObject BossEnemyPrefab;
-    
-    [Tooltip("보스 Idle 애니메이션을 재생할 임시 GameObject (인스펙터에서 할당, Animator 컴포넌트 필요)")]
-    public GameObject BossIdleAnimationObject;
     
     [Header("Camera Animation Settings")]
     [Tooltip("카메라 이동 속도")]
@@ -28,7 +25,7 @@ public class BossRoomController : RoomController
     private Camera mainCamera;
     private PlayerController playerController;
     private DungeonHUDController hudController;
-    private GameObject bossIdleAnimationInstance;
+    private GameObject bossPreviewInstance; // Idle 애니메이션만 재생하는 미리보기 인스턴스
     private bool hasBossSpawned = false;
     
     private new void Start()
@@ -63,32 +60,50 @@ public class BossRoomController : RoomController
             }
         }
         
-        // BossPos 위치에 Idle 애니메이션 GameObject 생성
-        if (BossPos != null && BossIdleAnimationObject != null)
+        // BossPos 위치에 보스 프리팹의 Idle 애니메이션 미리보기 생성
+        if (BossPos != null && BossEnemyPrefab != null)
         {
             SpawnBossIdleAnimation();
         }
         else
         {
-            Debug.LogWarning("BossRoomController: BossPos 또는 BossIdleAnimationObject가 할당되지 않았습니다.");
+            Debug.LogWarning("BossRoomController: BossPos 또는 BossEnemyPrefab가 할당되지 않았습니다.");
         }
     }
     
     /// <summary>
-    /// BossPos 위치에 보스 Idle 애니메이션을 재생하는 GameObject를 생성합니다.
+    /// BossPos 위치에 보스 프리팹을 생성하고 Idle 애니메이션만 재생합니다.
+    /// 실제 보스는 비활성화 상태로 두고, 나중에 SpawnBoss에서 활성화합니다.
     /// </summary>
     private void SpawnBossIdleAnimation()
     {
-        if (BossIdleAnimationObject == null || BossPos == null) return;
+        if (BossEnemyPrefab == null || BossPos == null) return;
         
-        bossIdleAnimationInstance = Instantiate(BossIdleAnimationObject, BossPos.position, Quaternion.identity);
+        // 보스 프리팹을 생성하되 비활성화 상태로 생성 (나중에 활성화하기 위해)
+        bossPreviewInstance = Instantiate(BossEnemyPrefab, BossPos.position, Quaternion.identity);
         
-        // Animator가 있으면 Idle 애니메이션이 자동으로 재생되도록 설정
-        Animator animator = bossIdleAnimationInstance.GetComponent<Animator>();
+        // EnemyController 비활성화 (실제 보스 행동 비활성화)
+        EnemyController enemyController = bossPreviewInstance.GetComponent<EnemyController>();
+        if (enemyController != null)
+        {
+            enemyController.enabled = false;
+        }
+        
+        // 다른 컴포넌트들도 비활성화할 수 있음 (예: Rigidbody2D, Collider2D 등)
+        // 하지만 Animator는 활성화 상태로 두어 Idle 애니메이션이 재생되도록 함
+        
+        // Animator가 있으면 Idle 애니메이션을 재생하도록 설정
+        Animator animator = bossPreviewInstance.GetComponent<Animator>();
         if (animator != null)
         {
-            // Animator가 기본 상태로 Idle을 재생하도록 설정 (Animator Controller에서 설정되어야 함)
-            animator.SetTrigger("Idle");
+            // Animator Controller의 기본 상태가 Idle이면 자동으로 재생됨
+            // 또는 명시적으로 Idle 파라미터를 설정하려면:
+            // animator.SetBool("Idle", true); 또는 animator.SetTrigger("Idle");
+            // 보스 프리팹의 Animator Controller 설정에 따라 조정 필요
+        }
+        else
+        {
+            Debug.LogWarning("BossRoomController: 보스 프리팹에 Animator 컴포넌트가 없습니다.");
         }
     }
     
@@ -117,6 +132,8 @@ public class BossRoomController : RoomController
     /// </summary>
     private IEnumerator BossIntroductionSequence()
     {
+        Debug.Log("BossRoomController: 보스 등장 연출 시작");
+        
         // HUD 패널 비활성화
         if (hudController != null && hudController.hudContainer != null)
         {
@@ -132,21 +149,62 @@ public class BossRoomController : RoomController
             playerController.enabled = false;
         }
         
+        // 카메라 컴포넌트 가져오기 (매번 가져오기)
+        if (mainCamera == null)
+        {
+            mainCamera = Camera.main;
+            if (mainCamera == null)
+            {
+                Debug.LogError("BossRoomController: Main Camera를 찾을 수 없습니다!");
+                yield break;
+            }
+        }
+        
+        // 카메라를 제어하는 다른 스크립트 비활성화 (예: CameraFollow 등)
+        MonoBehaviour[] cameraScripts = mainCamera.GetComponents<MonoBehaviour>();
+        bool[] cameraScriptsEnabled = new bool[cameraScripts.Length];
+        for (int i = 0; i < cameraScripts.Length; i++)
+        {
+            if (cameraScripts[i] != null && cameraScripts[i] != this)
+            {
+                cameraScriptsEnabled[i] = cameraScripts[i].enabled;
+                cameraScripts[i].enabled = false;
+            }
+        }
+        
         // 카메라의 초기 위치 저장
-        Vector3 initialCameraPos = mainCamera != null ? mainCamera.transform.position : Vector3.zero;
+        Vector3 initialCameraPos = mainCamera.transform.position;
+        Debug.Log($"BossRoomController: 카메라 초기 위치: {initialCameraPos}");
         
         // 카메라를 보스 위치로 이동
-        if (mainCamera != null && BossPos != null)
+        if (BossPos != null)
         {
             Vector3 bossCameraPos = new Vector3(BossPos.position.x, BossPos.position.y, mainCamera.transform.position.z);
+            Debug.Log($"BossRoomController: 카메라를 보스 위치로 이동: {bossCameraPos}");
             yield return StartCoroutine(MoveCameraToPosition(mainCamera.transform, bossCameraPos, cameraMoveSpeed));
+            Debug.Log($"BossRoomController: 카메라 보스 위치 도달 완료");
             
             // 보스 위치에서 잠시 머무름
             yield return new WaitForSeconds(cameraStayDuration);
             
             // 카메라를 플레이어 위치로 돌아감
             Vector3 playerCameraPos = new Vector3(player.transform.position.x, player.transform.position.y, mainCamera.transform.position.z);
+            Debug.Log($"BossRoomController: 카메라를 플레이어 위치로 이동: {playerCameraPos}");
             yield return StartCoroutine(MoveCameraToPosition(mainCamera.transform, playerCameraPos, cameraMoveSpeed));
+            Debug.Log($"BossRoomController: 카메라 플레이어 위치 도달 완료");
+        }
+        else
+        {
+            Debug.LogError("BossRoomController: BossPos가 할당되지 않았습니다!");
+        }
+        
+        // 카메라 스크립트 다시 활성화
+        for (int i = 0; i < cameraScripts.Length; i++)
+        {
+            if (cameraScripts[i] != null && cameraScripts[i] != this)
+            {
+                cameraScripts[i].enabled = cameraScriptsEnabled[i];
+            }
         }
         
         // HUD 패널 활성화
@@ -172,56 +230,59 @@ public class BossRoomController : RoomController
     {
         Vector3 startPosition = cameraTransform.position;
         float distance = Vector3.Distance(startPosition, targetPosition);
+        
+        if (distance < 0.01f)
+        {
+            // 거리가 매우 가까우면 즉시 이동
+            cameraTransform.position = targetPosition;
+            yield break;
+        }
+        
         float duration = distance / speed;
         float elapsed = 0f;
+        
+        Debug.Log($"BossRoomController: 카메라 이동 시작 - 시작: {startPosition}, 목표: {targetPosition}, 거리: {distance}, 속도: {speed}, 예상 시간: {duration}");
         
         while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
-            float t = elapsed / duration;
+            float t = Mathf.Clamp01(elapsed / duration);
             cameraTransform.position = Vector3.Lerp(startPosition, targetPosition, t);
             yield return null;
         }
         
         cameraTransform.position = targetPosition;
+        Debug.Log($"BossRoomController: 카메라 이동 완료 - 최종 위치: {cameraTransform.position}");
     }
     
     /// <summary>
-    /// 보스 Idle 애니메이션을 중지하고 보스 프리팹을 스폰합니다.
+    /// 보스 미리보기 인스턴스를 실제 보스로 활성화합니다.
     /// </summary>
     private void SpawnBoss()
     {
         if (hasBossSpawned) return;
         
-        // 보스 Idle 애니메이션 중지 및 제거
-        if (bossIdleAnimationInstance != null)
+        if (bossPreviewInstance != null)
         {
-            Destroy(bossIdleAnimationInstance);
-            bossIdleAnimationInstance = null;
-        }
-        
-        // 보스 프리팹 스폰
-        if (BossEnemyPrefab != null && BossPos != null)
-        {
-            GameObject bossInstance = Instantiate(BossEnemyPrefab, BossPos.position, Quaternion.identity);
-            
-            // EnemyController에 roomController 할당
-            EnemyController enemyController = bossInstance.GetComponent<EnemyController>();
+            // 미리보기 인스턴스를 실제 보스로 활성화
+            EnemyController enemyController = bossPreviewInstance.GetComponent<EnemyController>();
             if (enemyController != null)
             {
+                enemyController.enabled = true;
                 enemyController.roomController = this;
             }
             
             // 보스를 enemies 리스트에 추가
-            enemies.Add(bossInstance);
+            enemies.Add(bossPreviewInstance);
             
+            bossPreviewInstance = null; // 참조 초기화
             hasBossSpawned = true;
             
             Debug.Log("BossRoomController: 보스 스폰 완료.");
         }
         else
         {
-            Debug.LogWarning("BossRoomController: BossEnemyPrefab 또는 BossPos가 할당되지 않았습니다.");
+            Debug.LogWarning("BossRoomController: 보스 미리보기 인스턴스가 없습니다. BossEnemyPrefab이 할당되었는지 확인해주세요.");
         }
     }
     

@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b5cbaea95d551240b909b19b11c7847, type: 3}
-  m_Name: Enemy_Siren_C
+  m_Name: Enemy_BossTV
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
-  enemyName: Siren
-  enemyCategory: Special
-  maxHp: 10
-  moveSpeed: 5
+  enemyName: Enemy_BossTV
+  enemyCategory: BOSS
+  maxHp: 100
+  moveSpeed: 0
   contactDamage: 1
   attackCooldown: 1.5
   isRanged: 1
-  element: 1
-  detectionRange: 10
+  element: 0
+  detectionRange: 20
   attackRange: 2
-  projectilePrefab: {fileID: 2599106515927395768, guid: 7f303556289bdd64c95b03ca15a4aea7, type: 3}
+  projectilePrefab: {fileID: 2599106515927395768, guid: d8c84b7851c176a4490f34abf7e0870e, type: 3}
   projectileSpeed: 7
   projectileLifetime: 2

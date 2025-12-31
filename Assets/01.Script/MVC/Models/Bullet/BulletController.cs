@@ -70,6 +70,16 @@ public class BulletController : MonoBehaviour
         // 적 총알 -> 플레이어/벽 충돌
         else if (!isPlayerBullet && (other.CompareTag("Player") || other.CompareTag("Wall")))
         {
+            // 플레이어와 충돌할 때, 플레이어가 구르는 중이면 총알을 통과시킴
+            if (other.CompareTag("Player"))
+            {
+                PlayerController playerController = other.GetComponent<PlayerController>();
+                if (playerController != null && playerController.IsRolling())
+                {
+                    // 구르는 중이면 총알을 파괴하지 않고 통과
+                    return;
+                }
+            }
             targetHit = true;
         }
 

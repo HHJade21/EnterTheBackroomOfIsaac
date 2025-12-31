@@ -47,6 +47,8 @@ public class Enemy_Siren : EnemyController
     private float targetDiveDistance = 0f; // 목표 Diving 거리 (플레이어로부터)
     private Vector2 diveStartPosition = Vector2.zero; // Diving 시작 위치
     private bool isInAttackSequence = false; // 공격 시퀀스 중인지 여부
+    private bool isMovingAway = false; // 멀어지는 상태인지 여부 (true: 멀어짐, false: 다가옴)
+    private Coroutine distanceCheckCoroutine; // 거리 체크 코루틴 참조
     
     protected override void Start()
     {
@@ -87,6 +89,12 @@ public class Enemy_Siren : EnemyController
         
         // target이 설정되면 Diving 시작
         StartDiving();
+        
+        // 거리 체크 코루틴 시작
+        if (distanceCheckCoroutine == null)
+        {
+            distanceCheckCoroutine = StartCoroutine(DistanceCheckRoutine());
+        }
     }
     
     protected override void FixedUpdate()
@@ -127,6 +135,38 @@ public class Enemy_Siren : EnemyController
     }
     
     /// <summary>
+    /// 0.5초 주기로 플레이어와의 거리를 확인하고 이동 상태를 업데이트하는 코루틴
+    /// </summary>
+    private IEnumerator DistanceCheckRoutine()
+    {
+        while (!isDead && target != null)
+        {
+            // Diving 상태일 때만 거리 체크
+            if (isDiving && !isInAttackSequence)
+            {
+                Vector2 toPlayer = (Vector2)target.position - (Vector2)transform.position;
+                float currentDistanceFromPlayer = toPlayer.magnitude;
+                
+                // 최대 사거리보다 가까우면 '멀어지는' 상태
+                // 최대 사거리보다 멀면 '다가오는' 상태
+                if (currentDistanceFromPlayer < targetDiveDistance)
+                {
+                    isMovingAway = true; // 멀어지는 상태
+                    diveDirection = -toPlayer.normalized;
+                }
+                else
+                {
+                    isMovingAway = false; // 다가오는 상태
+                    diveDirection = toPlayer.normalized;
+                }
+            }
+            
+            // 0.5초 대기
+            yield return new WaitForSeconds(0.5f);
+        }
+    }
+    
+    /// <summary>
     /// Diving 상태의 이동을 업데이트합니다.
     /// </summary>
     private void UpdateDivingMovement()
@@ -144,19 +184,7 @@ public class Enemy_Siren : EnemyController
             return;
         }
         
-        // 현재 플레이어로부터의 거리 계산
-        Vector2 toPlayer = (Vector2)target.position - (Vector2)transform.position;
-        float currentDistanceFromPlayer = toPlayer.magnitude;
-        
-        // 목표 거리 이상 멀어졌고, 아직 시간이 남았다면 랜덤 방향으로 변경
-        if (currentDistanceFromPlayer >= targetDiveDistance && elapsedTime < diveDuration)
-        {
-            // 랜덤 방향으로 변경
-            float randomAngle = Random.Range(0f, 360f) * Mathf.Deg2Rad;
-            diveDirection = new Vector2(Mathf.Cos(randomAngle), Mathf.Sin(randomAngle));
-        }
-        
-        // Diving 이동 계속
+        // Diving 이동 계속 (방향은 DistanceCheckRoutine에서 업데이트됨)
         Vector2 moveDelta = diveDirection * enemyData.moveSpeed * Time.fixedDeltaTime;
         rb.MovePosition(rb.position + moveDelta);
         // 스프라이트 방향 설정
@@ -168,8 +196,6 @@ public class Enemy_Siren : EnemyController
         {
             spriteRenderer.flipX = false;
         }
-        
-        
     }
     
     /// <summary>
@@ -183,14 +209,25 @@ public class Enemy_Siren : EnemyController
         diveStartPosition = transform.position;
         diveStartTime = Time.time;
         
-        // 플레이어에게서 멀어지는 방향 계산
-        Vector2 toPlayer = (Vector2)target.position - (Vector2)transform.position;
-        diveDirection = -toPlayer.normalized;
-        
-        // 목표 거리 설정 (플레이어로부터의 거리, 1/3로 줄임)
+        // 목표 거리 설정 (플레이어로부터의 거리)
         targetDiveDistance = Random.Range(diveMinDistance, diveMaxDistance);
         
-
+        // 초기 거리 체크하여 방향 설정
+        Vector2 toPlayer = (Vector2)target.position - (Vector2)transform.position;
+        float currentDistanceFromPlayer = toPlayer.magnitude;
+        
+        if (currentDistanceFromPlayer < targetDiveDistance)
+        {
+            // 현재 거리가 목표 거리보다 가까우면 멀어지는 방향
+            isMovingAway = true;
+            diveDirection = -toPlayer.normalized;
+        }
+        else
+        {
+            // 현재 거리가 목표 거리보다 멀면 다가오는 방향
+            isMovingAway = false;
+            diveDirection = toPlayer.normalized;
+        }
     }
 
     public void StartMoving()
