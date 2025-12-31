@@ -744,9 +744,9 @@ public class WeaponController : MonoBehaviour
         else tmp = multiBulletCount + 3;
 
         int tmpSpread = tmp * multiBulletSpread;
-        Debug.Log("tmp: " + tmp);
-        Debug.Log("multiBulletCount: " + multiBulletCount);
-        Debug.Log("multiBulletSpread: " + multiBulletSpread);
+        // Debug.Log("tmp: " + tmp);
+        // Debug.Log("multiBulletCount: " + multiBulletCount);
+        // Debug.Log("multiBulletSpread: " + multiBulletSpread);
         // Debug.Log("baseAngle: " + baseAngle);
         // Debug.Log("dir: " + dir);
         // Debug.Log("startPoint: " + startPoint.position);
