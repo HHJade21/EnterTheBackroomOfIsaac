@@ -15,6 +15,7 @@ public class PanelController : MonoBehaviour
     public Sprite selectIconBackgroundM;
     public Sprite selectIconBackgroundY;
     public Sprite selectIconBackgroundK;
+    public List<Sprite> skillIcon;
 
     private void Start()
     {

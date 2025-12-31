@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ccf4d3e6ed3e3dc4e8b6db58ab598a2b
+guid: f69fad661a7980441b2c9f31d99453d3
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -226,8 +226,8 @@ TextureImporter:
       name: "\uAD50\uCCB4\uCC3D_\uBD84\uB9AC_0"
       rect:
         serializedVersion: 2
-        x: 316
-        y: 355
+        x: 589
+        y: 417
         width: 1789
         height: 2743
       alignment: 0
@@ -248,7 +248,7 @@ TextureImporter:
       name: "\uAD50\uCCB4\uCC3D_\uBD84\uB9AC_1"
       rect:
         serializedVersion: 2
-        x: 2738
+        x: 2745
         y: 342
         width: 1814
         height: 2768
@@ -311,50 +311,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uAD50\uCCB4\uCC3D_\uBD84\uB9AC_12"
-      rect:
-        serializedVersion: 2
-        x: 7100
-        y: 2516
-        width: 25
-        height: 149
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e9a05882cf80b8560800000000000000
-      internalID: 7316951898698091166
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: "\uAD50\uCCB4\uCC3D_\uBD84\uB9AC_19"
-      rect:
-        serializedVersion: 2
-        x: 7637
-        y: 2583
-        width: 25
-        height: 82
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e53cfc76b9e946270800000000000000
-      internalID: 8242887608293639006
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: "\uAD50\uCCB4\uCC3D_\uBD84\uB9AC_38"
       rect:
         serializedVersion: 2
@@ -380,7 +336,7 @@ TextureImporter:
       name: "\uAD50\uCCB4\uCC3D_\uBD84\uB9AC_39"
       rect:
         serializedVersion: 2
-        x: 5768
+        x: 5761
         y: 1708
         width: 839
         height: 267
@@ -446,7 +402,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 62f625ff50f377b439ee99606d006233
+    spriteID: 9d4623b10507a184eb9763dd062504c5
     internalID: 0
     vertices: []
     indices: 

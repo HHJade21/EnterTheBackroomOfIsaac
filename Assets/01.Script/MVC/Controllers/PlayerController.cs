@@ -38,6 +38,10 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     Rigidbody2D rigid;
     public List<GridController> gridControllers = new List<GridController>();
+    
+    [Header("Animation Object")]
+    [Tooltip("플레이어의 자식 오브젝트 중 AnimationObj (Swap 애니메이션용)")]
+    public GameObject animationObj;
 
     // ========== Item Data ==========
     [Header("Item Data")]
@@ -64,7 +68,7 @@ public class PlayerController : MonoBehaviour
     // ========== Swap System ==========
     public int swapCount=2;
     public float swapCharge=0f;
-    [HideInInspector] public float swapChargeMax=5f;
+    [HideInInspector] public float swapChargeMax=3f;
 
     // ========== Roll Settings ==========
     [Header("Roll Settings")]
@@ -137,6 +141,7 @@ public class PlayerController : MonoBehaviour
     public GameObject pausePanel;
     public PanelGroupAnimator pausePanelAnimator;
     public DungeonHUDController hudController;
+    public List<Sprite> skillIcon;
     
     [Header("Game Over UI")]
     [Tooltip("게임 오버 암전 패널 (Image 컴포넌트)")]
@@ -476,6 +481,12 @@ public class PlayerController : MonoBehaviour
             
             // 무기 교체 성공 시 색상 변경
             ChangeColor((int)weaponController.GetCurrentWeaponData().element);
+            
+            // AnimationObj 활성화
+            if (animationObj != null)
+            {
+                animationObj.SetActive(true);
+            }
         }
     }
 
@@ -1067,7 +1078,6 @@ public class PlayerController : MonoBehaviour
         spriteRenderer.color = Color.white;
     }
 
-    // ========== UI Methods ==========
     public void Resume()
     {
         Time.timeScale = 1f;

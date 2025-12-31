@@ -36,4 +36,4 @@ MonoBehaviour:
   fireSound: {fileID: 8300000, guid: 19f0cdafd5e07c342b6dee072c80a7a0, type: 3}
   reloadSound: {fileID: 0}
   fireEffect: {fileID: 0}
-  swapSkillData: {fileID: 0}
+  swapSkillData: {fileID: 11400000, guid: 2ad8fe435b2c5ff4db74c6fb0b29b067, type: 2}
