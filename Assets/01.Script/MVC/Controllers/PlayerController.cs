@@ -137,6 +137,13 @@ public class PlayerController : MonoBehaviour
     public GameObject pausePanel;
     public PanelGroupAnimator pausePanelAnimator;
     public DungeonHUDController hudController;
+    
+    [Header("Game Over UI")]
+    [Tooltip("게임 오버 암전 패널 (Image 컴포넌트)")]
+    public Image gameOverDarkenPanel;
+    
+    [Tooltip("게임 오버 텍스트 (TextMeshProUGUI 컴포넌트)")]
+    public TextMeshProUGUI gameOverText;
 
     // ========== Weapon Related ==========
     private Coroutine autoFireCoroutine; // 자동 발사 코루틴 참조
@@ -1625,7 +1632,106 @@ public class PlayerController : MonoBehaviour
         isDead = true;
         Debug.Log("플레이어 사망");
         animator.SetTrigger("Death");
-        // TODO: 사망 처리 로직 구현
+        
+        // 보스 및 보스 투사체 파괴
+        DestroyBossAndProjectiles();
+        
+        // 게임 오버 UI 연출 시작
+        StartCoroutine(GameOverSequenceCoroutine());
+    }
+    
+    /// <summary>
+    /// 게임 오버 UI 연출 코루틴
+    /// </summary>
+    private System.Collections.IEnumerator GameOverSequenceCoroutine()
+    {
+        // 3초 대기
+        yield return new WaitForSeconds(3f);
+        
+        // Darken 패널 페이드인
+        if (gameOverDarkenPanel != null)
+        {
+            gameOverDarkenPanel.gameObject.SetActive(true);
+            Color darkenColor = gameOverDarkenPanel.color;
+            darkenColor.a = 0f;
+            gameOverDarkenPanel.color = darkenColor;
+            
+            // 1초에 걸쳐 페이드인
+            float fadeDuration = 1f;
+            float elapsedTime = 0f;
+            
+            while (elapsedTime < fadeDuration)
+            {
+                elapsedTime += Time.deltaTime;
+                float t = Mathf.Clamp01(elapsedTime / fadeDuration);
+                
+                darkenColor.a = Mathf.Lerp(0f, 1f, t);
+                gameOverDarkenPanel.color = darkenColor;
+                
+                yield return null;
+            }
+            
+            // 최종 알파값 설정
+            darkenColor.a = 1f;
+            gameOverDarkenPanel.color = darkenColor;
+        }
+        
+        // 1.5초 대기
+        yield return new WaitForSeconds(1.5f);
+        
+        // Text-GameOver 페이드인
+        if (gameOverText != null)
+        {
+            gameOverText.gameObject.SetActive(true);
+            Color textColor = gameOverText.color;
+            textColor.a = 0f;
+            gameOverText.color = textColor;
+            
+            // 1초에 걸쳐 페이드인
+            float fadeDuration = 1f;
+            float elapsedTime = 0f;
+            
+            while (elapsedTime < fadeDuration)
+            {
+                elapsedTime += Time.deltaTime;
+                float t = Mathf.Clamp01(elapsedTime / fadeDuration);
+                
+                textColor.a = Mathf.Lerp(0f, 1f, t);
+                gameOverText.color = textColor;
+                
+                yield return null;
+            }
+            
+            // 최종 알파값 설정
+            textColor.a = 1f;
+            gameOverText.color = textColor;
+        }
+    }
+    
+    /// <summary>
+    /// 맵 상의 모든 적과 투사체를 찾아서 파괴합니다.
+    /// </summary>
+    private void DestroyBossAndProjectiles()
+    {
+        // 모든 EnemyController 찾아서 파괴
+        EnemyController[] enemies = FindObjectsByType<EnemyController>(FindObjectsSortMode.None);
+        foreach (EnemyController enemy in enemies)
+        {
+            if (enemy != null && enemy.gameObject != null)
+            {
+                Destroy(enemy.gameObject);
+            }
+        }
+        
+        // 모든 BulletController 찾아서 파괴
+        BulletController[] bullets = FindObjectsByType<BulletController>(FindObjectsSortMode.None);
+        foreach (BulletController bullet in bullets)
+        {
+            if (bullet != null && bullet.gameObject != null)
+            {
+                Destroy(bullet.gameObject);
+            }
+        }
     }
     
     #endregion
