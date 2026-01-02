@@ -186,9 +186,27 @@ public class PanelController : MonoBehaviour
         {
             int newWeaponIndex = selectWeaponIDs[index];
             //여기에 해당 무기 스폰 구현
-            Vector3 spawnPos = printerController.weaponSpawnTransform != null ? printerController.weaponSpawnTransform.position : printerController.defaultSpawnPosition;
+            Vector3 spawnPos = printerController != null && printerController.weaponSpawnTransform != null 
+                ? printerController.weaponSpawnTransform.position 
+                : (printerController != null ? printerController.defaultSpawnPosition : Vector3.zero);
             weaponController.SpawnWeaponByIndex(newWeaponIndex, spawnPos);
         }
+        
+        // PrinterController의 애니메이터에 "Print" 트리거 설정
+        if (printerController != null)
+        {
+            Animator printerAnimator = printerController.GetComponent<Animator>();
+            if (printerAnimator == null)
+            {
+                printerAnimator = printerController.GetComponentInChildren<Animator>();
+            }
+            
+            if (printerAnimator != null)
+            {
+                printerAnimator.SetTrigger("Print");
+            }
+        }
+        
         CloseSelectPanel();
     }
 

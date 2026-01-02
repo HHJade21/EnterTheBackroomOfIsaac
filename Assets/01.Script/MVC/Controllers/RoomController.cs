@@ -194,6 +194,62 @@ public class RoomController : MonoBehaviour
         {
             if(door != null) door.SetActive(false);
         }
+        
+        // 방 클리어 시 플레이어에게 가장 가까운 spawnPoint에 하트 아이템 생성
+        SpawnHeartItem();
+    }
+    
+    /// <summary>
+    /// 플레이어와 가장 가까운 spawnPoint에 하트 아이템을 생성합니다.
+    /// </summary>
+    private void SpawnHeartItem()
+    {
+        // DungeonController와 player가 없으면 생성하지 않음
+        if (dungeonController == null || player == null)
+        {
+            return;
+        }
+        
+        // heartItemPrefab이 없으면 생성하지 않음
+        if (dungeonController.heartItemPrefab == null)
+        {
+            return;
+        }
+        
+        // spawnPoints 리스트가 비어있거나 null이면 생성하지 않음
+        if (spawnPoints == null || spawnPoints.Count == 0)
+        {
+            return;
+        }
+        
+        // 유효한 spawnPoint만 필터링 (null 제거)
+        List<Transform> validSpawnPoints = spawnPoints.Where(sp => sp != null).ToList();
+        
+        if (validSpawnPoints.Count == 0)
+        {
+            return;
+        }
+        
+        // 플레이어와 가장 가까운 spawnPoint 찾기
+        Transform nearestSpawnPoint = null;
+        float nearestDistance = float.MaxValue;
+        Vector3 playerPosition = player.transform.position;
+        
+        foreach (Transform spawnPoint in validSpawnPoints)
+        {
+            float distance = Vector3.Distance(playerPosition, spawnPoint.position);
+            if (distance < nearestDistance)
+            {
+                nearestDistance = distance;
+                nearestSpawnPoint = spawnPoint;
+            }
+        }
+        
+        // 가장 가까운 spawnPoint에 하트 아이템 생성
+        if (nearestSpawnPoint != null)
+        {
+            Instantiate(dungeonController.heartItemPrefab, nearestSpawnPoint.position, Quaternion.identity);
+        }
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

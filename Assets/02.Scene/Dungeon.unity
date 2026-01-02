@@ -808,7 +808,7 @@ GameObject:
   - component: {fileID: 106216344}
   - component: {fileID: 106216345}
   - component: {fileID: 106216347}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: Feet
   m_TagString: PlayerFeet
   m_Icon: {fileID: 0}
@@ -10457,8 +10457,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 2079108057
-  m_SortingLayer: -1
+  m_SortingLayerID: 560096115
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: 2503261673807558912, guid: c8297563f60e979498d9883264b45675, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -18129,6 +18129,7 @@ MonoBehaviour:
   minimapController: {fileID: 520458503}
   selectPanel: {fileID: 0}
   useBetaGenerator: 1
+  heartItemPrefab: {fileID: 1870121007097128868, guid: 091ef3ec0605baa4e93f5f16c7158e9a, type: 3}
 --- !u!1 &1839059988
 GameObject:
   m_ObjectHideFlags: 0

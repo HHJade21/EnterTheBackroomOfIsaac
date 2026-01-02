@@ -1,0 +1,451 @@
+fileFormatVersion: 2
+guid: 639428ed6b6f0364ea1c6651fa2021c4
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 9095085415293670570
+    second: Obj_BossRoomDoor_Destroy_0
+  - first:
+      213: 2771975887543721114
+    second: Obj_BossRoomDoor_Destroy_1
+  - first:
+      213: 8748459138563915970
+    second: Obj_BossRoomDoor_Destroy_2
+  - first:
+      213: 1390583280358994152
+    second: Obj_BossRoomDoor_Destroy_3
+  - first:
+      213: -1086603790719873086
+    second: Obj_BossRoomDoor_Destroy_4
+  - first:
+      213: 4201100920554160271
+    second: Obj_BossRoomDoor_Destroy_5
+  - first:
+      213: 6174485305512153235
+    second: Obj_BossRoomDoor_Destroy_6
+  - first:
+      213: 262300291260110620
+    second: Obj_BossRoomDoor_Destroy_7
+  - first:
+      213: 6791963502430423470
+    second: Obj_BossRoomDoor_Destroy_8
+  - first:
+      213: 9199188994144200497
+    second: Obj_BossRoomDoor_Destroy_9
+  - first:
+      213: -1612997716923612672
+    second: Obj_BossRoomDoor_Destroy_10
+  - first:
+      213: 7873903620190136438
+    second: Obj_BossRoomDoor_Destroy_11
+  - first:
+      213: 7855761238182239180
+    second: Obj_BossRoomDoor_Destroy_12
+  - first:
+      213: -1046420574389528535
+    second: Obj_BossRoomDoor_Destroy_13
+  - first:
+      213: 2374870979763428459
+    second: Obj_BossRoomDoor_Destroy_14
+  - first:
+      213: -7024441007572436701
+    second: Obj_BossRoomDoor_Destroy_15
+  - first:
+      213: -6202335249126540352
+    second: Obj_BossRoomDoor_Destroy_16
+  - first:
+      213: -9140404433060708640
+    second: Obj_BossRoomDoor_Destroy_17
+  - first:
+      213: -3646449138744030115
+    second: Obj_BossRoomDoor_Destroy_18
+  - first:
+      213: -2517559081830520314
+    second: Obj_BossRoomDoor_Destroy_19
+  - first:
+      213: -5108278333813109878
+    second: Obj_BossRoomDoor_Destroy_20
+  - first:
+      213: 8605005071284022673
+    second: Obj_BossRoomDoor_Destroy_21
+  - first:
+      213: -7598399154468570086
+    second: Obj_BossRoomDoor_Destroy_22
+  - first:
+      213: 7497035875305928567
+    second: Obj_BossRoomDoor_Destroy_23
+  - first:
+      213: -809723354852857295
+    second: Obj_BossRoomDoor_Destroy_24
+  - first:
+      213: 8281291958930800863
+    second: Obj_BossRoomDoor_Destroy_25
+  - first:
+      213: -7089207896454517831
+    second: Obj_BossRoomDoor_Destroy_26
+  - first:
+      213: 7335106249471409808
+    second: Obj_BossRoomDoor_Destroy_27
+  - first:
+      213: 4538966041838127901
+    second: Obj_BossRoomDoor_Destroy_28
+  - first:
+      213: -3828583431428336825
+    second: Obj_BossRoomDoor_Destroy_29
+  - first:
+      213: -3450109995635892646
+    second: Obj_BossRoomDoor_Destroy_30
+  - first:
+      213: 7607221611420749561
+    second: Obj_BossRoomDoor_Destroy_31
+  - first:
+      213: 6576321457839124881
+    second: Obj_BossRoomDoor_Destroy_32
+  - first:
+      213: -6062992461312204059
+    second: Obj_BossRoomDoor_Destroy_33
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Obj_BossRoomDoor_Destroy_0
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 419
+        width: 365
+        height: 349
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa45a645ffb383e70800000000000000
+      internalID: 9095085415293670570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Obj_BossRoomDoor_Destroy_1
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 415
+        width: 371
+        height: 353
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9cddf61269087620800000000000000
+      internalID: 2771975887543721114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Obj_BossRoomDoor_Destroy_2
+      rect:
+        serializedVersion: 2
+        x: 1055
+        y: 414
+        width: 376
+        height: 354
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c04f163c35c86970800000000000000
+      internalID: 8748459138563915970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Obj_BossRoomDoor_Destroy_3
+      rect:
+        serializedVersion: 2
+        x: 1533
+        y: 414
+        width: 408
+        height: 330
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e0356830285c4310800000000000000
+      internalID: 1390583280358994152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Obj_BossRoomDoor_Destroy_4
+      rect:
+        serializedVersion: 2
+        x: 2083
+        y: 415
+        width: 366
+        height: 310
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2cf8c820c9b9be0f0800000000000000
+      internalID: -1086603790719873086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Obj_BossRoomDoor_Destroy_6
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 14
+        width: 331
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 390dbe9ebad20b550800000000000000
+      internalID: 6174485305512153235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Obj_BossRoomDoor_Destroy_7
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 14
+        width: 246
+        height: 298
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c175a05a9b0e3a300800000000000000
+      internalID: 262300291260110620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Obj_BossRoomDoor_Destroy_8
+      rect:
+        serializedVersion: 2
+        x: 1137
+        y: 13
+        width: 217
+        height: 293
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea988c1f1d6e14e50800000000000000
+      internalID: 6791963502430423470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Obj_BossRoomDoor_Destroy_9
+      rect:
+        serializedVersion: 2
+        x: 1651
+        y: 20
+        width: 194
+        height: 285
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 137e5a996a51aaf70800000000000000
+      internalID: 9199188994144200497
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: dd387a8215fdd7a4283f1ac24ed01fca
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Obj_BossRoomDoor_Destroy_0: 9095085415293670570
+      Obj_BossRoomDoor_Destroy_1: 2771975887543721114
+      Obj_BossRoomDoor_Destroy_10: -1612997716923612672
+      Obj_BossRoomDoor_Destroy_11: 7873903620190136438
+      Obj_BossRoomDoor_Destroy_12: 7855761238182239180
+      Obj_BossRoomDoor_Destroy_13: -1046420574389528535
+      Obj_BossRoomDoor_Destroy_14: 2374870979763428459
+      Obj_BossRoomDoor_Destroy_15: -7024441007572436701
+      Obj_BossRoomDoor_Destroy_16: -6202335249126540352
+      Obj_BossRoomDoor_Destroy_17: -9140404433060708640
+      Obj_BossRoomDoor_Destroy_18: -3646449138744030115
+      Obj_BossRoomDoor_Destroy_19: -2517559081830520314
+      Obj_BossRoomDoor_Destroy_2: 8748459138563915970
+      Obj_BossRoomDoor_Destroy_20: -5108278333813109878
+      Obj_BossRoomDoor_Destroy_21: 8605005071284022673
+      Obj_BossRoomDoor_Destroy_22: -7598399154468570086
+      Obj_BossRoomDoor_Destroy_23: 7497035875305928567
+      Obj_BossRoomDoor_Destroy_24: -809723354852857295
+      Obj_BossRoomDoor_Destroy_25: 8281291958930800863
+      Obj_BossRoomDoor_Destroy_26: -7089207896454517831
+      Obj_BossRoomDoor_Destroy_27: 7335106249471409808
+      Obj_BossRoomDoor_Destroy_28: 4538966041838127901
+      Obj_BossRoomDoor_Destroy_29: -3828583431428336825
+      Obj_BossRoomDoor_Destroy_3: 1390583280358994152
+      Obj_BossRoomDoor_Destroy_30: -3450109995635892646
+      Obj_BossRoomDoor_Destroy_31: 7607221611420749561
+      Obj_BossRoomDoor_Destroy_32: 6576321457839124881
+      Obj_BossRoomDoor_Destroy_33: -6062992461312204059
+      Obj_BossRoomDoor_Destroy_4: -1086603790719873086
+      Obj_BossRoomDoor_Destroy_5: 4201100920554160271
+      Obj_BossRoomDoor_Destroy_6: 6174485305512153235
+      Obj_BossRoomDoor_Destroy_7: 262300291260110620
+      Obj_BossRoomDoor_Destroy_8: 6791963502430423470
+      Obj_BossRoomDoor_Destroy_9: 9199188994144200497
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

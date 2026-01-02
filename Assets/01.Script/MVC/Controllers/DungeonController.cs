@@ -57,6 +57,9 @@ public class DungeonController : MonoBehaviour
     [Tooltip("체크하면 간단한 북쪽 직선 구조(일반-일반-아이템-보스)로 생성")]
     public bool useBetaGenerator = false;
 
+    [Header("Item")]
+    public GameObject heartItemPrefab;
+
     private void Awake()
     {
         GameManager.Instance.dungeonController = this;
