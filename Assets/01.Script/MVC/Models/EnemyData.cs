@@ -8,6 +8,8 @@ public class EnemyData : ScriptableObject
 {
     [Header("Meta")]
     public string enemyName = "Enemy";   // 디버깅 및 UI 표시용 이름
+    [TextArea(2, 5)]
+    public string enemyDescription = ""; // 보스 HUD 등에 표시할 설명
     public string enemyCategory = "Normal"; // 석상 무빙이 달라서 이걸로 구분할 예정.
 
     [Header("Stats")]

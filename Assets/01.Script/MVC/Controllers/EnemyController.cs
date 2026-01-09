@@ -19,6 +19,8 @@ public class EnemyController : MonoBehaviour
     [Header("Runtime State")]
     [SerializeField] protected Transform target;       // 추적할 대상 (보통 Player)
     [SerializeField] private float currentHp;        // 실시간 체력
+    public float CurrentHP => currentHp;
+    public float MaxHP => enemyData != null ? enemyData.maxHp : 0f;
     protected WeaponData.WeaponElement element;        // 적 속성
 
     [Header("Collision Settings")]

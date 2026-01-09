@@ -21,6 +21,12 @@ public class BossRoomController : RoomController
     
     [Tooltip("카메라가 보스 위치에서 머무는 시간 (초)")]
     public float cameraStayDuration = 2f;
+
+    [Header("UI Settings")]
+    [Tooltip("표시할 보스 이름")]
+    public string bossName = "UNKNOWN";
+    [Tooltip("표시할 보스 설명 (비워두면 표시 안 함)")]
+    public string bossDescription = "";
     
     private Camera mainCamera;
     private PlayerController playerController;
@@ -272,11 +278,15 @@ public class BossRoomController : RoomController
                 enemyController.roomController = this;
             }
             
-            // 보스를 enemies 리스트에 추가
-            enemies.Add(bossPreviewInstance);
-            
+            // 보스 스폰 완료 표시
             bossPreviewInstance = null; // 참조 초기화
             hasBossSpawned = true;
+
+            // 보스 HUD 초기화 (싱글톤 사용)
+            if (BossHUDController.Instance != null && enemyController != null)
+            {
+                BossHUDController.Instance.Initialize(enemyController, bossName, bossDescription);
+            }
             
             Debug.Log("BossRoomController: 보스 스폰 완료.");
         }

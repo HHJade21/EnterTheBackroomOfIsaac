@@ -829,6 +829,9 @@ MonoBehaviour:
   BossEnemyPrefab: {fileID: 5312735757910337222, guid: e98bc25c3ef26be4b9b1f0ff07b8c6fa, type: 3}
   cameraMoveSpeed: 5
   cameraStayDuration: 2
+  bossHUD: {fileID: 0}
+  bossName: "\uB300\uCDA9 \uAC1C\uCA4C\uB294 \uBCF4\uC2A4"
+  bossDescription: "\uADF8\uAC00 \uB2F9\uC2E0\uC744 \uB9D0\uC0B4\uD560 \uAC83\uC774\uB2E4"
 --- !u!60 &7190638437458340947
 PolygonCollider2D:
   m_ObjectHideFlags: 0
